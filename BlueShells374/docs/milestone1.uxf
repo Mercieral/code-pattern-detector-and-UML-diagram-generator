@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>100</x>
+      <y>560</y>
+      <w>310</w>
+      <h>420</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+IClass
+--
++ Collection&lt;IMethod&gt; methodList
++ Collection&lt;IField&gt; fieldList
++ Collection&lt;String&gt; interfaces
++ String extension
++ ACCESS.ENUM access
++ String signature
++ int classVersion
++ IClass superName
+--
++ getIMethods() Collection&lt;IMethod&gt;
++ addIMethods(IMethod method) void
++ getIField() Collection&lt;IField&gt;
++ addIField(IField field) void
++ getAccessLevel() ACCESS.ENUM
++ setAccessLevel(ACCESS.ENUM access) void
++ getSignature() String
++ setSignature(String sign) void
++ getClassVersion() int
++ setClassVersion(int class) void
++ getSuperName() IClass
++ setSuperName(IClass name) void
++ getInterface() Collection&lt;IInterface&gt;
++ addInterface(IInterface inter) void
++ toString() String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>430</x>
+      <y>550</y>
+      <w>320</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+IMethod
+--
+
+--
++ getName() String
++ setName(String name) void
++ getAccessLevel() ACCESS.ENUM
++ setAccessLevel(ACCESS.ENUM access) void
++ getDesc() String
++ setDesc(String desc) void
++ getExceptions() String[]
++ setExceptions(String[] exceptions) void
++ toString() String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>770</x>
+      <y>550</y>
+      <w>320</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+IField
+--
+--
++ getName() String
++ setName(String name) void
++ getDesc() String
++ setDesc(String desc) void
++ getSignature() String
++ setSignature(String sign) void
++ getValue() Object
++ setValue(Object value) void
++ getAccessLevel() ACCESS.ENUM
++ setAccessLevel(ACCESS.ENUM access) void
++ toString() String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>410</x>
+      <y>280</y>
+      <w>350</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+IModel
+--
++ Collection&lt;IClass&gt;
+--
++ generateGraph() void
++ </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>500</x>
+      <y>80</y>
+      <w>190</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>DesignParser
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1360</x>
+      <y>110</y>
+      <w>260</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>ClassDeclarationVisitor
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1090</x>
+      <y>110</y>
+      <w>260</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>ClassFieldVisitor
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>820</x>
+      <y>110</y>
+      <w>260</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>ClassMethodVisitor
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1110</x>
+      <y>550</y>
+      <w>330</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+IInterface
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
