@@ -12,7 +12,6 @@ public class ClassFieldVisitor extends ClassVisitor{
 	
 	public ClassFieldVisitor(int api, ClassVisitor decorated) {
 		super(api, decorated);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) {
@@ -21,6 +20,8 @@ public class ClassFieldVisitor extends ClassVisitor{
 		// TODO: delete this line
 		System.out.println("	"+type+" "+ name);
 		// TODO: add this field to your internal representation of the current class.
+		IField currentField = new Field();
+		
 		// What is a good way to know what the current class is?
 		return toDecorate;
 	};

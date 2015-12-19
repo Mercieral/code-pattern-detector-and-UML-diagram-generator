@@ -14,6 +14,8 @@ public class ClassDeclarationVisitor extends ClassVisitor {
 		// TODO: delete the line below
 		System.out.println("Class: "+name+" extends "+superName+" implements "+Arrays.toString(interfaces));
 		// TODO: construct an internal representation of the class for later use by decorators
+		IClass currentClass= new ConcreteClass();
+		
 		super.visit(version, access, name, signature, superName, interfaces);
 		
 	}

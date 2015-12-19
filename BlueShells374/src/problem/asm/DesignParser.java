@@ -19,6 +19,7 @@ public class DesignParser {
 			// ASM's ClassReader does the heavy lifting of parsing the compiled Java class
 			ClassReader reader=new ClassReader(className);
 			
+			
 			// make class declaration visitor to get superclass and interfaces
 			ClassVisitor decVisitor = new ClassDeclarationVisitor(Opcodes.ASM5);
 			

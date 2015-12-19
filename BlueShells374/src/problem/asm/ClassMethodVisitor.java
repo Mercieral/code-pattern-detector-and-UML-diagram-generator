@@ -6,13 +6,13 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
 public class ClassMethodVisitor extends ClassVisitor {
+	
 	public ClassMethodVisitor(int api){
 		super(api);
 	}
 	
 	public ClassMethodVisitor(int api, ClassVisitor decorated) {
 		super(api, decorated);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -21,11 +21,15 @@ public class ClassMethodVisitor extends ClassVisitor {
 		
 		// TODO: delete this line
 		System.out.println("	method " + name);
+		
+		
 
 		// TODO: create an internal representation of the current method and pass it to the methods below
-		addAccessLevel(access);
-		addReturnType(desc);
-		addArguments(desc);
+		IMethod currentMethod = new Method();
+		
+		addAccessLevel(access, currentMethod);
+		addReturnType(desc, currentMethod);
+		addArguments(desc, currentMethod);
 		
 	    // TODO: add the current method to your internal representation of the current class
 		// What is a good way for the code to remember what the current class is?
@@ -33,7 +37,7 @@ public class ClassMethodVisitor extends ClassVisitor {
 		return toDecorate;
 	}
 	
-	void addAccessLevel(int access){
+	void addAccessLevel(int access, IMethod currentMethod){
 		String level="";
 		if((access&Opcodes.ACC_PUBLIC)!=0){
 			level="public";
@@ -49,14 +53,14 @@ public class ClassMethodVisitor extends ClassVisitor {
 		// TODO: ADD this information to your representation of the current method.
 	}
 	
-	void addReturnType(String desc){
+	void addReturnType(String desc, IMethod currentMethod){
 		String returnType = Type.getReturnType(desc).getClassName();
 		// TODO: delete the next line
 		System.out.println("		return type: " + returnType);
 		// TODO: ADD this information to your representation of the current method.
 	}
 	
-	void addArguments(String desc){
+	void addArguments(String desc, IMethod currentMethod){
 		Type[] args = Type.getArgumentTypes(desc);
 	    for(int i=0; i< args.length; i++){
 	    	String arg=args[i].getClassName();
