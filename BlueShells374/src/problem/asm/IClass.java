@@ -11,6 +11,7 @@ public interface IClass {
 	public double getClassVersion();
 	public IClass getSuperName();
 	public Collection<Interface> getInterface();
+	public String getExtension();
 	public void addIMethods(IMethod method);
 	public void addIField(IField field);
 	public void setAccessLevel(EClassAccess access);
@@ -19,5 +20,6 @@ public interface IClass {
 	public void setClassVersion(double version);
 	public void setSuperName(IClass name);
 	public void addInterface(Interface inter);
+	public void setExtension(String extension);
 	public String toString();
 }

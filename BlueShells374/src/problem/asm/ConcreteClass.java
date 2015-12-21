@@ -12,6 +12,7 @@ public class ConcreteClass implements IClass {
 	private double version;
 	private IClass superClass;
 	private Collection<Interface> interfaceList;
+	private String extension;
 
 	public ConcreteClass(){
 		this.methodList = new ArrayList<>();
@@ -22,6 +23,7 @@ public class ConcreteClass implements IClass {
 		this.version = 0.00;
 		this.superClass = null;
 		this.interfaceList = new ArrayList<>();
+		this.extension = "";
 	}
 	
 	@Override
@@ -65,6 +67,11 @@ public class ConcreteClass implements IClass {
 	}
 
 	@Override
+	public String getExtension() {
+		return this.extension;
+	}
+	
+	@Override
 	public void addIMethods(IMethod method) {
 		this.methodList.add(method);
 	}
@@ -104,5 +111,9 @@ public class ConcreteClass implements IClass {
 	public void addInterface(Interface inter) {
 		this.interfaceList.add(inter);
 	}
-
+	
+	@Override 
+	public void setExtension(String extension){
+		this.extension = extension;
+	}
 }
