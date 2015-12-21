@@ -1,65 +1,82 @@
 package problem.asm;
 
+/**
+ * TODO
+ * 
+ * @author gateslm
+ *
+ */
 public class Field implements IField {
+	
+	private String name;
+	
+	private String desc;
+	
+	private String signature;
+	
+	private Object value;
+	
+	private EFieldAccess accessLevel;
+	
+	/**
+	 * TODO
+	 */
+	public Field() {
+		this.name = null;
+		this.desc = null;
+		this.signature = null;
+		this.value = null;
+		this.accessLevel = null;
+	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.name;
 	}
 
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
-		
+		this.name = name;
 	}
 
 	@Override
 	public String getDesc() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.desc;
 	}
 
 	@Override
-	public void setDesc(String name) {
-		// TODO Auto-generated method stub
-		
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
 	@Override
 	public String getSignature() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.signature;
 	}
 
 	@Override
 	public void setSignature(String sign) {
-		// TODO Auto-generated method stub
-		
+		this.signature = sign;
 	}
 
 	@Override
 	public Object getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return value;
 	}
 
 	@Override
 	public void setValue(Object value) {
-		// TODO Auto-generated method stub
-		
+		this.value = value;
 	}
 
 	@Override
 	public EFieldAccess getAccessLevel() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.accessLevel;
 	}
 
 	@Override
 	public void setAccessLevel(EFieldAccess access) {
-		// TODO Auto-generated method stub
-		
+		this.accessLevel = access;
 	}
 
 }

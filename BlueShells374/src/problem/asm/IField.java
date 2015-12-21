@@ -28,7 +28,7 @@ public interface IField {
 	 * 
 	 * @param name - TODO
 	 */
-	public void setDesc(String name);
+	public void setDesc(String desc);
 	
 	/**
 	 * TODO
