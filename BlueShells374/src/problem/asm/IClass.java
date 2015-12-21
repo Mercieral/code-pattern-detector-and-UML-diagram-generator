@@ -8,7 +8,7 @@ public interface IClass {
 	public EClassAccess getAcessLevel();
 	public String getSignature();
 	public String getClassName();
-	public int getClassVersion();
+	public double getClassVersion();
 	public IClass getSuperName();
 	public Collection<Interface> getInterface();
 	public void addIMethods(IMethod method);
@@ -16,7 +16,7 @@ public interface IClass {
 	public void setAccessLevel(EClassAccess access);
 	public void setSignature(String signature);
 	public void setClassName(String name);
-	public void setClassVersion(int version);
+	public void setClassVersion(double version);
 	public void setSuperName(IClass name);
 	public void addInterface(Interface inter);
 	public String toString();
