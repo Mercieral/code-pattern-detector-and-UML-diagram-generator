@@ -68,7 +68,7 @@ public interface IField {
 	 * 
 	 * @return - {@link EFieldAccess} for the field
 	 */
-	public EFieldAccess getAccessLevel();
+	public String getAccessLevel();
 
 	/**
 	 * Sets {@link EFieldAccess} for the field
@@ -76,7 +76,7 @@ public interface IField {
 	 * @param access
 	 *            - Uses {@link EFieldAccess} for values
 	 */
-	public void setAccessLevel(EFieldAccess access);
+	public void setAccessLevel(String access);
 
 	/**
 	 * Returns a value in human readable

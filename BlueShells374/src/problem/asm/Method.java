@@ -1,5 +1,8 @@
 package problem.asm;
 
+import java.util.ArrayList;
+
+
 /**
  * TODO
  * 
@@ -10,11 +13,15 @@ public class Method implements IMethod {
 
 	private String name;
 
-	private EMethodAccess accessLevel;
+	private String accessLevel;
 
 	private String desc;
 
 	private String[] exceptions;
+	
+	private String returnType;
+	
+	private ArrayList<String> arguments;
 
 	/**
 	 * TODO
@@ -24,6 +31,9 @@ public class Method implements IMethod {
 		this.accessLevel = null;
 		this.desc = null;
 		this.exceptions = null;
+		this.returnType = null;
+		this.arguments = null;
+		this.arguments = new ArrayList<String>();
 	}
 
 	/**
@@ -38,13 +48,14 @@ public class Method implements IMethod {
 	 * @param exceptions
 	 *            - TODO
 	 */
-	public Method(String name, EMethodAccess accessLevel, String desc,
+	public Method(String name, String accessLevel, String desc,
 			String[] exceptions) {
 		super();
 		this.name = name;
 		this.accessLevel = accessLevel;
 		this.desc = desc;
 		this.exceptions = exceptions;
+		this.arguments = new ArrayList<String>();
 	}
 
 	@Override
@@ -58,12 +69,12 @@ public class Method implements IMethod {
 	}
 
 	@Override
-	public EMethodAccess getAccessLevel() {
+	public String getAccessLevel() {
 		return this.accessLevel;
 	}
 
 	@Override
-	public void setAccessLevel(EMethodAccess access) {
+	public void setAccessLevel(String access) {
 		this.accessLevel = access;
 	}
 
@@ -85,6 +96,22 @@ public class Method implements IMethod {
 	@Override
 	public void setExceptions(String[] exceptions) {
 		this.exceptions = exceptions;
+	}
+	
+	@Override
+	public String getReturnType() {
+		return this.returnType;
+	}
+	
+	@Override
+	public void setReturnType(String type){
+		this.returnType = type;
+	}
+
+	@Override
+	public void addArgument(String arg) {
+		this.arguments.add(arg);
+		
 	}
 
 }

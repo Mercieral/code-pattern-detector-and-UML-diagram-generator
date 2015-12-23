@@ -7,6 +7,9 @@ import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
 public class DesignParser {
+	
+	private static IClass currentClass;
+	private static IModel model;
 	/**
 	 * Reads in a list of Java Classes and reverse engineers their design.
 	 * 
@@ -15,19 +18,23 @@ public class DesignParser {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException{
+		model = new Model();
+		
 		for(String className: args){
 			// ASM's ClassReader does the heavy lifting of parsing the compiled Java class
 			ClassReader reader=new ClassReader(className);
+			currentClass = new ConcreteClass();
 			
 			
 			// make class declaration visitor to get superclass and interfaces
-			ClassVisitor decVisitor = new ClassDeclarationVisitor(Opcodes.ASM5);
+			ClassVisitor decVisitor = new ClassDeclarationVisitor(Opcodes.ASM5, currentClass);
+
 			
 			// DECORATE declaration visitor with field visitor
-			ClassVisitor fieldVisitor = new ClassFieldVisitor(Opcodes.ASM5, decVisitor);
+			ClassVisitor fieldVisitor = new ClassFieldVisitor(Opcodes.ASM5, decVisitor, currentClass);
 			
 			// DECORATE field visitor with method visitor
-			ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5, fieldVisitor);
+			ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5, fieldVisitor, currentClass);
 
 			// TODO: add more DECORATORS here in later milestones to accomplish specific tasks
 			
@@ -35,6 +42,11 @@ public class DesignParser {
 			
 			// Tell the Reader to use our (heavily decorated) ClassVisitor to visit the class
 			reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
+			
+			// Add the class to the model
+			model.addClass(currentClass);
 		}
+		
+		model.generateGraph();
 	}
 }

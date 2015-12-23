@@ -6,23 +6,23 @@ import java.util.Collection;
 public class Interface implements IClass {
 	private Collection<IMethod> methodList;
 	private Collection<IField> fieldList;
-	private EClassAccess accessLevel;
+	private int accessLevel;
 	private String signature;
 	private String name;
 	private double version;
 	private IClass superClass;
-	private Collection<Interface> interfaceList;
+	private Collection<String> interfaceList;
 	private String extension;
 
 	public Interface(){
 		this.methodList = new ArrayList<>();
 		this.fieldList = new ArrayList<>();
-		this.accessLevel = null;
+		this.accessLevel = 0;
 		this.signature = "";
 		this.name = "";
 		this.version = 0.00;
 		this.superClass = null;
-		this.interfaceList = new ArrayList<>();
+		this.interfaceList = new ArrayList<String>();
 		this.extension = "";
 	}
 	
@@ -37,7 +37,7 @@ public class Interface implements IClass {
 	}
 
 	@Override
-	public EClassAccess getAcessLevel() {
+	public int getAcessLevel() {
 		return this.accessLevel;
 	}
 
@@ -62,7 +62,7 @@ public class Interface implements IClass {
 	}
 
 	@Override
-	public Collection<Interface> getInterface() {
+	public Collection<String> getInterface() {
 		return this.interfaceList;
 	}
 
@@ -72,7 +72,7 @@ public class Interface implements IClass {
 	}
 	
 	@Override
-	public void addIMethods(IMethod method) {
+	public void addIMethod(IMethod method) {
 		this.methodList.add(method);
 	}
 
@@ -82,7 +82,7 @@ public class Interface implements IClass {
 	}
 
 	@Override
-	public void setAccessLevel(EClassAccess access) {
+	public void setAccessLevel(int access) {
 		this.accessLevel = access;
 		
 	}
@@ -108,7 +108,7 @@ public class Interface implements IClass {
 	}
 
 	@Override
-	public void addInterface(Interface inter) {
+	public void addInterface(String inter) {
 		this.interfaceList.add(inter);
 	}
 	

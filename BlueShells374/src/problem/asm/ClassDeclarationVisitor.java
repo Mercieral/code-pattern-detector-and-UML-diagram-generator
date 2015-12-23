@@ -5,8 +5,12 @@ import java.util.Arrays;
 import org.objectweb.asm.ClassVisitor;
 
 public class ClassDeclarationVisitor extends ClassVisitor {
-	public ClassDeclarationVisitor(int api){
+	private IClass currentClass;
+	
+	public ClassDeclarationVisitor(int api, IClass currentClass){
 		super(api);
+		this.currentClass = currentClass;
+		
 	}
 	
 	@Override
@@ -14,9 +18,17 @@ public class ClassDeclarationVisitor extends ClassVisitor {
 		// TODO: delete the line below
 		System.out.println("Class: "+name+" extends "+superName+" implements "+Arrays.toString(interfaces));
 		// TODO: construct an internal representation of the class for later use by decorators
-		IClass currentClass= new ConcreteClass();
+		currentClass.setClassName(name);
+		currentClass.setAccessLevel(access);
+		currentClass.setExtension(superName);
+		currentClass.setSignature(signature);
+		currentClass.setClassVersion((double) version); 
+		for(String inter : interfaces){
+			currentClass.addInterface(inter);
+		}
 		
 		super.visit(version, access, name, signature, superName, interfaces);
 		
 	}
+
 }

@@ -16,7 +16,7 @@ public class Field implements IField {
 	
 	private Object value;
 	
-	private EFieldAccess accessLevel;
+	private String accessLevel;
 	
 	/**
 	 * TODO
@@ -70,12 +70,12 @@ public class Field implements IField {
 	}
 
 	@Override
-	public EFieldAccess getAccessLevel() {
+	public String getAccessLevel() {
 		return this.accessLevel;
 	}
 
 	@Override
-	public void setAccessLevel(EFieldAccess access) {
+	public void setAccessLevel(String access) {
 		this.accessLevel = access;
 	}
 

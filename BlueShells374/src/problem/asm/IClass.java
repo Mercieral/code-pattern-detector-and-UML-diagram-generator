@@ -5,21 +5,21 @@ import java.util.Collection;
 public interface IClass {
 	public Collection<IMethod> getIMethods();
 	public Collection<IField> getIField();
-	public EClassAccess getAcessLevel();
+	public int getAcessLevel();
 	public String getSignature();
 	public String getClassName();
 	public double getClassVersion();
 	public IClass getSuperName();
-	public Collection<Interface> getInterface();
+	public Collection<String> getInterface();
 	public String getExtension();
-	public void addIMethods(IMethod method);
+	public void addIMethod(IMethod method);
 	public void addIField(IField field);
-	public void setAccessLevel(EClassAccess access);
+	public void setAccessLevel(int access);
 	public void setSignature(String signature);
 	public void setClassName(String name);
 	public void setClassVersion(double version);
 	public void setSuperName(IClass name);
-	public void addInterface(Interface inter);
+	public void addInterface(String inter);
 	public void setExtension(String extension);
 	public String toString();
 }

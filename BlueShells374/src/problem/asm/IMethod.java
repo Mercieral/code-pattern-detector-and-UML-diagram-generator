@@ -21,14 +21,14 @@ public interface IMethod {
 	 * 
 	 * @return - TODO
 	 */
-	public EMethodAccess getAccessLevel();
+	public String getAccessLevel();
 	
 	/**
 	 * TODO
 	 * 
 	 * @param access - TODO
 	 */
-	public void setAccessLevel(EMethodAccess access);
+	public void setAccessLevel(String access);
 	
 	/**
 	 * TODO
@@ -57,6 +57,30 @@ public interface IMethod {
 	 * @param exceptions - TODO
 	 */
 	public void setExceptions(String[] exceptions);
+	/**
+	 * 
+	 * TODO
+	 * 
+	 * @return - TODO
+	 */
+	public String getReturnType();
+	
+	/**
+	 * 
+	 * TODO
+	 * 
+	 * @param type - TODO
+	 */
+	public void setReturnType(String type);
+	
+	
+	/**
+	 * 
+	 * TODO
+	 * 
+	 * @param arg - TODO
+	 */
+	public void addArgument(String arg);
 	
 	/**
 	 * TODO
@@ -64,5 +88,6 @@ public interface IMethod {
 	 * @return - TODO
 	 */
 	public String toString();
+	
 
 }
