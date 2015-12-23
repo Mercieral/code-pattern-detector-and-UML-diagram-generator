@@ -1,81 +1,87 @@
 package problem.asm;
 
 public interface IField {
-	
+
 	/**
-	 * TODO
+	 * Gets the name of the field
 	 * 
-	 * @return
+	 * @return - String for the name of field
 	 */
 	public String getName();
-	
+
 	/**
-	 * TODO
+	 * Sets the name of the field
 	 * 
-	 * @param name - TODO
+	 * @param name
+	 *            - name of field
 	 */
 	public void setName(String name);
-	
+
 	/**
-	 * TODO
+	 * Get the description of the field
 	 * 
-	 * @return - TODO
+	 * @return - String for the description of the field
 	 */
 	public String getDesc();
-	
+
 	/**
-	 * TODO
+	 * Sets the description of the field
 	 * 
-	 * @param name - TODO
+	 * @param desc
+	 *            - String for the description of the field
 	 */
 	public void setDesc(String desc);
-	
+
 	/**
-	 * TODO
+	 * Gets the signature for the field
 	 * 
-	 * @return - TODO
+	 * @return - String for the signature of the field
 	 */
 	public String getSignature();
-	
+
 	/**
-	 * TODO
+	 * Sets the signature for the field
 	 * 
-	 * @param sign - TODO
+	 * @param sign
+	 *            - String for the signature of the field
 	 */
 	public void setSignature(String sign);
-	
+
 	/**
-	 * TODO
+	 * Retrieves the value from the field, in generic form. Casting required to
+	 * get the object itself
 	 * 
-	 * @return - TODO
+	 * @return - Generic object of the field
 	 */
 	public Object getValue();
-	
+
 	/**
-	 * TODO
+	 * Sets the value for the field. A {@link Object} item is required.
 	 * 
-	 * @param value - TODO
+	 * @param value
+	 *            - {@link Object} for field
 	 */
 	public void setValue(Object value);
-	
+
 	/**
-	 * TODO
+	 * Uses {@link EFieldAccess} to determine the access level of the field
 	 * 
-	 * @return - TODO
+	 * @return - {@link EFieldAccess} for the field
 	 */
 	public EFieldAccess getAccessLevel();
-	
+
 	/**
-	 * TODO
+	 * Sets {@link EFieldAccess} for the field
 	 * 
-	 * @param access - TODO
+	 * @param access
+	 *            - Uses {@link EFieldAccess} for values
 	 */
 	public void setAccessLevel(EFieldAccess access);
-	
+
 	/**
-	 * TODO
+	 * Returns a value in human readable
 	 * 
-	 * @return - TODO
+	 * @return - String for debugging
 	 */
 	public String toString();
 

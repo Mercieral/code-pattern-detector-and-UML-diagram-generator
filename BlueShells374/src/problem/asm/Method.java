@@ -7,15 +7,15 @@ package problem.asm;
  *
  */
 public class Method implements IMethod {
-	
+
 	private String name;
-	
+
 	private EMethodAccess accessLevel;
-	
+
 	private String desc;
-	
+
 	private String[] exceptions;
-	
+
 	/**
 	 * TODO
 	 */
@@ -25,7 +25,27 @@ public class Method implements IMethod {
 		this.desc = null;
 		this.exceptions = null;
 	}
-	
+
+	/**
+	 * TODO
+	 * 
+	 * @param name
+	 *            - TODO
+	 * @param accessLevel
+	 *            - TODO
+	 * @param desc
+	 *            - TODO
+	 * @param exceptions
+	 *            - TODO
+	 */
+	public Method(String name, EMethodAccess accessLevel, String desc,
+			String[] exceptions) {
+		super();
+		this.name = name;
+		this.accessLevel = accessLevel;
+		this.desc = desc;
+		this.exceptions = exceptions;
+	}
 
 	@Override
 	public String getName() {
