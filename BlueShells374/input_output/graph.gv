@@ -1,1 +1,1 @@
-digraph G {"problem/asm/ClassMethodVisitor";}
+digraph G {fixme [ shape = "record",  label = "{  problem/asm/ClassMethodVisitor | test \l }" ];}
