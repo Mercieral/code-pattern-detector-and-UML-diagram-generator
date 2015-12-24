@@ -39,9 +39,10 @@ public class Model implements IModel {
 		
 		//run graphviz dot.exe with the new graph.gv file (commented because not complete)
 		//NEITHER WORK WHYYYYYYYYY!! BOTTOM ONE WORKS IN COMMAND PROMPT IVE TRIED EVERYTHING
-		Process process = new ProcessBuilder("C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe", "-Tpng", "input_output\\graph.gv", ">" , "input_output\\graph.png").start();
+		//Process process = new ProcessBuilder("C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe", "-Tpng", "input_output\\graph.gv", ">" , "input_output\\graph.png").start();
 		//Runtime.getRuntime().exec("\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe\" -Tpng input_output\\graph.gv > input_output\\graph.png", null, new File("").getAbsoluteFile());
-		
+		Runtime rt = Runtime.getRuntime();
+		Process pr = rt.exec("\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe\" -Tpng input_output\\graph.gv -o input_output\\graph.png");
 		
 	}
 	
