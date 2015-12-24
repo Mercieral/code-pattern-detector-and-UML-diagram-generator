@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.objectweb.asm.Opcodes;
 
@@ -63,25 +64,69 @@ public class Model implements IModel {
 	 * @return - String to build the object with GraphBiz
 	 */
 	private String generateBoxObjects(IClass obj) {
-		String beginBrace = "[";
+		String beginBrace = "[ \n";
 		String endBrace = "];";
 		String box = " shape = \"record\", ";
 		String labelStart = " label = \"{ ";
 		String labelEnd = " }\" ";
 		StringBuilder builder = new StringBuilder();
-		String className = " " + obj.getClassName() + " ";
+		String className = " " + obj.getClassName().replace("/", "") + " ";
 
-		builder.append("fixme " + beginBrace + box);
+		builder.append(className + beginBrace + box);
 		builder.append(labelStart);
 		if (obj.getAcessLevel() == Opcodes.ACC_INTERFACE) {
 			builder.append("<<interface>>\n");
 		}
-		builder.append(className + "| test \\l");
-		// Add the specifics for the label
+		builder.append(obj.getClassName() + "|");
+
+		// TODO: Add fields here
+		builder.append("\\l| \n ");
+		// TODO: Add methods here
+		builder.append(addMethods(obj.getIMethods()));
 
 		builder.append(labelEnd);
 		builder.append(endBrace);
 		return builder.toString();
+	}
+
+	private String addMethods(Collection<IMethod> collection) {
+		StringBuilder build = new StringBuilder();
+		for (IMethod method : collection) {
+			if (!method.getName().equals("<init>")) {
+				build.append("\t\t" + printMethod(method) + " \\l\n");
+			}
+		}
+		return build.toString();
+	}
+
+	private String printMethod(IMethod method) {
+		StringBuilder build = new StringBuilder();
+		build.append(method.getAccessLevel() + " ");
+		build.append(method.getName());
+		build.append("(");
+		for (String args : method.getArguments()) {
+			String[] sep = args.split(" ");
+			build.append(trimValue(sep[0], ".") + " " + sep[1] + ", ");
+		}
+		String result = build.substring(0, build.length() - 2);
+		result = result + ") : ";
+		return result + trimValue(method.getReturnType(), ".");
+	}
+
+	/**
+	 * Shortens the name of strings that have a long value of extra information
+	 * 
+	 * @param initial
+	 *            - Initial value to shorten
+	 * @param delimiter
+	 *            - Value to use to remove unnecessary pieces
+	 * @return - Shortened string to be used containing useful information
+	 */
+	private String trimValue(String initial, String delimiter) {
+		while (initial.indexOf(delimiter) != -1) {
+			initial = initial.substring(initial.indexOf(delimiter) + 1);
+		}
+		return initial;
 	}
 
 	@Override

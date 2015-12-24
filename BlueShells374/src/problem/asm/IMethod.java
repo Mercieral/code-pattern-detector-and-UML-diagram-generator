@@ -1,5 +1,7 @@
 package problem.asm;
 
+import java.util.List;
+
 public interface IMethod {
 	
 	/**
@@ -81,6 +83,14 @@ public interface IMethod {
 	 * @param arg - TODO
 	 */
 	public void addArgument(String arg);
+	
+	
+	/**
+	 * TODO
+	 * 
+	 * @return - TODO
+	 */
+	public List<String> getArguments();
 	
 	/**
 	 * TODO

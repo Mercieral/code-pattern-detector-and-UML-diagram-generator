@@ -1,6 +1,7 @@
 package problem.asm;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -33,28 +34,6 @@ public class Method implements IMethod {
 		this.exceptions = null;
 		this.returnType = null;
 		this.arguments = null;
-		this.arguments = new ArrayList<String>();
-	}
-
-	/**
-	 * TODO
-	 * 
-	 * @param name
-	 *            - TODO
-	 * @param accessLevel
-	 *            - TODO
-	 * @param desc
-	 *            - TODO
-	 * @param exceptions
-	 *            - TODO
-	 */
-	public Method(String name, String accessLevel, String desc,
-			String[] exceptions) {
-		super();
-		this.name = name;
-		this.accessLevel = accessLevel;
-		this.desc = desc;
-		this.exceptions = exceptions;
 		this.arguments = new ArrayList<String>();
 	}
 
@@ -111,7 +90,11 @@ public class Method implements IMethod {
 	@Override
 	public void addArgument(String arg) {
 		this.arguments.add(arg);
-		
+	}
+
+	@Override
+	public List<String> getArguments() {
+		return this.arguments;
 	}
 
 }
