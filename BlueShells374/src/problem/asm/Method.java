@@ -22,7 +22,7 @@ public class Method implements IMethod {
 	
 	private String returnType;
 	
-	private ArrayList<String> arguments;
+	private List<String> arguments;
 
 	/**
 	 * TODO

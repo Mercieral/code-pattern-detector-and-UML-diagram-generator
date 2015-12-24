@@ -1,6 +1,6 @@
 digraph G { problemasmClassMethodVisitor [ 
- shape = "record",  label = "{ problem/asm/ClassMethodVisitor|\l| 
- 		+ visitMethod(int arg0, String arg1, String arg2, String arg3, String[] arg4) : org.objectweb.asm.MethodVisitor \l
+ shape = "record",  label = "{ ClassMethodVisitor|\l| 
+ 		+ visitMethod(int arg0, String arg1, String arg2, String arg3, String[] arg4) : MethodVisitor \l
 		none addAccessLevel(int arg0, IMethod arg1) : void \l
 		none addReturnType(String arg0, IMethod arg1) : void \l
 		none addArguments(String arg0, IMethod arg1) : void \l

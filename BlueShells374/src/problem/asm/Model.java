@@ -77,7 +77,7 @@ public class Model implements IModel {
 		if (obj.getAcessLevel() == Opcodes.ACC_INTERFACE) {
 			builder.append("<<interface>>\n");
 		}
-		builder.append(obj.getClassName() + "|");
+		builder.append(trimValue(obj.getClassName(), "/") + "|");
 
 		// TODO: Add fields here
 		builder.append("\\l| \n ");
@@ -89,6 +89,13 @@ public class Model implements IModel {
 		return builder.toString();
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param collection
+	 *            - TODO
+	 * @return - TODO
+	 */
 	private String addMethods(Collection<IMethod> collection) {
 		StringBuilder build = new StringBuilder();
 		for (IMethod method : collection) {
@@ -99,6 +106,13 @@ public class Model implements IModel {
 		return build.toString();
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param method
+	 *            - TODO
+	 * @return - TODO
+	 */
 	private String printMethod(IMethod method) {
 		StringBuilder build = new StringBuilder();
 		build.append(method.getAccessLevel() + " ");
