@@ -21,6 +21,7 @@ public class ClassDeclarationVisitor extends ClassVisitor {
 		currentClass.setClassName(name);
 		currentClass.setAccessLevel(access);
 		currentClass.setExtension(superName);
+		System.out.println("----- " + superName);
 		currentClass.setSignature(signature);
 		currentClass.setClassVersion((double) version); 
 		for(String inter : interfaces){

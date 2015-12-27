@@ -1,7 +1,38 @@
-digraph G { problemasmClassMethodVisitor [ 
- shape = "record",  label = "{ ClassMethodVisitor|\l| 
- 		+ visitMethod(int arg0, String arg1, String arg2, String arg3, String[] arg4) : MethodVisitor \l
-		none addAccessLevel(int arg0, IMethod arg1) : void \l
-		none addReturnType(String arg0, IMethod arg1) : void \l
-		none addArguments(String arg0, IMethod arg1) : void \l
- }" ];}
+digraph G {  rankdir=BT;  problemasmIModel [ 
+ shape = "record",  label = "{ IModel|\l| 
+ 		+ generateGrap) : void \l
+		+ addClass(IClass arg0) : void \l
+		+ getClasse) : ArrayList \l
+ }" ]; problemasmModel [ 
+ shape = "record",  label = "{ Model|\l| 
+ 		+ generateGrap) : void \l
+		- generateBoxObjects(IClass arg0) : String \l
+		- generateArrows(IClass arg0) : String \l
+		- addMethods(Collection arg0) : String \l
+		- printMethod(IMethod arg0) : String \l
+		- trimValue(String arg0, String arg1) : String \l
+		+ addClass(IClass arg0) : void \l
+		+ getClasse) : ArrayList \l
+ }" ]; problemcarimplCarXmlOutputStream [ 
+ shape = "record",  label = "{ CarXmlOutputStream|\l| 
+ 		- write(String arg0) : void \l
+		+ preVisit(ICar arg0) : void \l
+		+ postVisit(ICar arg0) : void \l
+		+ visit(IBody arg0) : void \l
+		+ visit(IEngine arg0) : void \l
+		+ visit(IWheel arg0) : void \l
+ }" ]; problemcarvisitorapiVisitorAdapter [ 
+ shape = "record",  label = "{ VisitorAdapter|\l| 
+ 		+ preVisit(ICar arg0) : void \l
+		+ visit(ICar arg0) : void \l
+		+ postVisit(ICar arg0) : void \l
+		+ preVisit(IBody arg0) : void \l
+		+ visit(IBody arg0) : void \l
+		+ postVisit(IBody arg0) : void \l
+		+ preVisit(IEngine arg0) : void \l
+		+ visit(IEngine arg0) : void \l
+		+ postVisit(IEngine arg0) : void \l
+		+ preVisit(IWheel arg0) : void \l
+		+ visit(IWheel arg0) : void \l
+		+ postVisit(IWheel arg0) : void \l
+ }" ];problemasmModel -> problemasmIModel [arrowhead="onormal", style="dashed"];problemcarimplCarXmlOutputStream -> problemcarvisitorapiVisitorAdapter [arrowhead="onormal"]; problemcarvisitorapiVisitorAdapter -> problemcarvisitorapiIVisitor [arrowhead="onormal", style="dashed"];}
