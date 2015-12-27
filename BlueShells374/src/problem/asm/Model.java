@@ -151,7 +151,10 @@ public class Model implements IModel {
 			String[] sep = args.split(" ");
 			build.append(trimValue(sep[0], ".") + " " + sep[1] + ", ");
 		}
-		String result = build.substring(0, build.length() - 2);
+		String result = build.toString();
+		if (!method.getArguments().isEmpty()){
+			result = result.substring(0, build.length() - 2);			
+		}
 		result = result + ") : ";
 		return result + trimValue(method.getReturnType(), ".");
 	}
