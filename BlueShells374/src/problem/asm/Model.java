@@ -23,8 +23,8 @@ public class Model implements IModel {
 		System.out.println("generating graph file");
 
 		String OUTPUT_FILE = "input_output/graph.gv";
-		byte[] FIRST_LINE = "digraph G {  rankdir=BT; ".getBytes();
-		byte[] LAST_LINE = "}".getBytes();
+		byte[] FIRST_LINE = "digraph G {  rankdir=BT; \n ".getBytes();
+		byte[] LAST_LINE = "\n}".getBytes();
 		OutputStream out = new FileOutputStream(OUTPUT_FILE);
 		out.write(FIRST_LINE);
 
@@ -34,9 +34,9 @@ public class Model implements IModel {
 			String classString = generateBoxObjects(Class);
 			out.write(classString.getBytes());
 		}
-		
+
 		// write all of the Class Relations
-		for (IClass Class : classes){
+		for (IClass Class : classes) {
 			String relation = generateArrows(Class);
 			out.write(relation.getBytes());
 		}
@@ -61,59 +61,62 @@ public class Model implements IModel {
 	 */
 	private String generateBoxObjects(IClass obj) {
 		String beginBrace = "[ \n";
-		String endBrace = "];";
-		String box = " shape = \"record\", ";
-		String labelStart = " label = \"{ ";
-		String labelEnd = " }\" ";
+		String endBrace = "\t]; \n";
+		String box = "\t\tshape = \"record\",\n";
+		String labelStart = "\t\tlabel = \n\t\t\t\"{ ";
+		String labelEnd = "\t\t\t}\" \n";
 		StringBuilder builder = new StringBuilder();
-		String className = " " + obj.getClassName().replace("/", "") + " ";
+		String className = "\t" + obj.getClassName().replace("/", "") + " ";
 
 		builder.append(className + beginBrace + box);
 		builder.append(labelStart);
 		if (obj.getAcessLevel() == Opcodes.ACC_INTERFACE) {
 			builder.append("<<interface>>\n");
 		}
-		builder.append(trimValue(obj.getClassName(), "/") + "|");
+		builder.append(obj.getClassName() + "|");
+		// trimValue(obj.getClassName(), "/")
 
 		// TODO: Add fields here
 		builder.append("\\l| \n ");
-		// TODO: Add methods here
+		// FIXME: Finish adding method information
 		builder.append(addMethods(obj.getIMethods()));
 
 		builder.append(labelEnd);
 		builder.append(endBrace);
 		return builder.toString();
 	}
-	
+
 	/**
 	 * Generates the string representing the arrow relations in graphviz format
 	 * for the given class object.
 	 * 
-	 * @param obj - Class object to generate arrows of
+	 * @param obj
+	 *            - Class object to generate arrows of
 	 * @return String representation of relations
 	 */
-	private String generateArrows(IClass obj){
+	private String generateArrows(IClass obj) {
 		String arrow = " -> ";
-		String interfaceArrow = " [arrowhead=\"onormal\", style=\"dashed\"];";
-		String classArrow = " [arrowhead=\"onormal\"]; ";
+		String interfaceArrow = "\n\t\t[arrowhead=\"onormal\", style=\"dashed\"];\n";
+		String classArrow = "\n\t\t[arrowhead=\"onormal\"];\n";
 		StringBuilder builder = new StringBuilder();
-		
-		//Interface arrows
-		for (String inter : obj.getInterface()){
-			builder.append(obj.getClassName().replace("/", ""));
+
+		// Interface arrows
+		for (String inter : obj.getInterface()) {
+			builder.append("\t" + obj.getClassName().replace("/", ""));
 			builder.append(arrow);
 			builder.append(inter.replace("/", ""));
 			builder.append(interfaceArrow);
 		}
-		
-		//extension arrow
-		if (!obj.getExtension().isEmpty() && !obj.getExtension().replace("/", "").equals("javalangObject")){
-			builder.append(obj.getClassName().replace("/", ""));
+
+		// extension arrow
+		if (!obj.getExtension().isEmpty() && !obj.getExtension()
+				.replace("/", "").equals("javalangObject")) {
+			builder.append("\t" + obj.getClassName().replace("/", ""));
 			builder.append(arrow);
 			builder.append(obj.getExtension().replace("/", ""));
 			builder.append(classArrow);
 		}
-		
+
 		return builder.toString();
 	}
 
@@ -128,15 +131,14 @@ public class Model implements IModel {
 		StringBuilder build = new StringBuilder();
 		for (IMethod method : collection) {
 			if (!method.getName().equals("<init>")) {
-				build.append("\t\t" + printMethod(method) + " \\l\n");
+				build.append("\t\t\t" + printMethod(method) + " \\l\n");
 			}
 		}
 		return build.toString();
 	}
 
 	/**
-	 * TODO FIXME 
-	 * Cuts off Method Name
+	 * TODO FIXME Cuts off Method Name
 	 * 
 	 * @param method
 	 *            - TODO
@@ -149,14 +151,16 @@ public class Model implements IModel {
 		build.append("(");
 		for (String args : method.getArguments()) {
 			String[] sep = args.split(" ");
-			build.append(trimValue(sep[0], ".") + " " + sep[1] + ", ");
+			build.append(sep[0] + " " + sep[1] + ", ");
+			// trimValue(sep[0], ".")
 		}
 		String result = build.toString();
-		if (!method.getArguments().isEmpty()){
-			result = result.substring(0, build.length() - 2);			
+		if (!method.getArguments().isEmpty()) {
+			result = result.substring(0, build.length() - 2);
 		}
 		result = result + ") : ";
-		return result + trimValue(method.getReturnType(), ".");
+		return result + method.getReturnType();
+		// trimValue(method.getReturnType(), ".")
 	}
 
 	/**

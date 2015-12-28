@@ -1,38 +1,114 @@
-digraph G {  rankdir=BT;  problemasmIModel [ 
- shape = "record",  label = "{ IModel|\l| 
- 		+ generateGrap) : void \l
-		+ addClass(IClass arg0) : void \l
-		+ getClasse) : ArrayList \l
- }" ]; problemasmModel [ 
- shape = "record",  label = "{ Model|\l| 
- 		+ generateGrap) : void \l
-		- generateBoxObjects(IClass arg0) : String \l
-		- generateArrows(IClass arg0) : String \l
-		- addMethods(Collection arg0) : String \l
-		- printMethod(IMethod arg0) : String \l
-		- trimValue(String arg0, String arg1) : String \l
-		+ addClass(IClass arg0) : void \l
-		+ getClasse) : ArrayList \l
- }" ]; problemcarimplCarXmlOutputStream [ 
- shape = "record",  label = "{ CarXmlOutputStream|\l| 
- 		- write(String arg0) : void \l
-		+ preVisit(ICar arg0) : void \l
-		+ postVisit(ICar arg0) : void \l
-		+ visit(IBody arg0) : void \l
-		+ visit(IEngine arg0) : void \l
-		+ visit(IWheel arg0) : void \l
- }" ]; problemcarvisitorapiVisitorAdapter [ 
- shape = "record",  label = "{ VisitorAdapter|\l| 
- 		+ preVisit(ICar arg0) : void \l
-		+ visit(ICar arg0) : void \l
-		+ postVisit(ICar arg0) : void \l
-		+ preVisit(IBody arg0) : void \l
-		+ visit(IBody arg0) : void \l
-		+ postVisit(IBody arg0) : void \l
-		+ preVisit(IEngine arg0) : void \l
-		+ visit(IEngine arg0) : void \l
-		+ postVisit(IEngine arg0) : void \l
-		+ preVisit(IWheel arg0) : void \l
-		+ visit(IWheel arg0) : void \l
-		+ postVisit(IWheel arg0) : void \l
- }" ];problemasmModel -> problemasmIModel [arrowhead="onormal", style="dashed"];problemcarimplCarXmlOutputStream -> problemcarvisitorapiVisitorAdapter [arrowhead="onormal"]; problemcarvisitorapiVisitorAdapter -> problemcarvisitorapiIVisitor [arrowhead="onormal", style="dashed"];}
+digraph G {  rankdir=BT; 
+ 	problemAppLauncherApplication [ 
+		shape = "record",
+		label = 
+			"{ AppLauncherApplication|\l| 
+ 			+ main(java.lang.String[] arg0) : void \l
+			}" 
+	]; 
+	problemApplicationLauncher [ 
+		shape = "record",
+		label = 
+			"{ ApplicationLauncher|\l| 
+ 			+ getRunners() : java.util.Collection \l
+			+ addRunner(java.lang.String arg0, problem.ProcessRunner arg1) : void \l
+			+ shutDown() : void \l
+			+ directoryChanged(problem.DirectoryEvent arg0) : void \l
+			}" 
+	]; 
+	problemDataFileRunner [ 
+		shape = "record",
+		label = 
+			"{ DataFileRunner|\l| 
+ 			+ execute(java.nio.file.Path arg0) : void \l
+			}" 
+	]; 
+	problemDirectoryChangeLogger [ 
+		shape = "record",
+		label = 
+			"{ DirectoryChangeLogger|\l| 
+ 			+ directoryChanged(problem.DirectoryEvent arg0) : void \l
+			}" 
+	]; 
+	problemDirectoryEvent [ 
+		shape = "record",
+		label = 
+			"{ DirectoryEvent|\l| 
+ 			+ getEventType() : java.lang.String \l
+			+ getFile() : java.nio.file.Path \l
+			+ getSource() : problem.IDirectoryMonitorService \l
+			}" 
+	]; 
+	problemDirectoryMonitorService [ 
+		shape = "record",
+		label = 
+			"{ DirectoryMonitorService|\l| 
+ 			+ getDirectory() : java.nio.file.Path \l
+			+ run() : void \l
+			+ isRunning() : boolean \l
+			+ stopGracefully() : void \l
+			none clearEverything() : void \l
+			+ addListener(problem.IDirectoryListener arg0) : void \l
+			+ removeListener(problem.IDirectoryListener arg0) : void \l
+			none notifyListeners(problem.DirectoryEvent arg0) : void \l
+			}" 
+	]; 
+	problemExecutableFileRunner [ 
+		shape = "record",
+		label = 
+			"{ ExecutableFileRunner|\l| 
+ 			+ execute(java.nio.file.Path arg0) : void \l
+			}" 
+	]; 
+	problemIApplicationLauncher [ 
+		shape = "record",
+		label = 
+			"{ IApplicationLauncher|\l| 
+ 			+ getRunners() : java.util.Collection \l
+			+ addRunner(java.lang.String arg0, problem.ProcessRunner arg1) : void \l
+			+ shutDown() : void \l
+			}" 
+	]; 
+	problemIDirectoryListener [ 
+		shape = "record",
+		label = 
+			"{ IDirectoryListener|\l| 
+ 			+ directoryChanged(problem.DirectoryEvent arg0) : void \l
+			}" 
+	]; 
+	problemIDirectoryMonitorService [ 
+		shape = "record",
+		label = 
+			"{ IDirectoryMonitorService|\l| 
+ 			+ getDirectory() : java.nio.file.Path \l
+			+ isRunning() : boolean \l
+			+ stopGracefully() : void \l
+			+ addListener(problem.IDirectoryListener arg0) : void \l
+			+ removeListener(problem.IDirectoryListener arg0) : void \l
+			}" 
+	]; 
+	problemProcessRunner [ 
+		shape = "record",
+		label = 
+			"{ ProcessRunner|\l| 
+ 			+ getProcesses() : java.util.List \l
+			+ getCommand() : java.lang.String \l
+			+ execute(java.nio.file.Path arg0) : void \l
+			}" 
+	]; 
+	problemApplicationLauncher -> problemIApplicationLauncher
+		[arrowhead="onormal", style="dashed"];
+	problemDataFileRunner -> problemProcessRunner
+		[arrowhead="onormal"];
+	problemDirectoryChangeLogger -> problemIDirectoryListener
+		[arrowhead="onormal", style="dashed"];
+	problemDirectoryMonitorService -> problemIDirectoryMonitorService
+		[arrowhead="onormal", style="dashed"];
+	problemExecutableFileRunner -> problemProcessRunner
+		[arrowhead="onormal"];
+	problemIApplicationLauncher -> problemIDirectoryListener
+		[arrowhead="onormal", style="dashed"];
+	problemIDirectoryMonitorService -> javalangRunnable
+		[arrowhead="onormal", style="dashed"];
+
+}
