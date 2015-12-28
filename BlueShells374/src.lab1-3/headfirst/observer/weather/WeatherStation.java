@@ -1,9 +1,8 @@
 package headfirst.observer.weather;
 
-import java.util.*;
-
 public class WeatherStation {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		WeatherData weatherData = new WeatherData();
 	

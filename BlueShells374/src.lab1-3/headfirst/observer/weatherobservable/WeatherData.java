@@ -1,7 +1,6 @@
 package headfirst.observer.weatherobservable;
 	
 import java.util.Observable;
-import java.util.Observer;
 	
 public class WeatherData extends Observable {
 	private float temperature;

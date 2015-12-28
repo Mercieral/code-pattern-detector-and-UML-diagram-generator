@@ -2,102 +2,119 @@ package problem.asm;
 
 import java.util.List;
 
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.Opcodes;
+
+/**
+ * Object used to hold information about methods
+ * 
+ * @author gateslm
+ *
+ */
 public interface IMethod {
-	
+
 	/**
-	 * TODO
+	 * Retrieves name of the method
 	 * 
-	 * @return
+	 * @return - String object for method, without the parenthesis at the end
 	 */
 	public String getName();
-	
+
 	/**
-	 * TODO
+	 * Sets the name of the name method
 	 * 
-	 * @param name - TODO
+	 * @param name
+	 *            - String object that is the name of the method
 	 */
 	public void setName(String name);
-	
+
 	/**
-	 * TODO
+	 * Access level of the object, should follow {@link Opcodes} access levels
 	 * 
-	 * @return - TODO
+	 * @return - String object of access level for object
 	 */
 	public String getAccessLevel();
-	
+
 	/**
-	 * TODO
+	 * Sets the access level of the method, follows the {@link Opcodes} access
+	 * levels
 	 * 
-	 * @param access - TODO
+	 * @param access
+	 *            - Access level for method
 	 */
 	public void setAccessLevel(String access);
-	
+
 	/**
-	 * TODO
+	 * Gets the description of the method, according to {@link ClassVisitor}
+	 * visit for methods
 	 * 
-	 * @return - TODO
+	 * @return - Description of method
 	 */
 	public String getDesc();
-	
+
 	/**
-	 * TODO
+	 * Sets the description of the method, according to {@link ClassVisitor}
+	 * visit for methods
 	 * 
-	 * @param name - TODO
+	 * @param name
+	 *            - String object: description of method
 	 */
 	public void setDesc(String desc);
-	
+
 	/**
-	 * TODO
+	 * Gets the exceptions for the method
 	 * 
-	 * @return - TODO
+	 * @return - Array of Strings will all exceptions of the method
 	 */
 	public String[] getExceptions();
-	
+
 	/**
-	 * TODO
+	 * Set the exceptions of the methods
 	 * 
-	 * @param exceptions - TODO
+	 * @param exceptions
+	 *            - Array of strings for each exception the method needs
 	 */
 	public void setExceptions(String[] exceptions);
+
 	/**
+	 * Get the return type of the method
 	 * 
-	 * TODO
-	 * 
-	 * @return - TODO
+	 * @return - String object: Method return type
 	 */
 	public String getReturnType();
-	
+
 	/**
+	 * Sets the return type of the method
 	 * 
-	 * TODO
-	 * 
-	 * @param type - TODO
+	 * @param type
+	 *            - String object: Method return type
 	 */
 	public void setReturnType(String type);
-	
-	
+
 	/**
+	 * Adds a single argument to the method, separation between the type and
+	 * object name
 	 * 
-	 * TODO
-	 * 
-	 * @param arg - TODO
+	 * @param arg
+	 *            - String object: Argument to the method
 	 */
 	public void addArgument(String arg);
-	
-	
+
 	/**
-	 * TODO
+	 * Gets the list of arguments of the method
 	 * 
-	 * @return - TODO
+	 * @return - {@link List} of strings: Contains all arguments given to the
+	 *         method
 	 */
 	public List<String> getArguments();
-	
+
 	/**
-	 * TODO
+	 * Debug method to help see what values are in the object, and to make it
+	 * human readable
 	 * 
-	 * @return - TODO
+	 * @return - String object: Help to debug problems and make object human
+	 *         readable
 	 */
 	public String toString();
-	
 
 }

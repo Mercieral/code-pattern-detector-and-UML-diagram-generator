@@ -1,9 +1,8 @@
 package headfirst.observer.weather;
 
-import java.util.*;
-
 public class WeatherStationHeatIndex {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		WeatherData weatherData = new WeatherData();
 		CurrentConditionsDisplay currentDisplay = new CurrentConditionsDisplay(weatherData);

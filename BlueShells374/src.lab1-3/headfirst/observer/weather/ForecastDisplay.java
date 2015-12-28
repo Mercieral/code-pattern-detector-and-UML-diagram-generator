@@ -1,10 +1,10 @@
 package headfirst.observer.weather;
 
-import java.util.*;
 
 public class ForecastDisplay implements Observer, DisplayElement {
 	private float currentPressure = 29.92f;  
 	private float lastPressure;
+	@SuppressWarnings("unused")
 	private WeatherData weatherData;
 
 	public ForecastDisplay(WeatherData weatherData) {

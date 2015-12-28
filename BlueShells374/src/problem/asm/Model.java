@@ -8,6 +8,12 @@ import java.util.Collection;
 
 import org.objectweb.asm.Opcodes;
 
+/**
+ * {@link IModel} object used to create file for GraphViz tool
+ * 
+ * @author gateslm, daniellm, mercieal
+ *
+ */
 public class Model implements IModel {
 
 	public Model() {
@@ -18,8 +24,6 @@ public class Model implements IModel {
 
 	@Override
 	public void generateGraph() throws IOException {
-		// TODO Auto-generated method stub
-
 		System.out.println("generating graph file");
 
 		String OUTPUT_FILE = "input_output/graph.gv";
@@ -76,7 +80,7 @@ public class Model implements IModel {
 		builder.append(obj.getClassName() + "|");
 		// trimValue(obj.getClassName(), "/")
 
-		// TODO: Add fields here
+		// TODO: Add fields here: LOOK HERE LUKE
 		builder.append("\\l| \n ");
 		// FIXME: Finish adding method information
 		builder.append(addMethods(obj.getIMethods()));
@@ -121,11 +125,12 @@ public class Model implements IModel {
 	}
 
 	/**
-	 * TODO
+	 * Will add methods to box objects for classes
 	 * 
 	 * @param collection
-	 *            - TODO
-	 * @return - TODO
+	 *            - {@link Collection} of {@link IMethod} objects to be used to
+	 *            add info for class boxes
+	 * @return - String to be added to output file
 	 */
 	private String addMethods(Collection<IMethod> collection) {
 		StringBuilder build = new StringBuilder();
@@ -138,11 +143,12 @@ public class Model implements IModel {
 	}
 
 	/**
-	 * TODO FIXME Cuts off Method Name
+	 * Used to print the methods nicely for the output file. Will handle making
+	 * the arguments look nice and the return value
 	 * 
 	 * @param method
-	 *            - TODO
-	 * @return - TODO
+	 *            - {@link IMethod} object that needs to be parsed for graph
+	 * @return - String of the parsed graph
 	 */
 	private String printMethod(IMethod method) {
 		StringBuilder build = new StringBuilder();
@@ -164,6 +170,7 @@ public class Model implements IModel {
 	}
 
 	/**
+	 * FIXME: Unused since apparently we don't need to shorten information
 	 * Shortens the name of strings that have a long value of extra information
 	 * 
 	 * @param initial
@@ -172,6 +179,7 @@ public class Model implements IModel {
 	 *            - Value to use to remove unnecessary pieces
 	 * @return - Shortened string to be used containing useful information
 	 */
+	@SuppressWarnings("unused")
 	private String trimValue(String initial, String delimiter) {
 		while (initial.indexOf(delimiter) != -1) {
 			initial = initial.substring(initial.indexOf(delimiter) + 1);

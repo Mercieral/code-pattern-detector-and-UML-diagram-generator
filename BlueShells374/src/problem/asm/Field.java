@@ -1,25 +1,25 @@
 package problem.asm;
 
 /**
- * TODO
+ * Implements {@link IField} object to store information about a field object
  * 
  * @author gateslm
  *
  */
 public class Field implements IField {
-	
+
 	private String name;
-	
+
 	private String desc;
-	
+
 	private String signature;
-	
+
 	private Object value;
-	
+
 	private String accessLevel;
-	
+
 	/**
-	 * TODO
+	 * Constructor for {@link Field} object
 	 */
 	public Field() {
 		this.name = null;

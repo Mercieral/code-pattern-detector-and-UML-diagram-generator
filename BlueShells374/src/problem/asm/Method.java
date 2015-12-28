@@ -5,7 +5,7 @@ import java.util.List;
 
 
 /**
- * TODO
+ * Concrete implementation of {@link IMethod} object
  * 
  * @author gateslm
  *
@@ -25,7 +25,7 @@ public class Method implements IMethod {
 	private List<String> arguments;
 
 	/**
-	 * TODO
+	 * Constructor to make a {@link IMethod} concrete object
 	 */
 	public Method() {
 		this.name = null;
