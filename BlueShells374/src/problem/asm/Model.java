@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.Type;
 
 /**
  * {@link IModel} object used to create file for GraphViz tool
@@ -102,6 +103,8 @@ public class Model implements IModel {
 		String arrow = " -> ";
 		String interfaceArrow = "\n\t\t[arrowhead=\"onormal\", style=\"dashed\"];\n";
 		String classArrow = "\n\t\t[arrowhead=\"onormal\"];\n";
+		String hasArrow = "\n\t\t[arrowhead=\"vee\"];\n";
+		String usesArrow = "\n\t\t[arrowhead=\"vee\", style=\"dashed\"];\n";
 		StringBuilder builder = new StringBuilder();
 
 		// Interface arrows
@@ -119,6 +122,45 @@ public class Model implements IModel {
 			builder.append(arrow);
 			builder.append(obj.getExtension().replace("/", ""));
 			builder.append(classArrow);
+		}
+		
+		// has arrows - FIXME Does not work for any lists (arrays, arraylist, collections, etc)
+		for (IField usedField : obj.getIField()){
+			Type fieldClass = Type.getType(usedField.getDesc());
+			String field = fieldClass.getClassName().replace("/", "");
+			if (fieldClass.getClass().isArray()){ //array
+				field = fieldClass.getClass().getComponentType().getName().replace("/", "");
+				System.out.println(field);
+			}
+
+			for (IClass Class : classes){
+				if (Class.getClassName().replace("/", "").equals(field)){
+					builder.append("\t" + field);
+					builder.append(arrow);
+					builder.append(Class.getClassName().replace("/", ""));
+					builder.append(hasArrow);
+					break;
+				}
+			}
+			
+		}
+		
+		// uses arrows FIXME arrows for both interface and concrete implementation
+		ArrayList<String> uses = new ArrayList<String>();
+		for (IMethod Method : obj.getIMethods()){
+			for (String arg : Method.getArguments()){
+				String argType = arg.split(" ")[0].replace(".", "");
+				for (IClass Class : classes){
+					if (Class.getClassName().replace("/", "").equals(argType) && !uses.contains(argType)){
+						uses.add(argType);
+						builder.append("\t" + obj.getClassName().replace("/", ""));
+						builder.append(arrow);
+						builder.append(Class.getClassName().replace("/", ""));
+						builder.append(usesArrow);
+						break;
+					}
+				}
+			}
 		}
 
 		return builder.toString();

@@ -22,7 +22,7 @@ public class ClassFieldVisitor extends ClassVisitor{
 		FieldVisitor toDecorate = super.visitField(access, name, desc, signature, value);
 		String type = Type.getType(desc).getClassName();
 		// TODO: delete this line *waiting*
-		System.out.println("	"+type+" "+ name);
+		//System.out.println("	"+type+" "+ name);
 		// DONE: add this field to your internal representation of the current class.
 		IField currentField = new Field();
 		
@@ -51,7 +51,7 @@ public class ClassFieldVisitor extends ClassVisitor{
 		else if((access&Opcodes.ACC_PRIVATE)!=0){ level="-";} 
 		
 		//default/package
-		else{ level="none"; }
+		else{ level=""; }
 		
 		currentField.setAccessLevel(level);
 	}

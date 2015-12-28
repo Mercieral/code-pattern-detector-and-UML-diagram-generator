@@ -22,7 +22,7 @@ public class ClassMethodVisitor extends ClassVisitor {
 		MethodVisitor toDecorate = super.visitMethod(access, name, desc, signature, exceptions);
 		
 		// TODO: delete this line
-		System.out.println("	method " + name);
+		//System.out.println("	method " + name);
 		
 		
 
@@ -56,9 +56,9 @@ public class ClassMethodVisitor extends ClassVisitor {
 		else if((access&Opcodes.ACC_PRIVATE)!=0){ level="-";} 
 		
 		//default/package
-		else{ level="none"; }
+		else{ level=""; }
 		// TODO: delete the next line
-		System.out.println("		access level: "+level);
+		//System.out.println("		access level: "+level);
 		// TODO: ADD this information to your representation of the current method.
 		
 		currentMethod.setAccessLevel(level);
@@ -67,7 +67,7 @@ public class ClassMethodVisitor extends ClassVisitor {
 	void addReturnType(String desc, IMethod currentMethod){
 		String returnType = Type.getReturnType(desc).getClassName();
 		// TODO: delete the next line
-		System.out.println("		return type: " + returnType);
+		//System.out.println("		return type: " + returnType);
 		// TODO: ADD this information to your representation of the current method.
 		currentMethod.setReturnType(returnType);
 	}
@@ -77,7 +77,7 @@ public class ClassMethodVisitor extends ClassVisitor {
 	    for(int i=0; i< args.length; i++){
 	    	String arg=args[i].getClassName() + " arg" + Integer.toString(i);
 	    	// TODO: delete the next line
-	    	System.out.println("		arg "+i+": "+arg);
+	    	//System.out.println("		arg "+i+": "+arg);
 	    	// TODO: ADD this information to your representation of the current method.
 	    	currentMethod.addArgument(arg);
 	    }
