@@ -78,11 +78,11 @@ public class Model implements IModel {
 		if (obj.getAcessLevel() == Opcodes.ACC_INTERFACE) {
 			builder.append("<<interface>>\n");
 		}
-		builder.append(obj.getClassName() + "|");
+		builder.append(obj.getClassName() + "\n\t\t\t|\n");
 		// trimValue(obj.getClassName(), "/")
 
 		// TODO: Add fields here: LOOK HERE LUKE
-		builder.append("\\l| \n ");
+		builder.append("\t\t\t\\l| \n ");
 		// FIXME: Finish adding method information
 		builder.append(addMethods(obj.getIMethods()));
 
