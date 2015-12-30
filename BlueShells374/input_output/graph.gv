@@ -1,157 +1,55 @@
 digraph G {  rankdir=BT; 
- 	problemAppLauncher [ 
+ 	problemasmClassMethodVisitor [ 
 		shape = "record",
 		label = 
-			"{ problem/AppLauncher|\l| 
- 			+ handleDirectoryEvent(problem.IWatcher arg0) : void \l
+			"{ problem/asm/ClassMethodVisitor
+			|
+			- Lproblem/asm/IClass;currentClass  \l
+			\l| 
+ 			+ visitMethod(int arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3, java.lang.String[] arg4) : org.objectweb.asm.MethodVisitor \l
+			 addAccessLevel(int arg0, problem.asm.IMethod arg1) : void \l
+			 addReturnType(java.lang.String arg0, problem.asm.IMethod arg1) : void \l
+			 addArguments(java.lang.String arg0, problem.asm.IMethod arg1) : void \l
 			}" 
 	]; 
-	problemData [ 
+	problemasmConcreteClass [ 
 		shape = "record",
 		label = 
-			"{ problem/Data|\l| 
- 			+ getFile() : java.nio.file.Path \l
-			+ getEvent() : java.lang.String \l
+			"{ problem/asm/ConcreteClass
+			|
+			- Ljava/util/Collection;methodList  \l
+			- Ljava/util/Collection;fieldList  \l
+			- IaccessLevel  \l
+			- Ljava/lang/String;signature  \l
+			- Ljava/lang/String;name  \l
+			- Dversion  \l
+			- Lproblem/asm/IClass;superClass  \l
+			- Ljava/util/Collection;interfaceList  \l
+			- Ljava/lang/String;extension  \l
+			\l| 
+ 			+ getIMethods() : java.util.Collection \l
+			+ getIField() : java.util.Collection \l
+			+ getAcessLevel() : int \l
+			+ getSignature() : java.lang.String \l
+			+ getClassName() : java.lang.String \l
+			+ getClassVersion() : double \l
+			+ getSuperName() : problem.asm.IClass \l
+			+ getInterface() : java.util.Collection \l
 			+ getExtension() : java.lang.String \l
+			+ addIMethod(problem.asm.IMethod arg0) : void \l
+			+ addIField(problem.asm.IField arg0) : void \l
+			+ setAccessLevel(int arg0) : void \l
+			+ setSignature(java.lang.String arg0) : void \l
+			+ setClassName(java.lang.String arg0) : void \l
+			+ setClassVersion(double arg0) : void \l
+			+ setSuperName(problem.asm.IClass arg0) : void \l
+			+ addInterface(java.lang.String arg0) : void \l
+			+ setExtension(java.lang.String arg0) : void \l
 			}" 
 	]; 
-	problemHTML [ 
-		shape = "record",
-		label = 
-			"{ problem/HTML|\l| 
- 			+ getCommand() : java.lang.String \l
-			+ getProcess(java.nio.file.Path arg0) : java.lang.Process \l
-			}" 
-	]; 
-	problemIAppTypes [ 
-		shape = "record",
-		label = 
-			"{ problem/IAppTypes|\l| 
- 			+ getCommand() : java.lang.String \l
-			+ getProcess(java.nio.file.Path arg0) : java.lang.Process \l
-			}" 
-	]; 
-	problemIData [ 
-		shape = "record",
-		label = 
-			"{ problem/IData|\l| 
- 			+ getEvent() : java.lang.String \l
-			+ getFile() : java.nio.file.Path \l
-			+ getExtension() : java.lang.String \l
-			}" 
-	]; 
-	problemIObserver [ 
-		shape = "record",
-		label = 
-			"{ problem/IObserver|\l| 
- 			+ handleDirectoryEvent(problem.IWatcher arg0) : void \l
-			}" 
-	]; 
-	problemIWatcher [ 
-		shape = "record",
-		label = 
-			"{ problem/IWatcher|\l| 
- 			+ addObserver(problem.IObserver arg0) : void \l
-			+ removeObserver(problem.IObserver arg0) : void \l
-			+ notifyObservers() : void \l
-			+ setData(problem.IData arg0) : void \l
-			+ getData() : problem.IData \l
-			+ run() : void \l
-			+ stopGracefully() : void \l
-			+ addProcess(java.lang.Process arg0) : void \l
-			+ isRunning() : boolean \l
-			+ getApplicationsCount() : int \l
-			}" 
-	]; 
-	problemMain [ 
-		shape = "record",
-		label = 
-			"{ problem/Main|\l| 
- 			+ main(java.lang.String[] arg0) : void \l
-			}" 
-	]; 
-	problemPNG [ 
-		shape = "record",
-		label = 
-			"{ problem/PNG|\l| 
- 			+ getCommand() : java.lang.String \l
-			+ getProcess(java.nio.file.Path arg0) : java.lang.Process \l
-			}" 
-	]; 
-	problemPrintBack [ 
-		shape = "record",
-		label = 
-			"{ problem/PrintBack|\l| 
- 			+ handleDirectoryEvent(problem.IWatcher arg0) : void \l
-			}" 
-	]; 
-	problemPrintName [ 
-		shape = "record",
-		label = 
-			"{ problem/PrintName|\l| 
- 			+ handleDirectoryEvent(problem.IWatcher arg0) : void \l
-			}" 
-	]; 
-	problemTXT [ 
-		shape = "record",
-		label = 
-			"{ problem/TXT|\l| 
- 			+ getCommand() : java.lang.String \l
-			+ getProcess(java.nio.file.Path arg0) : java.lang.Process \l
-			}" 
-	]; 
-	problemWatcher [ 
-		shape = "record",
-		label = 
-			"{ problem/Watcher|\l| 
- 			+ run() : void \l
-			+ addObserver(problem.IObserver arg0) : void \l
-			+ removeObserver(problem.IObserver arg0) : void \l
-			+ setData(problem.IData arg0) : void \l
-			+ notifyObservers() : void \l
-			+ getData() : problem.IData \l
-			+ stopGracefully() : void \l
-			# clearEverything() : void \l
-			+ addProcess(java.lang.Process arg0) : void \l
-			+ getApplicationsCount() : int \l
-			+ isRunning() : boolean \l
-			}" 
-	]; 
-	problemAppLauncher -> problemIObserver
-		[arrowhead="onormal", style="dashed"];
-	problemAppLauncher -> problemIWatcher
-		[arrowhead="vee", style="dashed"];
-	problemData -> problemIData
-		[arrowhead="onormal", style="dashed"];
-	problemHTML -> problemIAppTypes
-		[arrowhead="onormal", style="dashed"];
-	problemIObserver -> problemIWatcher
-		[arrowhead="vee", style="dashed"];
-	problemIWatcher -> javalangRunnable
-		[arrowhead="onormal", style="dashed"];
-	problemIWatcher -> problemIObserver
-		[arrowhead="vee", style="dashed"];
-	problemIWatcher -> problemIData
-		[arrowhead="vee", style="dashed"];
-	problemPNG -> problemIAppTypes
-		[arrowhead="onormal", style="dashed"];
-	problemPrintBack -> problemIObserver
-		[arrowhead="onormal", style="dashed"];
-	problemPrintBack -> problemIWatcher
-		[arrowhead="vee", style="dashed"];
-	problemPrintName -> problemIObserver
-		[arrowhead="onormal", style="dashed"];
-	problemPrintName -> problemIWatcher
-		[arrowhead="vee", style="dashed"];
-	problemTXT -> problemIAppTypes
-		[arrowhead="onormal", style="dashed"];
-	problemWatcher -> problemIWatcher
-		[arrowhead="onormal", style="dashed"];
-	problemWatcher -> javalangThread
+	problemasmClassMethodVisitor -> orgobjectwebasmClassVisitor
 		[arrowhead="onormal"];
-	problemWatcher -> problemIObserver
-		[arrowhead="vee", style="dashed"];
-	problemWatcher -> problemIData
-		[arrowhead="vee", style="dashed"];
+	problemasmConcreteClass -> problemasmIClass
+		[arrowhead="onormal", style="dashed"];
 
 }

@@ -82,7 +82,9 @@ public class Model implements IModel {
 		// trimValue(obj.getClassName(), "/")
 
 		// TODO: Add fields here: LOOK HERE LUKE
+		builder.append(addFields(obj.getIField()));
 		builder.append("\t\t\t\\l| \n ");
+		
 		// FIXME: Finish adding method information
 		builder.append(addMethods(obj.getIMethods()));
 
@@ -209,6 +211,30 @@ public class Model implements IModel {
 		result = result + ") : ";
 		return result + method.getReturnType();
 		// trimValue(method.getReturnType(), ".")
+	}
+	
+	/**
+	 * Will add fields to box objects
+	 * 
+	 * @param collection
+	 * 				-list of {@link IField} objects for a given {@link IClass} obj
+	 * @return	-String of the parsed graph
+	 */
+	private String addFields(Collection<IField> collection){
+		StringBuilder build = new StringBuilder();
+		for (IField field : collection){
+			build.append("\t\t\t" + printFields(field) + " \\l\n");
+		}
+		return build.toString();
+		
+	}
+	
+	private String printFields(IField field){
+		StringBuilder build = new StringBuilder();
+		build.append(field.getAccessLevel() + " ");
+		build.append(field.getDesc());
+		build.append(field.getName() + " ");
+		return build.toString();
 	}
 
 	/**
