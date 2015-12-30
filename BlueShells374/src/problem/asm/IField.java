@@ -25,10 +25,11 @@ public interface IField {
 	public String getDesc();
 
 	/**
-	 * Sets the description of the field
+	 * Sets the description of the field, which is the type. 
+	 * Use Type.getType(...).getClassName() to get the string value of the type
 	 * 
 	 * @param desc
-	 *            - String for the description of the field
+	 *            - String for the description of the field, which is the type
 	 */
 	public void setDesc(String desc);
 
