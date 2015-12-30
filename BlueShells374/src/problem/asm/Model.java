@@ -229,11 +229,22 @@ public class Model implements IModel {
 		
 	}
 	
+	/**
+	 * Uses the given IField and parses the desired information for the graph
+	 * 
+	 * @param field
+	 * 			- prints the {@link IMethod} that needs to be parsed
+	 * @return - String of parsed graph
+	 */
 	private String printFields(IField field){
 		StringBuilder build = new StringBuilder();
 		build.append(field.getAccessLevel() + " ");
-		build.append(field.getDesc());
-		build.append(field.getName() + " ");
+		
+		//remove the path information from the description in order to give the string a cleaner look
+		String[] args = field.getDesc().split("/");
+		build.append(args[args.length - 1].replace(";", "") + " ");
+
+		build.append(field.getName());
 		return build.toString();
 	}
 
