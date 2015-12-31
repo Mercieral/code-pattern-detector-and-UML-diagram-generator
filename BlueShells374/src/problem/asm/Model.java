@@ -84,7 +84,7 @@ public class Model implements IModel {
 		// TODO: Add fields here: LOOK HERE LUKE
 		builder.append(addFields(obj.getIField()));
 		builder.append("\t\t\t\\l| \n ");
-		
+
 		// FIXME: Finish adding method information
 		builder.append(addMethods(obj.getIMethods()));
 
@@ -125,18 +125,20 @@ public class Model implements IModel {
 			builder.append(obj.getExtension().replace("/", ""));
 			builder.append(classArrow);
 		}
-		
-		// has arrows - FIXME Does not work for any lists (arrays, arraylist, collections, etc)
-		for (IField usedField : obj.getIField()){
+
+		// has arrows - FIXME Does not work for any lists (arrays, arraylist,
+		// collections, etc)
+		for (IField usedField : obj.getIField()) {
 			Type fieldClass = Type.getType(usedField.getDesc());
 			String field = fieldClass.getClassName().replace("/", "");
-			if (fieldClass.getClass().isArray()){ //array
-				field = fieldClass.getClass().getComponentType().getName().replace("/", "");
+			if (fieldClass.getClass().isArray()) { // array
+				field = fieldClass.getClass().getComponentType().getName()
+						.replace("/", "");
 				System.out.println(field);
 			}
 
-			for (IClass Class : classes){
-				if (Class.getClassName().replace("/", "").equals(field)){
+			for (IClass Class : classes) {
+				if (Class.getClassName().replace("/", "").equals(field)) {
 					builder.append("\t" + field);
 					builder.append(arrow);
 					builder.append(Class.getClassName().replace("/", ""));
@@ -144,18 +146,21 @@ public class Model implements IModel {
 					break;
 				}
 			}
-			
+
 		}
-		
-		// uses arrows FIXME arrows for both interface and concrete implementation
+
+		// uses arrows FIXME arrows for both interface and concrete
+		// implementation
 		ArrayList<String> uses = new ArrayList<String>();
-		for (IMethod Method : obj.getIMethods()){
-			for (String arg : Method.getArguments()){
+		for (IMethod Method : obj.getIMethods()) {
+			for (String arg : Method.getArguments()) {
 				String argType = arg.split(" ")[0].replace(".", "");
-				for (IClass Class : classes){
-					if (Class.getClassName().replace("/", "").equals(argType) && !uses.contains(argType)){
+				for (IClass Class : classes) {
+					if (Class.getClassName().replace("/", "").equals(argType)
+							&& !uses.contains(argType)) {
 						uses.add(argType);
-						builder.append("\t" + obj.getClassName().replace("/", ""));
+						builder.append(
+								"\t" + obj.getClassName().replace("/", ""));
 						builder.append(arrow);
 						builder.append(Class.getClassName().replace("/", ""));
 						builder.append(usesArrow);
@@ -201,46 +206,47 @@ public class Model implements IModel {
 		build.append("(");
 		for (String args : method.getArguments()) {
 			String[] sep = args.split(" ");
-			build.append(sep[0] + " " + sep[1] + ", ");
-			// trimValue(sep[0], ".")
+			build.append(trimValue(sep[0], ".") + " " + sep[1] + ", ");
+			// sep[0]
 		}
 		String result = build.toString();
 		if (!method.getArguments().isEmpty()) {
 			result = result.substring(0, build.length() - 2);
 		}
 		result = result + ") : ";
-		return result + method.getReturnType();
-		// trimValue(method.getReturnType(), ".")
+		return result + trimValue(method.getReturnType(), ".");
+		// method.getReturnType();
 	}
-	
+
 	/**
 	 * Will add fields to box objects
 	 * 
 	 * @param collection
-	 * 				-list of {@link IField} objects for a given {@link IClass} obj
-	 * @return	-String of the parsed graph
+	 *            -list of {@link IField} objects for a given {@link IClass} obj
+	 * @return -String of the parsed graph
 	 */
-	private String addFields(Collection<IField> collection){
+	private String addFields(Collection<IField> collection) {
 		StringBuilder build = new StringBuilder();
-		for (IField field : collection){
+		for (IField field : collection) {
 			build.append("\t\t\t" + printFields(field) + " \\l\n");
 		}
 		return build.toString();
-		
+
 	}
-	
+
 	/**
 	 * Uses the given IField and parses the desired information for the graph
 	 * 
 	 * @param field
-	 * 			- prints the {@link IMethod} that needs to be parsed
+	 *            - prints the {@link IMethod} that needs to be parsed
 	 * @return - String of parsed graph
 	 */
-	private String printFields(IField field){
+	private String printFields(IField field) {
 		StringBuilder build = new StringBuilder();
 		build.append(field.getAccessLevel() + " ");
-		
-		//remove the path information from the description in order to give the string a cleaner look
+
+		// remove the path information from the description in order to give the
+		// string a cleaner look
 		String[] args = field.getDesc().split("/");
 		build.append(args[args.length - 1].replace(";", "") + " ");
 
@@ -258,9 +264,14 @@ public class Model implements IModel {
 	 *            - Value to use to remove unnecessary pieces
 	 * @return - Shortened string to be used containing useful information
 	 */
-	@SuppressWarnings("unused")
 	private String trimValue(String initial, String delimiter) {
 		while (initial.indexOf(delimiter) != -1) {
+			// // Used for if a type is given to a list
+			// if (initial.indexOf("<") != -1){
+			// if(initial.indexOf(delimiter) > initial.indexOf("<")){
+			// return initial;
+			// }
+			// }
 			initial = initial.substring(initial.indexOf(delimiter) + 1);
 		}
 		return initial;
