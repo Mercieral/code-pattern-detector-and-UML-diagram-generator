@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="13.3">
-  <zoom_level>8</zoom_level>
+  <zoom_level>5</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>616</x>
-      <y>568</y>
-      <w>256</w>
-      <h>208</h>
+      <x>370</x>
+      <y>355</y>
+      <w>160</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 IMethod
@@ -26,10 +26,10 @@ IMethod
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>888</x>
-      <y>568</y>
-      <w>256</w>
-      <h>200</h>
+      <x>540</x>
+      <y>355</y>
+      <w>160</w>
+      <h>125</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 IField
@@ -50,27 +50,26 @@ IField
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>552</x>
-      <y>352</y>
-      <w>280</w>
-      <h>120</h>
+      <x>330</x>
+      <y>110</y>
+      <w>175</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 IModel
 --
-+ Collection&lt;IClass&gt;
---
-+ generateGraph() void
-+ </panel_attributes>
++ generateGraph() void throws IOException
++ addClass(IClass currentClass): void
++ getClasses(): ArrayList&lt;IClass&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>624</x>
-      <y>56</y>
-      <w>152</w>
-      <h>56</h>
+      <x>375</x>
+      <y>35</y>
+      <w>95</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>DesignParser
 --
@@ -81,13 +80,14 @@ IModel
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>896</x>
-      <y>424</y>
-      <w>520</w>
-      <h>48</h>
+      <x>545</x>
+      <y>280</y>
+      <w>325</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>ClassDeclarationVisitor
 --
+- IClass: currentClass
 --
 + visit(int version, int access, String name, String signature, String superName, String[] interfaces): void</panel_attributes>
     <additional_attributes/>
@@ -95,26 +95,30 @@ IModel
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>952</x>
-      <y>360</y>
-      <w>464</w>
-      <h>48</h>
+      <x>580</x>
+      <y>230</y>
+      <w>290</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>ClassFieldVisitor
 --
+- IClass: currentClass
 --
-+ visitField(int access, String name, String desc, String signature, Object value): FieldVisitor  </panel_attributes>
++ visitField(int access, String name, String desc, String signature, Object value): FieldVisitor 
+addAccessLevel(int access, IField currentField): void </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>896</x>
-      <y>264</y>
-      <w>520</w>
-      <h>80</h>
+      <x>545</x>
+      <y>165</y>
+      <w>325</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>ClassMethodVisitor
+--
+- IClass: currentClass
 --
 + visitMethod(int access, String name, String desc, String signature, String[] exceptions): MethodVisitor
 addAccessLevel(int access, IMethod currentMethod): void
@@ -125,10 +129,10 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>184</x>
-      <y>568</y>
-      <w>256</w>
-      <h>256</h>
+      <x>100</x>
+      <y>355</y>
+      <w>160</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 IClass
@@ -155,10 +159,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>24</x>
-      <y>888</y>
-      <w>184</w>
-      <h>144</h>
+      <x>0</x>
+      <y>555</y>
+      <w>115</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>ConcreteClass 
 --
@@ -177,10 +181,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>224</x>
-      <y>888</y>
-      <w>184</w>
-      <h>144</h>
+      <x>125</x>
+      <y>555</y>
+      <w>115</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>AbstractClass
 --
@@ -199,10 +203,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>416</x>
-      <y>888</y>
-      <w>184</w>
-      <h>144</h>
+      <x>245</x>
+      <y>555</y>
+      <w>115</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>Interface
 --
@@ -221,10 +225,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>424</x>
-      <y>816</y>
-      <w>24</w>
-      <h>88</h>
+      <x>250</x>
+      <y>510</y>
+      <w>15</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
@@ -232,10 +236,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>304</x>
-      <y>816</y>
-      <w>24</w>
-      <h>88</h>
+      <x>175</x>
+      <y>510</y>
+      <w>15</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
@@ -243,10 +247,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>184</x>
-      <y>816</y>
-      <w>24</w>
-      <h>88</h>
+      <x>100</x>
+      <y>510</y>
+      <w>15</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
@@ -254,10 +258,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>616</x>
-      <y>816</y>
-      <w>112</w>
-      <h>80</h>
+      <x>370</x>
+      <y>510</y>
+      <w>70</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>Method
 --
@@ -272,10 +276,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>896</x>
-      <y>808</y>
-      <w>112</w>
-      <h>96</h>
+      <x>545</x>
+      <y>505</y>
+      <w>70</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>Field
 --
@@ -290,10 +294,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>648</x>
-      <y>768</y>
-      <w>24</w>
-      <h>64</h>
+      <x>390</x>
+      <y>480</y>
+      <w>15</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -301,10 +305,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>928</x>
-      <y>760</y>
-      <w>24</w>
-      <h>64</h>
+      <x>565</x>
+      <y>475</y>
+      <w>15</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -312,21 +316,21 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>304</x>
-      <y>416</y>
-      <w>264</w>
-      <h>168</h>
+      <x>175</x>
+      <y>150</y>
+      <w>165</w>
+      <h>215</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>310.0;10.0;10.0;10.0;10.0;190.0</additional_attributes>
+    <additional_attributes>310.0;10.0;10.0;10.0;10.0;410.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>344</x>
-      <y>512</y>
-      <w>416</w>
-      <h>72</h>
+      <x>200</x>
+      <y>320</y>
+      <w>260</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;70.0;10.0;10.0;500.0;10.0;500.0;70.0</additional_attributes>
@@ -334,10 +338,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>344</x>
-      <y>512</y>
-      <w>688</w>
-      <h>72</h>
+      <x>200</x>
+      <y>320</y>
+      <w>430</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;70.0;10.0;10.0;840.0;10.0;840.0;70.0</additional_attributes>
@@ -345,10 +349,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1048</x>
-      <y>16</y>
-      <w>520</w>
-      <h>184</h>
+      <x>640</x>
+      <y>10</y>
+      <w>325</w>
+      <h>115</h>
     </coordinates>
     <panel_attributes>ClassVisitor
 --
@@ -370,10 +374,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1408</x>
-      <y>192</y>
-      <w>136</w>
-      <h>136</h>
+      <x>865</x>
+      <y>120</y>
+      <w>85</w>
+      <h>85</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>150.0;10.0;150.0;150.0;10.0;150.0</additional_attributes>
@@ -381,32 +385,32 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1408</x>
-      <y>192</y>
-      <w>136</w>
-      <h>208</h>
+      <x>865</x>
+      <y>120</y>
+      <w>85</w>
+      <h>135</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>150.0;10.0;150.0;240.0;10.0;240.0</additional_attributes>
+    <additional_attributes>150.0;10.0;150.0;250.0;10.0;250.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1408</x>
-      <y>192</y>
-      <w>136</w>
-      <h>272</h>
+      <x>865</x>
+      <y>120</y>
+      <w>85</w>
+      <h>175</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>150.0;10.0;150.0;320.0;10.0;320.0</additional_attributes>
+    <additional_attributes>150.0;10.0;150.0;330.0;10.0;330.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>768</x>
-      <y>80</y>
-      <w>296</w>
-      <h>24</h>
+      <x>465</x>
+      <y>50</y>
+      <w>185</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>350.0;10.0;10.0;10.0</additional_attributes>
@@ -414,12 +418,47 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>688</x>
-      <y>104</y>
-      <w>24</w>
-      <h>264</h>
+      <x>415</x>
+      <y>65</y>
+      <w>15</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;310.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>325</x>
+      <y>210</y>
+      <w>170</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>IModel
+--
+- ArrayList&lt;IClass&gt;: classes
+--
++ generateGraph() void throws IOException
+- generateBoxObjects(IClass obj): String
+- generateArrows(IClass obj): String
+- printMethod(IMethod method): String
+- addFields(Collection&lt;IField&gt; collection): String
+- printFields(IField field): String
+- trimValue(String initial, String delimiter): String
++ addClass(IClass currentClass): void
++ getClasses(): ArrayList&lt;IClass&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>425</x>
+      <y>180</y>
+      <w>15</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
 </diagram>

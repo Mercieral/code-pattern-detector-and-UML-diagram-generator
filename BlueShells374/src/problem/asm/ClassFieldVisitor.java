@@ -38,6 +38,12 @@ public class ClassFieldVisitor extends ClassVisitor{
 		return toDecorate;
 	};
 	
+	/**
+	 * Adds the access level to the current field
+	 * 
+	 * @param access - access integer given by asm
+	 * @param currentField - field to add the access to
+	 */
 	void addAccessLevel(int access, IField currentField){
 		String level="";
 		

@@ -126,8 +126,8 @@ public class Model implements IModel {
 			builder.append(classArrow);
 		}
 
-		// has arrows - FIXME Does not work for any lists (arrays, arraylist,
-		// collections, etc)
+		/**
+		// has arrows - for M2
 		for (IField usedField : obj.getIField()) {
 			Type fieldClass = Type.getType(usedField.getDesc());
 			String field = fieldClass.getClassName().replace("/", "");
@@ -149,8 +149,7 @@ public class Model implements IModel {
 
 		}
 
-		// uses arrows FIXME arrows for both interface and concrete
-		// implementation
+		// uses arrows - for M2
 		ArrayList<String> uses = new ArrayList<String>();
 		for (IMethod Method : obj.getIMethods()) {
 			for (String arg : Method.getArguments()) {
@@ -169,6 +168,8 @@ public class Model implements IModel {
 				}
 			}
 		}
+		
+		**/
 
 		return builder.toString();
 	}
