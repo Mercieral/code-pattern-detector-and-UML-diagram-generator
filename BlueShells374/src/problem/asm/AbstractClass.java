@@ -14,6 +14,9 @@ public class AbstractClass implements IClass {
 	private Collection<String> interfaceList;
 	private String extension;
 
+	/**
+	 * Constructor for AbstractClass
+	 */
 	public AbstractClass(){
 		this.methodList = new ArrayList<>();
 		this.fieldList = new ArrayList<>();

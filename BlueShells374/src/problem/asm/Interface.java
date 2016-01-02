@@ -14,6 +14,9 @@ public class Interface implements IClass {
 	private Collection<String> interfaceList;
 	private String extension;
 
+	/**
+	 * Constructor for Interface
+	 */
 	public Interface(){
 		this.methodList = new ArrayList<>();
 		this.fieldList = new ArrayList<>();

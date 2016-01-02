@@ -6,7 +6,7 @@ digraph G {  rankdir=BT;
 			|
 			- Map launchMap \l
 			\l| 
- 			+ handleDirectoryEvent(problem.IWatcher arg0) : void \l
+ 			+ handleDirectoryEvent(IWatcher arg0) : void \l
 			}" 
 	]; 
 	problemData [ 
@@ -17,9 +17,9 @@ digraph G {  rankdir=BT;
 			+ String eventName \l
 			+ Path filePath \l
 			\l| 
- 			+ getFile() : java.nio.file.Path \l
-			+ getEvent() : java.lang.String \l
-			+ getExtension() : java.lang.String \l
+ 			+ getFile() : Path \l
+			+ getEvent() : String \l
+			+ getExtension() : String \l
 			}" 
 	]; 
 	problemHTML [ 
@@ -29,8 +29,8 @@ digraph G {  rankdir=BT;
 			|
 			- String command \l
 			\l| 
- 			+ getCommand() : java.lang.String \l
-			+ getProcess(java.nio.file.Path arg0) : java.lang.Process \l
+ 			+ getCommand() : String \l
+			+ getProcess(Path arg0) : Process \l
 			}" 
 	]; 
 	problemIAppTypes [ 
@@ -39,8 +39,8 @@ digraph G {  rankdir=BT;
 			"{ problem/IAppTypes
 			|
 			\l| 
- 			+ getCommand() : java.lang.String \l
-			+ getProcess(java.nio.file.Path arg0) : java.lang.Process \l
+ 			+ getCommand() : String \l
+			+ getProcess(Path arg0) : Process \l
 			}" 
 	]; 
 	problemIData [ 
@@ -49,9 +49,9 @@ digraph G {  rankdir=BT;
 			"{ problem/IData
 			|
 			\l| 
- 			+ getEvent() : java.lang.String \l
-			+ getFile() : java.nio.file.Path \l
-			+ getExtension() : java.lang.String \l
+ 			+ getEvent() : String \l
+			+ getFile() : Path \l
+			+ getExtension() : String \l
 			}" 
 	]; 
 	problemIObserver [ 
@@ -60,7 +60,7 @@ digraph G {  rankdir=BT;
 			"{ problem/IObserver
 			|
 			\l| 
- 			+ handleDirectoryEvent(problem.IWatcher arg0) : void \l
+ 			+ handleDirectoryEvent(IWatcher arg0) : void \l
 			}" 
 	]; 
 	problemIWatcher [ 
@@ -69,14 +69,14 @@ digraph G {  rankdir=BT;
 			"{ problem/IWatcher
 			|
 			\l| 
- 			+ addObserver(problem.IObserver arg0) : void \l
-			+ removeObserver(problem.IObserver arg0) : void \l
+ 			+ addObserver(IObserver arg0) : void \l
+			+ removeObserver(IObserver arg0) : void \l
 			+ notifyObservers() : void \l
-			+ setData(problem.IData arg0) : void \l
-			+ getData() : problem.IData \l
+			+ setData(IData arg0) : void \l
+			+ getData() : IData \l
 			+ run() : void \l
 			+ stopGracefully() : void \l
-			+ addProcess(java.lang.Process arg0) : void \l
+			+ addProcess(Process arg0) : void \l
 			+ isRunning() : boolean \l
 			+ getApplicationsCount() : int \l
 			}" 
@@ -87,7 +87,7 @@ digraph G {  rankdir=BT;
 			"{ problem/Main
 			|
 			\l| 
- 			+ main(java.lang.String[] arg0) : void \l
+ 			+ main(String[] arg0) : void \l
 			}" 
 	]; 
 	problemPNG [ 
@@ -97,8 +97,8 @@ digraph G {  rankdir=BT;
 			|
 			- String command \l
 			\l| 
- 			+ getCommand() : java.lang.String \l
-			+ getProcess(java.nio.file.Path arg0) : java.lang.Process \l
+ 			+ getCommand() : String \l
+			+ getProcess(Path arg0) : Process \l
 			}" 
 	]; 
 	problemPrintBack [ 
@@ -107,7 +107,7 @@ digraph G {  rankdir=BT;
 			"{ problem/PrintBack
 			|
 			\l| 
- 			+ handleDirectoryEvent(problem.IWatcher arg0) : void \l
+ 			+ handleDirectoryEvent(IWatcher arg0) : void \l
 			}" 
 	]; 
 	problemPrintName [ 
@@ -116,7 +116,7 @@ digraph G {  rankdir=BT;
 			"{ problem/PrintName
 			|
 			\l| 
- 			+ handleDirectoryEvent(problem.IWatcher arg0) : void \l
+ 			+ handleDirectoryEvent(IWatcher arg0) : void \l
 			}" 
 	]; 
 	problemTXT [ 
@@ -126,8 +126,8 @@ digraph G {  rankdir=BT;
 			|
 			- String command \l
 			\l| 
- 			+ getCommand() : java.lang.String \l
-			+ getProcess(java.nio.file.Path arg0) : java.lang.Process \l
+ 			+ getCommand() : String \l
+			+ getProcess(Path arg0) : Process \l
 			}" 
 	]; 
 	problemWatcher [ 
@@ -143,53 +143,37 @@ digraph G {  rankdir=BT;
 			- IData data \l
 			\l| 
  			+ run() : void \l
-			+ addObserver(problem.IObserver arg0) : void \l
-			+ removeObserver(problem.IObserver arg0) : void \l
-			+ setData(problem.IData arg0) : void \l
+			+ addObserver(IObserver arg0) : void \l
+			+ removeObserver(IObserver arg0) : void \l
+			+ setData(IData arg0) : void \l
 			+ notifyObservers() : void \l
-			+ getData() : problem.IData \l
+			+ getData() : IData \l
 			+ stopGracefully() : void \l
 			# clearEverything() : void \l
-			+ addProcess(java.lang.Process arg0) : void \l
+			+ addProcess(Process arg0) : void \l
 			+ getApplicationsCount() : int \l
 			+ isRunning() : boolean \l
 			}" 
 	]; 
 	problemAppLauncher -> problemIObserver
 		[arrowhead="onormal", style="dashed"];
-	problemAppLauncher -> problemIWatcher
-		[arrowhead="vee", style="dashed"];
 	problemData -> problemIData
 		[arrowhead="onormal", style="dashed"];
 	problemHTML -> problemIAppTypes
 		[arrowhead="onormal", style="dashed"];
-	problemIObserver -> problemIWatcher
-		[arrowhead="vee", style="dashed"];
 	problemIWatcher -> javalangRunnable
 		[arrowhead="onormal", style="dashed"];
-	problemIWatcher -> problemIObserver
-		[arrowhead="vee", style="dashed"];
-	problemIWatcher -> problemIData
-		[arrowhead="vee", style="dashed"];
 	problemPNG -> problemIAppTypes
 		[arrowhead="onormal", style="dashed"];
 	problemPrintBack -> problemIObserver
 		[arrowhead="onormal", style="dashed"];
-	problemPrintBack -> problemIWatcher
-		[arrowhead="vee", style="dashed"];
 	problemPrintName -> problemIObserver
 		[arrowhead="onormal", style="dashed"];
-	problemPrintName -> problemIWatcher
-		[arrowhead="vee", style="dashed"];
 	problemTXT -> problemIAppTypes
 		[arrowhead="onormal", style="dashed"];
 	problemWatcher -> problemIWatcher
 		[arrowhead="onormal", style="dashed"];
 	problemWatcher -> javalangThread
 		[arrowhead="onormal"];
-	problemWatcher -> problemIObserver
-		[arrowhead="vee", style="dashed"];
-	problemWatcher -> problemIData
-		[arrowhead="vee", style="dashed"];
 
 }

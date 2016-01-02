@@ -14,6 +14,9 @@ public class ConcreteClass implements IClass {
 	private Collection<String> interfaceList;
 	private String extension;
 
+	/**
+	 * Constructor for ConcreteClass
+	 */
 	public ConcreteClass(){
 		this.methodList = new ArrayList<>();
 		this.fieldList = new ArrayList<>();
