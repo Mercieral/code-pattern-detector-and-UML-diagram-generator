@@ -1,7 +1,5 @@
 package problem.asm;
 
-import java.util.Arrays;
-
 import org.objectweb.asm.ClassVisitor;
 
 public class ClassDeclarationVisitor extends ClassVisitor {

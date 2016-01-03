@@ -5,7 +5,7 @@ digraph G {  rankdir=BT;
 			"{ problem/AppLauncher
 			|
 			- Map launchMap \l
-			\l| 
+			| 
  			+ handleDirectoryEvent(IWatcher arg0) : void \l
 			}" 
 	]; 
@@ -16,7 +16,7 @@ digraph G {  rankdir=BT;
 			|
 			+ String eventName \l
 			+ Path filePath \l
-			\l| 
+			| 
  			+ getFile() : Path \l
 			+ getEvent() : String \l
 			+ getExtension() : String \l
@@ -28,7 +28,7 @@ digraph G {  rankdir=BT;
 			"{ problem/HTML
 			|
 			- String command \l
-			\l| 
+			| 
  			+ getCommand() : String \l
 			+ getProcess(Path arg0) : Process \l
 			}" 
@@ -38,7 +38,7 @@ digraph G {  rankdir=BT;
 		label = 
 			"{ problem/IAppTypes
 			|
-			\l| 
+			| 
  			+ getCommand() : String \l
 			+ getProcess(Path arg0) : Process \l
 			}" 
@@ -48,7 +48,7 @@ digraph G {  rankdir=BT;
 		label = 
 			"{ problem/IData
 			|
-			\l| 
+			| 
  			+ getEvent() : String \l
 			+ getFile() : Path \l
 			+ getExtension() : String \l
@@ -59,7 +59,7 @@ digraph G {  rankdir=BT;
 		label = 
 			"{ problem/IObserver
 			|
-			\l| 
+			| 
  			+ handleDirectoryEvent(IWatcher arg0) : void \l
 			}" 
 	]; 
@@ -68,7 +68,7 @@ digraph G {  rankdir=BT;
 		label = 
 			"{ problem/IWatcher
 			|
-			\l| 
+			| 
  			+ addObserver(IObserver arg0) : void \l
 			+ removeObserver(IObserver arg0) : void \l
 			+ notifyObservers() : void \l
@@ -86,7 +86,7 @@ digraph G {  rankdir=BT;
 		label = 
 			"{ problem/Main
 			|
-			\l| 
+			| 
  			+ main(String[] arg0) : void \l
 			}" 
 	]; 
@@ -96,7 +96,7 @@ digraph G {  rankdir=BT;
 			"{ problem/PNG
 			|
 			- String command \l
-			\l| 
+			| 
  			+ getCommand() : String \l
 			+ getProcess(Path arg0) : Process \l
 			}" 
@@ -106,7 +106,7 @@ digraph G {  rankdir=BT;
 		label = 
 			"{ problem/PrintBack
 			|
-			\l| 
+			| 
  			+ handleDirectoryEvent(IWatcher arg0) : void \l
 			}" 
 	]; 
@@ -115,7 +115,7 @@ digraph G {  rankdir=BT;
 		label = 
 			"{ problem/PrintName
 			|
-			\l| 
+			| 
  			+ handleDirectoryEvent(IWatcher arg0) : void \l
 			}" 
 	]; 
@@ -125,7 +125,7 @@ digraph G {  rankdir=BT;
 			"{ problem/TXT
 			|
 			- String command \l
-			\l| 
+			| 
  			+ getCommand() : String \l
 			+ getProcess(Path arg0) : Process \l
 			}" 
@@ -141,7 +141,7 @@ digraph G {  rankdir=BT;
 			- List processes \l
 			- List observers \l
 			- IData data \l
-			\l| 
+			| 
  			+ run() : void \l
 			+ addObserver(IObserver arg0) : void \l
 			+ removeObserver(IObserver arg0) : void \l

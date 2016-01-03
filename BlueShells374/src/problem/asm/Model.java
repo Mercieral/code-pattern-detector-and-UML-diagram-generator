@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
 
 /**
  * {@link IModel} object used to create file for GraphViz tool
@@ -78,12 +77,14 @@ public class Model implements IModel {
 		if (obj.getAcessLevel() == Opcodes.ACC_INTERFACE) {
 			builder.append("<<interface>>\n");
 		}
+		// TODO do something with abstract classes
 		builder.append(obj.getClassName() + "\n\t\t\t|\n");
 		// trimValue(obj.getClassName(), "/")
 
 		// TODO: Add fields here: LOOK HERE LUKE
 		builder.append(addFields(obj.getIField()));
-		builder.append("\t\t\t\\l| \n ");
+		// removed \\l to make it look nicer on the picture
+		builder.append("\t\t\t| \n ");
 
 		// FIXME: Finish adding method information
 		builder.append(addMethods(obj.getIMethods()));
@@ -105,8 +106,8 @@ public class Model implements IModel {
 		String arrow = " -> ";
 		String interfaceArrow = "\n\t\t[arrowhead=\"onormal\", style=\"dashed\"];\n";
 		String classArrow = "\n\t\t[arrowhead=\"onormal\"];\n";
-		String hasArrow = "\n\t\t[arrowhead=\"vee\"];\n";
-		String usesArrow = "\n\t\t[arrowhead=\"vee\", style=\"dashed\"];\n";
+		// String hasArrow = "\n\t\t[arrowhead=\"vee\"];\n";
+		// String usesArrow = "\n\t\t[arrowhead=\"vee\", style=\"dashed\"];\n";
 		StringBuilder builder = new StringBuilder();
 
 		// Interface arrows
@@ -127,49 +128,32 @@ public class Model implements IModel {
 		}
 
 		/**
-		// has arrows - for M2
-		for (IField usedField : obj.getIField()) {
-			Type fieldClass = Type.getType(usedField.getDesc());
-			String field = fieldClass.getClassName().replace("/", "");
-			if (fieldClass.getClass().isArray()) { // array
-				field = fieldClass.getClass().getComponentType().getName()
-						.replace("/", "");
-				System.out.println(field);
-			}
-
-			for (IClass Class : classes) {
-				if (Class.getClassName().replace("/", "").equals(field)) {
-					builder.append("\t" + field);
-					builder.append(arrow);
-					builder.append(Class.getClassName().replace("/", ""));
-					builder.append(hasArrow);
-					break;
-				}
-			}
-
-		}
-
-		// uses arrows - for M2
-		ArrayList<String> uses = new ArrayList<String>();
-		for (IMethod Method : obj.getIMethods()) {
-			for (String arg : Method.getArguments()) {
-				String argType = arg.split(" ")[0].replace(".", "");
-				for (IClass Class : classes) {
-					if (Class.getClassName().replace("/", "").equals(argType)
-							&& !uses.contains(argType)) {
-						uses.add(argType);
-						builder.append(
-								"\t" + obj.getClassName().replace("/", ""));
-						builder.append(arrow);
-						builder.append(Class.getClassName().replace("/", ""));
-						builder.append(usesArrow);
-						break;
-					}
-				}
-			}
-		}
-		
-		**/
+		 * // has arrows - for M2 for (IField usedField : obj.getIField()) {
+		 * Type fieldClass = Type.getType(usedField.getDesc()); String field =
+		 * fieldClass.getClassName().replace("/", ""); if
+		 * (fieldClass.getClass().isArray()) { // array field =
+		 * fieldClass.getClass().getComponentType().getName() .replace("/", "");
+		 * System.out.println(field); }
+		 * 
+		 * for (IClass Class : classes) { if (Class.getClassName().replace("/",
+		 * "").equals(field)) { builder.append("\t" + field);
+		 * builder.append(arrow);
+		 * builder.append(Class.getClassName().replace("/", ""));
+		 * builder.append(hasArrow); break; } }
+		 * 
+		 * }
+		 * 
+		 * // uses arrows - for M2 ArrayList<String> uses = new ArrayList
+		 * <String>(); for (IMethod Method : obj.getIMethods()) { for (String
+		 * arg : Method.getArguments()) { String argType = arg.split(" "
+		 * )[0].replace(".", ""); for (IClass Class : classes) { if
+		 * (Class.getClassName().replace("/", "").equals(argType) &&
+		 * !uses.contains(argType)) { uses.add(argType); builder.append( "\t" +
+		 * obj.getClassName().replace("/", "")); builder.append(arrow);
+		 * builder.append(Class.getClassName().replace("/", ""));
+		 * builder.append(usesArrow); break; } } } }
+		 * 
+		 **/
 
 		return builder.toString();
 	}

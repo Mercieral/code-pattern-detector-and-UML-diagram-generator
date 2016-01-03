@@ -9,6 +9,7 @@ import problem.asm.IMethod;
 import problem.asm.Method;
 
 public class ConcreteClassTest {
+	@SuppressWarnings("unused")
 	private IMethod testMethod;
 	private IField testField;
 	
@@ -21,6 +22,7 @@ public class ConcreteClassTest {
 	
 	@Test
 	public void classTest(){
+		// TODO
 		// will write tests once fields and and methods are implented fully
 	}
 }
