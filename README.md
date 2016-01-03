@@ -26,13 +26,10 @@ Luke Danielson
 	2. Implented/added fields to the .gv file. 
 
 Larry Gates
-	1. Added enumerations as a way to handling different types (idea to make it 
-		easier for coding, might be removed in future milestones if becomes 
-		completely useless)
-	2. Implemented the Field class and Method class.
-	3. Implemented corresponding tests for the created classes.
-	4. Implemented/added methods to the .gv file
-	5. Made the .gv file more human readable. 
+	1. Implemented the Field class and Method class.
+	2. Implemented corresponding tests for the created classes.
+	3. Implemented/added methods to the .gv file
+	4. Made the .gv file more human readable. 
 
 
 ==== Milestone 0 ====
