@@ -20,7 +20,6 @@ public class ClassFieldVisitor extends ClassVisitor{
 	
 	public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) {
 		FieldVisitor toDecorate = super.visitField(access, name, desc, signature, value);
-		@SuppressWarnings("unused")
 		String type = Type.getType(desc).getClassName();
 		// TODO: delete this line *waiting*
 		//System.out.println("	"+type+" "+ name);
