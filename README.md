@@ -9,7 +9,7 @@ The program is designed to create a coded model of the classes given as argument
 The model contains a list of classes, each class has it's info and a list of 
 fields/methods, and each field/method has it's info. When ASM has finished visiting
 all of the given classes with the decorated visitors, the model's generateGraph 
-method is called which writes all of the stored information from the model into
+method is called, which writes all of the stored information from the model into
 a graph.gv file. When the graph.gv file is finished, GraphViz generates a .PNG 
 file using it.
 
@@ -24,11 +24,9 @@ space or a newline.
 
 The graph.gv and graph.png files are saved in the input_output folder.
 
-There are example argument txt files that can be copied and pasted into the arguments
-box. AaronArguments.txt generates the UML for AaronsLab1-3 and MilestoneArguments.txt
-generates the UML for the project in project.asm.
-
-
+There are example argument text files that can be copied and pasted into the argument
+box. AaronArguments.txt is the list of arguments for the generated UML for AaronsLab1-3 and MilestoneArguments.txt
+is the list of arguments for the generated UML for the project in project.asm package.
 
 --- Contributions ---
 
