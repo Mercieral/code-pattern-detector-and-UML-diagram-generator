@@ -26,7 +26,6 @@ public class PrintBack implements IObserver {
 				System.out.println(finalString.toString());
 				buffer.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

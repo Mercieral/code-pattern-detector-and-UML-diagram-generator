@@ -8,13 +8,11 @@ public class HTML implements IAppTypes{
 
 	@Override
 	public String getCommand() {
-		// TODO Auto-generated method stub
 		return this.command;
 	}
 
 	@Override
 	public Process getProcess(Path file) throws IOException {
-		// TODO Auto-generated method stub
 		return new ProcessBuilder(command, file.toString()).start();
 	}
 	

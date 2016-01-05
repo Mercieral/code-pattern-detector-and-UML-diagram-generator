@@ -1,24 +1,25 @@
 package problem.asm;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 public interface IModel {
 
 	/**
-	 * TODO
+	 * Generates a graph to to visual of ASM
 	 */
 	public void generateGraph() throws IOException;
 	
 	/**
-	 * TODO
+	 * Add a {@link IClass} object to a the model
 	 */
 	public void addClass(IClass currentClass);
 	
 	/**
-	 * TODO
-	 * @return
+	 * Returns a list of {@link IClass} objects 
+	 * 
+	 * @return - {@link List}
 	 */
-	public ArrayList<IClass> getClasses();
+	public List<IClass> getClasses();
 
 }

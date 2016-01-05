@@ -101,7 +101,6 @@ public class Watcher extends Thread implements IWatcher{
 
 	@Override
 	public IData getData() {
-		// TODO Auto-generated method stub
 		return this.data;
 	}
 

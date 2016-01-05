@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>990</x>
-      <y>970</y>
+      <y>910</y>
       <w>320</w>
       <h>260</h>
     </coordinates>
@@ -32,7 +32,7 @@ IMethod
     <id>UMLClass</id>
     <coordinates>
       <x>1330</x>
-      <y>970</y>
+      <y>910</y>
       <w>320</w>
       <h>250</h>
     </coordinates>
@@ -57,7 +57,7 @@ IField
     <id>UMLClass</id>
     <coordinates>
       <x>910</x>
-      <y>480</y>
+      <y>420</y>
       <w>350</w>
       <h>150</h>
     </coordinates>
@@ -66,14 +66,14 @@ IModel
 --
 + generateGraph() void throws IOException
 + addClass(IClass currentClass): void
-+ getClasses(): ArrayList&lt;IClass&gt;</panel_attributes>
++ getClasses(): List&lt;IClass&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>1000</x>
-      <y>330</y>
+      <y>270</y>
       <w>190</w>
       <h>70</h>
     </coordinates>
@@ -88,7 +88,7 @@ IModel
     <id>UMLClass</id>
     <coordinates>
       <x>1340</x>
-      <y>820</y>
+      <y>760</y>
       <w>650</w>
       <h>70</h>
     </coordinates>
@@ -103,7 +103,7 @@ IModel
     <id>UMLClass</id>
     <coordinates>
       <x>1410</x>
-      <y>720</y>
+      <y>660</y>
       <w>580</w>
       <h>90</h>
     </coordinates>
@@ -119,7 +119,7 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1340</x>
-      <y>590</y>
+      <y>530</y>
       <w>650</w>
       <h>120</h>
     </coordinates>
@@ -137,7 +137,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>760</x>
-      <y>1340</y>
+      <y>1280</y>
       <w>30</w>
       <h>140</h>
     </coordinates>
@@ -148,7 +148,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>510</x>
-      <y>1340</y>
+      <y>1280</y>
       <w>30</w>
       <h>140</h>
     </coordinates>
@@ -159,7 +159,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>270</x>
-      <y>1340</y>
+      <y>1280</y>
       <w>30</w>
       <h>140</h>
     </coordinates>
@@ -170,7 +170,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1030</x>
-      <y>1220</y>
+      <y>1160</y>
       <w>30</w>
       <h>80</h>
     </coordinates>
@@ -181,7 +181,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1380</x>
-      <y>1210</y>
+      <y>1150</y>
       <w>30</w>
       <h>80</h>
     </coordinates>
@@ -192,7 +192,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>600</x>
-      <y>560</y>
+      <y>500</y>
       <w>330</w>
       <h>430</h>
     </coordinates>
@@ -203,7 +203,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>650</x>
-      <y>900</y>
+      <y>840</y>
       <w>520</w>
       <h>90</h>
     </coordinates>
@@ -214,7 +214,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>650</x>
-      <y>900</y>
+      <y>840</y>
       <w>860</w>
       <h>90</h>
     </coordinates>
@@ -225,7 +225,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1530</x>
-      <y>280</y>
+      <y>220</y>
       <w>650</w>
       <h>230</h>
     </coordinates>
@@ -250,7 +250,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1980</x>
-      <y>500</y>
+      <y>440</y>
       <w>170</w>
       <h>170</h>
     </coordinates>
@@ -261,7 +261,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1980</x>
-      <y>500</y>
+      <y>440</y>
       <w>170</w>
       <h>270</h>
     </coordinates>
@@ -272,7 +272,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1980</x>
-      <y>500</y>
+      <y>440</y>
       <w>170</w>
       <h>350</h>
     </coordinates>
@@ -283,7 +283,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1180</x>
-      <y>360</y>
+      <y>300</y>
       <w>370</w>
       <h>30</h>
     </coordinates>
@@ -294,7 +294,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1080</x>
-      <y>390</y>
+      <y>330</y>
       <w>30</w>
       <h>110</h>
     </coordinates>
@@ -305,13 +305,13 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>900</x>
-      <y>680</y>
+      <y>620</y>
       <w>340</w>
       <h>200</h>
     </coordinates>
     <panel_attributes>IModel
 --
-- ArrayList&lt;IClass&gt;: classes
+- List&lt;IClass&gt;: classes
 --
 + generateGraph() void throws IOException
 - generateBoxObjects(IClass obj): String
@@ -321,7 +321,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
 - printFields(IField field): String
 - trimValue(String initial, String delimiter): String
 + addClass(IClass currentClass): void
-+ getClasses(): ArrayList&lt;IClass&gt;
++ getClasses(): List&lt;IClass&gt;
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -329,7 +329,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1100</x>
-      <y>620</y>
+      <y>560</y>
       <w>30</w>
       <h>80</h>
     </coordinates>
@@ -340,7 +340,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1000</x>
-      <y>1280</y>
+      <y>1220</y>
       <w>320</w>
       <h>350</h>
     </coordinates>
@@ -372,7 +372,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1340</x>
-      <y>1270</y>
+      <y>1210</y>
       <w>320</w>
       <h>300</h>
     </coordinates>
@@ -401,7 +401,7 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>280</x>
-      <y>970</y>
+      <y>910</y>
       <w>490</w>
       <h>380</h>
     </coordinates>
@@ -434,7 +434,7 @@ IClass
     <id>UMLClass</id>
     <coordinates>
       <x>330</x>
-      <y>1460</y>
+      <y>1400</y>
       <w>320</w>
       <h>480</h>
     </coordinates>
@@ -475,7 +475,7 @@ IClass
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>1460</y>
+      <y>1400</y>
       <w>310</w>
       <h>480</h>
     </coordinates>
@@ -516,7 +516,7 @@ IClass
     <id>UMLClass</id>
     <coordinates>
       <x>680</x>
-      <y>1460</y>
+      <y>1400</y>
       <w>280</w>
       <h>480</h>
     </coordinates>

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.objectweb.asm.Opcodes;
 
@@ -16,11 +17,11 @@ import org.objectweb.asm.Opcodes;
  */
 public class Model implements IModel {
 
+	private List<IClass> classes;
+
 	public Model() {
 		this.classes = new ArrayList<IClass>();
 	}
-
-	private ArrayList<IClass> classes;
 
 	@Override
 	public void generateGraph() throws IOException {
@@ -77,16 +78,13 @@ public class Model implements IModel {
 		if (obj.getAcessLevel() == Opcodes.ACC_INTERFACE) {
 			builder.append("<<interface>>\n");
 		}
-		// TODO do something with abstract classes
 		builder.append(obj.getClassName() + "\n\t\t\t|\n");
 		// trimValue(obj.getClassName(), "/")
 
-		// TODO: Add fields here: LOOK HERE LUKE
 		builder.append(addFields(obj.getIField()));
 		// removed \\l to make it look nicer on the picture
 		builder.append("\t\t\t| \n ");
 
-		// FIXME: Finish adding method information
 		builder.append(addMethods(obj.getIMethods()));
 
 		builder.append(labelEnd);
@@ -241,7 +239,6 @@ public class Model implements IModel {
 	}
 
 	/**
-	 * FIXME: Unused since apparently we don't need to shorten information
 	 * Shortens the name of strings that have a long value of extra information
 	 * 
 	 * @param initial
@@ -269,7 +266,7 @@ public class Model implements IModel {
 	}
 
 	@Override
-	public ArrayList<IClass> getClasses() {
+	public List<IClass> getClasses() {
 		return classes;
 	}
 

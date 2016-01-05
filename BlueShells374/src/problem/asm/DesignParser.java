@@ -7,56 +7,65 @@ import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
 public class DesignParser {
-	
+
 	private static IClass currentClass;
 	private static IModel model;
+
 	/**
 	 * Reads in a list of Java Classes and reverse engineers their design.
 	 * 
-	 * @param args: the names of the classes, separated by spaces. 
-	 * 		For example: java DesignParser java.lang.String edu.rosehulman.csse374.ClassFieldVisitor java.lang.Math
-	 * @throws IOException 
+	 * @param args:
+	 *            the names of the classes, separated by spaces. For example:
+	 *            java DesignParser java.lang.String
+	 *            edu.rosehulman.csse374.ClassFieldVisitor java.lang.Math
+	 * @throws IOException
 	 */
-	public static void main(String[] args) throws IOException{
+	public static void main(String[] args) throws IOException {
 		parser(args);
 	}
-	
+
 	/**
-	 * TODO
+	 * Used primarily for testing, allows to be run for arguments outside of
+	 * main
 	 * 
-	 * @param args - TODO
-	 * @throws IOException - TODO
+	 * @param args
+	 *            - Array of arguments, which are separated by spaces. All
+	 *            classes inside of a package for ASM to modify
+	 * @throws IOException
+	 *             - Exception if unable to read file
 	 */
-	public static void parser(String[] args) throws IOException{
+	public static void parser(String[] args) throws IOException {
 		model = new Model();
-		
-		for(String className: args){
-			// ASM's ClassReader does the heavy lifting of parsing the compiled Java class
-			ClassReader reader=new ClassReader(className);
+
+		for (String className : args) {
+			// ASM's ClassReader does the heavy lifting of parsing the compiled
+			// Java class
+			ClassReader reader = new ClassReader(className);
 			currentClass = new ConcreteClass();
-			
-			
+
 			// make class declaration visitor to get superclass and interfaces
-			ClassVisitor decVisitor = new ClassDeclarationVisitor(Opcodes.ASM5, currentClass);
+			ClassVisitor decVisitor = new ClassDeclarationVisitor(Opcodes.ASM5,
+					currentClass);
 
-			
 			// DECORATE declaration visitor with field visitor
-			ClassVisitor fieldVisitor = new ClassFieldVisitor(Opcodes.ASM5, decVisitor, currentClass);
-			
-			// DECORATE field visitor with method visitor
-			ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5, fieldVisitor, currentClass);
+			ClassVisitor fieldVisitor = new ClassFieldVisitor(Opcodes.ASM5,
+					decVisitor, currentClass);
 
-			// TODO: add more DECORATORS here in later milestones to accomplish specific tasks
-			
-			
-			
-			// Tell the Reader to use our (heavily decorated) ClassVisitor to visit the class
+			// DECORATE field visitor with method visitor
+			ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5,
+					fieldVisitor, currentClass);
+
+			// TODO: add more DECORATORS here in later milestones to accomplish
+			// specific tasks
+
+			// Tell the Reader to use our (heavily decorated) ClassVisitor to
+			// visit the class
 			reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
-			
+
 			// Add the class to the model
 			model.addClass(currentClass);
 		}
-		
+
 		model.generateGraph();
 	}
 }
