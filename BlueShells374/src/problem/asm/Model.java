@@ -232,8 +232,9 @@ public class Model implements IModel {
 
 		// remove the path information from the description in order to give the
 		// string a cleaner look
-		String[] args = field.getDesc().split("/");
-		build.append(args[args.length - 1].replace(";", "") + " ");
+		build.append(trimValue(field.getDesc(), ".") + " ");
+		
+
 
 		build.append(field.getName());
 		return build.toString();

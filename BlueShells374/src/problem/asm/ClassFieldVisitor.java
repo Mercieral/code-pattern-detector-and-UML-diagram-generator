@@ -28,7 +28,7 @@ public class ClassFieldVisitor extends ClassVisitor{
 		IField currentField = new Field();
 		
 		currentField.setName(name);
-		currentField.setDesc(desc);
+		currentField.setDesc(type);
 		currentField.setSignature(signature);
 		currentField.setValue(value);
 		addAccessLevel(access, currentField);
