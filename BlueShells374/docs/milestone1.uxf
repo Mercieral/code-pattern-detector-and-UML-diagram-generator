@@ -1,38 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="13.3">
-  <zoom_level>5</zoom_level>
+  <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>370</x>
-      <y>355</y>
-      <w>160</w>
-      <h>130</h>
+      <x>740</x>
+      <y>690</y>
+      <w>320</w>
+      <h>260</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 IMethod
 --
+--
 + getName() String
 + setName(String name) void
-+ getAccessLevel() ACCESS.ENUM
-+ setAccessLevel(ACCESS.ENUM access) void
++ getAccessLevel() String
++ setAccessLevel(String access) void
 + getDesc() String
 + setDesc(String desc) void
 + getExceptions() String[]
 + setExceptions(String[] exceptions) void
++ getReturnType() String
++ setReturnType(String type) void
++ addArgument(String arg) void
++ getArguments() List&lt;String&gt;
 + toString() String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>540</x>
-      <y>355</y>
-      <w>160</w>
-      <h>125</h>
+      <x>1080</x>
+      <y>690</y>
+      <w>320</w>
+      <h>250</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 IField
+--
 --
 + getName() String
 + setName(String name) void
@@ -42,18 +48,18 @@ IField
 + setSignature(String sign) void
 + getValue() Object
 + setValue(Object value) void
-+ getAccessLevel() ACCESS.ENUM
-+ setAccessLevel(ACCESS.ENUM access) void
++ getAccessLevel() String
++ setAccessLevel(String access) void
 + toString() String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>330</x>
-      <y>110</y>
-      <w>175</w>
-      <h>75</h>
+      <x>660</x>
+      <y>200</y>
+      <w>350</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 IModel
@@ -66,10 +72,10 @@ IModel
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>375</x>
-      <y>35</y>
-      <w>95</w>
-      <h>35</h>
+      <x>750</x>
+      <y>50</y>
+      <w>190</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>DesignParser
 --
@@ -80,10 +86,10 @@ IModel
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>545</x>
-      <y>280</y>
-      <w>325</w>
-      <h>35</h>
+      <x>1090</x>
+      <y>540</y>
+      <w>650</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>ClassDeclarationVisitor
 --
@@ -95,10 +101,10 @@ IModel
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>580</x>
-      <y>230</y>
-      <w>290</w>
-      <h>45</h>
+      <x>1160</x>
+      <y>440</y>
+      <w>580</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>ClassFieldVisitor
 --
@@ -111,10 +117,10 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>545</x>
-      <y>165</y>
-      <w>325</w>
-      <h>60</h>
+      <x>1090</x>
+      <y>310</y>
+      <w>650</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>ClassMethodVisitor
 --
@@ -129,10 +135,10 @@ addArguments(String desc, IMethod currentMethod): void</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>100</x>
-      <y>355</y>
-      <w>160</w>
-      <h>160</h>
+      <x>200</x>
+      <y>690</y>
+      <w>320</w>
+      <h>320</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 IClass
@@ -160,9 +166,9 @@ IClass
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>555</y>
-      <w>115</w>
-      <h>90</h>
+      <y>1090</y>
+      <w>230</w>
+      <h>180</h>
     </coordinates>
     <panel_attributes>ConcreteClass 
 --
@@ -181,10 +187,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>125</x>
-      <y>555</y>
-      <w>115</w>
-      <h>90</h>
+      <x>250</x>
+      <y>1090</y>
+      <w>230</w>
+      <h>180</h>
     </coordinates>
     <panel_attributes>AbstractClass
 --
@@ -203,10 +209,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>245</x>
-      <y>555</y>
-      <w>115</w>
-      <h>90</h>
+      <x>490</x>
+      <y>1090</y>
+      <w>230</w>
+      <h>180</h>
     </coordinates>
     <panel_attributes>Interface
 --
@@ -225,10 +231,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>250</x>
-      <y>510</y>
-      <w>15</w>
-      <h>55</h>
+      <x>500</x>
+      <y>1000</y>
+      <w>30</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
@@ -236,10 +242,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>175</x>
-      <y>510</y>
-      <w>15</w>
-      <h>55</h>
+      <x>350</x>
+      <y>1000</y>
+      <w>30</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
@@ -247,57 +253,21 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>100</x>
-      <y>510</y>
-      <w>15</w>
-      <h>55</h>
+      <x>200</x>
+      <y>1000</y>
+      <w>30</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>370</x>
-      <y>510</y>
-      <w>70</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>Method
---
-- String Name
-- String AcessLevel
-- String Desc
-- String Exceptions
---
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>545</x>
-      <y>505</y>
-      <w>70</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>Field
---
-- String Name
-- String Desc
-- String Signature
-- String Value
-- String AccessLevel
---</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>480</y>
-      <w>15</w>
-      <h>40</h>
+      <x>780</x>
+      <y>940</y>
+      <w>30</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -305,10 +275,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>565</x>
-      <y>475</y>
-      <w>15</w>
-      <h>40</h>
+      <x>1130</x>
+      <y>930</y>
+      <w>30</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -316,10 +286,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>175</x>
-      <y>150</y>
-      <w>165</w>
-      <h>215</h>
+      <x>350</x>
+      <y>280</y>
+      <w>330</w>
+      <h>430</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>310.0;10.0;10.0;10.0;10.0;410.0</additional_attributes>
@@ -327,10 +297,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>200</x>
-      <y>320</y>
-      <w>260</w>
-      <h>45</h>
+      <x>400</x>
+      <y>620</y>
+      <w>520</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;70.0;10.0;10.0;500.0;10.0;500.0;70.0</additional_attributes>
@@ -338,10 +308,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>200</x>
-      <y>320</y>
-      <w>430</w>
-      <h>45</h>
+      <x>400</x>
+      <y>620</y>
+      <w>860</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;70.0;10.0;10.0;840.0;10.0;840.0;70.0</additional_attributes>
@@ -349,10 +319,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>640</x>
-      <y>10</y>
-      <w>325</w>
-      <h>115</h>
+      <x>1280</x>
+      <y>0</y>
+      <w>650</w>
+      <h>230</h>
     </coordinates>
     <panel_attributes>ClassVisitor
 --
@@ -374,10 +344,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>865</x>
-      <y>120</y>
-      <w>85</w>
-      <h>85</h>
+      <x>1730</x>
+      <y>220</y>
+      <w>170</w>
+      <h>170</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>150.0;10.0;150.0;150.0;10.0;150.0</additional_attributes>
@@ -385,10 +355,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>865</x>
-      <y>120</y>
-      <w>85</w>
-      <h>135</h>
+      <x>1730</x>
+      <y>220</y>
+      <w>170</w>
+      <h>270</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>150.0;10.0;150.0;250.0;10.0;250.0</additional_attributes>
@@ -396,10 +366,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>865</x>
-      <y>120</y>
-      <w>85</w>
-      <h>175</h>
+      <x>1730</x>
+      <y>220</y>
+      <w>170</w>
+      <h>350</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>150.0;10.0;150.0;330.0;10.0;330.0</additional_attributes>
@@ -407,10 +377,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>465</x>
-      <y>50</y>
-      <w>185</w>
-      <h>15</h>
+      <x>930</x>
+      <y>80</y>
+      <w>370</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>350.0;10.0;10.0;10.0</additional_attributes>
@@ -418,10 +388,10 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>415</x>
-      <y>65</y>
-      <w>15</w>
-      <h>55</h>
+      <x>830</x>
+      <y>110</y>
+      <w>30</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
@@ -429,10 +399,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>325</x>
-      <y>210</y>
-      <w>170</w>
-      <h>100</h>
+      <x>650</x>
+      <y>400</y>
+      <w>340</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>IModel
 --
@@ -453,12 +423,73 @@ IClass
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>425</x>
-      <y>180</y>
-      <w>15</w>
-      <h>40</h>
+      <x>850</x>
+      <y>340</y>
+      <w>30</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>750</x>
+      <y>1000</y>
+      <w>320</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>Method
+--
+- String name
+- String accessLevel
+- String desc
+- String[] exceptions
+- String returnType
+- List&lt;String&gt; arguments
+--
++ getName() String
++ setName(String name) void
++ getAccessLevel() String
++ setAccessLevel(String access) void
++ getDesc() String
++ setDesc(String desc) void
++ getExceptions() String[]
++ setExceptions(String[] exceptions) void
++ getReturnType() String
++ setReturnType(String type) void
++ addArgument(String arg) void
++ getArguments() List&lt;String&gt;
++ toString() String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1090</x>
+      <y>990</y>
+      <w>320</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>Field
+--
+- String name
+- String desc
+- String signature
+- Object value
+- String accessLevel
+--
++ getName() String
++ setName(String name) void
++ getDesc() String
++ setDesc(String desc) void
++ getSignature() String
++ setSignature(String sign) void
++ getValue() Object
++ setValue(Object value) void
++ getAccessLevel() String
++ setAccessLevel(String access) void
++ toString() String</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
