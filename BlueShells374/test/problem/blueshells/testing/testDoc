@@ -1,0 +1,47 @@
+digraph G {  rankdir=BT; 
+ 	problemasmIField [ 
+		shape = "record",
+		label = 
+			"{ problem/asm/IField
+			|
+			| 
+ 			+ getName() : String \l
+			+ setName(String arg0) : void \l
+			+ getDesc() : String \l
+			+ setDesc(String arg0) : void \l
+			+ getSignature() : String \l
+			+ setSignature(String arg0) : void \l
+			+ getValue() : Object \l
+			+ setValue(Object arg0) : void \l
+			+ getAccessLevel() : String \l
+			+ setAccessLevel(String arg0) : void \l
+			+ toString() : String \l
+			}" 
+	]; 
+	problemasmField [ 
+		shape = "record",
+		label = 
+			"{ problem/asm/Field
+			|
+			- String name \l
+			- String desc \l
+			- String signature \l
+			- Object value \l
+			- String accessLevel \l
+			| 
+ 			+ getName() : String \l
+			+ setName(String arg0) : void \l
+			+ getDesc() : String \l
+			+ setDesc(String arg0) : void \l
+			+ getSignature() : String \l
+			+ setSignature(String arg0) : void \l
+			+ getValue() : Object \l
+			+ setValue(Object arg0) : void \l
+			+ getAccessLevel() : String \l
+			+ setAccessLevel(String arg0) : void \l
+			}" 
+	]; 
+	problemasmField -> problemasmIField
+		[arrowhead="onormal", style="dashed"];
+
+}
