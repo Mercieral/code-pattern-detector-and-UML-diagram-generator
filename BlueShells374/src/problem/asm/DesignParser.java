@@ -18,6 +18,16 @@ public class DesignParser {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException{
+		parser(args);
+	}
+	
+	/**
+	 * TODO
+	 * 
+	 * @param args - TODO
+	 * @throws IOException - TODO
+	 */
+	public static void parser(String[] args) throws IOException{
 		model = new Model();
 		
 		for(String className: args){
