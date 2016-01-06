@@ -126,8 +126,10 @@ public class Model implements IModel {
 		}
 
 		/**
-		 * // has arrows - for M2 for (IField usedField : obj.getIField()) {
-		 * Type fieldClass = Type.getType(usedField.getDesc()); String field =
+		 * // has arrows - for M2
+		 *
+		 * for (IField usedField : obj.getIField()) { Type fieldClass =
+		 * Type.getType(usedField.getDesc()); String field =
 		 * fieldClass.getClassName().replace("/", ""); if
 		 * (fieldClass.getClass().isArray()) { // array field =
 		 * fieldClass.getClass().getComponentType().getName() .replace("/", "");
@@ -141,9 +143,11 @@ public class Model implements IModel {
 		 * 
 		 * }
 		 * 
-		 * // uses arrows - for M2 ArrayList<String> uses = new ArrayList
-		 * <String>(); for (IMethod Method : obj.getIMethods()) { for (String
-		 * arg : Method.getArguments()) { String argType = arg.split(" "
+		 * // uses arrows - for M2
+		 * 
+		 * ArrayList<String> uses = new ArrayList <String>(); for (IMethod
+		 * Method : obj.getIMethods()) { for (String arg :
+		 * Method.getArguments()) { String argType = arg.split(" "
 		 * )[0].replace(".", ""); for (IClass Class : classes) { if
 		 * (Class.getClassName().replace("/", "").equals(argType) &&
 		 * !uses.contains(argType)) { uses.add(argType); builder.append( "\t" +
@@ -231,8 +235,6 @@ public class Model implements IModel {
 		// remove the path information from the description in order to give the
 		// string a cleaner look
 		build.append(trimValue(field.getDesc(), ".") + " ");
-		
-
 
 		build.append(field.getName());
 		return build.toString();
