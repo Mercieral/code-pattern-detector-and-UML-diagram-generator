@@ -49,7 +49,7 @@ through eclipse, right click on designParser, click on run configurations, go to
 arguments tab, and fill in the classes in the "program arguments", separated by a 
 space or a newline.
 
-The graph.gv and graph.png files are saved in the [input_output](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "input_output")  folder.
+The graph.gv and graph.png files are saved in the [input_output](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "input_output for master branch")  folder.
 
 There are example argument text files that can be copied and pasted into the argument
 box. AaronArguments.txt is the list of arguments for the generated UML for AaronsLab1-3 and MilestoneArguments.txt
@@ -59,15 +59,18 @@ is the list of arguments for the generated UML for the project in project.asm pa
 
 
 Aaron Mercier 
+
 1. Set up the git repository
 2. implemented the method, field, and declaration visitors to create and fill in our model
 3. implemented/added the arrows to the .gv file
 
 Luke Danielson
+
 1. Implemented the IClass and interface and the three subclasses ConcreteClass, AbstractClass, and InterfaceClass along with testing for each one. 
 2. Implented/added fields to the .gv file. 
 
 Larry Gates
+
 1. Implemented the Field class and Method class.
 2. Implemented corresponding tests for the created classes.
 3. Implemented/added methods to the .gv file
