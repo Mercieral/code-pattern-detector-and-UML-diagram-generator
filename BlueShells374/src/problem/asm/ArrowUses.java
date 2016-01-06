@@ -16,8 +16,7 @@ public class ArrowUses implements IArrow {
 	public ArrowUses() {
 		this.start = null;
 		this.end = null;
-		// FIXME
-		this.details = "NONE";
+		this.details = "\n\t\t[arrowhead=\"vee\", style=\"dashed\"];\n";
 	}
 
 	@Override

@@ -16,8 +16,7 @@ public class ArrowHas implements IArrow {
 	public ArrowHas() {
 		this.start = null;
 		this.end = null;
-		// FIXME
-		this.details = "NONE";
+		this.details = "\n\t\t[arrowhead=\"vee\"];\n";
 	}
 
 	@Override
