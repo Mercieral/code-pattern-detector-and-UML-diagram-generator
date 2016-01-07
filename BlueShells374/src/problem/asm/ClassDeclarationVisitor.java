@@ -28,6 +28,7 @@ public class ClassDeclarationVisitor extends ClassVisitor {
 					arrow1.setFromObject(currentClass.getClassName());
 					arrow1.setToObject(superName);
 					currentClass.addArrow(arrow1);
+					break;
 				 }
 			}
 		}
@@ -43,6 +44,7 @@ public class ClassDeclarationVisitor extends ClassVisitor {
 					arrow2.setFromObject(currentClass.getClassName());
 					arrow2.setToObject(inter);
 					currentClass.addArrow(arrow2);
+					break;
 				}
 			}
 
