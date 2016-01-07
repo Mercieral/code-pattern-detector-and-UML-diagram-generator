@@ -1,6 +1,7 @@
 package arrowTestingClasses;
 
 public class testClass2 {
+	@SuppressWarnings("unused")
 	private testClass1 test;
 	
 	public void testMethod(){

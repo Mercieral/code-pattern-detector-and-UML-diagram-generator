@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
 
 /**
  * {@link IModel} object used to create file for GraphViz tool
