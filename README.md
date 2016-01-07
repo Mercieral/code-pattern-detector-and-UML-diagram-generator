@@ -34,7 +34,7 @@ file using it.
 
 While working on Milestone 2, it was important to use all of the information suggested by Dr. Rupakheti in lecture. Such as: visitMethodInsn, visitFieldInsn, visitTypeInsn, visitVarInsn. The arrow objects were changed from just if statements and string to being a Strategy Pattern, which turned out to to be useful in the long run. 
 
-TODO
+TODO: Add something about not adding the type for methods.
 
 #### Instructions
 
