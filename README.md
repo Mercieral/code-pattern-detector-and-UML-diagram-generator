@@ -10,10 +10,10 @@ Repository for our CSSE 374 Software Design project.
 1. Test codes:
   1. [Test File](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/test/problem/blueshells/testing/Milestone2Testing.java "JUnit Test Code") 
 2. Abstract Factory PizzaStore
-  1. [Generated UML picture](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "Picture from master branch") 
+  1. [Generated UML picture](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/docs/Milestone2/Generated_Pizzaaf.png "Picture from master branch") 
 3. Project Code
-  1. [Designed UML Picture](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "Picture from master branch") 
-  2. [Generated UML Picture](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "Picture from master branch") 
+  1. [Designed UML Picture](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/docs/Milestone2/Manually_created_Project_UML.png "Picture from master branch") 
+  2. [Generated UML Picture](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/docs/Milestone2/Generated_Project_UML.png "Picture from master branch") 
 
 #### Design (Milestone Evolution)
 
