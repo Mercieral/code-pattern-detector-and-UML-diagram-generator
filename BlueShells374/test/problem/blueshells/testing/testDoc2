@@ -1,0 +1,22 @@
+digraph G {  rankdir=BT; 
+ 	arrowTestingClassestestClass1 [ 
+		shape = "record",
+		label = 
+			"{ arrowTestingClasses/testClass1
+			|
+			| 
+ 			}" 
+	]; 
+	arrowTestingClassestestClass2 [ 
+		shape = "record",
+		label = 
+			"{ arrowTestingClasses/testClass2
+			|
+			- testClass1 test \l
+			| 
+ 			}" 
+	]; 
+	arrowTestingClassestestClass2 -> arrowTestingClassestestClass1
+		[arrowhead="vee"];
+
+}

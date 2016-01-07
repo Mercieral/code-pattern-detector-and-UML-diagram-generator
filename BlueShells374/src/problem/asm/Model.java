@@ -128,6 +128,7 @@ public class Model implements IModel {
 
 		// has arrows - for M2
 
+		ArrayList<String> hases = new ArrayList<String>();
 		for (IField usedField : obj.getIField()) {
 			String type = usedField.getDesc();
 			if (!usedField.getSignature().equals("")) { // array field =
@@ -140,11 +141,8 @@ public class Model implements IModel {
 			}
 			String field = type.replace(".", "");
 			for (IClass Class : classes) {
-				
-				if (obj.getClassName().replace("/", "").equals("problemasmInterface")){
-					System.out.println(obj.getClassName() + " -- " + Class.getClassName().replace("/", ""));
-				}
-				if (Class.getClassName().replace("/", "").equals(field)) {
+				if (Class.getClassName().replace("/", "").equals(field) && !hases.contains(field)) {
+					hases.add(field);
 					builder.append("\t" + obj.getClassName().replace("/", ""));
 					builder.append(arrow);
 					builder.append(Class.getClassName().replace("/", ""));

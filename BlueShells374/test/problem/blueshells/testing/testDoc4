@@ -1,0 +1,51 @@
+digraph G {  rankdir=BT; 
+ 	arrowTestingClassestestClass1 [ 
+		shape = "record",
+		label = 
+			"{ arrowTestingClasses/testClass1
+			|
+			| 
+ 			}" 
+	]; 
+	arrowTestingClassestestClass2 [ 
+		shape = "record",
+		label = 
+			"{ arrowTestingClasses/testClass2
+			|
+			- testClass1 test \l
+			| 
+ 			}" 
+	]; 
+	arrowTestingClassestestClass3 [ 
+		shape = "record",
+		label = 
+			"{ arrowTestingClasses/testClass3
+			|
+			- ArrayList[testClass1] test \l
+			| 
+ 			}" 
+	]; 
+	arrowTestingClassestestClass4 [ 
+		shape = "record",
+		label = 
+			"{ arrowTestingClasses/testClass4
+			|
+			- testClass1 test1 \l
+			- ArrayList[testClass1] test2 \l
+			- testClass2 test3 \l
+			- testClass3 test4 \l
+			| 
+ 			}" 
+	]; 
+	arrowTestingClassestestClass2 -> arrowTestingClassestestClass1
+		[arrowhead="vee"];
+	arrowTestingClassestestClass3 -> arrowTestingClassestestClass1
+		[arrowhead="vee"];
+	arrowTestingClassestestClass4 -> arrowTestingClassestestClass1
+		[arrowhead="vee"];
+	arrowTestingClassestestClass4 -> arrowTestingClassestestClass2
+		[arrowhead="vee"];
+	arrowTestingClassestestClass4 -> arrowTestingClassestestClass3
+		[arrowhead="vee"];
+
+}
