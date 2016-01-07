@@ -23,7 +23,7 @@ public class myMethodVisitor extends MethodVisitor {
 			if (ClassName.equals(descName)){
 				IArrow arrow = new ArrowHas();
 				arrow.setFromObject(currentClass.getClassName());
-				arrow.setToObject(desc.replace(";", ""));
+				arrow.setToObject(desc.replace(";", "").substring(1));
 				currentClass.addArrow(arrow);
 			}
 		}
@@ -36,7 +36,6 @@ public class myMethodVisitor extends MethodVisitor {
 			String ClassName = Class.replace(".", "");
 			String ownerName = owner.replace("/", "");
 			if (ClassName.equals(ownerName)){
-				System.out.println("hit");
 				IArrow arrow = new ArrowUses();
 				arrow.setFromObject(currentClass.getClassName());
 				arrow.setToObject(owner);

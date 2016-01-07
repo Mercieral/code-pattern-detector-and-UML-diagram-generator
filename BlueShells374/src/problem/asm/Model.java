@@ -102,7 +102,38 @@ public class Model implements IModel {
 	 * @return String representation of relations
 	 */
 	private String generateArrows(IClass obj) {
-		String arrow = " -> ";
+		StringBuilder builder = new StringBuilder();
+		ArrayList<String> hasClassNames = new ArrayList<>();
+		ArrayList<String> useClassNames = new ArrayList<>();
+		
+		for (IArrow arrow : obj.getArrows()){
+			String pointerClass = parsePointerClass(arrow.getToObject());
+			String arrowType = parseArrowType(arrow.getClass().toString());
+			
+			switch(arrowType){
+				case "ArrowHas":
+					if (!hasClassNames.contains(pointerClass)){
+						hasClassNames.add(pointerClass);
+						builder.append(arrow.drawArrow());
+					}
+					break;
+				case "ArrowUses":
+					if (!useClassNames.contains(pointerClass)){
+						useClassNames.add(pointerClass);
+						builder.append(arrow.drawArrow());
+					}
+					break;
+				case "ArrowInterface":
+					builder.append(arrow.drawArrow());
+					break;
+				case "ArrowExtension":
+					builder.append(arrow.drawArrow());
+					break;
+			}		
+		}
+		
+		return builder.toString();
+		/*String arrow = " -> ";
 		String interfaceArrow = "\n\t\t[arrowhead=\"onormal\", style=\"dashed\"];\n";
 		String classArrow = "\n\t\t[arrowhead=\"onormal\"];\n";
 		String hasArrow = "\n\t\t[arrowhead=\"vee\"];\n";
@@ -174,7 +205,17 @@ public class Model implements IModel {
 			}
 		}
 
-		return builder.toString();
+		return builder.toString();*/
+	}
+	
+	private String parsePointerClass(String classPath){
+		String parsedClass = trimValue(classPath, "/");
+		return parsedClass;
+	}
+	
+	private String parseArrowType(String arrowPath){
+		String parsedArrow = trimValue(arrowPath, ".");
+		return parsedArrow;
 	}
 
 	/**

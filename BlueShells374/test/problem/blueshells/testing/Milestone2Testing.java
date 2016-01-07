@@ -22,7 +22,7 @@ public class Milestone2Testing {
 	}
 	
 	@Test
-	public void testMilestone2() throws IOException{
+	public void testField() throws IOException{
 		args[0] = "arrowTestingClasses.testClass1";
 		args[1] = "arrowTestingClasses.testClass2";
 		DesignParser.parser(args); 
@@ -34,30 +34,36 @@ public class Milestone2Testing {
 			assertEquals(line, br2.readLine());
 		}
 		br1.close();
-		br2.close();
-		
+		br2.close();	
+	}
+	
+	@Test
+	public void testFieldAsList() throws IOException{
 		args[0] = "arrowTestingClasses.testClass1";
 		args[1] = "arrowTestingClasses.testClass3";
 		DesignParser.parser(args); 
-		br1 = new BufferedReader(new FileReader("input_output/graph.gv"));
-		br2 = new BufferedReader(new FileReader("test/problem/blueshells/testing/testDoc3"));
+		BufferedReader br1 = new BufferedReader(new FileReader("input_output/graph.gv"));
+		BufferedReader br2 = new BufferedReader(new FileReader("test/problem/blueshells/testing/testDoc3"));
 		
-		line = "";
+		String line = "";
 		while((line = br1.readLine()) != null){
 			assertEquals(line, br2.readLine());
 		}
 		br1.close();
 		br2.close();
-		
+	}
+	
+	@Test
+	public void testMultipleFields() throws IOException{
 		args2[0] = "arrowTestingClasses.testClass1";
 		args2[1] = "arrowTestingClasses.testClass2";
 		args2[2] = "arrowTestingClasses.testClass3";
 		args2[3] = "arrowTestingClasses.testClass4";
 		DesignParser.parser(args2); 
-		br1 = new BufferedReader(new FileReader("input_output/graph.gv"));
-		br2 = new BufferedReader(new FileReader("test/problem/blueshells/testing/testDoc4"));
+		BufferedReader br1 = new BufferedReader(new FileReader("input_output/graph.gv"));
+		BufferedReader br2 = new BufferedReader(new FileReader("test/problem/blueshells/testing/testDoc4"));
 		
-		line = "";
+		String line = "";
 		while((line = br1.readLine()) != null){
 			assertEquals(line, br2.readLine());
 		}
