@@ -136,4 +136,8 @@ public interface IClass {
 	 * @return
 	 */
 	public String toString();
+	
+	public void addArrow(IArrow arrow);
+	
+	public Collection<IArrow> getArrows();
 }

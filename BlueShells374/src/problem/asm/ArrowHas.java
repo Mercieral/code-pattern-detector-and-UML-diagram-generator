@@ -14,8 +14,8 @@ public class ArrowHas implements IArrow {
 	 * TODO
 	 */
 	public ArrowHas() {
-		this.start = null;
-		this.end = null;
+		this.start = "";
+		this.end = "";
 		this.details = "\n\t\t[arrowhead=\"vee\"];\n";
 	}
 

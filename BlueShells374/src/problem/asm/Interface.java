@@ -13,6 +13,7 @@ public class Interface implements IClass {
 	private IClass superClass;
 	private Collection<String> interfaceList;
 	private String extension;
+	private Collection<IArrow> arrows;
 
 	/**
 	 * Constructor for Interface
@@ -27,6 +28,7 @@ public class Interface implements IClass {
 		this.superClass = null;
 		this.interfaceList = new ArrayList<String>();
 		this.extension = "";
+		this.arrows = new ArrayList<IArrow>();
 	}
 	
 	@Override
@@ -118,5 +120,18 @@ public class Interface implements IClass {
 	@Override 
 	public void setExtension(String extension){
 		this.extension = extension;
+	}
+
+	@Override
+	public void addArrow(IArrow arrow) {
+		if (!this.arrows.contains(arrow)){
+			this.arrows.add(arrow);
+		}
+		
+	}
+
+	@Override
+	public Collection<IArrow> getArrows() {
+		return this.arrows;
 	}
 }

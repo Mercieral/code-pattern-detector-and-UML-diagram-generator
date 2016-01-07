@@ -13,6 +13,7 @@ public class ConcreteClass implements IClass {
 	private IClass superClass;
 	private Collection<String> interfaceList;
 	private String extension;
+	private Collection<IArrow> arrows;
 
 	/**
 	 * Constructor for ConcreteClass
@@ -27,6 +28,7 @@ public class ConcreteClass implements IClass {
 		this.superClass = null;
 		this.interfaceList = new ArrayList<>();
 		this.extension = "";
+		this.arrows = new ArrayList<IArrow>();
 	}
 	
 	@Override
@@ -118,5 +120,15 @@ public class ConcreteClass implements IClass {
 	@Override 
 	public void setExtension(String extension){
 		this.extension = extension;
+	}
+	
+	public void addArrow(IArrow arrow){
+		if (!this.arrows.contains(arrow)){
+			this.arrows.add(arrow);
+		}
+	}
+	
+	public Collection<IArrow> getArrows(){
+		return this.arrows;
 	}
 }

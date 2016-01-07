@@ -20,6 +20,7 @@ public class ClassMethodVisitor extends ClassVisitor {
 	@Override
 	public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions){
 		MethodVisitor toDecorate = super.visitMethod(access, name, desc, signature, exceptions);
+		MethodVisitor mine = new myMethodVisitor(Opcodes.ASM5, toDecorate, currentClass);		
 		
 		IMethod currentMethod = new Method();
 		currentMethod.setName(name);
@@ -27,13 +28,15 @@ public class ClassMethodVisitor extends ClassVisitor {
 		currentMethod.setExceptions(exceptions);
 
 		addAccessLevel(access, currentMethod);
-		addReturnType(desc, currentMethod);
-		addArguments(desc, currentMethod);
+		addReturnType(desc, signature,  currentMethod);
+		addArguments(desc, signature,  currentMethod);
 		
 		this.currentClass.addIMethod(currentMethod);
 
-		return toDecorate;
+		return mine;
 	}
+	
+	
 	
 	/**
 	 * Adds the access level to the current method
@@ -63,9 +66,10 @@ public class ClassMethodVisitor extends ClassVisitor {
 	 * Adds the return type to the current method
 	 * 
 	 * @param desc - the desc given from asm
+	 * @param signature 
 	 * @param currentMethod - current method to add the return type to
 	 */
-	void addReturnType(String desc, IMethod currentMethod){
+	void addReturnType(String desc, String signature, IMethod currentMethod){
 		String returnType = Type.getReturnType(desc).getClassName();
 		currentMethod.setReturnType(returnType);
 	}
@@ -74,9 +78,10 @@ public class ClassMethodVisitor extends ClassVisitor {
 	 * Adds the arguments to the current method
 	 * 
 	 * @param desc - The desc given from asm
+	 * @param signature 
 	 * @param currentMethod - current method to add the arguments to
 	 */
-	void addArguments(String desc, IMethod currentMethod){
+	void addArguments(String desc, String signature, IMethod currentMethod){
 		Type[] args = Type.getArgumentTypes(desc);
 	    for(int i=0; i< args.length; i++){
 	    	String arg=args[i].getClassName() + " arg" + Integer.toString(i);
