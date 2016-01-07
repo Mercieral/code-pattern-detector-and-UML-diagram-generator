@@ -8,14 +8,16 @@ import org.objectweb.asm.Type;
 public class ClassFieldVisitor extends ClassVisitor{
 	
 	private IClass currentClass;
+	private String[] classes;
 
 	public ClassFieldVisitor(int api){
 		super(api);
 	}
 	
-	public ClassFieldVisitor(int api, ClassVisitor decorated, IClass currentClass) {
+	public ClassFieldVisitor(int api, ClassVisitor decorated, IClass currentClass, String[] args) {
 		super(api, decorated);
 		this.currentClass = currentClass;
+		this.classes = args;
 	}
 	
 	public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) {
@@ -37,7 +39,28 @@ public class ClassFieldVisitor extends ClassVisitor{
 		currentField.setSignature(sigType);
 		currentField.setValue(value);
 		addAccessLevel(access, currentField);
-		
+		for (String className : this.classes){
+			if (signature != null) {
+				String[] temp = sigType.split("<");
+				String field = temp[1].substring(1).replace(".","");
+				if (className.replace(".", "").equals(field)){
+					System.out.println("hit");
+					IArrow arrow = new ArrowHas();
+					arrow.setFromObject(currentClass.getClassName());
+					arrow.setToObject(field);
+					currentClass.addArrow(arrow);
+				}
+			}
+			else {
+				if (className.replace(".", "").equals(type.replace(".", ""))){
+					System.out.println("hit");
+					IArrow arrow = new ArrowHas();
+					arrow.setFromObject(currentClass.getClassName());
+					arrow.setToObject(type);
+					currentClass.addArrow(arrow);
+				}
+			}
+		}
 		currentClass.addIField(currentField);
 		
 		// What is a good way to know what the current class is?
