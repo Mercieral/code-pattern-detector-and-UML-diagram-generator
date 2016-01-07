@@ -1,6 +1,8 @@
 # 374BlueShells
 Repository for our CSSE 374 Software Design project. 
 
+------------------------------------------------------------
+
 ## Milestone 2
 
 #### Design (Milestone Evolution)
@@ -17,9 +19,18 @@ file using it.
 
 ###### Milestone 2
 
+While working on Milestone 2, it was important to use all of the information suggested by Dr. Rupakheti in lecture. Such as: visitMethodInsn, visitFieldInsn, visitTypeInsn, visitVarInsn. The arrow objects were changed from just if statements and string to being a Strategy Pattern, which turned out to to be useful in the long run. 
+
 TODO
 
 #### Instructions
+
+To run the program, run designParser (where the main method is located) with the 
+classes you wish to have the UML generated for as arguments. If running the program 
+from the command line, separate each argument with a space. If running the program 
+through eclipse, right click on designParser, click on run configurations, go to the 
+arguments tab, and fill in the classes in the "program arguments", separated by a 
+space or a newline.
 
 TODO
 
@@ -27,20 +38,22 @@ TODO
 
 Luke Danielson
 
-1. TODO
+1. Worked on testcases for Milestone 2
+2. Helped rewrite generateArrows(IClass obj) for **Model.java** with Larry
 
 Larry Gates
 
 1. Constructed the Strategy Pattern for the 4 arrows for the classes.
-2. Helped rewrite ```java  generateArrows(IClass obj) ``` for **Model.java** 
+2. Helped rewrite generateArrows(IClass obj) for **Model.java** with Luke
 
 Aaron Mercier
 
-1. TODO
+1. Worked on visitors to create arrows
+2. Original design of handling arrows and values need for GraphViz to show the arrows.
 
+------------------------------------------------------------
 
 ## Milestone 1
-
 
 #### Design
 
@@ -69,7 +82,6 @@ is the list of arguments for the generated UML for the project in project.asm pa
 
 #### Contributions
 
-
 Aaron Mercier 
 
 1. Set up the git repository
@@ -87,6 +99,9 @@ Larry Gates
 2. Implemented corresponding tests for the created classes.
 3. Implemented/added methods to the .gv file
 4. Made the .gv file more human readable. 
+
+
+------------------------------------------------------------
 
 
 ## Milestone 0 
