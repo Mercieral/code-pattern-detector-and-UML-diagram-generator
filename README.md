@@ -29,7 +29,7 @@ file using it.
 
 ###### Milestone 2
 
-While working on Milestone 2, it was important to use all of the information suggested by Dr. Rupakheti in lecture. Such as: visitMethodInsn, visitFieldInsn, visitTypeInsn, visitVarInsn. The arrow objects were changed from just if statements and string to being a Strategy Pattern, which turned out to to be useful in the long run. 
+While working on Milestone 2, it was important to use the information suggested by Dr. Rupakheti in lecture. Such as: visitMethodInsn and visitFieldInsn. The arrow objects were changed from just if statements and string to being a Strategy Pattern, which turned out to to be useful in the long run. 
 
 From reading the specifications and searching the given code, the team could not figure out how to find the inner types for arguments and return type of methods, such as for lists or collections.
 
