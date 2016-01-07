@@ -125,12 +125,14 @@ public class ConcreteClass implements IClass {
 		this.extension = extension;
 	}
 	
+	@Override
 	public void addArrow(IArrow arrow){
 		if (!this.arrows.contains(arrow)){
 			this.arrows.add(arrow);
 		}
 	}
 	
+	@Override
 	public Collection<IArrow> getArrows(){
 		return this.arrows;
 	}

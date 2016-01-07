@@ -1,10 +1,15 @@
 problem.asm.AbstractClass
+problem.asm.ArrowExtension
+problem.asm.ArrowHas
+problem.asm.ArrowInterface
+problem.asm.ArrowUses
 problem.asm.ClassDeclarationVisitor
 problem.asm.ClassFieldVisitor
 problem.asm.ClassMethodVisitor
 problem.asm.ConcreteClass
 problem.asm.DesignParser
 problem.asm.Field
+problem.asm.IArrow
 problem.asm.IClass
 problem.asm.IField
 problem.asm.IMethod
@@ -12,3 +17,4 @@ problem.asm.IModel
 problem.asm.Interface
 problem.asm.Method
 problem.asm.Model
+problem.asm.myMethodVisitor
