@@ -3,17 +3,19 @@ Repository for our CSSE 374 Software Design project.
 
 ## Milestone 2
 
-#### Milestone Evolution
+#### Design (Milestone Evolution)
 
 ###### Milestone 1
 
-TODO
+The program is designed to create a coded model of the classes given as arguments.
+The model contains a list of classes, each class has it's info and a list of 
+fields/methods, and each field/method has it's info. When ASM has finished visiting
+all of the given classes with the decorated visitors, the model's generateGraph 
+method is called, which writes all of the stored information from the model into
+a graph.gv file. When the graph.gv file is finished, GraphViz generates a .PNG 
+file using it.
 
 ###### Milestone 2
-
-TODO
-
-#### Design
 
 TODO
 
@@ -23,7 +25,18 @@ TODO
 
 #### Contributions
 
-TODO
+Luke Danielson
+
+1. TODO
+
+Larry Gates
+
+1. Constructed the Strategy Pattern for the 4 arrows for the classes.
+2. Helped rewrite ```java  generateArrows(IClass obj) ``` for **Model.java** 
+
+Aaron Mercier
+
+1. TODO
 
 
 ## Milestone 1
@@ -40,7 +53,6 @@ a graph.gv file. When the graph.gv file is finished, GraphViz generates a .PNG
 file using it.
 
 #### Instructions
-
 
 To run the program, run designParser (where the main method is located) with the 
 classes you wish to have the UML generated for as arguments. If running the program 
