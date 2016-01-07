@@ -36,6 +36,9 @@ public class myMethodVisitor extends MethodVisitor {
 			String ClassName = Class.replace(".", "");
 			String ownerName = owner.replace("/", "");
 			if (ClassName.equals(ownerName)){
+				if (ClassName.equals(currentClass.getClassName().replace("/", ""))){
+					return;
+				}
 				IArrow arrow = new ArrowUses();
 				arrow.setFromObject(currentClass.getClassName());
 				arrow.setToObject(owner);
