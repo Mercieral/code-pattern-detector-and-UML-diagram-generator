@@ -5,6 +5,19 @@ Repository for our CSSE 374 Software Design project.
 
 ## Milestone 2
 
+#### Deliverables and location
+
+1. Test codes:
+  1. [TODO](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "JUnit Test Code") 
+  2. [TODO](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "JUnit Test Code")
+  3. [TODO](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "JUnit Test Code")
+2. Abstract Factory PizzaStore
+  1. [Given UML Picture](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "Picture from master branch") 
+  2. [Generated UML picture](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "Picture from master branch") 
+3. Project Code
+  1. [Designed UML Picture](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "Picture from master branch") 
+  2. [Generated UML Picture](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "Picture from master branch") 
+
 #### Design (Milestone Evolution)
 
 ###### Milestone 1
