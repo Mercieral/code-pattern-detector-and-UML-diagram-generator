@@ -11,7 +11,7 @@ public class ArrowUses implements IArrow {
 	private final String ARROW = " -> ";
 
 	/**
-	 * TODO
+	 * Arrow to represent uses arrows
 	 */
 	public ArrowUses() {
 		this.start = "";

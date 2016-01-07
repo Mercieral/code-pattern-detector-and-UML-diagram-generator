@@ -11,7 +11,7 @@ public class ArrowHas implements IArrow {
 	private final String ARROW = " -> ";
 
 	/**
-	 * TODO
+	 * Arrow to represent to association
 	 */
 	public ArrowHas() {
 		this.start = "";

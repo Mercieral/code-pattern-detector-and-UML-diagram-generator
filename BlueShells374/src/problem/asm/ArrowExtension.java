@@ -11,7 +11,7 @@ public class ArrowExtension implements IArrow {
 	private final String ARROW = " -> ";
 
 	/**
-	 * TODO
+	 * Arrow to connect classes where one is a superclass
 	 */
 	public ArrowExtension() {
 		this.start = "";

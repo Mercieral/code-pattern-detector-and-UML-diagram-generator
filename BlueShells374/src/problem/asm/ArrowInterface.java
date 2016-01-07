@@ -11,7 +11,7 @@ public class ArrowInterface implements IArrow {
 	private final String ARROW = " -> ";
 
 	/**
-	 * TODO
+	 * Arrows for interface arrows
 	 */
 	public ArrowInterface() {
 		this.start = "";
