@@ -44,26 +44,23 @@ public class ClassFieldVisitor extends ClassVisitor{
 				String[] temp = sigType.split("<");
 				String field = temp[1].substring(1).replace(".","");
 				if (className.replace(".", "").equals(field)){
-					System.out.println("hit");
 					IArrow arrow = new ArrowHas();
 					arrow.setFromObject(currentClass.getClassName());
-					arrow.setToObject(field);
+					arrow.setToObject(field.replace(".", ""));
 					currentClass.addArrow(arrow);
 				}
 			}
 			else {
 				if (className.replace(".", "").equals(type.replace(".", ""))){
-					System.out.println("hit");
 					IArrow arrow = new ArrowHas();
 					arrow.setFromObject(currentClass.getClassName());
-					arrow.setToObject(type);
+					arrow.setToObject(type.replace(".", ""));
 					currentClass.addArrow(arrow);
 				}
 			}
 		}
 		currentClass.addIField(currentField);
 		
-		// What is a good way to know what the current class is?
 		return toDecorate;
 	};
 	
