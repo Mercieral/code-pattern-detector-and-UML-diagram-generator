@@ -129,17 +129,23 @@ public class Model implements IModel {
 		// has arrows - for M2
 
 		for (IField usedField : obj.getIField()) {
-			Type fieldClass = Type.getType(usedField.getDesc());
-			String field = fieldClass.getClassName().replace("/", "");
-			if (fieldClass.getClass().isArray()) { // array field =
-				fieldClass.getClass().getComponentType().getName().replace("/",
-						"");
-				System.out.println(field);
+			String type = usedField.getDesc();
+			if (!usedField.getSignature().equals("")) { // array field =
+				//fieldClass.getClass().getComponentType().getName().replace("/",
+					//	"");
+				String[] temp = usedField.getSignature().split("<");
+				type = temp[1].substring(1);
+				//System.out.println(type);
+				
 			}
-
+			String field = type.replace(".", "");
 			for (IClass Class : classes) {
+				
+				if (obj.getClassName().replace("/", "").equals("problemasmInterface")){
+					System.out.println(obj.getClassName() + " -- " + Class.getClassName().replace("/", ""));
+				}
 				if (Class.getClassName().replace("/", "").equals(field)) {
-					builder.append("\t" + field);
+					builder.append("\t" + obj.getClassName().replace("/", ""));
 					builder.append(arrow);
 					builder.append(Class.getClassName().replace("/", ""));
 					builder.append(hasArrow);
@@ -244,11 +250,16 @@ public class Model implements IModel {
 	private String printFields(IField field) {
 		StringBuilder build = new StringBuilder();
 		build.append(field.getAccessLevel() + " ");
-
+		
 		// remove the path information from the description in order to give the
 		// string a cleaner look
-		build.append(trimValue(field.getDesc(), ".") + " ");
-
+		if (field.getSignature().equals(""))
+			build.append(trimValue(field.getDesc(), ".") + " ");
+		
+		else{ 
+			build.append(trimValue(field.getDesc(), ".") + "[");
+			build.append(trimValue(field.getSignature(), ".") + "] ");
+		}
 		build.append(field.getName());
 		return build.toString();
 	}

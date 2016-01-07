@@ -24,11 +24,17 @@ public class ClassFieldVisitor extends ClassVisitor{
 		// WARNING: delete this line *waiting*
 		//System.out.println("	"+type+" "+ name);
 		// DONE: add this field to your internal representation of the current class.
+		//System.out.println(name + "here is sig " + signature + "now for desc " + desc);
+		String sigType = "";
+		if (signature != null){
+			sigType = Type.getType(signature).getClassName();
+		}
+		
 		IField currentField = new Field();
 		
 		currentField.setName(name);
 		currentField.setDesc(type);
-		currentField.setSignature(signature);
+		currentField.setSignature(sigType);
 		currentField.setValue(value);
 		addAccessLevel(access, currentField);
 		
