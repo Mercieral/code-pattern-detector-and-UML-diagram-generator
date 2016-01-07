@@ -26,14 +26,14 @@ public interface IArrow {
 	public void setToObject(String endObject);
 
 	/**
-	 * Returns the object the arrow is pointing from in the arrow
+	 * Returns the object the arrow is pointing from in the arrow. 
 	 * 
-	 * @return
+	 * @return - String object the arrow is pointing from.
 	 */
 	public String getFromObject();
 
 	/**
-	 * Returns the object the arrow is pointing to in the arrow
+	 * Returns the object the arrow is pointing to in the arrow.
 	 * 
 	 * @return - String object the arrow was pointing to.
 	 */

@@ -14,8 +14,8 @@ public class ArrowUses implements IArrow {
 	 * TODO
 	 */
 	public ArrowUses() {
-		this.start = null;
-		this.end = null;
+		this.start = "";
+		this.end = "";
 		this.details = "\n\t\t[arrowhead=\"vee\", style=\"dashed\"];\n";
 	}
 
@@ -32,12 +32,12 @@ public class ArrowUses implements IArrow {
 
 	@Override
 	public void setFromObject(String startObject) {
-		this.start = startObject;
+		this.start = startObject.replace("/", "");
 	}
 
 	@Override
 	public void setToObject(String endObject) {
-		this.end = endObject;
+		this.end = endObject.replace("/", "");
 	}
 
 	@Override

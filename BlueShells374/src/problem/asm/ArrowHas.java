@@ -32,12 +32,12 @@ public class ArrowHas implements IArrow {
 
 	@Override
 	public void setFromObject(String startObject) {
-		this.start = startObject;
+		this.start = startObject.replace("/", "");
 	}
 
 	@Override
 	public void setToObject(String endObject) {
-		this.end = endObject;
+		this.end = endObject.replace("/", "");
 	}
 
 	@Override
