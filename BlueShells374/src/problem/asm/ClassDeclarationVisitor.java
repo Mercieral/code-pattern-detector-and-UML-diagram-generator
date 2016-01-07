@@ -4,10 +4,12 @@ import org.objectweb.asm.ClassVisitor;
 
 public class ClassDeclarationVisitor extends ClassVisitor {
 	private IClass currentClass;
+	private String[] classes;
 	
-	public ClassDeclarationVisitor(int api, IClass currentClass){
+	public ClassDeclarationVisitor(int api, IClass currentClass, String[] args){
 		super(api);
 		this.currentClass = currentClass;
+		this.classes = args;
 		
 	}
 	
@@ -20,21 +22,30 @@ public class ClassDeclarationVisitor extends ClassVisitor {
 		currentClass.setAccessLevel(access);
 		currentClass.setExtension(superName);
 		if (superName != null){
-			IArrow arrow1 = new ArrowExtension();
-			arrow1.setFromObject(currentClass.getClassName());
-			arrow1.setToObject(superName);
-			currentClass.addArrow(arrow1);
+			for (String className : this.classes){
+				 if (className.replace(".", "").equals(superName.replace("/", ""))){
+					IArrow arrow1 = new ArrowExtension();
+					arrow1.setFromObject(currentClass.getClassName());
+					arrow1.setToObject(superName);
+					currentClass.addArrow(arrow1);
+				 }
+			}
 		}
 		
 		//System.out.println("----- " + superName);
 		currentClass.setSignature(signature);
 		currentClass.setClassVersion((double) version); 
 		for(String inter : interfaces){
-			currentClass.addInterface(inter);
-			IArrow arrow2 = new ArrowInterface();
-			arrow2.setFromObject(currentClass.getClassName());
-			arrow2.setToObject(inter);
-			currentClass.addArrow(arrow2);
+			for (String className : this.classes){
+				if (className.replace(".", "").equals(inter.replace("/", ""))){
+					currentClass.addInterface(inter);
+					IArrow arrow2 = new ArrowInterface();
+					arrow2.setFromObject(currentClass.getClassName());
+					arrow2.setToObject(inter);
+					currentClass.addArrow(arrow2);
+				}
+			}
+
 		}
 		
 		super.visit(version, access, name, signature, superName, interfaces);
