@@ -23,7 +23,7 @@ public class myMethodVisitor extends MethodVisitor {
 			if (ClassName.equals(descName)){
 				IArrow arrow = new ArrowHas();
 				arrow.setFromObject(currentClass.getClassName());
-				arrow.setToObject(desc);
+				arrow.setToObject(desc.replace(";", ""));
 				currentClass.addArrow(arrow);
 			}
 		}
