@@ -1,5 +1,7 @@
 package problem.asm;
 
+import java.util.ArrayList;
+
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -7,20 +9,21 @@ import org.objectweb.asm.Type;
 
 public class ClassMethodVisitor extends ClassVisitor {
 	private IClass currentClass;
+	private String[] classes;
 	
 	public ClassMethodVisitor(int api){
 		super(api);
 	}
 	
-	public ClassMethodVisitor(int api, ClassVisitor decorated, IClass currentClass) {
+	public ClassMethodVisitor(int api, ClassVisitor decorated, IClass currentClass, String[] classes) {
 		super(api, decorated);
 		this.currentClass = currentClass;
+		this.classes = classes;
 	}
 	
 	@Override
 	public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions){
-		MethodVisitor toDecorate = super.visitMethod(access, name, desc, signature, exceptions);
-		MethodVisitor mine = new myMethodVisitor(Opcodes.ASM5, toDecorate, currentClass);		
+		MethodVisitor toDecorate = super.visitMethod(access, name, desc, signature, exceptions);	
 		
 		IMethod currentMethod = new Method();
 		currentMethod.setName(name);
@@ -32,6 +35,8 @@ public class ClassMethodVisitor extends ClassVisitor {
 		addArguments(desc, signature,  currentMethod);
 		
 		this.currentClass.addIMethod(currentMethod);
+		
+		MethodVisitor mine = new myMethodVisitor(Opcodes.ASM5, toDecorate, currentClass, classes);	
 
 		return mine;
 	}

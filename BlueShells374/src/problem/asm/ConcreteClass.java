@@ -114,6 +114,9 @@ public class ConcreteClass implements IClass {
 
 	@Override
 	public void addInterface(String inter) {
+		if (this.interfaceList.contains(inter)){
+			return;
+		}
 		this.interfaceList.add(inter);
 	}
 	

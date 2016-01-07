@@ -19,11 +19,22 @@ public class ClassDeclarationVisitor extends ClassVisitor {
 		currentClass.setClassName(name);
 		currentClass.setAccessLevel(access);
 		currentClass.setExtension(superName);
+		if (superName != null){
+			IArrow arrow1 = new ArrowExtension();
+			arrow1.setFromObject(currentClass.getClassName());
+			arrow1.setToObject(superName);
+			currentClass.addArrow(arrow1);
+		}
+		
 		//System.out.println("----- " + superName);
 		currentClass.setSignature(signature);
 		currentClass.setClassVersion((double) version); 
 		for(String inter : interfaces){
 			currentClass.addInterface(inter);
+			IArrow arrow2 = new ArrowInterface();
+			arrow2.setFromObject(currentClass.getClassName());
+			arrow2.setToObject(inter);
+			currentClass.addArrow(arrow2);
 		}
 		
 		super.visit(version, access, name, signature, superName, interfaces);
