@@ -1,0 +1,24 @@
+digraph G {  rankdir=BT; 
+ 	arrowTestingClassestestClass2 [ 
+		shape = "record",
+		label = 
+			"{ arrowTestingClasses/testClass2
+			|
+			- testClass1 test \l
+			| 
+ 			+ testMethod() : void \l
+			}" 
+	]; 
+	arrowTestingClassestestClass5 [ 
+		shape = "record",
+		label = 
+			"{ arrowTestingClasses/testClass5
+			|
+			| 
+ 			+ useTestClass2Parameter(testClass2 arg0) : void \l
+			}" 
+	]; 
+	arrowTestingClassestestClass5 -> arrowTestingClassestestClass2
+		[arrowhead="vee", style="dashed"];
+
+}
