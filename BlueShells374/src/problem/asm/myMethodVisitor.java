@@ -33,7 +33,10 @@ public class myMethodVisitor extends MethodVisitor {
 	@Override
 	public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
 		for (String Class : this.classes){
-			if (Class.equals(owner)){
+			String ClassName = Class.replace(".", "");
+			String ownerName = owner.replace("/", "");
+			if (ClassName.equals(ownerName)){
+				System.out.println("hit");
 				IArrow arrow = new ArrowUses();
 				arrow.setFromObject(currentClass.getClassName());
 				arrow.setToObject(owner);
