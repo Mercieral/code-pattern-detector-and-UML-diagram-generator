@@ -8,9 +8,6 @@ import org.objectweb.asm.Opcodes;
 
 public class DesignParser {
 
-	private static IClass currentClass;
-	private static IModel model;
-
 	/**
 	 * Reads in a list of Java Classes and reverse engineers their design.
 	 * 
@@ -35,7 +32,8 @@ public class DesignParser {
 	 *             - Exception if unable to read file
 	 */
 	public static void parser(String[] args) throws IOException {
-		model = new Model();
+		IModel model = new Model();
+		IClass currentClass = null;
 
 		for (String className : args) {
 			// ASM's ClassReader does the heavy lifting of parsing the compiled
