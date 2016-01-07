@@ -8,12 +8,9 @@ Repository for our CSSE 374 Software Design project.
 #### Deliverables and location
 
 1. Test codes:
-  1. [TODO](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "JUnit Test Code") 
-  2. [TODO](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "JUnit Test Code")
-  3. [TODO](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "JUnit Test Code")
+  1. [Test File](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/test/problem/blueshells/testing/Milestone2Testing.java "JUnit Test Code") 
 2. Abstract Factory PizzaStore
-  1. [Given UML Picture](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "Picture from master branch") 
-  2. [Generated UML picture](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "Picture from master branch") 
+  1. [Generated UML picture](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "Picture from master branch") 
 3. Project Code
   1. [Designed UML Picture](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "Picture from master branch") 
   2. [Generated UML Picture](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/input_output "Picture from master branch") 
@@ -34,7 +31,7 @@ file using it.
 
 While working on Milestone 2, it was important to use all of the information suggested by Dr. Rupakheti in lecture. Such as: visitMethodInsn, visitFieldInsn, visitTypeInsn, visitVarInsn. The arrow objects were changed from just if statements and string to being a Strategy Pattern, which turned out to to be useful in the long run. 
 
-TODO: Add something about not adding the type for methods.
+From reading the specifications and searching the given code, the team could not figure out how to find the inner types for arguments and return type of methods, such as for lists or collections.
 
 #### Instructions
 
@@ -44,8 +41,6 @@ from the command line, separate each argument with a space. If running the progr
 through eclipse, right click on designParser, click on run configurations, go to the 
 arguments tab, and fill in the classes in the "program arguments", separated by a 
 space or a newline.
-
-TODO
 
 #### Contributions
 
