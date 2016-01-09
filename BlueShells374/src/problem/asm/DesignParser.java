@@ -1,12 +1,15 @@
 package problem.asm;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Scanner;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
 import problem.interfaces.IClass;
+import problem.interfaces.IGenerator;
 import problem.interfaces.IModel;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Model;
@@ -70,7 +73,54 @@ public class DesignParser {
 			model.addClass(currentClass);
 		}
 
-		UMLGenerator uml = new UMLGenerator(model);
-		uml.execute();
+//		UMLGenerator uml = new UMLGenerator(model);
+//		uml.execute();
+		HashMap<String, IGenerator> generators = new HashMap<>();
+		generators.put("umlgenerator", new UMLGenerator(model));
+		
+		commandConsole(model, generators);
+	}
+	
+	private static void commandConsole(IModel model, HashMap<String, IGenerator> generators){
+		boolean quit = false;
+		Scanner scanner = new Scanner(System.in);
+		
+		while (!quit){
+			System.out.print("Supported operations: Generator, Help, Quit \n"
+					+ "Input command:> ");
+			String line = scanner.nextLine();
+			line = line.toLowerCase().trim();
+			
+			if (line.equals("quit")){
+				quit = true;
+				continue;
+			}
+			
+			else if (line.equals("help")){
+				System.out.println("Help not yet implemented");
+			}
+			
+			else if (line.equals("generator")){
+				System.out.print("Generators: Supported generators - UMLGenerator \n" +
+						"Input generator:> ");
+				line = scanner.nextLine();
+				line = line.toLowerCase().trim();
+				
+				if (!generators.containsKey(line)){
+					System.out.println("Generator not supported");
+					continue;
+				}
+				
+				IGenerator generator = generators.get(line);
+				generator.execute();
+				System.out.println("Generated graph, please refresh the input_output folder");
+			}
+			
+			else {
+				System.out.println("Unsupported operation");
+			}
+		}
+		
+		scanner.close();
 	}
 }

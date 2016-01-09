@@ -18,6 +18,7 @@ import problem.interfaces.IModel;
 
 public class UMLGenerator implements IGenerator {
 	private IModel model;
+	private String name;
 	
 	@Override
 	public void execute() {
@@ -31,6 +32,11 @@ public class UMLGenerator implements IGenerator {
 	
 	public UMLGenerator(IModel model){
 		this.model = model;
+		this.name = "UMLGenerator";
+	}
+	
+	public String getName(){
+		return this.name;
 	}
 	
 	private void generateGraph() throws IOException {
