@@ -1,7 +1,9 @@
-package problem.asm;
+package problem.javaClasses;
 
-public class ArrowHas implements IArrow {
-	
+import problem.interfaces.IArrow;
+
+public class ArrowUses implements IArrow {
+
 	private String start;
 
 	private String end;
@@ -11,12 +13,12 @@ public class ArrowHas implements IArrow {
 	private final String ARROW = " -> ";
 
 	/**
-	 * Arrow to represent to association
+	 * Arrow to represent uses arrows
 	 */
-	public ArrowHas() {
+	public ArrowUses() {
 		this.start = "";
 		this.end = "";
-		this.details = "\n\t\t[arrowhead=\"vee\"];\n";
+		this.details = "\n\t\t[arrowhead=\"vee\", style=\"dashed\"];\n";
 	}
 
 	@Override

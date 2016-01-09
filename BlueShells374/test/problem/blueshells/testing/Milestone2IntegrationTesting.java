@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import problem.asm.DesignParser;
 
-public class Milestone2Testing {
+public class Milestone2IntegrationTesting {
 	private String[] args;
 	private String[] args2;
 	

@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import problem.asm.DesignParser;
 
-public class Milestone1Testing {
+public class Milestone1IntegrationTesting {
 	private String[] args;
 	
 	@Before

@@ -5,6 +5,10 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
+import problem.interfaces.IClass;
+import problem.interfaces.IMethod;
+import problem.javaClasses.Method;
+
 public class ClassMethodVisitor extends ClassVisitor {
 	private IClass currentClass;
 	private String[] classes;

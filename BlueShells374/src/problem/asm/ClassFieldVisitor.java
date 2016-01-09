@@ -5,6 +5,12 @@ import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
+import problem.interfaces.Field;
+import problem.interfaces.IArrow;
+import problem.interfaces.IClass;
+import problem.interfaces.IField;
+import problem.javaClasses.ArrowHas;
+
 public class ClassFieldVisitor extends ClassVisitor{
 	
 	private IClass currentClass;

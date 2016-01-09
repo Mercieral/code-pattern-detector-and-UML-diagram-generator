@@ -1,7 +1,9 @@
-package problem.asm;
+package problem.javaClasses;
 
-public class ArrowExtension implements IArrow {
+import problem.interfaces.IArrow;
 
+public class ArrowHas implements IArrow {
+	
 	private String start;
 
 	private String end;
@@ -11,12 +13,12 @@ public class ArrowExtension implements IArrow {
 	private final String ARROW = " -> ";
 
 	/**
-	 * Arrow to connect classes where one is a superclass
+	 * Arrow to represent to association
 	 */
-	public ArrowExtension() {
+	public ArrowHas() {
 		this.start = "";
 		this.end = "";
-		this.details = "\n\t\t[arrowhead=\"onormal\"];\n";
+		this.details = "\n\t\t[arrowhead=\"vee\"];\n";
 	}
 
 	@Override

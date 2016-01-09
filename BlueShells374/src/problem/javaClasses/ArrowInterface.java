@@ -1,6 +1,8 @@
-package problem.asm;
+package problem.javaClasses;
 
-public class ArrowUses implements IArrow {
+import problem.interfaces.IArrow;
+
+public class ArrowInterface implements IArrow {
 
 	private String start;
 
@@ -11,12 +13,12 @@ public class ArrowUses implements IArrow {
 	private final String ARROW = " -> ";
 
 	/**
-	 * Arrow to represent uses arrows
+	 * Arrows for interface arrows
 	 */
-	public ArrowUses() {
+	public ArrowInterface() {
 		this.start = "";
 		this.end = "";
-		this.details = "\n\t\t[arrowhead=\"vee\", style=\"dashed\"];\n";
+		this.details = "\n\t\t[arrowhead=\"onormal\", style=\"dashed\"];\n";
 	}
 
 	@Override

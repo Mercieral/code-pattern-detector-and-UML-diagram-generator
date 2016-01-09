@@ -1,4 +1,4 @@
-package problem.asm;
+package problem.interfaces;
 
 import java.util.Collection;
 

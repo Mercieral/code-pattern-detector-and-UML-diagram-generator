@@ -1,7 +1,12 @@
-package problem.asm;
+package problem.javaClasses;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
+import problem.interfaces.IArrow;
+import problem.interfaces.IClass;
+import problem.interfaces.IField;
+import problem.interfaces.IMethod;
 
 public class ConcreteClass implements IClass {
 	private Collection<IMethod> methodList;

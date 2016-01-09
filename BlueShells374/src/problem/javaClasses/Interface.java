@@ -1,9 +1,14 @@
-package problem.asm;
+package problem.javaClasses;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class AbstractClass implements IClass {
+import problem.interfaces.IArrow;
+import problem.interfaces.IClass;
+import problem.interfaces.IField;
+import problem.interfaces.IMethod;
+
+public class Interface implements IClass {
 	private Collection<IMethod> methodList;
 	private Collection<IField> fieldList;
 	private int accessLevel;
@@ -16,9 +21,9 @@ public class AbstractClass implements IClass {
 	private Collection<IArrow> arrows;
 
 	/**
-	 * Constructor for AbstractClass
+	 * Constructor for Interface
 	 */
-	public AbstractClass(){
+	public Interface(){
 		this.methodList = new ArrayList<>();
 		this.fieldList = new ArrayList<>();
 		this.accessLevel = 0;
@@ -26,7 +31,7 @@ public class AbstractClass implements IClass {
 		this.name = "";
 		this.version = 0.00;
 		this.superClass = null;
-		this.interfaceList = new ArrayList<>();
+		this.interfaceList = new ArrayList<String>();
 		this.extension = "";
 		this.arrows = new ArrayList<IArrow>();
 	}
@@ -127,6 +132,7 @@ public class AbstractClass implements IClass {
 		if (!this.arrows.contains(arrow)){
 			this.arrows.add(arrow);
 		}
+		
 	}
 
 	@Override

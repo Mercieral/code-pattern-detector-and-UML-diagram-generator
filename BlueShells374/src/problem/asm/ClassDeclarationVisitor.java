@@ -2,6 +2,11 @@ package problem.asm;
 
 import org.objectweb.asm.ClassVisitor;
 
+import problem.interfaces.IArrow;
+import problem.interfaces.IClass;
+import problem.javaClasses.ArrowExtension;
+import problem.javaClasses.ArrowInterface;
+
 public class ClassDeclarationVisitor extends ClassVisitor {
 	private IClass currentClass;
 	private String[] classes;

@@ -2,6 +2,11 @@ package problem.asm;
 
 import org.objectweb.asm.MethodVisitor;
 
+import problem.interfaces.IArrow;
+import problem.interfaces.IClass;
+import problem.javaClasses.ArrowHas;
+import problem.javaClasses.ArrowUses;
+
 public class myMethodVisitor extends MethodVisitor {
 	private IClass currentClass;
 	private String[] classes;

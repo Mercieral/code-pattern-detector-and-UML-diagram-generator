@@ -1,4 +1,4 @@
-package problem.asm;
+package problem.interfaces;
 
 import java.io.IOException;
 import java.util.List;
