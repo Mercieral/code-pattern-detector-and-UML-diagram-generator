@@ -43,6 +43,7 @@ public class DesignParser {
 		for (String className : args) {
 			// ASM's ClassReader does the heavy lifting of parsing the compiled
 			// Java class
+			System.out.println(className);
 			ClassReader reader = new ClassReader(className);
 			currentClass = new ConcreteClass();
 

@@ -1,4 +1,6 @@
-package problem.interfaces;
+package problem.javaClasses;
+
+import problem.interfaces.IField;
 
 /**
  * Implements {@link IField} object to store information about a field object
