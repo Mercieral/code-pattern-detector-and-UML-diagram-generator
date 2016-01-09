@@ -10,6 +10,7 @@ import problem.interfaces.IClass;
 import problem.interfaces.IModel;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Model;
+import problem.javaClasses.UMLGenerator;
 
 public class DesignParser {
 
@@ -43,7 +44,6 @@ public class DesignParser {
 		for (String className : args) {
 			// ASM's ClassReader does the heavy lifting of parsing the compiled
 			// Java class
-			System.out.println(className);
 			ClassReader reader = new ClassReader(className);
 			currentClass = new ConcreteClass();
 
@@ -70,6 +70,7 @@ public class DesignParser {
 			model.addClass(currentClass);
 		}
 
-		model.generateGraph();
+		UMLGenerator uml = new UMLGenerator(model);
+		uml.execute();
 	}
 }
