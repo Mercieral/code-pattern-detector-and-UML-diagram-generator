@@ -3,11 +3,45 @@ Repository for our CSSE 374 Software Design project.
 
 ------------------------------------------------------------
 
+## Milestone 3
+
+#### Deliverables and location
+
+1. Test code:
+  1. TODO
+  2. TODO
+2. Project's New Tool 
+  1. Generated Sequence Diagram TODO
+  2. Manually Created Diagram TODO
+3. Collections 
+  1. Generated Sequence Diagram TODO
+  2. Manually Created Diagram TODO
+
+#### Design (Milestone Evolution)
+
+TODO
+
+#### Instructions
+
+TODO
+
+#### Contributions
+
+TODO
+
+------------------------------------------------------------
+
+## Professor Feedback and Fixes:
+
+TODO
+
+------------------------------------------------------------
+
 ## Milestone 2
 
 #### Deliverables and location
 
-1. Test codes:
+1. Test code:
   1. [Test File](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/test/problem/blueshells/testing/Milestone2Testing.java "JUnit Test Code") 
 2. Abstract Factory PizzaStore
   1. [Generated UML picture](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/docs/Milestone2/Generated_Pizzaaf.png "Picture from master branch") 
@@ -17,17 +51,7 @@ Repository for our CSSE 374 Software Design project.
 
 #### Design (Milestone Evolution)
 
-###### Milestone 1
-
-The program is designed to create a coded model of the classes given as arguments.
-The model contains a list of classes, each class has it's info and a list of 
-fields/methods, and each field/method has it's info. When ASM has finished visiting
-all of the given classes with the decorated visitors, the model's generateGraph 
-method is called, which writes all of the stored information from the model into
-a graph.gv file. When the graph.gv file is finished, GraphViz generates a .PNG 
-file using it.
-
-###### Milestone 2
+TODO: Design picture
 
 While working on Milestone 2, it was important to use the information suggested by Dr. Rupakheti in lecture. Such as: visitMethodInsn and visitFieldInsn. The arrow objects were changed from just if statements and string to being a Strategy Pattern, which turned out to to be useful in the long run. 
 
@@ -64,6 +88,8 @@ Aaron Mercier
 ## Milestone 1
 
 #### Design
+
+TODO: Design picture
 
 The program is designed to create a coded model of the classes given as arguments.
 The model contains a list of classes, each class has it's info and a list of 
