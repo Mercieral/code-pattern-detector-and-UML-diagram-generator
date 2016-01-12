@@ -23,17 +23,40 @@ TODO
 
 #### Instructions
 
+Due to the improvement in running the program, the instructions are different from previous milestones.
+
 TODO
 
 #### Contributions
 
-TODO
+Aaron Mercier 
+
+1. TODO
+2. TODO
+
+Luke Danielson
+
+1. TODO 
+2. TODO 
+
+Larry Gates
+
+1. TODO
+2. TODO
 
 ------------------------------------------------------------
 
 ## Professor Feedback and Fixes:
 
-TODO
+After feedback from Chandan's review:
+
+* [ ] Create test classes for each class and appropriate method in the class
+* [ ] Add a Model object visitor,  by removing the values created in the current main
+* [ ] Move the generate from IModel object and into its own class
+* [ ] Ignore uses arrows when there is an association arrow (has)
+* [ ] Add pictures to the Design sections of milestones
+* [ ] Talk more about the type of Design Pattern(s) and other design implementations
+* [x] Continue to do integration testing
 
 ------------------------------------------------------------
 
@@ -44,18 +67,20 @@ TODO
 1. Test code:
   1. [Test File](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/test/problem/blueshells/testing/Milestone2Testing.java "JUnit Test Code") 
 2. Abstract Factory PizzaStore
-  1. [Generated UML picture](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/docs/Milestone2/Generated_Pizzaaf.png "Picture from master branch") 
+  1. [Generated UML picture](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone2/Generated_Pizzaaf.png "Picture from master branch") 
 3. Project Code
-  1. [Designed UML Picture](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/docs/Milestone2/Manually_created_Project_UML.png "Picture from master branch") 
-  2. [Generated UML Picture](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/docs/Milestone2/Generated_Project_UML.png "Picture from master branch") 
+  1. [Designed UML Picture](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone2/Manually_created_Project_UML.png "Picture from master branch") 
+  2. [Generated UML Picture](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone2/Generated_Project_UML.png "Picture from master branch") 
 
 #### Design (Milestone Evolution)
 
-TODO: Design picture
+![Design Drawing](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone2/Manually_created_Project_UML.png)
 
 While working on Milestone 2, it was important to use the information suggested by Dr. Rupakheti in lecture. Such as: visitMethodInsn and visitFieldInsn. The arrow objects were changed from just if statements and string to being a Strategy Pattern, which turned out to to be useful in the long run. 
 
 From reading the specifications and searching the given code, the team could not figure out how to find the inner types for arguments and return type of methods, such as for lists or collections.
+
+TODO: Talking about design pattern used directly as well.
 
 #### Instructions
 
@@ -89,7 +114,7 @@ Aaron Mercier
 
 #### Design
 
-TODO: Design picture
+![Design Picture](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone1/Manually_Created_Project_UML.png)
 
 The program is designed to create a coded model of the classes given as arguments.
 The model contains a list of classes, each class has it's info and a list of 
@@ -98,6 +123,8 @@ all of the given classes with the decorated visitors, the model's generateGraph
 method is called, which writes all of the stored information from the model into
 a graph.gv file. When the graph.gv file is finished, GraphViz generates a .PNG 
 file using it.
+
+TODO: Talk about design pattern used directly
 
 #### Instructions
 
@@ -134,9 +161,7 @@ Larry Gates
 3. Implemented/added methods to the .gv file
 4. Made the .gv file more human readable. 
 
-
 ------------------------------------------------------------
-
 
 ## Milestone 0 
 
