@@ -19,26 +19,33 @@ import problem.interfaces.IModel;
 public class UMLGenerator implements IGenerator {
 	private IModel model;
 	private String name;
-	
+
 	@Override
 	public void execute() {
 		try {
 			generateGraph();
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.out.println("Something went wrong while trying to generate the graph");
+			System.out.println(
+					"Something went wrong while trying to generate the graph");
 		}
 	}
-	
-	public UMLGenerator(IModel model){
+
+	public UMLGenerator(IModel model) {
 		this.model = model;
 		this.name = "UMLGenerator";
 	}
-	
-	public String getName(){
+
+	@Override
+	public String getName() {
 		return this.name;
 	}
-	
+
+	/**
+	 * Generates the UML graph
+	 * 
+	 * @throws IOException
+	 */
 	private void generateGraph() throws IOException {
 		System.out.println("generating graph file");
 		List<IClass> classes = this.model.getClasses();
@@ -120,42 +127,42 @@ public class UMLGenerator implements IGenerator {
 		StringBuilder builder = new StringBuilder();
 		ArrayList<String> hasClassNames = new ArrayList<>();
 		ArrayList<String> useClassNames = new ArrayList<>();
-		
-		for (IArrow arrow : obj.getArrows()){
+
+		for (IArrow arrow : obj.getArrows()) {
 			String pointerClass = parsePointerClass(arrow.getToObject());
 			String arrowType = parseArrowType(arrow.getClass().toString());
-			
-			switch(arrowType){
-				case "ArrowHas":
-					if (!hasClassNames.contains(pointerClass)){
-						hasClassNames.add(pointerClass);
-						builder.append(arrow.drawArrow());
-					}
-					break;
-				case "ArrowUses":
-					if (!useClassNames.contains(pointerClass)){
-						useClassNames.add(pointerClass);
-						builder.append(arrow.drawArrow());
-					}
-					break;
-				case "ArrowInterface":
+
+			switch (arrowType) {
+			case "ArrowHas":
+				if (!hasClassNames.contains(pointerClass)) {
+					hasClassNames.add(pointerClass);
 					builder.append(arrow.drawArrow());
-					break;
-				case "ArrowExtension":
+				}
+				break;
+			case "ArrowUses":
+				if (!useClassNames.contains(pointerClass)) {
+					useClassNames.add(pointerClass);
 					builder.append(arrow.drawArrow());
-					break;
-			}		
+				}
+				break;
+			case "ArrowInterface":
+				builder.append(arrow.drawArrow());
+				break;
+			case "ArrowExtension":
+				builder.append(arrow.drawArrow());
+				break;
+			}
 		}
-		
+
 		return builder.toString();
 	}
-	
-	private String parsePointerClass(String classPath){
+
+	private String parsePointerClass(String classPath) {
 		String parsedClass = trimValue(classPath, "/");
 		return parsedClass;
 	}
-	
-	private String parseArrowType(String arrowPath){
+
+	private String parseArrowType(String arrowPath) {
 		String parsedArrow = trimValue(arrowPath, ".");
 		return parsedArrow;
 	}
@@ -231,13 +238,13 @@ public class UMLGenerator implements IGenerator {
 	private String printFields(IField field) {
 		StringBuilder build = new StringBuilder();
 		build.append(field.getAccessLevel() + " ");
-		
+
 		// remove the path information from the description in order to give the
 		// string a cleaner look
 		if (field.getSignature().equals(""))
 			build.append(trimValue(field.getDesc(), ".") + " ");
-		
-		else{ 
+
+		else {
 			build.append(trimValue(field.getDesc(), ".") + "[");
 			build.append(trimValue(field.getSignature(), ".") + "] ");
 		}

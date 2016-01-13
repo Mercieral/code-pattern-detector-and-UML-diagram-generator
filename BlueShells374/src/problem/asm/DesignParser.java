@@ -73,54 +73,65 @@ public class DesignParser {
 			model.addClass(currentClass);
 		}
 
-//		UMLGenerator uml = new UMLGenerator(model);
-//		uml.execute();
+		// UMLGenerator uml = new UMLGenerator(model);
+		// uml.execute();
 		HashMap<String, IGenerator> generators = new HashMap<>();
 		generators.put("umlgenerator", new UMLGenerator(model));
-		
+
 		commandConsole(model, generators);
 	}
-	
-	private static void commandConsole(IModel model, HashMap<String, IGenerator> generators){
+
+	/**
+	 * A nice feature to allow cycling output and easy to see output.
+	 * 
+	 * @param model
+	 *            - Model object to create information of diagram
+	 * @param generators
+	 *            - Types of {@link IGenerator} objects that can build graphs
+	 */
+	private static void commandConsole(IModel model,
+			HashMap<String, IGenerator> generators) {
 		boolean quit = false;
 		Scanner scanner = new Scanner(System.in);
-		
-		while (!quit){
+
+		while (!quit) {
 			System.out.print("Supported operations: Generator, Help, Quit \n"
 					+ "Input command:> ");
 			String line = scanner.nextLine();
 			line = line.toLowerCase().trim();
-			
-			if (line.equals("quit")){
+
+			if (line.equals("quit")) {
 				quit = true;
 				continue;
 			}
-			
-			else if (line.equals("help")){
+
+			else if (line.equals("help")) {
 				System.out.println("Help not yet implemented");
 			}
-			
-			else if (line.equals("generator")){
-				System.out.print("Generators: Supported generators - UMLGenerator \n" +
-						"Input generator:> ");
+
+			else if (line.equals("generator")) {
+				System.out
+						.print("Generators: Supported generators - UMLGenerator \n"
+								+ "Input generator:> ");
 				line = scanner.nextLine();
 				line = line.toLowerCase().trim();
-				
-				if (!generators.containsKey(line)){
+
+				if (!generators.containsKey(line)) {
 					System.out.println("Generator not supported");
 					continue;
 				}
-				
+
 				IGenerator generator = generators.get(line);
 				generator.execute();
-				System.out.println("Generated graph, please refresh the input_output folder");
+				System.out.println(
+						"Generated graph, please refresh the input_output folder");
 			}
-			
+
 			else {
 				System.out.println("Unsupported operation");
 			}
 		}
-		
+
 		scanner.close();
 	}
 }
