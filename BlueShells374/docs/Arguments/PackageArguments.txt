@@ -3,7 +3,6 @@ problem.javaClasses.ArrowExtension
 problem.javaClasses.ArrowHas
 problem.javaClasses.ArrowInterface
 problem.javaClasses.ArrowUses
-problem.javaClasses.AbstractClass
 problem.asm.ClassDeclarationVisitor
 problem.asm.ClassFieldVisitor
 problem.asm.ClassMethodVisitor

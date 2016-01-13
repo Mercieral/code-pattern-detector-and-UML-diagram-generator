@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.objectweb.asm.Opcodes;
 
@@ -125,8 +127,8 @@ public class UMLGenerator implements IGenerator {
 	 */
 	private String generateArrows(IClass obj) {
 		StringBuilder builder = new StringBuilder();
-		ArrayList<String> hasClassNames = new ArrayList<>();
-		ArrayList<String> useClassNames = new ArrayList<>();
+		List<String> hasClassNames = new ArrayList<>();
+		Map<String, IArrow> useArrowList = new HashMap<>();
 
 		for (IArrow arrow : obj.getArrows()) {
 			String pointerClass = parsePointerClass(arrow.getToObject());
@@ -137,12 +139,14 @@ public class UMLGenerator implements IGenerator {
 				if (!hasClassNames.contains(pointerClass)) {
 					hasClassNames.add(pointerClass);
 					builder.append(arrow.drawArrow());
+					if (useArrowList.containsKey(pointerClass)){
+						useArrowList.remove(pointerClass);
+					}
 				}
 				break;
 			case "ArrowUses":
-				if (!useClassNames.contains(pointerClass)) {
-					useClassNames.add(pointerClass);
-					builder.append(arrow.drawArrow());
+				if (!useArrowList.containsKey(pointerClass) && !hasClassNames.contains(pointerClass)) {
+					useArrowList.put(pointerClass, arrow);
 				}
 				break;
 			case "ArrowInterface":
@@ -154,6 +158,10 @@ public class UMLGenerator implements IGenerator {
 			}
 		}
 
+		for (IArrow tempArrow : useArrowList.values()){
+			builder.append(tempArrow.drawArrow());
+		}
+		
 		return builder.toString();
 	}
 
