@@ -13,6 +13,7 @@ import problem.interfaces.IGenerator;
 import problem.interfaces.IModel;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Model;
+import problem.javaClasses.SequenceGenerator;
 import problem.javaClasses.UMLGenerator;
 
 public class DesignParser {
@@ -77,7 +78,8 @@ public class DesignParser {
 		// UMLGenerator uml = new UMLGenerator(model);
 		// uml.execute();
 		HashMap<String, IGenerator> generators = new HashMap<>();
-		generators.put("umlgenerator", new UMLGenerator(model));
+		generators.put("uml", new UMLGenerator(model));
+		//generators.put("sequence", new SequenceGenerator(model));
 
 		commandConsole(model, generators);
 	}
@@ -112,7 +114,7 @@ public class DesignParser {
 
 			else if (line.equals("generator")) {
 				System.out
-						.print("Generators: Supported generators - UMLGenerator \n"
+						.print("Generators: Supported generators - UML, Sequence \n"
 								+ "Input generator:> ");
 				line = scanner.nextLine();
 				line = line.toLowerCase().trim();
