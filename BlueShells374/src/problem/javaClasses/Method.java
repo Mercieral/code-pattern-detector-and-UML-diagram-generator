@@ -25,6 +25,8 @@ public class Method implements IMethod {
 	private String returnType;
 	
 	private List<String> arguments;
+	
+	private List<MethodContainer> innerCalls;
 
 	/**
 	 * Constructor to make a {@link IMethod} concrete object
@@ -37,6 +39,7 @@ public class Method implements IMethod {
 		this.returnType = null;
 		this.arguments = null;
 		this.arguments = new ArrayList<String>();
+		this.innerCalls = new ArrayList<MethodContainer>();
 	}
 
 	@Override
@@ -98,5 +101,14 @@ public class Method implements IMethod {
 	public List<String> getArguments() {
 		return this.arguments;
 	}
+	
+	@Override
+	public List<MethodContainer> getInnerCalls(){
+		return this.innerCalls;
+	}
 
+	@Override
+	public void addInnerCall(MethodContainer innerCall){
+		this.innerCalls.add(innerCall);
+	}
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
+import problem.javaClasses.MethodContainer;
+
 /**
  * Object used to hold information about methods
  * 
@@ -116,5 +118,19 @@ public interface IMethod {
 	 *         readable
 	 */
 	public String toString();
+	
+	/**
+	 * Gets the list which contains all of the inner calls from the current method in the order they happen
+	 * 
+	 * @return
+	 */
+	public List<MethodContainer> getInnerCalls();
+	
+	/**
+	 * Add an inner call to the inner call list inside of method
+	 * 
+	 * @param innerCall
+	 */
+	public void addInnerCall(MethodContainer innerCall);
 
 }

@@ -7,6 +7,7 @@ import problem.interfaces.IClass;
 import problem.interfaces.IMethod;
 import problem.javaClasses.ArrowHas;
 import problem.javaClasses.ArrowUses;
+import problem.javaClasses.MethodContainer;
 
 public class myMethodVisitor extends MethodVisitor {
 	private IClass currentClass;
@@ -42,14 +43,19 @@ public class myMethodVisitor extends MethodVisitor {
 				currentClass.addArrow(arrow);
 			}
 		}
+		
+		MethodContainer innerCall = new MethodContainer();
+		innerCall.setInstantiation(false);
+		innerCall.setGoingFromClass(this.currentClass.getClassName());
+		innerCall.setGoingToClass(owner);
+		innerCall.setGoingToMethod(name);
 	}
 
 	@Override
 	public void visitFieldInsn(int opcode, String owner, String name,
 			String desc) {
-		System.out.println("-- visitFieldInsn --");
-		System.out.println("Opcode: " + opcode + "  Owner: " + owner
-				+ "  name: " + name + "  desc: " + desc);
+//		System.out.println("--FieldInsn--");
+//		System.out.println(owner + name + desc);
 		for (String Class : this.classes) {
 			String ClassName = Class.replace(".", "");
 			String descName = desc.substring(1).replace("/", "").replace(";",
@@ -65,18 +71,25 @@ public class myMethodVisitor extends MethodVisitor {
 
 	@Override
 	public void visitTypeInsn(int opcode, String type) {
-		// TODO Auto-generated method stub
 		super.visitTypeInsn(opcode, type);
+		
 		System.out.println("-- visitTypeInsn --");
 		System.out.println("Opcode: " + opcode + "  Type " + type);
+		
+		MethodContainer innerCall = new MethodContainer();
+		innerCall.setInstantiation(true);
+		innerCall.setGoingFromClass(this.currentClass.getClassName());
+		innerCall.setGoingToClass(type);
+		this.currentMethod.addInnerCall(innerCall);
+		
 	}
 
 	@Override
 	public void visitVarInsn(int opcode, int var) {
 		// TODO Auto-generated method stub
 		super.visitVarInsn(opcode, var);
-		System.out.println("-- visitVarInsn --");
-		System.out.println("Opcode: " + opcode + "  Var: " + var);
+		//System.out.println("-- visitVarInsn --");
+		//System.out.println("Opcode: " + opcode + "  Var: " + var);
 	}
 
 }
