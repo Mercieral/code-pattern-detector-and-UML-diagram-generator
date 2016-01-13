@@ -3,8 +3,10 @@ package problem.blueshells.testing;
 import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,6 +27,9 @@ public class Milestone2IntegrationTesting {
 	public void testFieldHasArrows() throws IOException{
 		args[0] = "arrowTestingClasses.testClass1";
 		args[1] = "arrowTestingClasses.testClass2";
+		InputStream Input1 = new ByteArrayInputStream( "Generator\rUMLGenerator\rQuit\r".getBytes() );
+		InputStream old = System.in;
+		System.setIn(Input1);
 		DesignParser.parser(args); 
 		BufferedReader br1 = new BufferedReader(new FileReader("input_output/graph.gv"));
 		BufferedReader br2 = new BufferedReader(new FileReader("test/problem/blueshells/testing/testDoc2"));
@@ -33,6 +38,7 @@ public class Milestone2IntegrationTesting {
 		while((line = br1.readLine()) != null){
 			assertEquals(line, br2.readLine());
 		}
+		System.setIn(old);
 		br1.close();
 		br2.close();	
 	}
@@ -41,6 +47,9 @@ public class Milestone2IntegrationTesting {
 	public void testFieldAsListHasArrows() throws IOException{
 		args[0] = "arrowTestingClasses.testClass1";
 		args[1] = "arrowTestingClasses.testClass3";
+		InputStream Input1 = new ByteArrayInputStream( "Generator\rUMLGenerator\rQuit\r".getBytes() );
+		InputStream old = System.in;
+		System.setIn(Input1);
 		DesignParser.parser(args); 
 		BufferedReader br1 = new BufferedReader(new FileReader("input_output/graph.gv"));
 		BufferedReader br2 = new BufferedReader(new FileReader("test/problem/blueshells/testing/testDoc3"));
@@ -49,6 +58,7 @@ public class Milestone2IntegrationTesting {
 		while((line = br1.readLine()) != null){
 			assertEquals(line, br2.readLine());
 		}
+		System.setIn(old);
 		br1.close();
 		br2.close();
 	}
@@ -59,6 +69,9 @@ public class Milestone2IntegrationTesting {
 		args2[1] = "arrowTestingClasses.testClass2";
 		args2[2] = "arrowTestingClasses.testClass3";
 		args2[3] = "arrowTestingClasses.testClass4";
+		InputStream Input1 = new ByteArrayInputStream( "Generator\rUMLGenerator\rQuit\r".getBytes() );
+		InputStream old = System.in;
+		System.setIn(Input1);
 		DesignParser.parser(args2); 
 		BufferedReader br1 = new BufferedReader(new FileReader("input_output/graph.gv"));
 		BufferedReader br2 = new BufferedReader(new FileReader("test/problem/blueshells/testing/testDoc4"));
@@ -67,6 +80,7 @@ public class Milestone2IntegrationTesting {
 		while((line = br1.readLine()) != null){
 			assertEquals(line, br2.readLine());
 		}
+		System.setIn(old);
 		br1.close();
 		br2.close();
 	}
@@ -75,6 +89,9 @@ public class Milestone2IntegrationTesting {
 	public void testMethodUseArrows() throws IOException{
 		args[0] = "arrowTestingClasses.testClass2";
 		args[1] = "arrowTestingClasses.testClass5";
+		InputStream Input1 = new ByteArrayInputStream( "Generator\rUMLGenerator\rQuit\r".getBytes() );
+		InputStream old = System.in;
+		System.setIn(Input1);
 		DesignParser.parser(args); 
 		BufferedReader br1 = new BufferedReader(new FileReader("input_output/graph.gv"));
 		BufferedReader br2 = new BufferedReader(new FileReader("test/problem/blueshells/testing/testDoc5"));
@@ -83,6 +100,7 @@ public class Milestone2IntegrationTesting {
 		while((line = br1.readLine()) != null){
 			assertEquals(line, br2.readLine());
 		}
+		System.setIn(old);
 		br1.close();
 		br2.close();
 	}
@@ -93,6 +111,9 @@ public class Milestone2IntegrationTesting {
 		args2[1] = "arrowTestingClasses.testClass2";
 		args2[2] = "arrowTestingClasses.testClass6";
 		args2[3] = "arrowTestingClasses.testClass4";
+		InputStream Input1 = new ByteArrayInputStream( "Generator\rUMLGenerator\rQuit\r".getBytes() );
+		InputStream old = System.in;
+		System.setIn(Input1);
 		DesignParser.parser(args2); 
 		BufferedReader br1 = new BufferedReader(new FileReader("input_output/graph.gv"));
 		BufferedReader br2 = new BufferedReader(new FileReader("test/problem/blueshells/testing/testDoc6"));
@@ -101,6 +122,7 @@ public class Milestone2IntegrationTesting {
 		while((line = br1.readLine()) != null){
 			assertEquals(line, br2.readLine());
 		}
+		System.setIn(old);
 		br1.close();
 		br2.close();
 	}

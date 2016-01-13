@@ -1,8 +1,8 @@
 digraph G {  rankdir=BT; 
- 	problemasmIField [ 
+ 	probleminterfacesIField [ 
 		shape = "record",
 		label = 
-			"{ problem/asm/IField
+			"{ problem/interfaces/IField
 			|
 			| 
  			+ getName() : String \l
@@ -18,10 +18,10 @@ digraph G {  rankdir=BT;
 			+ toString() : String \l
 			}" 
 	]; 
-	problemasmField [ 
+	problemjavaClassesField [ 
 		shape = "record",
 		label = 
-			"{ problem/asm/Field
+			"{ problem/javaClasses/Field
 			|
 			- String name \l
 			- String desc \l
@@ -41,7 +41,7 @@ digraph G {  rankdir=BT;
 			+ setAccessLevel(String arg0) : void \l
 			}" 
 	]; 
-	problemasmField -> problemasmIField
+	problemjavaClassesField -> probleminterfacesIField
 		[arrowhead="onormal", style="dashed"];
 
 }
