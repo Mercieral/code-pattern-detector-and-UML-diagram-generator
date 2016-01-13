@@ -41,6 +41,7 @@ public class DesignParser {
 	 *             - Exception if unable to read file
 	 */
 	public static void parser(String[] args) throws IOException {
+		System.out.println("Start"); // FIXME
 		IModel model = new Model();
 		IClass currentClass = null;
 

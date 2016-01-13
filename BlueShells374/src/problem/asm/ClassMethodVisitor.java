@@ -42,7 +42,7 @@ public class ClassMethodVisitor extends ClassVisitor {
 		this.currentClass.addIMethod(currentMethod);
 
 		MethodVisitor mine = new myMethodVisitor(Opcodes.ASM5, toDecorate,
-				currentClass, classes);
+				currentClass, classes, currentMethod);
 
 		return mine;
 	}
