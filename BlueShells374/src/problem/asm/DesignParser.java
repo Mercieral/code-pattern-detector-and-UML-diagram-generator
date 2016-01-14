@@ -20,6 +20,22 @@ import problem.javaClasses.UMLGenerator;
 
 public class DesignParser {
 
+	private static final String INPUT_CLASS_NAME = "Input Class Name:>";
+	private static final String INPUT_METHOD_NAME = "Input Method Name:>";
+	private static final String INPUT_PARAMETERS = "Input Parameters "
+			+ "(split by commas):>";
+	private static final String INPUT_CALL_DEPTH = "Input CallDepth "
+			+ "(optional enter skip for default, default is 5)";
+	private static final String SUPPORT_OPERATIONS = "Supported operations:"
+			+ " Generator, Help, Quit \n" + "Input command:> ";
+	private static final String HELP_SUPPORT = "Help not yet implemented";
+	private static final String INPUT_GENERATOR = "Generators:"
+			+ " Supported generators - UML, Sequence \n" + "Input generator:> ";
+	private static final String NO_SUPPORT = "Unsupported operation";
+	private static final String REFRESH_SUPPORT = "Generated graph, "
+			+ "please refresh the input_output folder";
+	private static final String GENERATOR_NOT_SUPPORTED = "Generator not supported";
+
 	/**
 	 * Reads in a list of Java Classes and reverse engineers their design.
 	 * 
@@ -100,8 +116,7 @@ public class DesignParser {
 		Scanner scanner = new Scanner(System.in);
 
 		while (!quit) {
-			System.out.print("Supported operations: Generator, Help, Quit \n"
-					+ "Input command:> ");
+			System.out.print(SUPPORT_OPERATIONS);
 			String line = scanner.nextLine();
 			line = line.toLowerCase().trim();
 
@@ -111,72 +126,69 @@ public class DesignParser {
 			}
 
 			else if (line.equals("help")) {
-				System.out.println("Help not yet implemented");
+				System.out.println(HELP_SUPPORT);
 			}
 
 			else if (line.equals("generator")) {
-				System.out
-						.print("Generators: Supported generators - UML, Sequence \n"
-								+ "Input generator:> ");
+				System.out.print(INPUT_GENERATOR);
 				line = scanner.nextLine();
 				line = line.toLowerCase().trim();
 
 				if (!generators.containsKey(line)) {
-					System.out.println("Generator not supported");
+					System.out.println(GENERATOR_NOT_SUPPORTED);
 					continue;
 				}
 
 				IGenerator generator = generators.get(line);
-				
-				if (line.equals("sequence")){
+
+				if (line.equals("sequence")) {
 					SDLogic(line, scanner, (SequenceGenerator) generator);
 				}
-				
+
 				generator.execute();
-				System.out.println(
-						"Generated graph, please refresh the input_output folder");
+				System.out.println(REFRESH_SUPPORT);
 			}
 
 			else {
-				System.out.println("Unsupported operation");
+				System.out.println(NO_SUPPORT);
 			}
 		}
 
 		scanner.close();
 	}
-	
-	private static void SDLogic(String line, Scanner scanner, SequenceGenerator generator){
-		System.out.print("Input Class Name:>");
+
+	private static void SDLogic(String line, Scanner scanner,
+			SequenceGenerator generator) {
+		System.out.print(INPUT_CLASS_NAME);
 		line = scanner.nextLine();
 		line = line.trim();
 		String className = line;
-		System.out.print("Input Method Name:>");
+		System.out.print(INPUT_METHOD_NAME);
 		line = scanner.nextLine();
 		line = line.trim();
 		String methodName = line;
-		System.out.print("Input Parameters (split by commas):>");
+		System.out.print(INPUT_PARAMETERS);
 		line = scanner.nextLine();
 		line = line.trim();
 		String[] args = line.split(",");
-		System.out.print("Input CallDepth (optional enter skip for default, default is 5)");
+		System.out.print(INPUT_CALL_DEPTH);
 		line = scanner.nextLine();
 		line = line.toLowerCase().trim();
 		int callDepth;
-		if (line.equals("skip") || line.equals("")){
+		if (line.equals("skip") || line.equals("")) {
 			callDepth = 5;
-		}
-		else {
+		} else {
 			callDepth = Integer.parseInt(line);
 		}
-		
+
 		List<String> params = new ArrayList<String>();
-		for (String arg  : args){
+		for (String arg : args) {
 			params.add(arg);
 		}
 		generator.setClassName(className);
 		generator.setMethodName(methodName);
 		generator.setParameters(params);
 		generator.setMaxCallDepth(callDepth);
-		
+
 	}
 }
