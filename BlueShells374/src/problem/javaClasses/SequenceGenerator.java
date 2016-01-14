@@ -278,7 +278,8 @@ public class SequenceGenerator implements IGenerator {
 		if (innerCall.getDesc() != "") {
 			Type args = Type.getReturnType(innerCall.getDesc());
 			String argtype = args.getClassName().replace(".", "");
-			if (!instances.contains(argtype)){
+		
+			if (!instances.contains(argtype) && (!argtype.equals("void"))){
 				counter++;
 				String name = "arg" + counter;
 				variables.put(args.getClassName().replace(".", "/"), name);
