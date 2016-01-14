@@ -86,8 +86,14 @@ public class SequenceGenerator implements IGenerator {
 						if (m.getName().equals(this.methodName)){
 							//System.out.println("\tHITTTTTTT______________________________");
 							this.startMethod = m;
+							int counter = 0;
 							for (String args : m.getArguments()){
-								//System.out.println(args);
+								System.out.println(args);
+								if (!args.equals(this.parameters.get(counter))){
+									System.out.println("ERROR: The provided arguments do match any existing arguments");
+									return;
+								}
+									
 							}
 							break;
 						}
@@ -109,21 +115,24 @@ public class SequenceGenerator implements IGenerator {
 	}
 	
 	private void generateGraph() throws IOException {
+		int counter = 1;
 		System.out.println("generating sequence diagram file");
 		String OUTPUT_FILE = "input_output/diagram.sd";
 		OutputStream out = new FileOutputStream(OUTPUT_FILE);
-		String firstLine = this.startClass.getClassName() + ":" +  this.startClass.getClassName() + "[a]\n";
+		String firstLine = "arg0" + ":" +  this.startClass.getClassName().replace("/", "") + "[a]\n";
 		out.write(firstLine.getBytes());
 		for (MethodContainer innerCall : this.startMethod.getInnerCalls()){
 				if(innerCall.isInstantiation()){
-					String line1 = innerCall.getGoingToClass() + ":" + innerCall.getGoingToClass() + "[a]\n";
-					String line2 = this.startClass.getClassName() + ":" + innerCall.getGoingToClass() + ".new\n";
+					String line1 = "/arg" + counter + ":" + innerCall.getGoingToClass().replace("/", "") + "[a]\n\n";
+					String line2 = "arg0" + ":" + "arg" + counter + ".new\n";
+					counter++;
 					out.write(line1.getBytes());
 					out.write(line2.getBytes());
 				}
 				else{
-					String line1 = innerCall.getGoingToClass() + ":" + innerCall.getGoingToClass() + "[a]\n";
-					String line2 = this.startClass.getClassName() + ":" + innerCall.getGoingToClass() + "." + innerCall.getGoingToMethod() + "()\n";
+					String line1 = "/arg" + counter + ":" + innerCall.getGoingToClass().replace("/", "") + "[a]\n\n";
+					String line2 =  "arg0" + ":" + "arg" + counter + "." + innerCall.getGoingToMethod() + "()\n";
+					counter++;
 					out.write(line1.getBytes());
 					out.write(line2.getBytes());
 				}
@@ -131,6 +140,8 @@ public class SequenceGenerator implements IGenerator {
 
 		
 		out.close();
+		Runtime rt = Runtime.getRuntime();
+		rt.exec("lib\\sdedit-4.01.exe -o input_output\\diagram.png -t png input_output\\diagram.sd");
 		//String temp = generateClassBoxes();
 	}
 
