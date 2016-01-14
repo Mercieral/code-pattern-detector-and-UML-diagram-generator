@@ -18,10 +18,10 @@ A few weeks later the two are again having lunch in the break room when suddenly
 1. Test code:
   1. [Testing Folder](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/test)
 2. Project's New Tool 
-  1. Generated Sequence Diagram TODO
+  1. [Generated Sequence Diagram](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone3/Generated_main_sd.png)
   2. [Manually Created Diagram](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone3/manual_generated_main_sd.png)
 3. Collections 
-  1. Generated Sequence Diagram TODO
+  1. [Generated Sequence Diagram](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone3/Generated_collections_sd.png)
   2. [Manually Created Diagram](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone3/manual_generated_collection_sd.png)
 
 #### Design (Milestone Evolution)
@@ -36,20 +36,29 @@ Due to the improvement in running the program, the instructions are different fr
 
 To test the program, there is a console available for use. 
 
+The client would input the desired classes, such as classes in a package, in as the initial arguments. Once that object is finished loading, a console type structure is loaded. From there, follow the prompts for desired inputs. 
+
+For this milestone, the instructions would involve the shuffle method in Collections. Load  ``` java.util.Collections ``` into arguments, as in Eclipse and the run configuration. 
+
+```
 TODO
+
+```
 
 #### Contributions
 
 Aaron Mercier 
 
-1. Create [Sequence Diagram Generator](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/src/problem/javaClasses/SequenceGenerator.java) object
+1. Created [Sequence Diagram Generator](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/src/problem/javaClasses/SequenceGenerator.java) object
 2. Started unit testing
+3. Completed [Sequence Diagram Generator](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/src/problem/javaClasses/SequenceGenerator.java)
 
 Luke Danielson (Commit log is low due to fact he was capped. Worked with us, we forgot to include him in commit messages)
 
 1. Helped create [Sequence Diagram Generator](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/src/problem/javaClasses/SequenceGenerator.java) object 
 2. Fixed Has Arrow dominance and duplicate arrow
-3. Made a console
+3. Made a console layout to allow easy running by any type of user
+4. Completed integrated testing
 
 Larry Gates
 
