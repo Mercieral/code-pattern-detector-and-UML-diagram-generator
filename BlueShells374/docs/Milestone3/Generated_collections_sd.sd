@@ -1,0 +1,21 @@
+arg0:javautilCollections[a]
+/arg1:javautilRandom[a]
+arg2:javautilList[a]
+/arg3:javautilRandomAccess[a]
+arg4:javautilListIterator[a]
+
+arg0:arg1.new
+arg0:arg0.shuffle(java.util.List, java.util.Random)
+arg0:arg2.size()
+arg0:arg3.new
+arg0:arg1.nextInt(int)
+arg0:arg0.swap(java.util.List, int, int)
+arg0:arg2.get(int)
+arg0:arg2.set(int, java.lang.Object)
+arg0:arg2.set(int, java.lang.Object)
+arg0:arg2.toArray()
+arg0:arg1.nextInt(int)
+arg0:arg0.swap(java.lang.Object[], int, int)
+arg0:arg2.listIterator()
+arg0:arg4.next()
+arg0:arg4.set(java.lang.Object)
