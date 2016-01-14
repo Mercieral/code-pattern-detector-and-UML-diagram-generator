@@ -269,7 +269,7 @@ public class SequenceGenerator implements IGenerator {
 					String name = "arg" + counter;
 					variables.put(innerCall.getGoingToClass(), name);
 					instances.add(innerCall.getGoingToClass());
-					String line1 = "/" + name + ":"
+					String line1 = "" + name + ":"
 							+ innerCall.getGoingToClass().replace("/", "")
 							+ "[a]\n";
 					this.classList.add(line1);
@@ -325,15 +325,12 @@ public class SequenceGenerator implements IGenerator {
 	 * @return - String value of the return type for the {@link MethodContainer}
 	 */
 	private String getReturnType(MethodContainer innerCall) {
-		if (innerCall.getGoingToMethod().equals("listIterator")) {
-			System.out.println("hereeeee");
-			System.out.println(innerCall.getDesc());
-		}
 		if (innerCall.getDesc() != "") {
 			Type args = Type.getReturnType(innerCall.getDesc());
 			String argtype = args.getClassName().replace(".", "");
 
-			if (!instances.contains(argtype) && (!argtype.equals("void"))) {
+			if (!instances.contains(argtype) && (!argtype.equals("void")) && (!argtype.replace("/", "").equals("javalangObject[]") && (!argtype.replace("/", "").equals("javalangObject")))) {
+				System.out.println(argtype);
 				counter++;
 				String name = "arg" + counter;
 				variables.put(args.getClassName().replace(".", "/"), name);
@@ -361,15 +358,17 @@ public class SequenceGenerator implements IGenerator {
 			Type[] args = Type.getArgumentTypes(innerCall.getDesc());
 			for (int i = 0; i < args.length; i++) {
 				String argtype = args[i].getClassName().replace(".", "");
-				if (!instances.contains(argtype)) {
+				if (!instances.contains(argtype) && (!argtype.replace("/", "").equals("javalangObject[]") && (!argtype.replace("/", "").equals("javalangObject")))) {
+					System.out.println(argtype);
 					counter++;
 					String name = "arg" + counter;
 					variables.put(args[i].getClassName().replace(".", "/"),
 							name);
 					instances.add(argtype);
 					String line1 = "" + name + ":" + argtype.replace("/", "")
-							+ "[a]\n";
+								+ "[a]\n";
 					this.classList.add(line1);
+					
 				}
 				if (i == args.length - 1) {
 					argString = argString + args[i].toString().replace(";", "");
