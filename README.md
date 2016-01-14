@@ -8,8 +8,7 @@ Repository for our CSSE 374 Software Design project.
 #### Deliverables and location
 
 1. Test code:
-  1. TODO
-  2. TODO
+  1. [Testing Folder](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/test)
 2. Project's New Tool 
   1. Generated Sequence Diagram TODO
   2. Manually Created Diagram TODO
@@ -19,11 +18,15 @@ Repository for our CSSE 374 Software Design project.
 
 #### Design (Milestone Evolution)
 
-TODO
+TODO: Design picture
+
+The design patterns stayed mostly the same. Visitor Pattern used for ASM and Strategy Pattern used for the rest. We created a [IGenerator](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/src/problem/interfaces/IGenerator.java) object, which took the UML generator code and became a IGenerator object. Doing this allowed to implement future output files without making changes to our exisiting code.
 
 #### Instructions
 
 Due to the improvement in running the program, the instructions are different from previous milestones.
+
+To test the program, there is a console available for use. 
 
 TODO
 
@@ -31,18 +34,20 @@ TODO
 
 Aaron Mercier 
 
-1. TODO
-2. TODO
+1. Create [Sequence Diagram Generator](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/src/problem/javaClasses/SequenceGenerator.java) object
+2. Started unit testing
 
 Luke Danielson
 
-1. TODO 
-2. TODO 
+1. Helped create [Sequence Diagram Generator](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/src/problem/javaClasses/SequenceGenerator.java) object 
+2. Fixed Has Arrow dominance and duplicate arrow
+3. Made a console
 
 Larry Gates
 
-1. TODO
-2. TODO
+1. Created the container class to be used within methods.
+2. Finished unit testing
+3. Updated README
 
 ------------------------------------------------------------
 
@@ -50,12 +55,11 @@ Larry Gates
 
 After feedback from Chandan's review:
 
-* [ ] Create test classes for each class and appropriate method in the class
-* [ ] Add a Model object visitor,  by removing the values created in the current main
-* [ ] Move the generate from IModel object and into its own class
-* [ ] Ignore uses arrows when there is an association arrow (has)
-* [ ] Add pictures to the Design sections of milestones
-* [ ] Talk more about the type of Design Pattern(s) and other design implementations
+* [x] Create test classes for each class and appropriate method in the class
+* [x] Move the generate from IModel object and into its own class
+* [x] Ignore uses arrows when there is an association arrow (has)
+* [x] Add pictures to the Design sections of milestones
+* [x] Talk more about the type of Design Pattern(s) and other design implementations
 * [x] Continue to do integration testing
 
 ------------------------------------------------------------
@@ -80,7 +84,7 @@ While working on Milestone 2, it was important to use the information suggested 
 
 From reading the specifications and searching the given code, the team could not figure out how to find the inner types for arguments and return type of methods, such as for lists or collections.
 
-TODO: Talking about design pattern used directly as well.
+The design pattern stayed the same, using Visitor Pattern for ASM and Strategy Pattern for the rest of it. 
 
 #### Instructions
 
@@ -124,7 +128,7 @@ method is called, which writes all of the stored information from the model into
 a graph.gv file. When the graph.gv file is finished, GraphViz generates a .PNG 
 file using it.
 
-TODO: Talk about design pattern used directly
+The design patterns we used were: Visitor Pattern (ASM), and Strategy Pattern (remain parts)
 
 #### Instructions
 
