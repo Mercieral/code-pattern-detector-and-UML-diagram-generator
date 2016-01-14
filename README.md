@@ -28,7 +28,7 @@ A few weeks later the two are again having lunch in the break room when suddenly
 
 ![Design Drawing](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone3/manual_generated_UML.png)
 
-The design patterns stayed mostly the same. Visitor Pattern used for ASM and Strategy Pattern used for the rest. We created a [IGenerator](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/src/problem/interfaces/IGenerator.java) object, which took the UML generator code and became a IGenerator object. Doing this allowed to implement future output files without making changes to our exisiting code.
+The design patterns stayed mostly the same. Visitor Pattern used for ASM and Strategy Pattern used for the rest. We created an [IGenerator](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/src/problem/interfaces/IGenerator.java) object, which took the UML generator code and became an IGenerator object. Doing this allowed to implement future output files without making changes to our exisiting code.
 
 #### Instructions
 
@@ -41,8 +41,26 @@ The client would input the desired classes, such as classes in a package, in as 
 For this milestone, the instructions would involve the shuffle method in Collections. Load  ``` java.util.Collections ``` into arguments, as in Eclipse and the run configuration. 
 
 ```
-TODO
-
+Supported operations: Generator, Help, Quit 
+Input command:> Generator 
+Generators: Supported generators - UML, Sequence 
+Input generator:> Sequence
+Input Class Name:>java.util.Collections
+Input Method Name:>shuffle
+Input Parameters (split by commas):>java.util.List
+Input CallDepth (optional enter skip for default, default is 5)
+class: java.util.Collections
+method: shuffle
+params: [java.util.List]
+depth: 5
+generating sequence diagram file
+ERROR: The provided arguments do match any existing arguments
+generating for method shuffle
+generating for method swap
+generating for method swap
+Generated graph, please refresh the input_output folder
+Supported operations: Generator, Help, Quit 
+Input command:> Quit
 ```
 
 #### Contributions
