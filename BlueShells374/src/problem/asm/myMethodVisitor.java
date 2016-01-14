@@ -53,6 +53,7 @@ public class myMethodVisitor extends MethodVisitor {
 		innerCall.setGoingFromClass(this.currentClass.getClassName());
 		innerCall.setGoingToClass(owner);
 		innerCall.setGoingToMethod(name);
+		innerCall.setDesc(desc);
 		this.currentMethod.addInnerCall(innerCall);
 	}
 

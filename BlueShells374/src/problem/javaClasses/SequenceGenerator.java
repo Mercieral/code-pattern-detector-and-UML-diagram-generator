@@ -46,6 +46,9 @@ public class SequenceGenerator implements IGenerator {
 	private IClass startClass;
 	private List<String> classList;
 	private List<String> methodList;
+	private Map<String, String> variables;
+	private List<String> instances;
+	private int counter;
 
 	public SequenceGenerator(IModel model) {
 		this.model = model;
@@ -54,6 +57,9 @@ public class SequenceGenerator implements IGenerator {
 		this.startMethod = null;
 		this.classList = new ArrayList<>();
 		this.methodList = new ArrayList<>();
+		this.variables = new HashMap<String, String>();
+		this.instances = new ArrayList<String>();
+		counter = 0;
 	}
 
 	public SequenceGenerator(IModel model, String className, String methodName,
@@ -69,6 +75,9 @@ public class SequenceGenerator implements IGenerator {
 		this.startClass = null;
 		this.classList = new ArrayList<>();
 		this.methodList = new ArrayList<>();
+		this.variables = new HashMap<String, String>();
+		this.instances = new ArrayList<String>();
+		counter = 0;
 	}
 
 	/**
@@ -132,14 +141,42 @@ public class SequenceGenerator implements IGenerator {
 
 	}
 	
+	//FIXME change method name
+	private void testMethod(IMethod m, String varName, int depth){
+		System.out.println("generating for method " + m.getName());
+		for (MethodContainer innerCall : m.getInnerCalls()) {
+			if (innerCall.isInstantiation()) {
+				counter++;
+				String name = "arg" + counter;
+				instances.add(innerCall.getGoingToClass());
+				variables.put(innerCall.getGoingToClass(), name);
+				String line1 = "/" + name + ":"
+						+ innerCall.getGoingToClass().replace("/", "")
+						+ "[a]\n";
+				this.classList.add(line1);
+				String line2 = varName + ":" + name + ".new\n";
+				this.methodList.add(line2);
+			} else {
+				String argString = getArgs(innerCall);
+				getReturnType(innerCall);
+				String name = variables.get(innerCall.getGoingToClass());
+				if (!innerCall.getGoingToMethod().equals("<init>")) {
+					String line2 = varName + ":" + name + "."
+							+ innerCall.getGoingToMethod() + "(" + argString
+							+ ")\n";
+					this.methodList.add(line2);
+					recursiveReach(innerCall.getGoingToClass(), name, innerCall.getGoingToMethod(), innerCall.getDesc(), depth -1);
+				}
+			}
+		}
+	}
+	
 	private void recursiveReach(String Class, String varName, String method, String desc, int depth){
-		System.out.println("recursively reading method " + method);
 		if (depth == 0){
 			return;
 		}
 		IClass c = this.getModelClass(Class.replace("/", ""));
 		if (c != null){
-			System.out.println("hit recusive class " + method);
 			if (desc != "") {
 				Type[] args = Type.getArgumentTypes(desc);
 				List<String> argStringArray = new ArrayList<String>();
@@ -148,11 +185,12 @@ public class SequenceGenerator implements IGenerator {
 				}
 				IMethod m = this.getMethod(c, argStringArray);
 				if (m != null){
-					System.out.println(desc);
-					System.out.println("hit recursive method " + method +" "+ m.getDesc());
+					//System.out.println("hit recursive method " + method +" "+ m.getDesc());
+					testMethod(m, varName, depth - 1);
 				}
 			}
 		}
+		
 	}
 
 	/**
@@ -162,14 +200,12 @@ public class SequenceGenerator implements IGenerator {
 	 *             - TODO
 	 */
 	private void generateGraph() throws IOException {
-		int counter = 0;
+		counter = 0;
 		System.out.println("generating sequence diagram file");
 		OutputStream out = new FileOutputStream(SYSTEM_OUTPUT_FILE);
 		String firstLine = "arg0" + ":"
 				+ this.startClass.getClassName().replace("/", "") + "[a]\n";
 		out.write(firstLine.getBytes());
-		ArrayList<String> instances = new ArrayList<String>();
-		Map<String, String> variables = new HashMap<String, String>();
 		instances.add(this.startClass.getClassName());
 		variables.put(this.startClass.getClassName(), "arg0");
 		for (MethodContainer innerCall : this.startMethod.getInnerCalls()) {
@@ -196,6 +232,7 @@ public class SequenceGenerator implements IGenerator {
 					this.classList.add(line1);
 
 					String argString = getArgs(innerCall);
+					getReturnType(innerCall);
 					if (!innerCall.getGoingToMethod().equals("<init>")) {
 						String line2 = "arg0" + ":" + name + "."
 								+ innerCall.getGoingToMethod() + "(" + argString
@@ -205,6 +242,7 @@ public class SequenceGenerator implements IGenerator {
 					}
 				} else {
 					String argString = getArgs(innerCall);
+					getReturnType(innerCall);
 					String name = variables.get(innerCall.getGoingToClass());
 					if (!innerCall.getGoingToMethod().equals("<init>")) {
 						String line2 = "arg0" + ":" + name + "."
@@ -232,6 +270,29 @@ public class SequenceGenerator implements IGenerator {
 				+ " png input_output\\diagram.sd");
 	}
 
+	private String getReturnType(MethodContainer innerCall){
+		if (innerCall.getGoingToMethod().equals("listIterator")){
+			System.out.println("hereeeee");
+			System.out.println(innerCall.getDesc());
+		}
+		if (innerCall.getDesc() != "") {
+			Type args = Type.getReturnType(innerCall.getDesc());
+			String argtype = args.getClassName().replace(".", "");
+			if (!instances.contains(argtype)){
+				counter++;
+				String name = "arg" + counter;
+				variables.put(args.getClassName().replace(".", "/"), name);
+				instances.add(argtype);
+				String line1 = "" + name + ":"
+						+ argtype.replace("/", "")
+						+ "[a]\n";
+				this.classList.add(line1);
+			}
+			return argtype;
+			
+		}
+		return "";
+	}
 	/**
 	 * TODO
 	 * 
@@ -244,6 +305,17 @@ public class SequenceGenerator implements IGenerator {
 		if (innerCall.getDesc() != "") {
 			Type[] args = Type.getArgumentTypes(innerCall.getDesc());
 			for (int i = 0; i < args.length; i++) {
+				String argtype = args[i].getClassName().replace(".", "");
+				if (!instances.contains(argtype)){
+					counter++;
+					String name = "arg" + counter;
+					variables.put(args[i].getClassName().replace(".", "/"), name);
+					instances.add(argtype);
+					String line1 = "" + name + ":"
+							+ argtype.replace("/", "")
+							+ "[a]\n";
+					this.classList.add(line1);
+				}
 				if (i == args.length - 1) {
 					argString = argString + args[i].toString().replace(";", "");
 				} else {
@@ -262,7 +334,6 @@ public class SequenceGenerator implements IGenerator {
 	 */
 	private IClass getModelClass(String name) {
 		for (IClass c : this.model.getClasses()) {
-			System.out.println(name + " --- " + c.getClassName().replace("/", ""));
 			if (c.getClassName().replace("/", "")
 					.equals(name.replace(".", ""))) {
 				return c;
@@ -285,16 +356,18 @@ public class SequenceGenerator implements IGenerator {
 			// System.out.println("\t" + m.getName() + " ---- " +
 			// this.methodName);
 			if (m.getName().equals(this.methodName)) {
-				int counter = 0;
+				int counter = -1;
 				boolean hasFound = true;
 				for (String args : m.getArguments()) {
+					counter++;
 					if (!args.equals(params.get(counter))) {
 						System.out.println(ERROR_NO_EXISTING_ARGS);
 						hasFound = false;
 						break;
 					}
+					
 				}
-				if (hasFound) {
+				if (hasFound && (params.size() == (counter + 1))) {
 					return m;
 				}
 			}
