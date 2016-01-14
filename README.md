@@ -19,10 +19,10 @@ A few weeks later the two are again having lunch in the break room when suddenly
   1. [Testing Folder](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/test)
 2. Project's New Tool 
   1. Generated Sequence Diagram TODO
-  2. Manually Created Diagram TODO
+  2. [Manually Created Diagram](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone3/manual_generated_main_sd.png)
 3. Collections 
   1. Generated Sequence Diagram TODO
-  2. Manually Created Diagram TODO
+  2. [Manually Created Diagram](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone3/manual_generated_collection_sd.png)
 
 #### Design (Milestone Evolution)
 
@@ -45,7 +45,7 @@ Aaron Mercier
 1. Create [Sequence Diagram Generator](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/src/problem/javaClasses/SequenceGenerator.java) object
 2. Started unit testing
 
-Luke Danielson
+Luke Danielson (Commit log is low due to fact he was capped. Worked with us, we forgot to include him in commit messages)
 
 1. Helped create [Sequence Diagram Generator](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/src/problem/javaClasses/SequenceGenerator.java) object 
 2. Fixed Has Arrow dominance and duplicate arrow
