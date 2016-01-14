@@ -139,13 +139,14 @@ public class UMLGenerator implements IGenerator {
 				if (!hasClassNames.contains(pointerClass)) {
 					hasClassNames.add(pointerClass);
 					builder.append(arrow.drawArrow());
-					if (useArrowList.containsKey(pointerClass)){
+					if (useArrowList.containsKey(pointerClass)) {
 						useArrowList.remove(pointerClass);
 					}
 				}
 				break;
 			case "ArrowUses":
-				if (!useArrowList.containsKey(pointerClass) && !hasClassNames.contains(pointerClass)) {
+				if (!useArrowList.containsKey(pointerClass)
+						&& !hasClassNames.contains(pointerClass)) {
 					useArrowList.put(pointerClass, arrow);
 				}
 				break;
@@ -158,10 +159,10 @@ public class UMLGenerator implements IGenerator {
 			}
 		}
 
-		for (IArrow tempArrow : useArrowList.values()){
+		for (IArrow tempArrow : useArrowList.values()) {
 			builder.append(tempArrow.drawArrow());
 		}
-		
+
 		return builder.toString();
 	}
 
@@ -207,8 +208,7 @@ public class UMLGenerator implements IGenerator {
 		build.append(method.getName());
 		build.append("(");
 		for (String args : method.getArguments()) {
-			String[] sep = args.split(" ");
-			build.append(trimValue(sep[0], ".") + " " + sep[1] + ", ");
+			build.append(args + ", ");
 			// sep[0]
 		}
 		String result = build.toString();

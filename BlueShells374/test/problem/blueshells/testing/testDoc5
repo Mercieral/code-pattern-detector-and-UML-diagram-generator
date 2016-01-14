@@ -15,7 +15,7 @@ digraph G {  rankdir=BT;
 			"{ arrowTestingClasses/testClass5
 			|
 			| 
- 			+ useTestClass2Parameter(testClass2 arg0) : void \l
+ 			+ useTestClass2Parameter(arrowTestingClasses.testClass2) : void \l
 			}" 
 	]; 
 	arrowTestingClassestestClass5 -> arrowTestingClassestestClass2

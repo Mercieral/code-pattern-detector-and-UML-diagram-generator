@@ -6,15 +6,15 @@ digraph G {  rankdir=BT;
 			|
 			| 
  			+ getName() : String \l
-			+ setName(String arg0) : void \l
+			+ setName(java.lang.String) : void \l
 			+ getDesc() : String \l
-			+ setDesc(String arg0) : void \l
+			+ setDesc(java.lang.String) : void \l
 			+ getSignature() : String \l
-			+ setSignature(String arg0) : void \l
+			+ setSignature(java.lang.String) : void \l
 			+ getValue() : Object \l
-			+ setValue(Object arg0) : void \l
+			+ setValue(java.lang.Object) : void \l
 			+ getAccessLevel() : String \l
-			+ setAccessLevel(String arg0) : void \l
+			+ setAccessLevel(java.lang.String) : void \l
 			+ toString() : String \l
 			}" 
 	]; 
@@ -30,15 +30,15 @@ digraph G {  rankdir=BT;
 			- String accessLevel \l
 			| 
  			+ getName() : String \l
-			+ setName(String arg0) : void \l
+			+ setName(java.lang.String) : void \l
 			+ getDesc() : String \l
-			+ setDesc(String arg0) : void \l
+			+ setDesc(java.lang.String) : void \l
 			+ getSignature() : String \l
-			+ setSignature(String arg0) : void \l
+			+ setSignature(java.lang.String) : void \l
 			+ getValue() : Object \l
-			+ setValue(Object arg0) : void \l
+			+ setValue(java.lang.Object) : void \l
 			+ getAccessLevel() : String \l
-			+ setAccessLevel(String arg0) : void \l
+			+ setAccessLevel(java.lang.String) : void \l
 			}" 
 	]; 
 	problemjavaClassesField -> probleminterfacesIField
