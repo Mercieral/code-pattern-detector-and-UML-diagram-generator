@@ -256,6 +256,7 @@ public class SequenceGenerator implements IGenerator {
 				counter++;
 				String name = "arg" + counter;
 				variables.put(innerCall.getGoingToClass(), name);
+				// FIXME: Repetitive
 				instances.add(innerCall.getGoingToClass());
 				String line1 = "/" + name + ":"
 						+ innerCall.getGoingToClass().replace("/", "")
@@ -268,6 +269,7 @@ public class SequenceGenerator implements IGenerator {
 					counter++;
 					String name = "arg" + counter;
 					variables.put(innerCall.getGoingToClass(), name);
+					// FIXME: Repetitive 
 					instances.add(innerCall.getGoingToClass());
 					String line1 = "" + name + ":"
 							+ innerCall.getGoingToClass().replace("/", "")
