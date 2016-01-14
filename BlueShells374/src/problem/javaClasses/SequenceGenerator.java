@@ -31,12 +31,16 @@ public class SequenceGenerator implements IGenerator {
 	private int callDepth;
 	private IMethod startMethod;
 	private IClass startClass;
+	private List<String> classList;
+	private List<String> methodList;
 	
 	public SequenceGenerator(IModel model){
 		this.model = model;
 		this.name = GENERATOR_NAME;
 		this.startClass = null;
 		this.startMethod = null;
+		this.classList = new ArrayList<>();
+		this.methodList = new ArrayList<>();
 	}
 
 	public SequenceGenerator(IModel model, String className, String methodName,
@@ -50,6 +54,8 @@ public class SequenceGenerator implements IGenerator {
 				: (int) maximumCallDepth;
 		this.startMethod = null;
 		this.startClass = null;
+		this.classList = new ArrayList<>();
+		this.methodList = new ArrayList<>();
 	}
 	
 	public void setClassName(String name){
@@ -124,20 +130,27 @@ public class SequenceGenerator implements IGenerator {
 		for (MethodContainer innerCall : this.startMethod.getInnerCalls()){
 				if(innerCall.isInstantiation()){
 					String line1 = "/arg" + counter + ":" + innerCall.getGoingToClass().replace("/", "") + "[a]\n\n";
+					this.classList.add(line1);
 					String line2 = "arg0" + ":" + "arg" + counter + ".new\n";
+					this.methodList.add(line2);
 					counter++;
-					out.write(line1.getBytes());
-					out.write(line2.getBytes());
 				}
 				else{
 					String line1 = "/arg" + counter + ":" + innerCall.getGoingToClass().replace("/", "") + "[a]\n\n";
+					this.classList.add(line1);
 					String line2 =  "arg0" + ":" + "arg" + counter + "." + innerCall.getGoingToMethod() + "()\n";
+					this.methodList.add(line2);
 					counter++;
-					out.write(line1.getBytes());
-					out.write(line2.getBytes());
 				}
 		}
-
+		
+		for (String clazz : this.classList){
+			out.write(clazz.getBytes());
+		}
+		
+		for (String methods : this.methodList){
+			out.write(methods.getBytes());
+		}
 		
 		out.close();
 		Runtime rt = Runtime.getRuntime();
