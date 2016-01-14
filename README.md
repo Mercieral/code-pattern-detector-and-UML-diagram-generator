@@ -1,6 +1,14 @@
 # 374BlueShells
 Repository for our CSSE 374 Software Design project. 
 
+
+------------------------------------------------------------
+## Design Pattern Joke
+
+A programmer and a business analyst are sitting in the break room one day eating lunch when suddenly the microwave catches fire. Thinking quickly, the analyst leaps up, unplugs the microwave, grabs the trash can, fills it with water from sink, and dumps the water on the microwave to put out the flames.
+
+A few weeks later the two are again having lunch in the break room when suddenly the coffee maker bursts into flames. The programmer leaps up, grabs the coffee maker, shoves it into the microwave oven, and then hands the trash can to the business analyst, thus re-using the solution developed for the previous project.
+
 ------------------------------------------------------------
 
 ## Milestone 3
@@ -18,7 +26,7 @@ Repository for our CSSE 374 Software Design project.
 
 #### Design (Milestone Evolution)
 
-TODO: Design picture
+![Design Drawing](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone3/manual_generated_UML.png)
 
 The design patterns stayed mostly the same. Visitor Pattern used for ASM and Strategy Pattern used for the rest. We created a [IGenerator](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/src/problem/interfaces/IGenerator.java) object, which took the UML generator code and became a IGenerator object. Doing this allowed to implement future output files without making changes to our exisiting code.
 
@@ -45,7 +53,7 @@ Luke Danielson
 
 Larry Gates
 
-1. Created the container class to be used within methods.
+1. Created the [container class](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/src/problem/javaClasses/MethodContainer.java) to be used within methods.
 2. Finished unit testing
 3. Updated README
 
