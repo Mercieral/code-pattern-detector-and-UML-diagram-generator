@@ -74,12 +74,23 @@ public class MethodContainer {
 	public void setGoingFromClass(String goingFromClass) {
 		this.goingFromClass = goingFromClass;
 	}
-	
-	public String getGoingToMethod(){
+
+	/**
+	 * Retrieve the method the object is going to
+	 * 
+	 * @return - String of method the object is pointing to
+	 */
+	public String getGoingToMethod() {
 		return this.goingToMethod;
 	}
-	
-	public void setGoingToMethod(String methodName){
+
+	/**
+	 * Sets the method the object is going to
+	 * 
+	 * @param methodName
+	 *            - String of method the object is pointing to
+	 */
+	public void setGoingToMethod(String methodName) {
 		this.goingToMethod = methodName;
 	}
 }

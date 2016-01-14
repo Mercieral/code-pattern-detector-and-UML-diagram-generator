@@ -2,23 +2,23 @@ package javaClassesTest;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+
+import problem.javaClasses.MethodContainer;
 
 public class MethodContainerTest {
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void generalTest() {
+		MethodContainer mc = new MethodContainer();
+		mc.setGoingFromClass("CLASS FROM");
+		mc.setGoingToClass("TO");
+		mc.setGoingToMethod("GOING");
+		mc.setInstantiation(false);
+		assertEquals(mc.getGoingFromClass(), "CLASS FROM");
+		assertEquals(mc.getGoingToClass(), "TO");
+		assertEquals(mc.getGoingToMethod(), "GOING");
+		assertEquals(mc.isInstantiation(), false);
 	}
 
 }

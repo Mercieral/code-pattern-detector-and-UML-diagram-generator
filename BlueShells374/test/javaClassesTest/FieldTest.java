@@ -2,23 +2,26 @@ package javaClassesTest;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+
+import problem.interfaces.IField;
+import problem.javaClasses.Field;
 
 public class FieldTest {
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void setGetTest() {
+		IField f = new Field();
+		f.setAccessLevel("public");
+		f.setDesc("desc");
+		f.setName("name");
+		f.setSignature("sign");
+		f.setValue(1);
+		assertEquals(f.getAccessLevel(), "public");
+		assertEquals(f.getDesc(), "desc");
+		assertEquals(f.getName(), "name");
+		assertEquals(f.getSignature(), "sign");
+		assertEquals(f.getValue(), 1);
 	}
 
 }
