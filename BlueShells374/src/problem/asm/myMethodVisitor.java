@@ -88,7 +88,6 @@ public class myMethodVisitor extends MethodVisitor {
 
 	@Override
 	public void visitVarInsn(int opcode, int var) {
-		// TODO Auto-generated method stub
 		super.visitVarInsn(opcode, var);
 		//System.out.println("-- visitVarInsn --");
 		//System.out.println("Opcode: " + opcode + "  Var: " + var);

@@ -60,7 +60,6 @@ public class DesignParser {
 	 *             - Exception if unable to read file
 	 */
 	public static void parser(String[] args) throws IOException {
-		System.out.println("Start"); // FIXME
 		IModel model = new Model();
 		IClass currentClass = null;
 
@@ -158,14 +157,14 @@ public class DesignParser {
 	}
 
 	/**
-	 * TODO
+	 * Method to help handle the sequence Diagram creation
 	 * 
 	 * @param line
-	 *            - TODO
+	 *            - Given input line
 	 * @param scanner
-	 *            - TODO
+	 *            - Scanner reading information from the user
 	 * @param generator
-	 *            - TODO
+	 *            - The {@link SequenceGenerator} object being created
 	 */
 	private static void SDLogic(String line, Scanner scanner,
 			SequenceGenerator generator) {
