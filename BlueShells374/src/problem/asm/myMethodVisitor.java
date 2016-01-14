@@ -32,6 +32,12 @@ public class myMethodVisitor extends MethodVisitor {
 			if (ClassName.equals(ownerName)) {
 				if (ClassName
 						.equals(currentClass.getClassName().replace("/", ""))) {
+					MethodContainer innerCall = new MethodContainer();
+					innerCall.setInstantiation(false);
+					innerCall.setGoingFromClass(this.currentClass.getClassName());
+					innerCall.setGoingToClass(owner);
+					innerCall.setGoingToMethod(name);
+					this.currentMethod.addInnerCall(innerCall);
 					return;
 				}
 				IArrow arrow = new ArrowUses();
@@ -46,6 +52,7 @@ public class myMethodVisitor extends MethodVisitor {
 		innerCall.setGoingFromClass(this.currentClass.getClassName());
 		innerCall.setGoingToClass(owner);
 		innerCall.setGoingToMethod(name);
+		this.currentMethod.addInnerCall(innerCall);
 	}
 
 	@Override

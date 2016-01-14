@@ -4,7 +4,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import problem.interfaces.IClass;
 import problem.interfaces.IGenerator;
@@ -121,32 +123,50 @@ public class SequenceGenerator implements IGenerator {
 	}
 	
 	private void generateGraph() throws IOException {
-		int counter = 1;
+		int counter = 0;
 		System.out.println("generating sequence diagram file");
 		String OUTPUT_FILE = "input_output/diagram.sd";
 		OutputStream out = new FileOutputStream(OUTPUT_FILE);
 		String firstLine = "arg0" + ":" +  this.startClass.getClassName().replace("/", "") + "[a]\n";
 		out.write(firstLine.getBytes());
+		ArrayList<String> instances = new ArrayList<String>();
+		Map<String, String> variables = new HashMap<String, String>();
+		instances.add(this.startClass.getClassName());
+		variables.put(this.startClass.getClassName(), "arg0");
 		for (MethodContainer innerCall : this.startMethod.getInnerCalls()){
 				if(innerCall.isInstantiation()){
-					String line1 = "/arg" + counter + ":" + innerCall.getGoingToClass().replace("/", "") + "[a]\n\n";
-					this.classList.add(line1);
-					String line2 = "arg0" + ":" + "arg" + counter + ".new\n";
-					this.methodList.add(line2);
 					counter++;
+					String name = "arg" + counter;
+					variables.put(innerCall.getGoingToClass(), name);
+					instances.add(innerCall.getGoingToClass());
+					String line1 =  "/" + name + ":" + innerCall.getGoingToClass().replace("/", "") + "[a]\n";
+					this.classList.add(line1);
+					String line2 = "arg0" + ":" + name + ".new\n";
+					this.methodList.add(line2);
 				}
 				else{
-					String line1 = "/arg" + counter + ":" + innerCall.getGoingToClass().replace("/", "") + "[a]\n\n";
-					this.classList.add(line1);
-					String line2 =  "arg0" + ":" + "arg" + counter + "." + innerCall.getGoingToMethod() + "()\n";
-					this.methodList.add(line2);
-					counter++;
-				}
+					if (!instances.contains(innerCall.getGoingToClass())){
+						counter++;
+						String name = "arg" + counter;
+						variables.put(innerCall.getGoingToClass(), name);
+						instances.add(innerCall.getGoingToClass());
+						String line1 = "/" + name + ":" + innerCall.getGoingToClass().replace("/", "") + "[a]\n";
+						this.classList.add(line1);
+						String line2 =  "arg0" + ":" + name + "." + innerCall.getGoingToMethod() + "()\n";
+						this.methodList.add(line2);
+					}
+					else{
+						String name = variables.get(innerCall.getGoingToClass());
+						String line2 =  "arg0" + ":" + name + "." + innerCall.getGoingToMethod() + "()\n";
+						this.methodList.add(line2);
+					}
+			}
 		}
 		
 		for (String clazz : this.classList){
 			out.write(clazz.getBytes());
 		}
+		out.write("\n".getBytes());
 		
 		for (String methods : this.methodList){
 			out.write(methods.getBytes());
