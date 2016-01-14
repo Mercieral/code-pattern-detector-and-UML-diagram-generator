@@ -16,4 +16,4 @@ problem.interfaces.IModel
 problem.javaClasses.Interface
 problem.javaClasses.Method
 problem.javaClasses.Model
-problem.asm.myMethodVisitor
+problem.asm.MyMethodVisitor

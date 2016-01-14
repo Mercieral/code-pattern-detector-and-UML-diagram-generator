@@ -36,6 +36,8 @@ public class SequenceGenerator implements IGenerator {
 
 	private static final String SYSTEM_OUTPUT_FILE = "input_output/diagram.sd";
 
+	private static final boolean DEBUG = true;
+
 	private IModel model;
 	private String name;
 	private String className;
@@ -81,35 +83,43 @@ public class SequenceGenerator implements IGenerator {
 	}
 
 	/**
-	 * TODO
+	 * Sets the start class name of the Sequence Diagram
 	 * 
 	 * @param name
-	 *            - TODO
+	 *            - Existing class the program can locate
 	 */
 	public void setClassName(String name) {
 		this.className = name;
 	}
 
 	/**
-	 * TODO
+	 * Sets the starting method from a given class name, where the Sequence
+	 * Diagram tracing will start
 	 * 
 	 * @param name
-	 *            - TODO
+	 *            - String value of method inside the provided class
 	 */
 	public void setMethodName(String name) {
 		this.methodName = name;
 	}
 
 	/**
-	 * TODO
+	 * List of parameters for a method to determine the sequence diagram
 	 * 
 	 * @param params
-	 *            - TODO
+	 *            - List of strings, which are parameters to the starting method
+	 *            of the sequence diagram
 	 */
 	public void setParameters(List<String> params) {
 		this.parameters = params;
 	}
 
+	/**
+	 * Sets the maximum depth the sequence diagram can go to
+	 * 
+	 * @param depth
+	 *            - Integer value
+	 */
 	public void setMaxCallDepth(int depth) {
 		this.callDepth = depth;
 	}
@@ -130,19 +140,31 @@ public class SequenceGenerator implements IGenerator {
 				}
 			}
 			if (this.startMethod == null) {
-				System.out.println(ERROR_ITEM_NOT_FOUND);
+				System.err.println(ERROR_ITEM_NOT_FOUND);
 				return;
 			}
 			generateGraph();
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.out.println(ERROR_EXCEPTION);
+			System.err.println(ERROR_EXCEPTION);
 		}
 
 	}
-	
-	//FIXME change method name
-	private void testMethod(IMethod m, String varName, int depth){
+
+	/**
+	 * Recursively goes through to create different depths of the Sequence
+	 * Diagram
+	 * 
+	 * @param m
+	 *            - {@link IMethod} object used to retrieve information about
+	 *            the method
+	 * @param varName
+	 *            - Instance name
+	 * @param depth
+	 *            - Depth the recursive call must stop at
+	 */
+	private void recursiveMethodGenerator(IMethod m, String varName,
+			int depth) {
 		System.out.println("generating for method " + m.getName());
 		for (MethodContainer innerCall : m.getInnerCalls()) {
 			if (innerCall.isInstantiation()) {
@@ -165,18 +187,36 @@ public class SequenceGenerator implements IGenerator {
 							+ innerCall.getGoingToMethod() + "(" + argString
 							+ ")\n";
 					this.methodList.add(line2);
-					recursiveReach(innerCall.getGoingToClass(), name, innerCall.getGoingToMethod(), innerCall.getDesc(), depth -1);
+					recursiveGenerateGraph(innerCall.getGoingToClass(), name,
+							innerCall.getGoingToMethod(), innerCall.getDesc(),
+							depth - 1);
 				}
 			}
 		}
 	}
-	
-	private void recursiveReach(String Class, String varName, String method, String desc, int depth){
-		if (depth == 0){
+
+	/**
+	 * Recursive version of generateGraph
+	 * 
+	 * @param Class
+	 *            - Class object
+	 * @param varName
+	 *            - Instance name
+	 * @param method
+	 *            - Starting method to generate graph of
+	 * @param desc
+	 *            - String that holds parameters and return type
+	 * @param depth
+	 *            - The number of levels the sequence diagram has left to be
+	 *            drawn
+	 */
+	private void recursiveGenerateGraph(String Class, String varName,
+			String method, String desc, int depth) {
+		if (depth == 0) {
 			return;
 		}
 		IClass c = this.getModelClass(Class.replace("/", ""));
-		if (c != null){
+		if (c != null) {
 			if (desc != "") {
 				Type[] args = Type.getArgumentTypes(desc);
 				List<String> argStringArray = new ArrayList<String>();
@@ -184,20 +224,21 @@ public class SequenceGenerator implements IGenerator {
 					argStringArray.add(args[i].getClassName());
 				}
 				IMethod m = this.getMethod(c, argStringArray);
-				if (m != null){
-					//System.out.println("hit recursive method " + method +" "+ m.getDesc());
-					testMethod(m, varName, depth - 1);
+				if (m != null) {
+					// System.out.println("hit recursive method " + method +" "+
+					// m.getDesc());
+					recursiveMethodGenerator(m, varName, depth - 1);
 				}
 			}
 		}
-		
+
 	}
 
 	/**
-	 * TODO
+	 * Creates the sequence diagram
 	 * 
 	 * @throws IOException
-	 *             - TODO
+	 *             - Unable to read file
 	 */
 	private void generateGraph() throws IOException {
 		counter = 0;
@@ -238,7 +279,9 @@ public class SequenceGenerator implements IGenerator {
 								+ innerCall.getGoingToMethod() + "(" + argString
 								+ ")\n";
 						this.methodList.add(line2);
-						recursiveReach(innerCall.getGoingToClass(), name, innerCall.getGoingToMethod(), innerCall.getDesc(), this.callDepth -1);
+						recursiveGenerateGraph(innerCall.getGoingToClass(),
+								name, innerCall.getGoingToMethod(),
+								innerCall.getDesc(), this.callDepth - 1);
 					}
 				} else {
 					String argString = getArgs(innerCall);
@@ -249,7 +292,9 @@ public class SequenceGenerator implements IGenerator {
 								+ innerCall.getGoingToMethod() + "(" + argString
 								+ ")\n";
 						this.methodList.add(line2);
-						recursiveReach(innerCall.getGoingToClass(), name, innerCall.getGoingToMethod(), innerCall.getDesc(), this.callDepth -1);
+						recursiveGenerateGraph(innerCall.getGoingToClass(),
+								name, innerCall.getGoingToMethod(),
+								innerCall.getDesc(), this.callDepth - 1);
 					}
 				}
 			}
@@ -270,36 +315,43 @@ public class SequenceGenerator implements IGenerator {
 				+ " png input_output\\diagram.sd");
 	}
 
-	private String getReturnType(MethodContainer innerCall){
-		if (innerCall.getGoingToMethod().equals("listIterator")){
+	/**
+	 * Retrieves the return type from the method container
+	 * 
+	 * @param innerCall
+	 *            - {@link MethodContainer} object holding information
+	 * @return - String value of the return type for the {@link MethodContainer}
+	 */
+	private String getReturnType(MethodContainer innerCall) {
+		if (innerCall.getGoingToMethod().equals("listIterator")) {
 			System.out.println("hereeeee");
 			System.out.println(innerCall.getDesc());
 		}
 		if (innerCall.getDesc() != "") {
 			Type args = Type.getReturnType(innerCall.getDesc());
 			String argtype = args.getClassName().replace(".", "");
-		
-			if (!instances.contains(argtype) && (!argtype.equals("void"))){
+
+			if (!instances.contains(argtype) && (!argtype.equals("void"))) {
 				counter++;
 				String name = "arg" + counter;
 				variables.put(args.getClassName().replace(".", "/"), name);
 				instances.add(argtype);
-				String line1 = "" + name + ":"
-						+ argtype.replace("/", "")
+				String line1 = "" + name + ":" + argtype.replace("/", "")
 						+ "[a]\n";
 				this.classList.add(line1);
 			}
 			return argtype;
-			
+
 		}
 		return "";
 	}
+
 	/**
-	 * TODO
+	 * Retrieve the arguments from the {@link MethodContainer}
 	 * 
 	 * @param innerCall
-	 *            - TODO
-	 * @return - TODO
+	 *            - {@link MethodContainer} object holding information
+	 * @return - Retrieve the arguments, in the form of a string
 	 */
 	private String getArgs(MethodContainer innerCall) {
 		String argString = "";
@@ -307,13 +359,13 @@ public class SequenceGenerator implements IGenerator {
 			Type[] args = Type.getArgumentTypes(innerCall.getDesc());
 			for (int i = 0; i < args.length; i++) {
 				String argtype = args[i].getClassName().replace(".", "");
-				if (!instances.contains(argtype)){
+				if (!instances.contains(argtype)) {
 					counter++;
 					String name = "arg" + counter;
-					variables.put(args[i].getClassName().replace(".", "/"), name);
+					variables.put(args[i].getClassName().replace(".", "/"),
+							name);
 					instances.add(argtype);
-					String line1 = "" + name + ":"
-							+ argtype.replace("/", "")
+					String line1 = "" + name + ":" + argtype.replace("/", "")
 							+ "[a]\n";
 					this.classList.add(line1);
 				}
@@ -329,9 +381,9 @@ public class SequenceGenerator implements IGenerator {
 	}
 
 	/**
-	 * TODO
+	 * Finds the {@link IClass} of a given string and returns the class object
 	 * 
-	 * @return - TODO
+	 * @return - {@link IClass} object
 	 */
 	private IClass getModelClass(String name) {
 		for (IClass c : this.model.getClasses()) {
@@ -344,13 +396,16 @@ public class SequenceGenerator implements IGenerator {
 	}
 
 	/**
-	 * TODO
+	 * Retrieves the method from a class and that matches the list of parameters
 	 * 
 	 * @param c
-	 *            - TODO
+	 *            - {@link IClass} object, holding information about the method
+	 *            that is being searched for
 	 * @param params
-	 *            - TODO
-	 * @return - TODO
+	 *            - List of strings that match the parameters in the method the
+	 *            sequence diagram is being drawn for
+	 * @return - {@link IMethod} object, holding information about the method
+	 *         searched for originally
 	 */
 	private IMethod getMethod(IClass c, List<String> params) {
 		for (IMethod m : c.getIMethods()) {
@@ -362,11 +417,11 @@ public class SequenceGenerator implements IGenerator {
 				for (String args : m.getArguments()) {
 					counter++;
 					if (!args.equals(params.get(counter))) {
-						System.out.println(ERROR_NO_EXISTING_ARGS);
+						System.err.println(ERROR_NO_EXISTING_ARGS);
 						hasFound = false;
 						break;
 					}
-					
+
 				}
 				if (hasFound && (params.size() == (counter + 1))) {
 					return m;
