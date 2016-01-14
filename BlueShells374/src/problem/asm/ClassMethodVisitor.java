@@ -107,7 +107,7 @@ public class ClassMethodVisitor extends ClassVisitor {
 	void addArguments(String desc, String signature, IMethod currentMethod) {
 		Type[] args = Type.getArgumentTypes(desc);
 		for (int i = 0; i < args.length; i++) {
-			String arg = args[i].getClassName() + " arg" + Integer.toString(i);
+			String arg = args[i].getClassName();
 			currentMethod.addArgument(arg);
 		}
 	}
