@@ -1,7 +1,9 @@
 package problem.asm;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 import org.objectweb.asm.ClassReader;
@@ -79,7 +81,7 @@ public class DesignParser {
 		// uml.execute();
 		HashMap<String, IGenerator> generators = new HashMap<>();
 		generators.put("uml", new UMLGenerator(model));
-		//generators.put("sequence", new SequenceGenerator(model));
+		generators.put("sequence", new SequenceGenerator(model));
 
 		commandConsole(model, generators);
 	}
@@ -125,6 +127,11 @@ public class DesignParser {
 				}
 
 				IGenerator generator = generators.get(line);
+				
+				if (line.equals("sequence")){
+					SDLogic(line, scanner, (SequenceGenerator) generator);
+				}
+				
 				generator.execute();
 				System.out.println(
 						"Generated graph, please refresh the input_output folder");
@@ -136,5 +143,40 @@ public class DesignParser {
 		}
 
 		scanner.close();
+	}
+	
+	private static void SDLogic(String line, Scanner scanner, SequenceGenerator generator){
+		System.out.print("Input Class Name:>");
+		line = scanner.nextLine();
+		line = line.trim();
+		String className = line;
+		System.out.print("Input Method Name:>");
+		line = scanner.nextLine();
+		line = line.trim();
+		String methodName = line;
+		System.out.print("Input Parameters (split by commas):>");
+		line = scanner.nextLine();
+		line = line.trim();
+		String[] args = line.split(",");
+		System.out.print("Input CallDepth (optional enter skip for default, default is 5)");
+		line = scanner.nextLine();
+		line = line.toLowerCase().trim();
+		int callDepth;
+		if (line.equals("skip") || line.equals("")){
+			callDepth = 5;
+		}
+		else {
+			callDepth = Integer.parseInt(line);
+		}
+		
+		List<String> params = new ArrayList<String>();
+		for (String arg  : args){
+			params.add(arg);
+		}
+		generator.setClassName(className);
+		generator.setMethodName(methodName);
+		generator.setParameters(params);
+		generator.setMaxCallDepth(callDepth);
+		
 	}
 }
