@@ -1,4 +1,4 @@
-package javaClassesTest;
+package javaClassesTest.asmTesting;
 
 import static org.junit.Assert.*;
 
