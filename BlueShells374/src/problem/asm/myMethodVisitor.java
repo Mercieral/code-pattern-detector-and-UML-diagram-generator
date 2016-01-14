@@ -9,12 +9,12 @@ import problem.javaClasses.ArrowHas;
 import problem.javaClasses.ArrowUses;
 import problem.javaClasses.MethodContainer;
 
-public class myMethodVisitor extends MethodVisitor {
+public class MyMethodVisitor extends MethodVisitor {
 	private IClass currentClass;
 	private String[] classes;
 	private IMethod currentMethod;
 
-	public myMethodVisitor(int api, MethodVisitor mv, IClass currentClass,
+	public MyMethodVisitor(int api, MethodVisitor mv, IClass currentClass,
 			String[] classes, IMethod currentMethod) {
 		super(api, mv);
 		this.currentClass = currentClass;
