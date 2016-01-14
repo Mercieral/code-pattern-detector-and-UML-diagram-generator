@@ -176,14 +176,16 @@ public class SequenceGenerator implements IGenerator {
 						+ innerCall.getGoingToClass().replace("/", "")
 						+ "[a]\n";
 				this.classList.add(line1);
-				String line2 = varName + ":" + name + ".new\n";
+				String fromName = variables.get(innerCall.getGoingFromClass());
+				String line2 = fromName + ":" + name + ".new\n";
 				this.methodList.add(line2);
 			} else {
 				String argString = getArgs(innerCall);
 				getReturnType(innerCall);
 				String name = variables.get(innerCall.getGoingToClass());
+				String fromName = variables.get(innerCall.getGoingFromClass());
 				if (!innerCall.getGoingToMethod().equals("<init>")) {
-					String line2 = varName + ":" + name + "."
+					String line2 = fromName + ":" + name + "."
 							+ innerCall.getGoingToMethod() + "(" + argString
 							+ ")\n";
 					this.methodList.add(line2);
