@@ -4,7 +4,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,9 +26,7 @@ import problem.interfaces.IModel;
 public class SequenceGenerator implements IGenerator {
 
 	public static final String GENERATOR_NAME = "SequenceGenerator";
-
-	private static final String ERROR_NO_EXISTING_ARGS = "ERROR: "
-			+ "The provided arguments do match any existing arguments";
+	
 	private static final String ERROR_ITEM_NOT_FOUND = "ERROR: "
 			+ "The specified class or method could not be found";
 	private static final String ERROR_EXCEPTION = "ERROR: "
@@ -37,6 +34,7 @@ public class SequenceGenerator implements IGenerator {
 
 	private static final String SYSTEM_OUTPUT_FILE = "input_output/diagram.sd";
 
+	@SuppressWarnings("unused")
 	private static final boolean DEBUG = true;
 
 	private IModel model;
@@ -141,13 +139,13 @@ public class SequenceGenerator implements IGenerator {
 				}
 			}
 			if (this.startMethod == null) {
-				System.err.println(ERROR_ITEM_NOT_FOUND);
+				System.out.println(ERROR_ITEM_NOT_FOUND);
 				return;
 			}
 			generateGraph();
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.err.println(ERROR_EXCEPTION);
+			System.out.println(ERROR_EXCEPTION);
 		}
 
 	}
@@ -166,7 +164,6 @@ public class SequenceGenerator implements IGenerator {
 	 */
 	private void recursiveMethodGenerator(IMethod m, String varName,
 			int depth) {
-		System.out.println("generating for method " + m.getName());
 		for (MethodContainer innerCall : m.getInnerCalls()) {
 			if (innerCall.isInstantiation()) {
 				counter++;
@@ -405,7 +402,6 @@ public class SequenceGenerator implements IGenerator {
 				for (String args : m.getArguments()) {
 					check++;
 					if (!args.equals(params.get(check))) {
-						System.err.println(ERROR_NO_EXISTING_ARGS);
 						hasFound = false;
 						break;
 					}
