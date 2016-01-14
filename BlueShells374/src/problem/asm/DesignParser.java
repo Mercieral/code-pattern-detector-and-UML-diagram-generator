@@ -157,6 +157,16 @@ public class DesignParser {
 		scanner.close();
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param line
+	 *            - TODO
+	 * @param scanner
+	 *            - TODO
+	 * @param generator
+	 *            - TODO
+	 */
 	private static void SDLogic(String line, Scanner scanner,
 			SequenceGenerator generator) {
 		System.out.print(INPUT_CLASS_NAME);
