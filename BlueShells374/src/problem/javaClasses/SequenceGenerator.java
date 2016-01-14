@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.objectweb.asm.Type;
+
 import problem.interfaces.IClass;
 import problem.interfaces.IGenerator;
 import problem.interfaces.IMethod;
@@ -84,29 +86,12 @@ public class SequenceGenerator implements IGenerator {
 		System.out.println("params: " + this.parameters.toString());
 		System.out.println("depth: " + this.callDepth);
 		try {
-			for (IClass c : this.model.getClasses()){
-				System.out.println(c.getClassName() + " ---- " + this.className);
-				if (c.getClassName().replace("/", "").equals(this.className.replace(".", ""))){
-					//System.out.println("HITTTTTTT______________________________");
-					this.startClass = c;
-					for (IMethod m : c.getIMethods()){
-						//System.out.println("\t" + m.getName() + " ---- " + this.methodName);
-						if (m.getName().equals(this.methodName)){
-							//System.out.println("\tHITTTTTTT______________________________");
-							this.startMethod = m;
-							int counter = 0;
-							for (String args : m.getArguments()){
-								System.out.println(args);
-								if (!args.equals(this.parameters.get(counter))){
-									System.out.println("ERROR: The provided arguments do match any existing arguments");
-									return;
-								}
-									
-							}
-							break;
-						}
-					}
-					break;
+			IClass c = this.getModelClass();
+			if (c != null){
+				this.startClass = c;
+				IMethod m = this.getMethod(c, this.parameters);
+				if (m != null){
+					this.startMethod = m;
 				}		
 			}
 			if (this.startMethod == null){
@@ -152,13 +137,45 @@ public class SequenceGenerator implements IGenerator {
 						instances.add(innerCall.getGoingToClass());
 						String line1 = "/" + name + ":" + innerCall.getGoingToClass().replace("/", "") + "[a]\n";
 						this.classList.add(line1);
-						String line2 =  "arg0" + ":" + name + "." + innerCall.getGoingToMethod() + "()\n";
-						this.methodList.add(line2);
+						
+						//FIXME put in own method
+						String argString = "";
+						if (innerCall.getDesc() != ""){
+							Type[] args = Type.getArgumentTypes(innerCall.getDesc());
+							for (int i = 0; i < args.length; i++) {
+								if (i == args.length -1){
+									argString = argString + args[i].toString().replace(";", "");
+								}
+								else{
+									argString = argString + args[i].toString().replace(";", "") + ", ";
+								}
+							}
+							argString.substring(0, argString.length() - 3);
+						}
+						//stops here
+						if (!innerCall.getGoingToMethod().equals("<init>")){
+							String line2 =  "arg0" + ":" + name + "." + innerCall.getGoingToMethod() + "(" + argString + ")\n";
+							this.methodList.add(line2);	
+						}
 					}
 					else{
+						String argString = "";
 						String name = variables.get(innerCall.getGoingToClass());
-						String line2 =  "arg0" + ":" + name + "." + innerCall.getGoingToMethod() + "()\n";
-						this.methodList.add(line2);
+						if (innerCall.getDesc() != ""){
+							Type[] args = Type.getArgumentTypes(innerCall.getDesc());
+							for (int i = 0; i < args.length; i++) {
+								if (i == args.length -1){
+									argString = argString + args[i].toString().replace(";", "");
+								}
+								else{
+									argString = argString + args[i].toString().replace(";", "") + ", ";
+								}
+							}
+						}
+						if (!innerCall.getGoingToMethod().equals("<init>")){
+							String line2 =  "arg0" + ":" + name + "." + innerCall.getGoingToMethod() + "(" + argString + ")\n";
+							this.methodList.add(line2);
+						}
 					}
 			}
 		}
@@ -178,9 +195,35 @@ public class SequenceGenerator implements IGenerator {
 		//String temp = generateClassBoxes();
 	}
 
+	private IClass getModelClass(){
+		for (IClass c : this.model.getClasses()){
+			System.out.println(c.getClassName() + " ---- " + this.className);
+			if (c.getClassName().replace("/", "").equals(this.className.replace(".", ""))){
+				return c;
+			}
+		}
+		return null;
+	}
 	
-	private String generateClassBoxes(){
-		
+	private IMethod getMethod(IClass c, List<String> params){
+		for (IMethod m : c.getIMethods()){
+			//System.out.println("\t" + m.getName() + " ---- " + this.methodName);
+			if (m.getName().equals(this.methodName)){
+				int counter = 0;
+				boolean hasFound = true;
+				for (String args : m.getArguments()){
+					System.out.println(args);
+					if (!args.equals(params.get(counter))){
+						System.out.println("ERROR: The provided arguments do match any existing arguments");
+						hasFound = false;
+						break;
+					}		
+				}
+				if(hasFound){
+					return m;
+				}
+			}
+		}
 		return null;
 	}
 

@@ -10,12 +10,14 @@ public class MethodContainer {
 	private String goingToClass;
 	private String goingFromClass;
 	private String goingToMethod;
+	private String desc;
 
 	public MethodContainer() {
 		this.instantiation = false;
 		this.goingFromClass = "";
 		this.goingToClass = "";
 		this.goingToMethod = "";
+		this.desc = "";
 	}
 
 	/**
@@ -92,5 +94,13 @@ public class MethodContainer {
 	 */
 	public void setGoingToMethod(String methodName) {
 		this.goingToMethod = methodName;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+	
+	public String getDesc(){
+		return this.desc;
 	}
 }
