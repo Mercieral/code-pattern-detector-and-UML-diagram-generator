@@ -119,64 +119,63 @@ public class SequenceGenerator implements IGenerator {
 		instances.add(this.startClass.getClassName());
 		variables.put(this.startClass.getClassName(), "arg0");
 		for (MethodContainer innerCall : this.startMethod.getInnerCalls()){
-				if(innerCall.isInstantiation()){
+			if(innerCall.isInstantiation()){
+				counter++;
+				String name = "arg" + counter;
+				variables.put(innerCall.getGoingToClass(), name);
+				instances.add(innerCall.getGoingToClass());
+				String line1 =  "/" + name + ":" + innerCall.getGoingToClass().replace("/", "") + "[a]\n";
+				this.classList.add(line1);
+				String line2 = "arg0" + ":" + name + ".new\n";
+				this.methodList.add(line2);
+			}
+			else{
+				if (!instances.contains(innerCall.getGoingToClass())){
 					counter++;
 					String name = "arg" + counter;
 					variables.put(innerCall.getGoingToClass(), name);
 					instances.add(innerCall.getGoingToClass());
-					String line1 =  "/" + name + ":" + innerCall.getGoingToClass().replace("/", "") + "[a]\n";
+					String line1 = "/" + name + ":" + innerCall.getGoingToClass().replace("/", "") + "[a]\n";
 					this.classList.add(line1);
-					String line2 = "arg0" + ":" + name + ".new\n";
-					this.methodList.add(line2);
+					
+					//FIXME put in own method
+					String argString = "";
+					if (innerCall.getDesc() != ""){
+						Type[] args = Type.getArgumentTypes(innerCall.getDesc());
+						for (int i = 0; i < args.length; i++) {
+							if (i == args.length -1){
+								argString = argString + args[i].toString().replace(";", "");
+							}
+							else{
+								argString = argString + args[i].toString().replace(";", "") + ", ";
+							}
+						}
+					}
+					//stops here
+					if (!innerCall.getGoingToMethod().equals("<init>")){
+						String line2 =  "arg0" + ":" + name + "." + innerCall.getGoingToMethod() + "(" + argString + ")\n";
+						this.methodList.add(line2);	
+					}
 				}
 				else{
-					if (!instances.contains(innerCall.getGoingToClass())){
-						counter++;
-						String name = "arg" + counter;
-						variables.put(innerCall.getGoingToClass(), name);
-						instances.add(innerCall.getGoingToClass());
-						String line1 = "/" + name + ":" + innerCall.getGoingToClass().replace("/", "") + "[a]\n";
-						this.classList.add(line1);
-						
-						//FIXME put in own method
-						String argString = "";
-						if (innerCall.getDesc() != ""){
-							Type[] args = Type.getArgumentTypes(innerCall.getDesc());
-							for (int i = 0; i < args.length; i++) {
-								if (i == args.length -1){
-									argString = argString + args[i].toString().replace(";", "");
-								}
-								else{
-									argString = argString + args[i].toString().replace(";", "") + ", ";
-								}
+					String argString = "";
+					String name = variables.get(innerCall.getGoingToClass());
+					if (innerCall.getDesc() != ""){
+						Type[] args = Type.getArgumentTypes(innerCall.getDesc());
+						for (int i = 0; i < args.length; i++) {
+							if (i == args.length -1){
+								argString = argString + args[i].toString().replace(";", "");
 							}
-							argString.substring(0, argString.length() - 3);
-						}
-						//stops here
-						if (!innerCall.getGoingToMethod().equals("<init>")){
-							String line2 =  "arg0" + ":" + name + "." + innerCall.getGoingToMethod() + "(" + argString + ")\n";
-							this.methodList.add(line2);	
-						}
-					}
-					else{
-						String argString = "";
-						String name = variables.get(innerCall.getGoingToClass());
-						if (innerCall.getDesc() != ""){
-							Type[] args = Type.getArgumentTypes(innerCall.getDesc());
-							for (int i = 0; i < args.length; i++) {
-								if (i == args.length -1){
-									argString = argString + args[i].toString().replace(";", "");
-								}
-								else{
-									argString = argString + args[i].toString().replace(";", "") + ", ";
-								}
+							else{
+								argString = argString + args[i].toString().replace(";", "") + ", ";
 							}
 						}
-						if (!innerCall.getGoingToMethod().equals("<init>")){
-							String line2 =  "arg0" + ":" + name + "." + innerCall.getGoingToMethod() + "(" + argString + ")\n";
-							this.methodList.add(line2);
-						}
 					}
+					if (!innerCall.getGoingToMethod().equals("<init>")){
+						String line2 =  "arg0" + ":" + name + "." + innerCall.getGoingToMethod() + "(" + argString + ")\n";
+						this.methodList.add(line2);
+					}
+				}
 			}
 		}
 		
@@ -192,7 +191,6 @@ public class SequenceGenerator implements IGenerator {
 		out.close();
 		Runtime rt = Runtime.getRuntime();
 		rt.exec("lib\\sdedit-4.01.exe -o input_output\\diagram.png -t png input_output\\diagram.sd");
-		//String temp = generateClassBoxes();
 	}
 
 	private IClass getModelClass(){
