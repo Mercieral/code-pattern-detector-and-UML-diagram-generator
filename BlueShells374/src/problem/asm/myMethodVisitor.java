@@ -26,9 +26,6 @@ public class myMethodVisitor extends MethodVisitor {
 	@Override
 	public void visitMethodInsn(int opcode, String owner, String name,
 			String desc, boolean itf) {
-		System.out.println("-- visitMethodInsn --");
-		System.out.println("Opcode: " + opcode + "  Owner: " + owner
-				+ "  Name: " + name + "  Desc: " + desc + "  itf: " + itf);
 		for (String Class : this.classes) {
 			String ClassName = Class.replace(".", "");
 			String ownerName = owner.replace("/", "");
@@ -72,9 +69,6 @@ public class myMethodVisitor extends MethodVisitor {
 	@Override
 	public void visitTypeInsn(int opcode, String type) {
 		super.visitTypeInsn(opcode, type);
-		
-		System.out.println("-- visitTypeInsn --");
-		System.out.println("Opcode: " + opcode + "  Type " + type);
 		
 		MethodContainer innerCall = new MethodContainer();
 		innerCall.setInstantiation(true);
