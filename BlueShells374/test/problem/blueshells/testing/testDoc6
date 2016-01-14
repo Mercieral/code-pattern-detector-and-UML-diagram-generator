@@ -46,8 +46,6 @@ digraph G {  rankdir=BT;
 		[arrowhead="vee"];
 	arrowTestingClassestestClass6 -> arrowTestingClassestestClass4
 		[arrowhead="vee"];
-	arrowTestingClassestestClass6 -> arrowTestingClassestestClass2
-		[arrowhead="vee", style="dashed"];
 	arrowTestingClassestestClass4 -> arrowTestingClassestestClass1
 		[arrowhead="vee"];
 	arrowTestingClassestestClass4 -> arrowTestingClassestestClass2
