@@ -1,6 +1,59 @@
 # 374BlueShells
 Repository for our CSSE 374 Software Design project. 
 
+------------------------------------------------------------
+
+## Computer Science Joke
+
+![Computer coding joke](http://24.media.tumblr.com/tumblr_mec79tyDj71rix0qmo1_400.jpg)
+
+-----------------------------------------------------------
+
+## Milestone 4
+
+#### Deliverables and Location
+
+TODO
+
+------------------------------------------------------------
+
+#### Design (Milestone Evolution)
+
+TODO
+
+------------------------------------------------------------
+
+#### Instructions
+
+TOOD
+
+------------------------------------------------------------
+
+#### Code (Singleton detection)
+
+```
+TODO
+```
+
+------------------------------------------------------------
+
+#### Testing
+
+TODO
+
+------------------------------------------------------------
+
+## Professor Feedback and Fixes:
+
+After feedback from Chandan's review:
+
+* [ ] Refactor the code so that the IArrow objects are outside of the IClass objects. Move them into hte IModel object. 
+* [ ] Handle relation objects in IModel
+* [ ] Change the IGenerate class to become a visitor. Work with visitor models
+* [ ] Method Container needs some refactoring
+* [ ] Improve testing by creating an IModel object and testing the output with that
+* [ ] Use a ByteArrayStream for testing instead of reading from files
+* [ ] Fix the Sequence Diagrams for both the project and the shuffle method
 
 ------------------------------------------------------------
 ## Design Pattern Joke
