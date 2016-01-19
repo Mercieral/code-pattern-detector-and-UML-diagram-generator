@@ -1,6 +1,8 @@
 package problem.javaClasses;
 
 import problem.interfaces.IField;
+import problem.interfaces.ITraverser;
+import problem.interfaces.IVisitor;
 
 /**
  * Implements {@link IField} object to store information about a field object
@@ -8,7 +10,7 @@ import problem.interfaces.IField;
  * @author gateslm
  *
  */
-public class Field implements IField {
+public class Field implements IField, ITraverser {
 
 	private String name;
 
@@ -79,6 +81,12 @@ public class Field implements IField {
 	@Override
 	public void setAccessLevel(String access) {
 		this.accessLevel = access;
+	}
+
+	@Override
+	public void accept(IVisitor v) {
+		// TODO Fill in Field accept
+		
 	}
 
 }

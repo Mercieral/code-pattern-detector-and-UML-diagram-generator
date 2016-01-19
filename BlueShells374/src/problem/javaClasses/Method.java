@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import problem.interfaces.IMethod;
+import problem.interfaces.ITraverser;
+import problem.interfaces.IVisitor;
 
 
 /**
@@ -12,7 +14,7 @@ import problem.interfaces.IMethod;
  * @author gateslm
  *
  */
-public class Method implements IMethod {
+public class Method implements IMethod, ITraverser {
 
 	private String name;
 
@@ -110,5 +112,11 @@ public class Method implements IMethod {
 	@Override
 	public void addInnerCall(MethodContainer innerCall){
 		this.innerCalls.add(innerCall);
+	}
+
+	@Override
+	public void accept(IVisitor v) {
+		// TODO fill in Method accept
+		
 	}
 }

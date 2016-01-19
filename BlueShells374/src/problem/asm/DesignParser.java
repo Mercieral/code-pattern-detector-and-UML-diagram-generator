@@ -13,10 +13,14 @@ import org.objectweb.asm.Opcodes;
 import problem.interfaces.IClass;
 import problem.interfaces.IGenerator;
 import problem.interfaces.IModel;
+import problem.interfaces.ITraverser;
+import problem.interfaces.IVisitor;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Model;
 import problem.javaClasses.SequenceGenerator;
-import problem.javaClasses.UMLGenerator;
+import problem.javaClasses.SequenceVisitor;
+import problem.javaClasses.SingletonVisitor;
+import problem.javaClasses.UMLVisitor;
 
 public class DesignParser {
 
@@ -81,9 +85,6 @@ public class DesignParser {
 			ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5,
 					fieldVisitor, currentClass, args);
 
-			// TODO: add more DECORATORS here in later milestones to accomplish
-			// specific tasks
-
 			// Tell the Reader to use our (heavily decorated) ClassVisitor to
 			// visit the class
 			reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
@@ -94,9 +95,10 @@ public class DesignParser {
 
 		// UMLGenerator uml = new UMLGenerator(model);
 		// uml.execute();
-		HashMap<String, IGenerator> generators = new HashMap<>();
-		generators.put("uml", new UMLGenerator(model));
-		generators.put("sequence", new SequenceGenerator(model));
+		HashMap<String, IVisitor> generators = new HashMap<>();
+		generators.put("uml", new UMLVisitor(model));
+		generators.put("sequence", new SequenceVisitor(model));
+		generators.put("singleton", new SingletonVisitor(model));
 
 		commandConsole(model, generators);
 	}
@@ -110,7 +112,7 @@ public class DesignParser {
 	 *            - Types of {@link IGenerator} objects that can build graphs
 	 */
 	private static void commandConsole(IModel model,
-			HashMap<String, IGenerator> generators) {
+			HashMap<String, IVisitor> visitors) {
 		boolean quit = false;
 		Scanner scanner = new Scanner(System.in);
 
@@ -133,18 +135,20 @@ public class DesignParser {
 				line = scanner.nextLine();
 				line = line.toLowerCase().trim();
 
-				if (!generators.containsKey(line)) {
+				if (!visitors.containsKey(line)) {
 					System.out.println(GENERATOR_NOT_SUPPORTED);
 					continue;
 				}
 
-				IGenerator generator = generators.get(line);
+				ITraverser traverser = (ITraverser) model;
+				IVisitor v = visitors.get(line); 
 
 				if (line.equals("sequence")) {
-					SDLogic(line, scanner, (SequenceGenerator) generator);
+					SDLogic(line, scanner, (SequenceGenerator) v);
 				}
+				
 
-				generator.execute();
+				traverser.accept(v);
 				System.out.println(REFRESH_SUPPORT);
 			}
 

@@ -7,8 +7,10 @@ import problem.interfaces.IArrow;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IMethod;
+import problem.interfaces.ITraverser;
+import problem.interfaces.IVisitor;
 
-public class ConcreteClass implements IClass {
+public class ConcreteClass implements IClass, ITraverser {
 	private Collection<IMethod> methodList;
 	private Collection<IField> fieldList;
 	private int accessLevel;
@@ -140,5 +142,11 @@ public class ConcreteClass implements IClass {
 	@Override
 	public Collection<IArrow> getArrows(){
 		return this.arrows;
+	}
+
+	@Override
+	public void accept(IVisitor v) {
+		// TODO Fill in Class accept
+		
 	}
 }
