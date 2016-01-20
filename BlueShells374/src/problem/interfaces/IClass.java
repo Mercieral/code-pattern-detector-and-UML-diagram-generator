@@ -2,7 +2,9 @@ package problem.interfaces;
 
 import java.util.Collection;
 
-public interface IClass {
+import problem.visitor.ITraverser;
+
+public interface IClass extends ITraverser {
 
 	/**
 	 * Gets a collection of type {@link IMethod}

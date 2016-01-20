@@ -1,6 +1,7 @@
 package problem.javaClasses;
 
 import problem.interfaces.IField;
+import problem.visitor.IVisitor;
 
 /**
  * Implements {@link IField} object to store information about a field object
@@ -79,6 +80,14 @@ public class Field implements IField {
 	@Override
 	public void setAccessLevel(String access) {
 		this.accessLevel = access;
+	}
+
+	@Override
+	public void accept(IVisitor v) {
+		v.preVisit(this);
+		v.visit(this);
+		v.postVisit(this);
+		
 	}
 
 }

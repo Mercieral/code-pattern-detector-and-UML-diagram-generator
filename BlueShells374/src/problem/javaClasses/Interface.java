@@ -7,6 +7,8 @@ import problem.interfaces.IArrow;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IMethod;
+import problem.visitor.ITraverser;
+import problem.visitor.IVisitor;
 
 public class Interface implements IClass {
 	private Collection<IMethod> methodList;
@@ -138,5 +140,12 @@ public class Interface implements IClass {
 	@Override
 	public Collection<IArrow> getArrows() {
 		return this.arrows;
+	}
+
+	@Override
+	public void accept(IVisitor v) {
+		v.preVisit(this);
+		v.visit(this);
+		v.postVisit(this);
 	}
 }

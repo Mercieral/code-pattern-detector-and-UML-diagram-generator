@@ -1,6 +1,8 @@
 package problem.interfaces;
 
-public interface IField {
+import problem.visitor.ITraverser;
+
+public interface IField extends ITraverser {
 
 	/**
 	 * Gets the name of the field

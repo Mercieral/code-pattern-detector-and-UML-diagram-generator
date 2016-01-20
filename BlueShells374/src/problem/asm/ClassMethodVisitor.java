@@ -29,7 +29,9 @@ public class ClassMethodVisitor extends ClassVisitor {
 			String signature, String[] exceptions) {
 		MethodVisitor toDecorate = super.visitMethod(access, name, desc,
 				signature, exceptions);
-
+		if (name.equals("shuffle")){
+			System.out.println(desc);
+		}
 		IMethod currentMethod = new Method();
 		currentMethod.setName(name);
 		currentMethod.setDesc(desc);

@@ -1,15 +1,15 @@
 package problem.asm;
 
+import java.io.FileOutputStream;
+import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
-
 import problem.interfaces.IClass;
 import problem.interfaces.IGenerator;
 import problem.interfaces.IModel;
@@ -17,6 +17,7 @@ import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Model;
 import problem.javaClasses.SequenceGenerator;
 import problem.javaClasses.UMLGenerator;
+import problem.visitor.SequenceOutputStream;
 
 public class DesignParser {
 
@@ -95,10 +96,15 @@ public class DesignParser {
 		// UMLGenerator uml = new UMLGenerator(model);
 		// uml.execute();
 		HashMap<String, IGenerator> generators = new HashMap<>();
+		HashMap<String, FilterOutputStream> streams = new HashMap<>();
 		generators.put("uml", new UMLGenerator(model));
 		generators.put("sequence", new SequenceGenerator(model));
+		streams.put("sequence", new SequenceOutputStream(
+				new FileOutputStream("input_output/diagram.sd")));
+		
+		
 
-		commandConsole(model, generators);
+		commandConsole(model, generators, streams);
 	}
 
 	/**
@@ -110,7 +116,7 @@ public class DesignParser {
 	 *            - Types of {@link IGenerator} objects that can build graphs
 	 */
 	private static void commandConsole(IModel model,
-			HashMap<String, IGenerator> generators) {
+			HashMap<String, IGenerator> generators, HashMap<String, FilterOutputStream> streams) {
 		boolean quit = false;
 		Scanner scanner = new Scanner(System.in);
 
@@ -141,10 +147,14 @@ public class DesignParser {
 				IGenerator generator = generators.get(line);
 
 				if (line.equals("sequence")) {
-					SDLogic(line, scanner, (SequenceGenerator) generator);
+					FilterOutputStream stream = streams.get(line);
+					//SDLogic(line, scanner, (SequenceGenerator) generator);
+					SDLogic2(line, scanner, stream);
+					SequenceOutputStream s = (SequenceOutputStream) stream;
+					s.write(model);
 				}
 
-				generator.execute();
+				//generator.execute();
 				System.out.println(REFRESH_SUPPORT);
 			}
 
@@ -154,6 +164,38 @@ public class DesignParser {
 		}
 
 		scanner.close();
+	}
+
+	private static void SDLogic2(String line, Scanner scanner, FilterOutputStream stream) {
+		System.out.print(INPUT_CLASS_NAME);
+		line = scanner.nextLine();
+		line = line.trim();
+		String className = line;
+		System.out.print(INPUT_METHOD_NAME);
+		line = scanner.nextLine();
+		line = line.trim();
+		String methodName = line;
+		System.out.print(INPUT_PARAMETERS);
+		line = scanner.nextLine();
+		line = line.trim();
+		String desc = line;
+		String[] args = line.split(",");
+		System.out.print(INPUT_CALL_DEPTH);
+		line = scanner.nextLine();
+		line = line.toLowerCase().trim();
+		int callDepth;
+		if (line.equals("skip") || line.equals("")) {
+			callDepth = 5;
+		} else {
+			callDepth = Integer.parseInt(line);
+		}
+
+		List<String> params = new ArrayList<String>();
+		for (String arg : args) {
+			params.add(arg);
+		}
+		SequenceOutputStream s = (SequenceOutputStream)stream;
+		s.InitializeStrings(className, methodName, desc, callDepth);
 	}
 
 	/**

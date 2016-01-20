@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import problem.interfaces.IMethod;
+import problem.visitor.IVisitor;
 
 
 /**
@@ -110,5 +111,12 @@ public class Method implements IMethod {
 	@Override
 	public void addInnerCall(MethodContainer innerCall){
 		this.innerCalls.add(innerCall);
+	}
+
+	@Override
+	public void accept(IVisitor v) {
+		v.preVisit(this);
+		v.visit(this);
+		v.postVisit(this);
 	}
 }

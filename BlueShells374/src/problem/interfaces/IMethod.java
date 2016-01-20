@@ -6,6 +6,7 @@ import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
 import problem.javaClasses.MethodContainer;
+import problem.visitor.ITraverser;
 
 /**
  * Object used to hold information about methods
@@ -13,7 +14,7 @@ import problem.javaClasses.MethodContainer;
  * @author gateslm
  *
  */
-public interface IMethod {
+public interface IMethod extends ITraverser {
 
 	/**
 	 * Retrieves name of the method

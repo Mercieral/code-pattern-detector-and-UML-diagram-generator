@@ -7,6 +7,8 @@ import problem.interfaces.IArrow;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IMethod;
+import problem.visitor.ITraverser;
+import problem.visitor.IVisitor;
 
 public class ConcreteClass implements IClass {
 	private Collection<IMethod> methodList;
@@ -140,5 +142,21 @@ public class ConcreteClass implements IClass {
 	@Override
 	public Collection<IArrow> getArrows(){
 		return this.arrows;
+	}
+
+	@Override
+	public void accept(IVisitor v) {
+		v.preVisit(this);
+		v.visit(this);
+		for (IField f : this.fieldList){
+			ITraverser t = (ITraverser)f;
+			t.accept(v);
+		}
+		for (IMethod m : this.methodList){
+			ITraverser t = (ITraverser)m;
+			t.accept(v);
+		}
+		v.postVisit(this);
+		
 	}
 }
