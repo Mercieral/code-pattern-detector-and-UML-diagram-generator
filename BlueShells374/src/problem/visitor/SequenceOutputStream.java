@@ -14,6 +14,7 @@ import problem.interfaces.IClass;
 import problem.interfaces.IMethod;
 import problem.interfaces.IModel;
 import problem.javaClasses.MethodContainer;
+import problem.javaClasses.Model;
 
 public class SequenceOutputStream extends FilterOutputStream {
 	
@@ -32,18 +33,21 @@ public class SequenceOutputStream extends FilterOutputStream {
 	private List<String> instances;
 	private List<String> classList;
 	private List<String> methodList;
+	private boolean first;
 
 	public SequenceOutputStream(OutputStream out) {
 		super(out);
 		this.visitor = new Visitor();
 		counter = 0;
-		//inits
+		this.first = true;
+		this.setUpVisitModel();
 	}
 	
 	public void InitializeStrings(String Class, String method, String desc, int callDepth){
 		this.className = Class;
 		this.methodName = method;
 		this.parameters = desc;
+		this.callDepth = callDepth;
 	}
 	
 	public void write(IModel model) {
@@ -52,7 +56,7 @@ public class SequenceOutputStream extends FilterOutputStream {
 	}
 	
 	public void setUpVisitModel(){
-		this.visitor.addVisit(VisitType.Visit, IModel.class, (ITraverser t) -> {
+		this.visitor.addVisit(VisitType.Visit, Model.class, (ITraverser t) -> {
 			IModel m = (IModel) t;
 			System.out.println("class: " + this.className);
 			System.out.println("method: " + this.methodName);
@@ -73,20 +77,14 @@ public class SequenceOutputStream extends FilterOutputStream {
 				for (String methods : this.methodList) {
 					this.write(methods.getBytes());
 				}
+				Runtime rt = Runtime.getRuntime();
+				rt.exec("lib\\sdedit-4.01.exe -o input_output\\diagram.png -t"
+						+ " png input_output\\diagram.sd");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 		});
-	}
-	
-	private void write(String m) {
-		try {
-			super.write(m.getBytes());
-		}
-		catch(IOException e) {
-			throw new RuntimeException(e);
-		}
 	}
 	
 	/**
@@ -134,6 +132,16 @@ public class SequenceOutputStream extends FilterOutputStream {
 				}
 				IMethod m = this.getMethod(c, argStringArray, method);
 				if (m != null) {
+					if (this.first){
+						String name = "arg" + counter;
+						String line1 = "" + name + ":"
+								+ Class.replace(".", "")
+								+ "[a]\n";
+						this.classList.add(line1);
+						variables.put(Class.replace(".", "/"), name);
+						instances.add(Class.replace(".", "/"));
+						this.first = false;
+					}
 					recursiveMethodGenerator(m, varName, depth, model);
 				}
 			}

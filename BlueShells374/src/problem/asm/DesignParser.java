@@ -18,6 +18,7 @@ import problem.javaClasses.Model;
 import problem.javaClasses.SequenceGenerator;
 import problem.javaClasses.UMLGenerator;
 import problem.visitor.SequenceOutputStream;
+import problem.visitor.UMLOutputStream;
 
 public class DesignParser {
 
@@ -101,6 +102,7 @@ public class DesignParser {
 		generators.put("sequence", new SequenceGenerator(model));
 		streams.put("sequence", new SequenceOutputStream(
 				new FileOutputStream("input_output/diagram.sd")));
+		streams.put("uml", new UMLOutputStream(new FileOutputStream("input_output/diagram.sd")));
 		
 		
 
