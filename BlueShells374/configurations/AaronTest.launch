@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/BlueShells374/src/problem/asm/DesignParser.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+</listAttribute>
+<booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="problem.asm.DesignParser"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="problem.AppLauncher&#13;&#10;problem.Data&#13;&#10;problem.HTML&#13;&#10;problem.IAppTypes&#13;&#10;problem.IData&#13;&#10;problem.IObserver&#13;&#10;problem.IWatcher&#13;&#10;problem.Main&#13;&#10;problem.PNG&#13;&#10;problem.PrintBack&#13;&#10;problem.PrintName&#13;&#10;problem.TXT&#13;&#10;problem.Watcher"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="BlueShells374"/>
+</launchConfiguration>

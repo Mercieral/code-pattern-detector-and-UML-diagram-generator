@@ -38,7 +38,6 @@ public class SingletonVisitor implements IPatternVisitor {
 		this.visitor.addVisit(VisitType.Visit, Field.class, (ITraverser t) -> {
 			IField f = (IField) t;
 			String desc = f.getDesc().replace(".", "/");
-			desc = desc.replaceAll("class", "");
 			if (desc.equals(currentClass.getClassName())){
 				hasFieldInstance = true;
 			}
@@ -50,6 +49,7 @@ public class SingletonVisitor implements IPatternVisitor {
 			IMethod m = (IMethod) t;
 			Type arg = Type.getReturnType(m.getDesc());
 			String arg2 = arg.toString().substring(1).replace(";", "");
+			System.out.println(arg2 + " = " + currentClass.getClassName());
 			if (arg2.equals(currentClass.getClassName())){
 				hasMethodInstance = true;
 			}

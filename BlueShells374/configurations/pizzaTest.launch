@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/BlueShells374/src/problem/asm/DesignParser.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="problem.asm.DesignParser"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="headfirst.BlackOlives&#13;&#10;headfirst.Cheese&#13;&#10;headfirst.CheesePizza&#13;&#10;headfirst.ChicagoPizzaIngredientFactory&#13;&#10;headfirst.ChicagoPizzaStore&#13;&#10;headfirst.ClamPizza&#13;&#10;headfirst.Clams&#13;&#10;headfirst.Dough&#13;&#10;headfirst.Eggplant&#13;&#10;headfirst.FreshClams&#13;&#10;headfirst.FrozenClams&#13;&#10;headfirst.Garlic&#13;&#10;headfirst.MarinaraSauce&#13;&#10;headfirst.MozzarellaCheese&#13;&#10;headfirst.Mushroom&#13;&#10;headfirst.NYPizzaIngredientFactory&#13;&#10;headfirst.NYPizzaStore&#13;&#10;headfirst.Onion&#13;&#10;headfirst.ParmesanCheese&#13;&#10;headfirst.Pepperoni&#13;&#10;headfirst.PepperoniPizza&#13;&#10;headfirst.Pizza&#13;&#10;headfirst.PizzaIngredientFactory&#13;&#10;headfirst.PizzaStore&#13;&#10;headfirst.PizzaTestDrive&#13;&#10;headfirst.PlumTomatoSauce&#13;&#10;headfirst.RedPepper&#13;&#10;headfirst.ReggianoCheese&#13;&#10;headfirst.Sauce&#13;&#10;headfirst.SlicedPepperoni&#13;&#10;headfirst.Spinach&#13;&#10;headfirst.ThickCrustDough&#13;&#10;headfirst.ThinCrustDough&#13;&#10;headfirst.VeggiePizza&#13;&#10;headfirst.Veggies"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="BlueShells374"/>
+</launchConfiguration>

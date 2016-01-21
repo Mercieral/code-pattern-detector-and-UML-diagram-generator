@@ -1,4 +1,4 @@
-package subclass;
+package sub;
 
 public class CoolerSingleton extends Singleton {
 	// useful instance variables here

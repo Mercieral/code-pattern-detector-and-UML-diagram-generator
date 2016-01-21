@@ -1,4 +1,4 @@
-package subclass;
+package sub;
 
 public class SingletonTestDrive {
 	public static void main(String[] args) {

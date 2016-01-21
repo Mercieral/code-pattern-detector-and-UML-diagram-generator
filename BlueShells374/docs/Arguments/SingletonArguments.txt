@@ -5,8 +5,8 @@ dcl.Singleton
 dcl.SingletonClient
 stat.Singleton
 stat.SingletonClient
-subclass.CoolerSingleton
-subclass.HotterSingleton
-subclass.Singleton
-subclass.SingletonTestDrive
+sub.CoolerSingleton
+sub.HotterSingleton
+sub.Singleton
+sub.SingletonTestDrive
 threadsafe.Singleton

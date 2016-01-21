@@ -1,4 +1,4 @@
-package subclass;
+package sub;
 
 public class Singleton {
 	protected static Singleton uniqueInstance;
