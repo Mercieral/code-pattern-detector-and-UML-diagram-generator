@@ -13,6 +13,7 @@ import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IMethod;
 import problem.interfaces.IModel;
+import problem.interfaces.IPattern;
 import problem.interfaces.IRelation;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.ExtensionRelation;
@@ -140,11 +141,17 @@ public class UMLOutputStream extends FilterOutputStream implements IStream{
 
 			String beginBrace = "[ \n";
 			String box = "\t\tshape = \"record\",\n";
+			
 			//pattern code here;
+			StringBuilder sb = new StringBuilder();
+			for (IPattern pattern : obj.getPatterns()){
+				sb.append(pattern.UMLcommand());
+			}
+			
 			String labelStart = "\t\tlabel = \n\t\t\t\"{ ";
 			String className = "\t" + obj.getClassName().replace("/", "") + " ";
 
-			builder.append(className + beginBrace + box);
+			builder.append(className + beginBrace + box + sb.toString());
 			builder.append(labelStart);
 			if (obj.getAcessLevel() == Opcodes.ACC_INTERFACE) {
 				builder.append("<<interface>>\n");

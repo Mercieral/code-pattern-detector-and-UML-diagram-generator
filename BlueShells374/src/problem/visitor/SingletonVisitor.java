@@ -1,8 +1,5 @@
 package problem.visitor;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
 import org.objectweb.asm.Type;
 
 import problem.interfaces.IClass;
@@ -10,6 +7,8 @@ import problem.interfaces.IField;
 import problem.interfaces.IMethod;
 import problem.interfaces.IModel;
 import problem.javaClasses.ConcreteClass;
+import problem.javaClasses.Field;
+import problem.javaClasses.Method;
 import problem.patterns.SingletonPattern;
 
 public class SingletonVisitor implements IPatternVisitor {
@@ -33,10 +32,8 @@ public class SingletonVisitor implements IPatternVisitor {
 	}
 	
 	private void visitField(){
-		
 		this.visitor.addVisit(VisitType.Visit, Field.class, (ITraverser t) -> {
 			IField f = (IField) t;
-			System.out.println("in inner method");
 			if (f.getDesc().equals(currentClass.getClassName())){
 				currentClass.addPattern(new SingletonPattern(currentClass.getClassName()));
 				hasSingleton = true;
@@ -46,10 +43,18 @@ public class SingletonVisitor implements IPatternVisitor {
 
 	private void visitMethod(){
 		this.visitor.addVisit(VisitType.Visit, Method.class, (ITraverser t) -> {
+			if (hasSingleton){
+				return;
+			}
+			
 			IMethod m = (IMethod) t;
 			Type arg = Type.getReturnType(m.getDesc());
+			if (arg.toString().equals(currentClass.getClassName())){
+				currentClass.addPattern(new SingletonPattern(currentClass.getClassName()));
+			}
 		});
 	}
+	
 	@Override
 	public void write(IModel model) {
 		ITraverser traverser = (ITraverser) model;
