@@ -15,8 +15,8 @@ Repository for our CSSE 374 Software Design project.
 
 1. Diagrams:
   1. [Manually Created UML](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone4/manual_generated_UML.png)
-  2. [Generated Class Diagram](www.google.com)
-  3. [Generated Singleton Patterns](http://www.google.com)
+  2. [Generated UML Project Diagram](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone4/generated_UML.png)
+  3. [Generated Singleton Patterns](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone4/generated_UML_Singleton.png)
 
 ------------------------------------------------------------
 
@@ -156,7 +156,7 @@ public interface IInvoker {
 
 #### Testing
 
-TODO
+Added tests into the document
 
 ------------------------------------------------------------
 
