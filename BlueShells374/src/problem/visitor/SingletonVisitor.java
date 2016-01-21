@@ -1,11 +1,9 @@
 package problem.visitor;
 
 public class SingletonVisitor implements IPatternVisitor {
-
-	@Override
-	public boolean isPattern() {
-		// TODO Auto-generated method stub
-		return false;
+	private Visitor visitor;
+	
+	public SingletonVisitor(){
+		this.visitor = new Visitor();
 	}
-
 }

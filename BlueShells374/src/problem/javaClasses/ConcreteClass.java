@@ -2,10 +2,12 @@ package problem.javaClasses;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IMethod;
+import problem.interfaces.IPattern;
 import problem.visitor.ITraverser;
 import problem.visitor.IVisitor;
 
@@ -19,6 +21,7 @@ public class ConcreteClass implements IClass {
 	private IClass superClass;
 	private Collection<String> interfaceList;
 	private String extension;
+	private List<IPattern> patternList;
 
 	/**
 	 * Constructor for ConcreteClass
@@ -33,6 +36,7 @@ public class ConcreteClass implements IClass {
 		this.superClass = null;
 		this.interfaceList = new ArrayList<>();
 		this.extension = "";
+		this.patternList = new ArrayList<>();
 	}
 	
 	@Override
@@ -143,5 +147,13 @@ public class ConcreteClass implements IClass {
 		}
 		v.postVisit(this);
 		
+	}
+	
+	public void addPattern(IPattern pattern){
+		this.patternList.add(pattern);
+	}
+	
+	public List<IPattern> getPatterns(){
+		return this.patternList;
 	}
 }
