@@ -19,7 +19,7 @@ public class ModelTest {
 		assertEquals(m.getClasses(), new ArrayList<IClass>());
 		IClass c1 = new ConcreteClass();
 		m.addClass(c1);
-		assertEquals(m.getClasses().size(), 2);
+		assertEquals(m.getClasses().size(), 1);
 	}
 
 }
