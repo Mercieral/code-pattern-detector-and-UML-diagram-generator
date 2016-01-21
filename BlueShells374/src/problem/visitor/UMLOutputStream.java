@@ -242,8 +242,7 @@ public class UMLOutputStream extends FilterOutputStream implements IStream{
 				result = result + ") : ";
 				result = result + trimValue(m.getReturnType(), ".");
 				
-				sb2.append(result);
-				sb.append(sb2.toString());
+				sb.append(result);
 				sb.append(" \\l\n");
 				
 				try {
