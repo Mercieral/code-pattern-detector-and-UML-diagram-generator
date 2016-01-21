@@ -172,7 +172,7 @@ public class UMLOutputStream extends FilterOutputStream implements IStream {
 					if (obj.getAcessLevel() == 1537) {
 						builder.append("\\<\\<interface\\>\\>\\l\n");
 					}
-					builder.append(obj.getClassName() + " \\l\n\t\t\t"
+					builder.append(obj.getClassName() + "\\l\n\t\t\t"
 							+ sb2.toString() + "|\n");
 					try {
 						this.write(builder.toString().getBytes());

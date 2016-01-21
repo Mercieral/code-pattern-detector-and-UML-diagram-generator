@@ -26,6 +26,7 @@ problem.visitor.IVisitMethod
 problem.visitor.IVisitor
 problem.visitor.LookupKey
 problem.visitor.SequenceOutputStream
+problem.visitor.SingletonVisitor
 problem.visitor.UMLOutputStream
 problem.visitor.Visitor
 problem.visitor.VisitType
