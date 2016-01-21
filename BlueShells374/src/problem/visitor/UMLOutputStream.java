@@ -2,8 +2,6 @@ package problem.visitor;
 
 import java.io.FilterOutputStream;
 import java.io.OutputStream;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 
 import org.objectweb.asm.Opcodes;
 
@@ -12,6 +10,8 @@ import problem.interfaces.IField;
 import problem.interfaces.IMethod;
 import problem.interfaces.IModel;
 import problem.javaClasses.ConcreteClass;
+import problem.javaClasses.Field;
+import problem.javaClasses.Method;
 import problem.javaClasses.Model;
 
 public class UMLOutputStream extends FilterOutputStream implements IStream{
@@ -22,6 +22,7 @@ public class UMLOutputStream extends FilterOutputStream implements IStream{
 		this.visitor = new Visitor();
 		
 		this.setupPreVisitModel();
+		this.setupPreVisitClass();
 		this.visitClass();
 		this.visitField();
 		this.visitMethod();
@@ -56,8 +57,8 @@ public class UMLOutputStream extends FilterOutputStream implements IStream{
 		});
 	}
 	
-	private void visitClass(){
-		this.visitor.addVisit(VisitType.Visit, ConcreteClass.class, (ITraverser t) -> {
+	private void setupPreVisitClass(){
+		this.visitor.addVisit(VisitType.PreVisit, ConcreteClass.class, (ITraverser t) -> {
 			IClass obj = (IClass) t;
 			StringBuilder builder = new StringBuilder();
 
@@ -74,6 +75,16 @@ public class UMLOutputStream extends FilterOutputStream implements IStream{
 			builder.append(obj.getClassName() + "\n\t\t\t|\n");
 			try {
 				this.write(builder.toString().getBytes());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+	}
+	
+	private void visitClass(){
+		this.visitor.addVisit(VisitType.Visit, ConcreteClass.class, (ITraverser t) -> {
+			try {
+				this.write("\t\t\t| \n ".getBytes());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
