@@ -5,14 +5,20 @@ import java.io.OutputStream;
 
 import org.objectweb.asm.Opcodes;
 
+import problem.interfaces.IClass;
+import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Model;
 
-public class UMLOutputStream extends FilterOutputStream {
+public class UMLOutputStream extends FilterOutputStream implements IStream{
 	private IVisitor visitor;
 	
 	public UMLOutputStream(OutputStream out) {
 		super(out);
 		this.visitor = new Visitor();
+		
+		this.setupPreVisitModel();
+		this.visitClass();
+		
 	}
 	
 	private void setupPreVisitModel(){
@@ -39,28 +45,42 @@ public class UMLOutputStream extends FilterOutputStream {
 		});
 	}
 	
-	private void VisitModel(){
-		this.visitor.addVisit(VisitType.Visit, ConcreteClass.class, m);
+	private void visitClass(){
+		this.visitor.addVisit(VisitType.Visit, ConcreteClass.class, (ITraverser t) -> {
+			IClass obj = (IClass) t;
+			StringBuilder builder = new StringBuilder();
+
+			String beginBrace = "[ \n";
+			String box = "\t\tshape = \"record\",\n";
+			String labelStart = "\t\tlabel = \n\t\t\t\"{ ";
+			String className = "\t" + obj.getClassName().replace("/", "") + " ";
+
+			builder.append(className + beginBrace + box);
+			builder.append(labelStart);
+			if (obj.getAcessLevel() == Opcodes.ACC_INTERFACE) {
+				builder.append("<<interface>>\n");
+			}
+			builder.append(obj.getClassName() + "\n\t\t\t|\n");
+			try {
+				this.write(builder.toString().getBytes());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
 	}
 	
-	private void generateClassBox(){
-		String beginBrace = "[ \n";
-		String endBrace = "\t]; \n";
-		String box = "\t\tshape = \"record\",\n";
-		String labelStart = "\t\tlabel = \n\t\t\t\"{ ";
-		String labelEnd = "\t\t\t}\" \n";
-		StringBuilder builder = new StringBuilder();
-		String className = "\t" + obj.getClassName().replace("/", "") + " ";
-
-		builder.append(className + beginBrace + box);
-		builder.append(labelStart);
-		if (obj.getAcessLevel() == Opcodes.ACC_INTERFACE) {
-			builder.append("<<interface>>\n");
-		}
-		builder.append(obj.getClassName() + "\n\t\t\t|\n");
+	private void postVisitClass(){
+		this.visitor.addVisit(VisitType.PostVisit, ConcreteClass.class, (ITraverser t) -> {
+			String endBrace = "\t]; \n";
+			String labelEnd = "\t\t\t}\" \n";
+			StringBuilder sb = new StringBuilder();
+			sb.append(labelEnd);	
+			sb.append(endBrace);
+			try {
+				this.write(sb.toString().getBytes());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
 	}
-	
-	
-	
-
 }
