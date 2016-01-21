@@ -11,7 +11,7 @@ import problem.javaClasses.Field;
 import problem.javaClasses.Method;
 import problem.patterns.SingletonPattern;
 
-public class SingletonVisitor implements IPatternVisitor {
+public class SingletonVisitor implements IInvoker {
 	private Visitor visitor;
 	private IClass currentClass;
 	private boolean hasFieldInstance;

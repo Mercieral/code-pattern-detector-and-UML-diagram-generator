@@ -15,7 +15,7 @@ import problem.interfaces.IModel;
 import problem.javaClasses.MethodContainer;
 import problem.javaClasses.Model;
 
-public class SequenceOutputStream extends FilterOutputStream implements IStream {
+public class SequenceOutputStream extends FilterOutputStream implements IInvoker {
 	
 	public static final String GENERATOR_NAME = "SequenceGenerator";
 	private static final String ERROR_ITEM_NOT_FOUND = "ERROR: The specified class or method could not be found";

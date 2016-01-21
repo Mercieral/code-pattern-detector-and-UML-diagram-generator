@@ -24,7 +24,7 @@ import problem.javaClasses.Method;
 import problem.javaClasses.Model;
 import problem.javaClasses.UsesRelation;
 
-public class UMLOutputStream extends FilterOutputStream implements IStream {
+public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 	private IVisitor visitor;
 	private List<String> hasClassNames;
 	private Map<String, IRelation> useRelationList;

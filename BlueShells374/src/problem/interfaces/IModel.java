@@ -2,7 +2,9 @@ package problem.interfaces;
 
 import java.util.List;
 
-public interface IModel {
+import problem.visitor.ITraverser;
+
+public interface IModel extends ITraverser{
 
 	/**
 	 * Add a {@link IClass} object to a the model

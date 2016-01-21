@@ -16,7 +16,7 @@ import problem.visitor.IVisitor;
  * @author gateslm, daniellm, mercieal
  *
  */
-public class Model implements IModel, ITraverser {
+public class Model implements IModel {
 
 	private List<IClass> classes;
 	private List<IRelation> relations;

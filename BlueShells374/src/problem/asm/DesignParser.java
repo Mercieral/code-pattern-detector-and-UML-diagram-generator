@@ -13,7 +13,7 @@ import problem.interfaces.IClass;
 import problem.interfaces.IModel;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Model;
-import problem.visitor.IStream;
+import problem.visitor.IInvoker;
 import problem.visitor.SequenceOutputStream;
 import problem.visitor.SingletonVisitor;
 import problem.visitor.UMLOutputStream;
@@ -89,7 +89,7 @@ public class DesignParser {
 			model.addClass(currentClass);
 		}
 
-		HashMap<String, IStream> streams = new HashMap<>();
+		HashMap<String, IInvoker> streams = new HashMap<>();
 		streams.put("sequence", new SequenceOutputStream(
 				new FileOutputStream("input_output/diagram.sd")));
 		streams.put("uml", new UMLOutputStream(new FileOutputStream("input_output/graph.gv")));
@@ -108,7 +108,7 @@ public class DesignParser {
 	 * @param generators
 	 *            - Types of {@link IGenerator} objects that can build graphs
 	 */
-	private static void commandConsole(IModel model, HashMap<String, IStream> streams) throws IOException {
+	private static void commandConsole(IModel model, HashMap<String, IInvoker> streams) throws IOException {
 		boolean quit = false;
 		Scanner scanner = new Scanner(System.in);
 		
@@ -136,7 +136,7 @@ public class DesignParser {
 					continue;
 				}
 
-				IStream stream = streams.get(line);
+				IInvoker stream = streams.get(line);
 
 				if (line.equals("sequence")) {
 					SDLogic(line, scanner, stream);
@@ -156,7 +156,7 @@ public class DesignParser {
 		scanner.close();
 	}
 
-	private static void SDLogic(String line, Scanner scanner, IStream stream) {
+	private static void SDLogic(String line, Scanner scanner, IInvoker stream) {
 		System.out.print(INPUT_CLASS_NAME);
 		line = scanner.nextLine();
 		line = line.trim();
