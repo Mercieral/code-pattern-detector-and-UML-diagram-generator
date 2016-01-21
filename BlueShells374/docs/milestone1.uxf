@@ -125,13 +125,13 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1736</x>
-      <y>1064</y>
+      <x>1984</x>
+      <y>1024</y>
       <w>24</w>
-      <h>88</h>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -345,10 +345,10 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1744</x>
+      <x>1880</x>
       <y>744</y>
-      <w>368</w>
-      <h>328</h>
+      <w>232</w>
+      <h>288</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 IClass
@@ -372,18 +372,16 @@ IClass
 +setSuperName(IClass name): void
 +addInterface(String inter): void
 +setExtension(String extension): void
-+toString(): String
-+addArrow(IArrow arrow): void
-+getArrows(): Collection&lt;IArrow&gt;</panel_attributes>
++toString(): String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1584</x>
-      <y>1136</y>
+      <x>1880</x>
+      <y>1104</y>
       <w>216</w>
-      <h>432</h>
+      <h>456</h>
     </coordinates>
     <panel_attributes>ConcreteClass
 --
@@ -396,7 +394,7 @@ IClass
 - IClass superClass
 - Collection&lt;String&gt; interfaceList
 - String extension
-- Collection&lt;IArrow&gt; arrows
+- List&lt;IPattern&gt; patternList
 --
 + getIMethods(): Collection&lt;IMethod&gt;
 + getIField(): Collection&lt;IField&gt;
@@ -418,7 +416,9 @@ IClass
 + setExtension(String extension): void
 + addArrow(IArrow arrow): void
 + getArrows(): Collection&lt;IArrow&gt;
-+ accept(IVisitor v): void</panel_attributes>
++ accept(IVisitor v): void
++ addPattern(IPattern pattern): void
++ getPatterns(): List&lt;IPattern&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -734,15 +734,21 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>56</x>
-      <y>456</y>
+      <x>888</x>
+      <y>168</y>
       <w>248</w>
-      <h>160</h>
+      <h>240</h>
     </coordinates>
     <panel_attributes>UMLOutputStream
 --
 - IVisitor visitor
+- List&lt;String&gt; hasClassNames
+- Map&lt;String, IRelation&gt; useRelationList
 --
+- visitHasRelation(): void
+- visitUsesRelation(): void
+- visitInterfaceRelation(): void
+- visitExtensionRelation(): void 
 - setupPreVisitModel(): void
 - postVisitModel(): void
 - setupPreVisitModel(): void
@@ -792,14 +798,176 @@ PostVisit</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3048</x>
-      <y>736</y>
-      <w>80</w>
-      <h>56</h>
+      <x>2992</x>
+      <y>720</y>
+      <w>224</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>IRelation
+&lt;&lt;interface&gt;&gt;
 --
 --
++ drawRelation(): String
++ setFromObject(String startObject): void
++ setToObject(String endObject): void
++ getFromObject(): String
++ getToObject(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>240</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>IPattern
+&lt;&lt;interface&gt;&gt;
+--
+--
++ execute(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>328</y>
+      <w>248</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>IPatternVisitor
+&lt;&lt;interface&gt;&gt;
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>440</y>
+      <w>248</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>SingletonVisitor
+--
+- Visitor visitor
+--
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>160</x>
+      <y>240</y>
+      <w>136</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>SingletonPattern
+--
+--
++ execute(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2912</x>
+      <y>864</y>
+      <w>216</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>ExtensionRelation
+--
+- String start
+- String end
+- String details
+- String ARROW
+--
++ drawRelation(): String
++ setFromObject(String startObject): void
++ setToObject(String endObject): void
++ getFromObject(): String
++ getToObject(): String
++ accept(IVisitor): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2912</x>
+      <y>1048</y>
+      <w>216</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>HasRelation
+--
+- String start
+- String end
+- String details
+- String ARROW
+--
++ drawRelation(): String
++ setFromObject(String startObject): void
++ setToObject(String endObject): void
++ getFromObject(): String
++ getToObject(): String
++ accept(IVisitor): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2912</x>
+      <y>1224</y>
+      <w>216</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>InterfaceRelation
+--
+- String start
+- String end
+- String details
+- String ARROW
+--
++ drawRelation(): String
++ setFromObject(String startObject): void
++ setToObject(String endObject): void
++ getFromObject(): String
++ getToObject(): String
++ accept(IVisitor): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2912</x>
+      <y>1400</y>
+      <w>216</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>UseRelation
+--
+- String start
+- String end
+- String details
+- String ARROW
+--
++ drawRelation(): String
++ setFromObject(String startObject): void
++ setToObject(String endObject): void
++ getFromObject(): String
++ getToObject(): String
++ accept(IVisitor): void
 </panel_attributes>
     <additional_attributes/>
   </element>

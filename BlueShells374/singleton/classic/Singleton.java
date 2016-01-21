@@ -1,4 +1,4 @@
-package headfirst.singleton.classic;
+package classic;
 
 // NOTE: This is not thread safe!
 

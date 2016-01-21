@@ -1,4 +1,4 @@
-package headfirst.singleton.chocolate;
+package chocolate;
  
 public class ChocolateBoiler {
 	private boolean empty;

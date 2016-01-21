@@ -1,4 +1,4 @@
-package headfirst.singleton.dcl;
+package dcl;
 
 public class SingletonClient {
 	public static void main(String[] args) {
