@@ -2,14 +2,10 @@ package problem.asm;
 
 import org.objectweb.asm.MethodVisitor;
 
-import problem.interfaces.IArrow;
 import problem.interfaces.IClass;
 import problem.interfaces.IMethod;
 import problem.interfaces.IModel;
 import problem.interfaces.IRelation;
-import problem.javaClasses.ArrowHas;
-import problem.javaClasses.ArrowUses;
-import problem.javaClasses.HasRelation;
 import problem.javaClasses.MethodContainer;
 import problem.javaClasses.UsesRelation;
 

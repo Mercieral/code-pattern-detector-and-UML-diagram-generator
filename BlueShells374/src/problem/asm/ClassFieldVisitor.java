@@ -5,12 +5,10 @@ import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
-import problem.interfaces.IArrow;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IModel;
 import problem.interfaces.IRelation;
-import problem.javaClasses.ArrowHas;
 import problem.javaClasses.Field;
 import problem.javaClasses.HasRelation;
 

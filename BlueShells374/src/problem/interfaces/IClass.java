@@ -142,19 +142,4 @@ public interface IClass extends ITraverser {
 	 * @return
 	 */
 	public String toString();
-
-	/**
-	 * Adds an {@link IArrow} to the class object
-	 * 
-	 * @param arrow
-	 *            - {@link IArrow} object associated with class object
-	 */
-	public void addArrow(IArrow arrow);
-
-	/**
-	 * Retrieves the list of {@link IArrow} objects associated with the class
-	 * 
-	 * @return - {@link Collection} of {@link IArrow} objects
-	 */
-	public Collection<IArrow> getArrows();
 }

@@ -2,12 +2,9 @@ package problem.asm;
 
 import org.objectweb.asm.ClassVisitor;
 
-import problem.interfaces.IArrow;
 import problem.interfaces.IClass;
 import problem.interfaces.IModel;
 import problem.interfaces.IRelation;
-import problem.javaClasses.ArrowExtension;
-import problem.javaClasses.ArrowInterface;
 import problem.javaClasses.ExtensionRelation;
 import problem.javaClasses.InterfaceRelation;
 

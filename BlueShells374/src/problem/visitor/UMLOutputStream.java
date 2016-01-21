@@ -9,7 +9,6 @@ import java.util.Map;
 
 import org.objectweb.asm.Opcodes;
 
-import problem.interfaces.IArrow;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IMethod;

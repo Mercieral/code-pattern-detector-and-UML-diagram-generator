@@ -10,7 +10,6 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 import problem.interfaces.IClass;
-import problem.interfaces.IGenerator;
 import problem.interfaces.IModel;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Model;
