@@ -155,7 +155,7 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 					StringBuilder sb2 = new StringBuilder();
 					for (IPattern pattern : obj.getPatterns()) {
 						sb.append(pattern.UMLproperty() + "\n\t\t");
-						sb2.append(pattern.UMLlabel() + "\n\t\t\t\\l\n\t\t\t");
+						sb2.append(pattern.UMLlabel() + "\\n\n\t\t\t");
 					}
 
 					String labelStart = "label = \n\t\t\t\"{ ";
@@ -170,9 +170,9 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 					// System.out.println(Opcodes.ACC_INTERFACE);
 					// if (obj.getAcessLevel() == Opcodes.ACC_INTERFACE) {
 					if (obj.getAcessLevel() == 1537) {
-						builder.append("\\<\\<interface\\>\\>\n\t\t\t\\l\n\t\t\t");
+						builder.append("\\<\\<interface\\>\\>\\n\n");
 					}
-					builder.append(obj.getClassName() + "\n\t\t\t\\l\n\t\t\t"
+					builder.append(obj.getClassName() + "\n\t\t\t\\n\n\t\t\t"
 							+ sb2.toString() + "|\n");
 					try {
 						this.write(builder.toString().getBytes());
