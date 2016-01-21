@@ -14,13 +14,15 @@ Repository for our CSSE 374 Software Design project.
 #### Deliverables and Location
 
 1. Diagrams:
-  2. 
+  1. [Manually Created UML](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone4/manual_generated_UML.png)
+  2. [Generated Class Diagram](www.google.com)
+  3. [Generated Singleton Patterns](http://www.google.com)
 
 ------------------------------------------------------------
 
 #### Design (Milestone Evolution)
 
-TODO: Picture
+![Design Diagram](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone4/manual_generated_UML.png)
 
 As we progressed through the project, and also following Chandan's suggestion, the design of the project is overall in Visitor Pattern. Keeping most of the structure the same from the previous milestones, the visitor pattern is used for traversing through the model object and collecting information needed, then writing the output in a desired class that follows the output needed. 
 
@@ -31,14 +33,123 @@ The Singleton tool is designed to be a Visitor Pattern. This way, all design pat
 
 #### Instructions
 
-TOOD
+Instructions are still similar to previous milestone.
+
+To test the program, there is a console available for use. 
+
+The client would input the desired classes, such as classes in a package, in as the initial arguments. Once that object is finished loading, a console type structure is loaded. From there, follow the prompts for desired inputs. 
+
+```
+Supported operations: Generator, Help, Quit 
+Input command:> Generator
+Generators: Supported generators - UML, Sequence 
+Input generator:> UML
+Generated graph, please refresh the input_output folder
+Supported operations: Generator, Help, Quit 
+Input command:> quit
+```
 
 ------------------------------------------------------------
 
 #### Code (Singleton detection)
 
+###### Singleton Object
+```java
+public class SingletonPattern implements IPattern {
+	private String className;
+	private String UMLproperty;
+	private String UMLlabel;
+	
+	public SingletonPattern(String className) {
+		this.className = className;
+		this.UMLproperty = "color=blue,";
+		this.UMLlabel = "\\<\\<Singleton\\>\\>";
+	}
+	
+	@Override
+	public String UMLproperty() {
+		return this.UMLproperty;
+	}
+
+	public String getClassName(){
+		return this.className;
+	}
+
+	@Override
+	public String UMLlabel() {
+		return this.UMLlabel;
+	}
+}
 ```
-TODO
+
+###### SingletonVisitor
+```java
+public class SingletonVisitor implements IInvoker {
+	private Visitor visitor;
+	private IClass currentClass;
+	private boolean hasFieldInstance;
+	private boolean hasMethodInstance;
+	
+	public SingletonVisitor(){
+		this.visitor = new Visitor();
+		
+		setupPreVisitClass();
+		visitField();
+		visitMethod();
+		postVisitClass();
+	}
+	
+	private void setupPreVisitClass(){
+		this.visitor.addVisit(VisitType.PreVisit, ConcreteClass.class, (ITraverser t) ->{
+			this.currentClass = (IClass) t;
+			this.hasFieldInstance = false;
+			this.hasMethodInstance = false;
+		});
+	}
+	
+	private void visitField(){
+		this.visitor.addVisit(VisitType.Visit, Field.class, (ITraverser t) -> {
+			IField f = (IField) t;
+			String desc = f.getDesc().replace(".", "/");
+			if (desc.equals(currentClass.getClassName())){
+				hasFieldInstance = true;
+			}
+		});
+	}
+
+	private void visitMethod(){
+		this.visitor.addVisit(VisitType.Visit, Method.class, (ITraverser t) -> {
+			IMethod m = (IMethod) t;
+			Type arg = Type.getReturnType(m.getDesc());
+			String arg2 = arg.toString().substring(1).replace(";", "");
+			if (arg2.equals(currentClass.getClassName())){
+				hasMethodInstance = true;
+			}
+		});
+	}
+	
+	private void postVisitClass(){
+		this.visitor.addVisit(VisitType.PostVisit, ConcreteClass.class, (ITraverser t) -> {
+			IClass c = (IClass) t;
+			if (this.hasFieldInstance && this.hasMethodInstance){
+				c.addPattern(new SingletonPattern(c.getClassName()));
+			}
+		});
+	}
+	
+	@Override
+	public void write(IModel model) {
+		ITraverser traverser = (ITraverser) model;
+		traverser.accept(this.visitor);		
+	}
+}
+```
+
+###### IInvoker
+```java
+public interface IInvoker {
+	public void write(IModel model);
+}
 ```
 
 ------------------------------------------------------------
