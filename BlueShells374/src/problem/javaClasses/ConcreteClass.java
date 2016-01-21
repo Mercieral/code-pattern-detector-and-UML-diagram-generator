@@ -147,11 +147,11 @@ public class ConcreteClass implements IClass {
 	@Override
 	public void accept(IVisitor v) {
 		v.preVisit(this);
-		v.visit(this);
 		for (IField f : this.fieldList){
 			ITraverser t = (ITraverser)f;
 			t.accept(v);
 		}
+		v.visit(this);
 		for (IMethod m : this.methodList){
 			ITraverser t = (ITraverser)m;
 			t.accept(v);

@@ -92,7 +92,7 @@ public class DesignParser {
 		HashMap<String, IStream> streams = new HashMap<>();
 		streams.put("sequence", new SequenceOutputStream(
 				new FileOutputStream("input_output/diagram.sd")));
-		streams.put("uml", new UMLOutputStream(new FileOutputStream("input_output/diagram.sd")));
+		streams.put("uml", new UMLOutputStream(new FileOutputStream("input_output/graph.gv")));
 		
 		
 
@@ -141,8 +141,9 @@ public class DesignParser {
 					SDLogic(line, scanner, stream);
 					stream.write(model);
 				}
-
-				stream.write(model);
+				else {
+					stream.write(model);
+				}
 				System.out.println(REFRESH_SUPPORT);
 			}
 
