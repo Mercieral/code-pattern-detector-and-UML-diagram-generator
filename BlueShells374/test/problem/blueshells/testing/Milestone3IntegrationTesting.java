@@ -36,7 +36,7 @@ public class Milestone3IntegrationTesting {
 	public void IntegrationTest() throws IOException{
 		args[0] = "java.util.Collections";
 		InputStream Input1 = new ByteArrayInputStream(
-				"Generator\rSequence\rjava.util.Collections\rshuffle\rjava.util.List\r5\rQuit\r".getBytes());
+				"Generator\rSequence\rjava.util.Collections\rshuffle\r(Ljava/util/List;)V\r5\rQuit\r".getBytes());
 		InputStream old = System.in;
 		System.setIn(Input1);
 		DesignParser.parser(args);
