@@ -32,7 +32,7 @@ public class ClassMethodVisitor extends ClassVisitor {
 			String signature, String[] exceptions) {
 		MethodVisitor toDecorate = super.visitMethod(access, name, desc,
 				signature, exceptions);
-		if (name.equals("shuffle")){
+		if (name.equals("shuffle") || name.equals("main")){
 			System.out.println(desc);
 		}
 		IMethod currentMethod = new Method();

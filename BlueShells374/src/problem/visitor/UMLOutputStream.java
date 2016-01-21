@@ -74,8 +74,8 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 					IRelation r = (IRelation) t;
 					String pointerClass = parsePointerClass(r.getToObject());
 					//FIXME not drawing all uses arrows, hasClassNames is return true and not running the if statement (dcl.SingletonClient -> dcl.Singleton)
-					if (!useRelationList.containsKey(pointerClass)
-							&& !hasClassNames.contains(pointerClass)) {
+					if (!useRelationList.containsKey(pointerClass)) {
+						//&& !hasClassNames.contains(pointerClass)
 						useRelationList.put(pointerClass, r);
 						try {
 							this.write(r.drawRelation().getBytes());
@@ -146,6 +146,8 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 		this.visitor.addVisit(VisitType.PreVisit, ConcreteClass.class,
 				(ITraverser t) -> {
 					IClass obj = (IClass) t;
+					this.hasClassNames = new ArrayList<String>();
+					this.useRelationList = new HashMap<String, IRelation>();
 					StringBuilder builder = new StringBuilder();
 
 					String beginBrace = "[ \n";
