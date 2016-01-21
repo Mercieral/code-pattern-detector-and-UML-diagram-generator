@@ -1,7 +1,6 @@
 package problem.asm;
 
 import java.io.FileOutputStream;
-import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,8 +14,6 @@ import problem.interfaces.IGenerator;
 import problem.interfaces.IModel;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Model;
-import problem.javaClasses.SequenceGenerator;
-import problem.javaClasses.UMLGenerator;
 import problem.visitor.IStream;
 import problem.visitor.SequenceOutputStream;
 import problem.visitor.UMLOutputStream;
@@ -84,9 +81,6 @@ public class DesignParser {
 			ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5,
 					fieldVisitor, currentClass, args);
 
-			// TODO: add more DECORATORS here in later milestones to accomplish
-			// specific tasks
-
 			// Tell the Reader to use our (heavily decorated) ClassVisitor to
 			// visit the class
 			reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
@@ -95,19 +89,14 @@ public class DesignParser {
 			model.addClass(currentClass);
 		}
 
-		// UMLGenerator uml = new UMLGenerator(model);
-		// uml.execute();
-		HashMap<String, IGenerator> generators = new HashMap<>();
 		HashMap<String, IStream> streams = new HashMap<>();
-		generators.put("uml", new UMLGenerator(model));
-		generators.put("sequence", new SequenceGenerator(model));
 		streams.put("sequence", new SequenceOutputStream(
 				new FileOutputStream("input_output/diagram.sd")));
 		streams.put("uml", new UMLOutputStream(new FileOutputStream("input_output/diagram.sd")));
 		
 		
 
-		commandConsole(model, generators, streams);
+		commandConsole(model, streams);
 	}
 
 	/**
@@ -118,8 +107,7 @@ public class DesignParser {
 	 * @param generators
 	 *            - Types of {@link IGenerator} objects that can build graphs
 	 */
-	private static void commandConsole(IModel model,
-			HashMap<String, IGenerator> generators, HashMap<String, FilterOutputStream> streams) {
+	private static void commandConsole(IModel model, HashMap<String, IStream> streams) throws IOException {
 		boolean quit = false;
 		Scanner scanner = new Scanner(System.in);
 
@@ -151,11 +139,10 @@ public class DesignParser {
 
 				if (line.equals("sequence")) {
 					SDLogic(line, scanner, stream);
-					SequenceOutputStream s = (SequenceOutputStream) stream;
-					s.write(model);
+					stream.write(model);
 				}
 
-				//generator.execute();
+				stream.write(model);
 				System.out.println(REFRESH_SUPPORT);
 			}
 
@@ -167,7 +154,7 @@ public class DesignParser {
 		scanner.close();
 	}
 
-	private static void SDLogic(String line, Scanner scanner, FilterOutputStream stream) {
+	private static void SDLogic(String line, Scanner scanner, IStream stream) {
 		System.out.print(INPUT_CLASS_NAME);
 		line = scanner.nextLine();
 		line = line.trim();
