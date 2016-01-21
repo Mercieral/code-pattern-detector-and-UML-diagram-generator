@@ -14,20 +14,23 @@ import problem.patterns.SingletonPattern;
 public class SingletonVisitor implements IPatternVisitor {
 	private Visitor visitor;
 	private IClass currentClass;
-	private boolean hasSingleton;
+	private boolean hasFieldInstance;
+	private boolean hasMethodInstance;
 	
 	public SingletonVisitor(){
 		this.visitor = new Visitor();
-		this.hasSingleton = false;
 		
 		setupPreVisitClass();
 		visitField();
 		visitMethod();
+		postVisitClass();
 	}
 	
 	private void setupPreVisitClass(){
 		this.visitor.addVisit(VisitType.PreVisit, ConcreteClass.class, (ITraverser t) ->{
 			this.currentClass = (IClass) t;
+			this.hasFieldInstance = false;
+			this.hasMethodInstance = false;
 		});
 	}
 	
@@ -37,23 +40,27 @@ public class SingletonVisitor implements IPatternVisitor {
 			String desc = f.getDesc().replace(".", "/");
 			desc = desc.replaceAll("class", "");
 			if (desc.equals(currentClass.getClassName())){
-				currentClass.addPattern(new SingletonPattern(currentClass.getClassName()));
-				hasSingleton = true;
+				hasFieldInstance = true;
 			}
 		});
 	}
 
 	private void visitMethod(){
 		this.visitor.addVisit(VisitType.Visit, Method.class, (ITraverser t) -> {
-			if (hasSingleton){
-				return;
-			}
-			
 			IMethod m = (IMethod) t;
 			Type arg = Type.getReturnType(m.getDesc());
 			String arg2 = arg.toString().substring(1).replace(";", "");
 			if (arg2.equals(currentClass.getClassName())){
-				currentClass.addPattern(new SingletonPattern(currentClass.getClassName()));
+				hasMethodInstance = true;
+			}
+		});
+	}
+	
+	private void postVisitClass(){
+		this.visitor.addVisit(VisitType.PostVisit, ConcreteClass.class, (ITraverser t) -> {
+			IClass c = (IClass) t;
+			if (this.hasFieldInstance && this.hasMethodInstance){
+				c.addPattern(new SingletonPattern(c.getClassName()));
 			}
 		});
 	}
