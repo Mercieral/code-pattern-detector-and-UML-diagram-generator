@@ -51,7 +51,8 @@ public class SingletonVisitor implements IPatternVisitor {
 			
 			IMethod m = (IMethod) t;
 			Type arg = Type.getReturnType(m.getDesc());
-			if (arg.toString().equals(currentClass.getClassName())){
+			String arg2 = arg.toString().substring(1).replace(";", "");
+			if (arg2.equals(currentClass.getClassName())){
 				currentClass.addPattern(new SingletonPattern(currentClass.getClassName()));
 			}
 		});
