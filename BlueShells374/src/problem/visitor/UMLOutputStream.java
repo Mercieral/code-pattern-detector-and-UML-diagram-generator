@@ -2,10 +2,15 @@ package problem.visitor;
 
 import java.io.FilterOutputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 import org.objectweb.asm.Opcodes;
 
 import problem.interfaces.IClass;
+import problem.interfaces.IField;
+import problem.interfaces.IMethod;
+import problem.interfaces.IModel;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Model;
 
@@ -18,6 +23,10 @@ public class UMLOutputStream extends FilterOutputStream implements IStream{
 		
 		this.setupPreVisitModel();
 		this.visitClass();
+		this.visitField();
+		this.visitMethod();
+		this.postVisitClass();
+		this.postVisitModel();
 		
 	}
 	
@@ -82,5 +91,98 @@ public class UMLOutputStream extends FilterOutputStream implements IStream{
 				e.printStackTrace();
 			}
 		});
+	}
+	
+	private void visitField(){
+		this.visitor.addVisit(VisitType.Visit, Field.class, (ITraverser t) -> {
+			IField f = (IField) t;
+			StringBuilder sb = new StringBuilder();
+			
+			String start = "\t\t\t";
+			sb.append(start);
+			
+			//field string
+			sb.append(f.getAccessLevel() + " ");
+			if (f.getSignature().equals(""))
+				sb.append(trimValue(f.getDesc(), ".") + " ");
+
+			else {
+				sb.append(trimValue(f.getDesc(), ".") + "[");
+				sb.append(trimValue(f.getSignature(), ".") + "] ");
+			}
+			sb.append(f.getName());
+			
+			String end = " \\l\n";
+			sb.append(end);
+			
+			try {
+				this.write(sb.toString().getBytes());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+	}
+	
+	private void visitMethod(){
+		this.visitor.addVisit(VisitType.Visit, Method.class, (ITraverser t) -> {
+			IMethod m = (IMethod) t;
+			StringBuilder sb = new StringBuilder();
+			
+			if (!m.getName().equals("<init>")) {
+				sb.append("\t\t\t");
+				
+				StringBuilder sb2 = new StringBuilder();
+				sb2.append(m.getAccessLevel() + " ");
+				sb2.append(m.getName());
+				sb2.append("(");
+				for (String args : m.getArguments()) {
+					sb2.append(args + ", ");
+				}
+				String result = sb2.toString();
+				if (!m.getArguments().isEmpty()) {
+					result = result.substring(0, sb2.length() - 2);
+				}
+				result = result + ") : ";
+				result = result + trimValue(m.getReturnType(), ".");
+				
+				sb2.append(result);
+				sb.append(sb2.toString());
+				sb.append(" \\l\n");
+				
+				try {
+					this.write(sb.toString().getBytes());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	/**
+	 * Shortens the name of strings that have a long value of extra information
+	 * 
+	 * @param initial
+	 *            - Initial value to shorten
+	 * @param delimiter
+	 *            - Value to use to remove unnecessary pieces
+	 * @return - Shortened string to be used containing useful information
+	 */
+	private String trimValue(String initial, String delimiter) {
+		while (initial.indexOf(delimiter) != -1) {
+			// // Used for if a type is given to a list
+			// if (initial.indexOf("<") != -1){
+			// if(initial.indexOf(delimiter) > initial.indexOf("<")){
+			// return initial;
+			// }
+			// }
+			initial = initial.substring(initial.indexOf(delimiter) + 1);
+		}
+		return initial;
+	}
+
+	@Override
+	public void write(IModel model) {
+		ITraverser traverser = (ITraverser) model;
+		traverser.accept(this.visitor);
 	}
 }
