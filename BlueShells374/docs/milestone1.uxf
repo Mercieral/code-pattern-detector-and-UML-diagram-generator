@@ -5,9 +5,9 @@
     <id>UMLClass</id>
     <coordinates>
       <x>2360</x>
-      <y>752</y>
+      <y>848</y>
       <w>264</w>
-      <h>232</h>
+      <h>240</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 IMethod
@@ -34,7 +34,7 @@ IMethod
     <id>UMLClass</id>
     <coordinates>
       <x>2656</x>
-      <y>752</y>
+      <y>848</y>
       <w>200</w>
       <h>200</h>
     </coordinates>
@@ -59,7 +59,7 @@ IField
     <id>UMLClass</id>
     <coordinates>
       <x>2256</x>
-      <y>392</y>
+      <y>488</y>
       <w>280</w>
       <h>88</h>
     </coordinates>
@@ -75,7 +75,7 @@ IModel
     <id>UMLClass</id>
     <coordinates>
       <x>2056</x>
-      <y>240</y>
+      <y>336</y>
       <w>424</w>
       <h>80</h>
     </coordinates>
@@ -92,7 +92,7 @@ IModel
     <id>UMLClass</id>
     <coordinates>
       <x>2728</x>
-      <y>568</y>
+      <y>664</y>
       <w>520</w>
       <h>72</h>
     </coordinates>
@@ -108,7 +108,7 @@ IModel
     <id>UMLClass</id>
     <coordinates>
       <x>2736</x>
-      <y>464</y>
+      <y>560</y>
       <w>464</w>
       <h>72</h>
     </coordinates>
@@ -124,7 +124,7 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>2088</x>
-      <y>1072</y>
+      <y>1168</y>
       <w>24</w>
       <h>88</h>
     </coordinates>
@@ -135,7 +135,7 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1936</x>
-      <y>1072</y>
+      <y>1168</y>
       <w>24</w>
       <h>88</h>
     </coordinates>
@@ -146,7 +146,7 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1744</x>
-      <y>1072</y>
+      <y>1168</y>
       <w>24</w>
       <h>88</h>
     </coordinates>
@@ -157,18 +157,18 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>2392</x>
-      <y>976</y>
+      <y>1080</y>
       <w>24</w>
-      <h>64</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>2736</x>
-      <y>944</y>
+      <y>1040</y>
       <w>24</w>
       <h>64</h>
     </coordinates>
@@ -179,7 +179,7 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>2008</x>
-      <y>424</y>
+      <y>520</y>
       <w>264</w>
       <h>344</h>
     </coordinates>
@@ -190,7 +190,7 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>2048</x>
-      <y>696</y>
+      <y>792</y>
       <w>456</w>
       <h>72</h>
     </coordinates>
@@ -201,7 +201,7 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>2048</x>
-      <y>696</y>
+      <y>792</y>
       <w>752</w>
       <h>72</h>
     </coordinates>
@@ -212,7 +212,7 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2752</x>
-      <y>96</y>
+      <y>192</y>
       <w>520</w>
       <h>184</h>
     </coordinates>
@@ -237,7 +237,7 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>2688</x>
-      <y>232</y>
+      <y>328</y>
       <w>80</w>
       <h>384</h>
     </coordinates>
@@ -248,7 +248,7 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>2472</x>
-      <y>160</y>
+      <y>256</y>
       <w>296</w>
       <h>128</h>
     </coordinates>
@@ -259,7 +259,7 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>2392</x>
-      <y>312</y>
+      <y>408</y>
       <w>24</w>
       <h>96</h>
     </coordinates>
@@ -270,9 +270,9 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2248</x>
-      <y>512</y>
+      <y>600</y>
       <w>272</w>
-      <h>72</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>Model
 --
@@ -280,6 +280,7 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
 --
 + addClass(IClass currentClass): void
 + getClasses(): List&lt;IClass&gt;
++ accept(IVisitor v): void
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -287,20 +288,20 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>2408</x>
-      <y>472</y>
+      <y>568</y>
       <w>24</w>
-      <h>56</h>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>2368</x>
-      <y>1024</y>
+      <y>1144</y>
       <w>256</w>
-      <h>304</h>
+      <h>320</h>
     </coordinates>
     <panel_attributes>Method
 --
@@ -310,6 +311,7 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
 - String[] exceptions
 - String returnType
 - List&lt;String&gt; arguments
+- List&lt;MethodContainer&gt; innerCalls
 --
 + getName() String
 + setName(String name) void
@@ -323,16 +325,16 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
 + setReturnType(String type) void
 + addArgument(String arg) void
 + getArguments() List&lt;String&gt;
-+ toString() String
 + getInnerCalls(): List&lt;MethodContainer&gt;
-+ addInnerCall(MethodContainer innerCall): void</panel_attributes>
++ addInnerCall(MethodContainer innerCall): void
++ accept(IVisitor v): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>2640</x>
-      <y>992</y>
+      <y>1088</y>
       <w>224</w>
       <h>240</h>
     </coordinates>
@@ -354,14 +356,14 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
 + setValue(Object value) void
 + getAccessLevel() String
 + setAccessLevel(String access) void
-+ toString() String</panel_attributes>
++ accept(IVisitor v): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>3000</x>
-      <y>824</y>
+      <y>920</y>
       <w>216</w>
       <h>112</h>
     </coordinates>
@@ -380,7 +382,7 @@ IArrow
     <id>UMLClass</id>
     <coordinates>
       <x>2904</x>
-      <y>1104</y>
+      <y>1200</y>
       <w>216</w>
       <h>152</h>
     </coordinates>
@@ -403,7 +405,7 @@ IArrow
     <id>UMLClass</id>
     <coordinates>
       <x>3176</x>
-      <y>944</y>
+      <y>1040</y>
       <w>216</w>
       <h>152</h>
     </coordinates>
@@ -426,7 +428,7 @@ IArrow
     <id>UMLClass</id>
     <coordinates>
       <x>3176</x>
-      <y>1104</y>
+      <y>1200</y>
       <w>216</w>
       <h>152</h>
     </coordinates>
@@ -449,7 +451,7 @@ IArrow
     <id>UMLClass</id>
     <coordinates>
       <x>2904</x>
-      <y>944</y>
+      <y>1040</y>
       <w>216</w>
       <h>152</h>
     </coordinates>
@@ -473,7 +475,7 @@ IArrow
     <id>Relation</id>
     <coordinates>
       <x>3136</x>
-      <y>928</y>
+      <y>1024</y>
       <w>24</w>
       <h>280</h>
     </coordinates>
@@ -484,7 +486,7 @@ IArrow
     <id>Relation</id>
     <coordinates>
       <x>3112</x>
-      <y>1184</y>
+      <y>1280</y>
       <w>80</w>
       <h>24</h>
     </coordinates>
@@ -495,7 +497,7 @@ IArrow
     <id>Relation</id>
     <coordinates>
       <x>3112</x>
-      <y>1016</y>
+      <y>1112</y>
       <w>80</w>
       <h>24</h>
     </coordinates>
@@ -506,7 +508,7 @@ IArrow
     <id>UMLClass</id>
     <coordinates>
       <x>1752</x>
-      <y>752</y>
+      <y>848</y>
       <w>368</w>
       <h>328</h>
     </coordinates>
@@ -541,19 +543,19 @@ IClass
     <id>Relation</id>
     <coordinates>
       <x>2112</x>
-      <y>824</y>
+      <y>920</y>
       <w>904</w>
-      <h>544</h>
+      <h>672</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 </panel_attributes>
-    <additional_attributes>1110.0;50.0;970.0;50.0;970.0;660.0;290.0;660.0;290.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>1110.0;50.0;970.0;50.0;970.0;820.0;290.0;820.0;290.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>1592</x>
-      <y>1144</y>
+      <y>1240</y>
       <w>216</w>
       <h>432</h>
     </coordinates>
@@ -570,38 +572,38 @@ IClass
 - String extension
 - Collection&lt;IArrow&gt; arrows
 --
-+getIMethods(): Collection&lt;IMethod&gt;
-+getIField(): Collection&lt;IField&gt;
-+getAcessLevel(): int
-+getSignature(): String
-+getClassName(): String
-+getClassVersion(): double
-+getSuperName(): IClass
-+getInterface(): Collection&lt;String&gt;
-+getExtension(): String
-+addIMethod(IMethod method): void
-+addIField(IField field): void
-+setAccessLevel(int access): void
-+setSignature(String signature): void
-+setClassName(String name): void
-+setClassVersion(double version): void
-+setSuperName(IClass name): void
-+addInterface(String inter): void
-+setExtension(String extension): void
-+toString(): String
-+addArrow(IArrow arrow): void
-+getArrows(): Collection&lt;IArrow&gt;</panel_attributes>
++ getIMethods(): Collection&lt;IMethod&gt;
++ getIField(): Collection&lt;IField&gt;
++ getAcessLevel(): int
++ getSignature(): String
++ getClassName(): String
++ getClassVersion(): double
++ getSuperName(): IClass
++ getInterface(): Collection&lt;String&gt;
++ getExtension(): String
++ addIMethod(IMethod method): void
++ addIField(IField field): void
++ setAccessLevel(int access): void
++ setSignature(String signature): void
++ setClassName(String name): void
++ setClassVersion(double version): void
++ setSuperName(IClass name): void
++ addInterface(String inter): void
++ setExtension(String extension): void
++ addArrow(IArrow arrow): void
++ getArrows(): Collection&lt;IArrow&gt;
++ accept(IVisitor v): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>1824</x>
-      <y>1144</y>
+      <y>1240</y>
       <w>216</w>
       <h>432</h>
     </coordinates>
-    <panel_attributes>InterfaceClass
+    <panel_attributes>Interface
 bg=red
 --
 - Collection&lt;IMethod&gt; methodList
@@ -615,34 +617,34 @@ bg=red
 - String extension
 - Collection&lt;IArrow&gt; arrows
 --
-+getIMethods(): Collection&lt;IMethod&gt;
-+getIField(): Collection&lt;IField&gt;
-+getAcessLevel(): int
-+getSignature(): String
-+getClassName(): String
-+getClassVersion(): double
-+getSuperName(): IClass
-+getInterface(): Collection&lt;String&gt;
-+getExtension(): String
-+addIMethod(IMethod method): void
-+addIField(IField field): void
-+setAccessLevel(int access): void
-+setSignature(String signature): void
-+setClassName(String name): void
-+setClassVersion(double version): void
-+setSuperName(IClass name): void
-+addInterface(String inter): void
-+setExtension(String extension): void
-+toString(): String
-+addArrow(IArrow arrow): void
-+getArrows(): Collection&lt;IArrow&gt;</panel_attributes>
++ getIMethods(): Collection&lt;IMethod&gt;
++ getIField(): Collection&lt;IField&gt;
++ getAcessLevel(): int
++ getSignature(): String
++ getClassName(): String
++ getClassVersion(): double
++ getSuperName(): IClass
++ getInterface(): Collection&lt;String&gt;
++ getExtension(): String
++ addIMethod(IMethod method): void
++ addIField(IField field): void
++ setAccessLevel(int access): void
++ setSignature(String signature): void
++ setClassName(String name): void
++ setClassVersion(double version): void
++ setSuperName(IClass name): void
++ addInterface(String inter): void
++ setExtension(String extension): void
++ addArrow(IArrow arrow): void
++ getArrows(): Collection&lt;IArrow&gt;
++ accept(IVisitor v): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>2056</x>
-      <y>1144</y>
+      <y>1240</y>
       <w>216</w>
       <h>432</h>
     </coordinates>
@@ -660,34 +662,34 @@ bg=red
 - String extension
 - Collection&lt;IArrow&gt; arrows
 --
-+getIMethods(): Collection&lt;IMethod&gt;
-+getIField(): Collection&lt;IField&gt;
-+getAcessLevel(): int
-+getSignature(): String
-+getClassName(): String
-+getClassVersion(): double
-+getSuperName(): IClass
-+getInterface(): Collection&lt;String&gt;
-+getExtension(): String
-+addIMethod(IMethod method): void
-+addIField(IField field): void
-+setAccessLevel(int access): void
-+setSignature(String signature): void
-+setClassName(String name): void
-+setClassVersion(double version): void
-+setSuperName(IClass name): void
-+addInterface(String inter): void
-+setExtension(String extension): void
-+toString(): String
-+addArrow(IArrow arrow): void
-+getArrows(): Collection&lt;IArrow&gt;</panel_attributes>
++ getIMethods(): Collection&lt;IMethod&gt;
++ getIField(): Collection&lt;IField&gt;
++ getAcessLevel(): int
++ getSignature(): String
++ getClassName(): String
++ getClassVersion(): double
++ getSuperName(): IClass
++ getInterface(): Collection&lt;String&gt;
++ getExtension(): String
++ addIMethod(IMethod method): void
++ addIField(IField field): void
++ setAccessLevel(int access): void
++ setSignature(String signature): void
++ setClassName(String name): void
++ setClassVersion(double version): void
++ setSuperName(IClass name): void
++ addInterface(String inter): void
++ setExtension(String extension): void
++ addArrow(IArrow arrow): void
++ getArrows(): Collection&lt;IArrow&gt;
++ accept(IVisitor v): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>3320</x>
-      <y>616</y>
+      <y>712</y>
       <w>448</w>
       <h>128</h>
     </coordinates>
@@ -707,7 +709,7 @@ bg=red
     <id>UMLClass</id>
     <coordinates>
       <x>3312</x>
-      <y>96</y>
+      <y>192</y>
       <w>512</w>
       <h>456</h>
     </coordinates>
@@ -754,7 +756,7 @@ bg=red
     <id>Relation</id>
     <coordinates>
       <x>3568</x>
-      <y>544</y>
+      <y>640</y>
       <w>24</w>
       <h>88</h>
     </coordinates>
@@ -765,7 +767,7 @@ bg=red
     <id>Relation</id>
     <coordinates>
       <x>3240</x>
-      <y>328</y>
+      <y>424</y>
       <w>88</w>
       <h>24</h>
     </coordinates>
@@ -776,7 +778,7 @@ bg=red
     <id>Relation</id>
     <coordinates>
       <x>3152</x>
-      <y>272</y>
+      <y>368</y>
       <w>128</w>
       <h>568</h>
     </coordinates>
@@ -787,7 +789,7 @@ bg=red
     <id>Relation</id>
     <coordinates>
       <x>3208</x>
-      <y>664</y>
+      <y>760</y>
       <w>128</w>
       <h>192</h>
     </coordinates>
@@ -798,7 +800,7 @@ bg=red
     <id>Relation</id>
     <coordinates>
       <x>2688</x>
-      <y>480</y>
+      <y>576</y>
       <w>64</w>
       <h>32</h>
     </coordinates>
@@ -810,7 +812,7 @@ bg=red
     <id>Relation</id>
     <coordinates>
       <x>2688</x>
-      <y>344</y>
+      <y>440</y>
       <w>56</w>
       <h>32</h>
     </coordinates>
@@ -822,7 +824,7 @@ bg=red
     <id>UMLClass</id>
     <coordinates>
       <x>2728</x>
-      <y>296</y>
+      <y>392</y>
       <w>520</w>
       <h>120</h>
     </coordinates>
@@ -843,7 +845,7 @@ bg=red
     <id>Relation</id>
     <coordinates>
       <x>2088</x>
-      <y>648</y>
+      <y>744</y>
       <w>1248</w>
       <h>120</h>
     </coordinates>
@@ -854,7 +856,7 @@ bg=red
     <id>UMLClass</id>
     <coordinates>
       <x>1456</x>
-      <y>248</y>
+      <y>344</y>
       <w>192</w>
       <h>80</h>
     </coordinates>
@@ -870,7 +872,7 @@ IGenerator
     <id>Relation</id>
     <coordinates>
       <x>1640</x>
-      <y>280</y>
+      <y>376</y>
       <w>432</w>
       <h>24</h>
     </coordinates>
@@ -881,7 +883,7 @@ IGenerator
     <id>UMLClass</id>
     <coordinates>
       <x>1440</x>
-      <y>392</y>
+      <y>488</y>
       <w>280</w>
       <h>352</h>
     </coordinates>
@@ -920,7 +922,7 @@ bg=blue
     <id>Relation</id>
     <coordinates>
       <x>1568</x>
-      <y>320</y>
+      <y>416</y>
       <w>24</w>
       <h>88</h>
     </coordinates>
@@ -931,7 +933,7 @@ bg=blue
     <id>UMLClass</id>
     <coordinates>
       <x>1152</x>
-      <y>392</y>
+      <y>488</y>
       <w>280</w>
       <h>216</h>
     </coordinates>
@@ -959,7 +961,7 @@ bg=blue
     <id>Relation</id>
     <coordinates>
       <x>1296</x>
-      <y>272</y>
+      <y>368</y>
       <w>176</w>
       <h>136</h>
     </coordinates>
@@ -970,7 +972,7 @@ bg=blue
     <id>Relation</id>
     <coordinates>
       <x>1712</x>
-      <y>400</y>
+      <y>496</y>
       <w>560</w>
       <h>24</h>
     </coordinates>
@@ -981,7 +983,7 @@ bg=blue
     <id>Relation</id>
     <coordinates>
       <x>1400</x>
-      <y>408</y>
+      <y>504</y>
       <w>872</w>
       <h>368</h>
     </coordinates>
@@ -992,7 +994,7 @@ bg=blue
     <id>Relation</id>
     <coordinates>
       <x>1752</x>
-      <y>560</y>
+      <y>656</y>
       <w>624</w>
       <h>224</h>
     </coordinates>
@@ -1003,7 +1005,7 @@ bg=blue
     <id>Relation</id>
     <coordinates>
       <x>1712</x>
-      <y>584</y>
+      <y>680</y>
       <w>680</w>
       <h>184</h>
     </coordinates>
@@ -1014,7 +1016,7 @@ bg=blue
     <id>Relation</id>
     <coordinates>
       <x>1392</x>
-      <y>344</y>
+      <y>440</y>
       <w>1328</w>
       <h>424</h>
     </coordinates>
@@ -1025,7 +1027,7 @@ bg=blue
     <id>UMLClass</id>
     <coordinates>
       <x>1440</x>
-      <y>792</y>
+      <y>888</y>
       <w>264</w>
       <h>224</h>
     </coordinates>
@@ -1055,7 +1057,7 @@ bg=blue
     <id>Relation</id>
     <coordinates>
       <x>1512</x>
-      <y>736</y>
+      <y>832</y>
       <w>24</w>
       <h>72</h>
     </coordinates>
@@ -1066,7 +1068,7 @@ bg=blue
     <id>Relation</id>
     <coordinates>
       <x>1504</x>
-      <y>736</y>
+      <y>832</y>
       <w>2000</w>
       <h>1056</h>
     </coordinates>
@@ -1077,7 +1079,7 @@ bg=blue
     <id>UMLClass</id>
     <coordinates>
       <x>8</x>
-      <y>8</y>
+      <y>104</y>
       <w>352</w>
       <h>112</h>
     </coordinates>
@@ -1098,7 +1100,7 @@ bg=blue
     <id>UMLClass</id>
     <coordinates>
       <x>368</x>
-      <y>8</y>
+      <y>104</y>
       <w>160</w>
       <h>88</h>
     </coordinates>
@@ -1116,7 +1118,7 @@ bg=blue
     <id>UMLClass</id>
     <coordinates>
       <x>8</x>
-      <y>144</y>
+      <y>240</y>
       <w>144</w>
       <h>72</h>
     </coordinates>
@@ -1132,7 +1134,7 @@ bg=blue
     <id>UMLClass</id>
     <coordinates>
       <x>160</x>
-      <y>144</y>
+      <y>240</y>
       <w>144</w>
       <h>72</h>
     </coordinates>
@@ -1148,7 +1150,7 @@ bg=blue
     <id>UMLClass</id>
     <coordinates>
       <x>312</x>
-      <y>144</y>
+      <y>240</y>
       <w>152</w>
       <h>72</h>
     </coordinates>
@@ -1164,9 +1166,9 @@ bg=blue
     <id>UMLClass</id>
     <coordinates>
       <x>512</x>
-      <y>488</y>
+      <y>584</y>
       <w>584</w>
-      <h>456</h>
+      <h>344</h>
     </coordinates>
     <panel_attributes>SequenceOutputStream
 --
@@ -1195,6 +1197,64 @@ bg=blue
 - getMethod(IClass c, List&lt;String&gt; params, String method): IMethod
 - getReturnType(MethodContainer innerCall): String
 - getArgs(MethodContainer innerCall): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>64</x>
+      <y>560</y>
+      <w>248</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>UMLOutputStream
+--
+- IVisitor visitor
+--
+- setupPreVisitModel(): void
+- postVisitModel(): void
+- setupPreVisitModel(): void
+- visitClass(): void
+- postVistClass(): void
+- visitField(): void
+- visitMethod(): void
+- trimValue(String initial, String delimiter): String
++ write(IModel model): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>576</x>
+      <y>112</y>
+      <w>352</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Visitor
+--
+- Map&lt;LookupKey, IVisitMethod&gt; keyToMethodMap
+--
++ preVisit(ITraverser c): void
++ visit(ITraverser c): void
++ postVisit(ITraverser c): void
++ addVisit(VisitType visitType, Class&lt;?&gt; clazz, IVisitMethod m): void
++ removeVisit(VisitType visitType, Class&lt;?&gt; clazz): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>576</x>
+      <y>240</y>
+      <w>104</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+VisitType
+--
+PreVisit
+Visit
+PostVisit</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
