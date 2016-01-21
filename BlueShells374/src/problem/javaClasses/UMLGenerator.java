@@ -53,10 +53,12 @@ public class UMLGenerator implements IGenerator {
 		List<IClass> classes = this.model.getClasses();
 
 		String OUTPUT_FILE = "input_output/graph.gv";
-		byte[] FIRST_LINE = "digraph G {  rankdir=BT; \n ".getBytes();
+		byte[] FIRST_LINE = "digraph G {\t rankdir=BT; \n".getBytes();
+		byte[] ADDITIONAL_SETTINGS = "splines=\"ortho\";\n".getBytes();
 		byte[] LAST_LINE = "\n}".getBytes();
 		OutputStream out = new FileOutputStream(OUTPUT_FILE);
 		out.write(FIRST_LINE);
+		out.write(ADDITIONAL_SETTINGS);
 
 		// write all of the class Boxes
 		for (IClass Class : classes) {
