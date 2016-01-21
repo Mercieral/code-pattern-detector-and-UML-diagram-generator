@@ -13,13 +13,19 @@ Repository for our CSSE 374 Software Design project.
 
 #### Deliverables and Location
 
-TODO
+1. Diagrams:
+  2. 
 
 ------------------------------------------------------------
 
 #### Design (Milestone Evolution)
 
-TODO
+TODO: Picture
+
+As we progressed through the project, and also following Chandan's suggestion, the design of the project is overall in Visitor Pattern. Keeping most of the structure the same from the previous milestones, the visitor pattern is used for traversing through the model object and collecting information needed, then writing the output in a desired class that follows the output needed. 
+
+
+The Singleton tool is designed to be a Visitor Pattern. This way, all design patterns follow an interface and will allow future design patterns to use this. Inside of the IClass object, there is a list of IPattern objects that are effected by a pattern. The pattern then can bre used to print out specific values. Singleton code is in code section of this README. The IInvoker inferface will allow different files to write with information from the IVisitor object. 
 
 ------------------------------------------------------------
 
@@ -47,13 +53,13 @@ TODO
 
 After feedback from Chandan's review:
 
-* [ ] Refactor the code so that the IArrow objects are outside of the IClass objects. Move them into hte IModel object. 
-* [ ] Handle relation objects in IModel
-* [ ] Change the IGenerate class to become a visitor. Work with visitor models
-* [ ] Method Container needs some refactoring
+* [x] Refactor the code so that the IArrow objects are outside of the IClass objects. Move them into hte IModel object. 
+* [x] Handle relation objects in IModel
+* [x] Change the IGenerate class to become a visitor. Work with visitor models
+* [x] Method Container needs some refactoring
 * [ ] Improve testing by creating an IModel object and testing the output with that
 * [ ] Use a ByteArrayStream for testing instead of reading from files
-* [ ] Fix the Sequence Diagrams for both the project and the shuffle method
+* [x] Fix the Sequence Diagrams for both the project and the shuffle method
 
 ------------------------------------------------------------
 ## Design Pattern Joke
