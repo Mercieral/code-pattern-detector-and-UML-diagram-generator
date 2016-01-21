@@ -1,5 +1,7 @@
 package problem.javaClasses;
 
+import problem.interfaces.IMethod;
+
 public class MethodContainer {
 
 	/**
@@ -96,11 +98,22 @@ public class MethodContainer {
 		this.goingToMethod = methodName;
 	}
 
+	/**
+	 * Sets the description of the method
+	 * 
+	 * @param desc
+	 *            - Description used with a {@link IMethod}
+	 */
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
-	
-	public String getDesc(){
+
+	/**
+	 * Gets the description of the method
+	 * 
+	 * @return - Description used with a {@link IMethod}
+	 */
+	public String getDesc() {
 		return this.desc;
 	}
 }

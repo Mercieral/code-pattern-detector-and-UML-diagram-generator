@@ -183,7 +183,7 @@ public class DesignParser {
 			params.add(arg);
 		}
 		SequenceOutputStream s = (SequenceOutputStream)stream;
-		s.InitializeStrings(className, methodName, desc, callDepth);
+		s.initializeStrings(className, methodName, desc, callDepth);
 	}
 
 

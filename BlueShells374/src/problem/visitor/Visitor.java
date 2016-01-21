@@ -3,11 +3,6 @@ package problem.visitor;
 import java.util.HashMap;
 import java.util.Map;
 
-import problem.interfaces.IModel;
-import problem.javaClasses.Model;
-
-
-
 public class Visitor implements IVisitor {
 	Map<LookupKey, IVisitMethod> keyToMethodMap;
 

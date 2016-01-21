@@ -7,7 +7,6 @@ import problem.interfaces.IArrow;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IMethod;
-import problem.visitor.ITraverser;
 import problem.visitor.IVisitor;
 
 public class AbstractClass implements IClass {

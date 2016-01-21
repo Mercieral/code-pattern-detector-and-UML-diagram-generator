@@ -43,7 +43,7 @@ public class SequenceOutputStream extends FilterOutputStream implements IStream 
 		this.setUpVisitModel();
 	}
 	
-	public void InitializeStrings(String Class, String method, String desc, int callDepth){
+	public void initializeStrings(String Class, String method, String desc, int callDepth){
 		this.className = Class;
 		this.methodName = method;
 		this.parameters = desc;
