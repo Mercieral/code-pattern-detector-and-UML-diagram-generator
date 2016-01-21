@@ -60,7 +60,6 @@ public class UMLOutputStream extends FilterOutputStream implements IStream{
 						useRelationList.remove(pointerClass);
 					}
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -77,7 +76,6 @@ public class UMLOutputStream extends FilterOutputStream implements IStream{
 				try {
 					this.write(r.drawRelation().getBytes());
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -91,7 +89,6 @@ public class UMLOutputStream extends FilterOutputStream implements IStream{
 			try {
 				this.write(r.drawRelation().getBytes());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
@@ -103,7 +100,6 @@ public class UMLOutputStream extends FilterOutputStream implements IStream{
 			try {
 				this.write(r.drawRelation().getBytes());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			

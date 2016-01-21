@@ -53,10 +53,12 @@ public class Model implements IModel, ITraverser {
 		
 	}
 	
+	@Override
 	public void addRelation(IRelation relation){
 		this.relations.add(relation);
 	}
 	
+	@Override
 	public List<IRelation> getRelations(){
 		return this.relations;
 	}
