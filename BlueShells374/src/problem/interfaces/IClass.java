@@ -1,6 +1,7 @@
 package problem.interfaces;
 
 import java.util.Collection;
+import java.util.List;
 
 import problem.visitor.ITraverser;
 
@@ -142,4 +143,8 @@ public interface IClass extends ITraverser {
 	 * @return
 	 */
 	public String toString();
+	
+	public void addPattern(IPattern pattern);
+	
+	public List<IPattern> getPatterns();
 }

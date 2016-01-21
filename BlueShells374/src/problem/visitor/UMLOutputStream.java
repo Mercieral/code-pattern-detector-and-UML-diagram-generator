@@ -140,6 +140,7 @@ public class UMLOutputStream extends FilterOutputStream implements IStream{
 
 			String beginBrace = "[ \n";
 			String box = "\t\tshape = \"record\",\n";
+			//pattern code here;
 			String labelStart = "\t\tlabel = \n\t\t\t\"{ ";
 			String className = "\t" + obj.getClassName().replace("/", "") + " ";
 

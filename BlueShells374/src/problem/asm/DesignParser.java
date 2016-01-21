@@ -15,6 +15,7 @@ import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Model;
 import problem.visitor.IStream;
 import problem.visitor.SequenceOutputStream;
+import problem.visitor.SingletonVisitor;
 import problem.visitor.UMLOutputStream;
 
 public class DesignParser {
@@ -92,7 +93,8 @@ public class DesignParser {
 		streams.put("sequence", new SequenceOutputStream(
 				new FileOutputStream("input_output/diagram.sd")));
 		streams.put("uml", new UMLOutputStream(new FileOutputStream("input_output/graph.gv")));
-		
+		SingletonVisitor singletonVisitor = new SingletonVisitor();
+		singletonVisitor.write(model);
 		
 
 		commandConsole(model, streams);
@@ -109,7 +111,7 @@ public class DesignParser {
 	private static void commandConsole(IModel model, HashMap<String, IStream> streams) throws IOException {
 		boolean quit = false;
 		Scanner scanner = new Scanner(System.in);
-
+		
 		while (!quit) {
 			System.out.print(SUPPORT_OPERATIONS);
 			String line = scanner.nextLine();
