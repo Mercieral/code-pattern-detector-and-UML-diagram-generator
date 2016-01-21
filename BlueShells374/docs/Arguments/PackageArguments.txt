@@ -19,8 +19,7 @@ problem.javaClasses.MethodContainer
 problem.javaClasses.Model
 problem.javaClasses.UsesRelation
 problem.patterns.SingletonPattern
-problem.visitor.IPatternVisitor
-problem.visitor.IStream
+problem.visitor.IInvoker
 problem.visitor.ITraverser
 problem.visitor.IVisitMethod
 problem.visitor.IVisitor
