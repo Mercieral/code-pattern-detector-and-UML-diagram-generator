@@ -17,6 +17,7 @@ import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Model;
 import problem.javaClasses.SequenceGenerator;
 import problem.javaClasses.UMLGenerator;
+import problem.visitor.IStream;
 import problem.visitor.SequenceOutputStream;
 import problem.visitor.UMLOutputStream;
 
@@ -97,7 +98,7 @@ public class DesignParser {
 		// UMLGenerator uml = new UMLGenerator(model);
 		// uml.execute();
 		HashMap<String, IGenerator> generators = new HashMap<>();
-		HashMap<String, FilterOutputStream> streams = new HashMap<>();
+		HashMap<String, IStream> streams = new HashMap<>();
 		generators.put("uml", new UMLGenerator(model));
 		generators.put("sequence", new SequenceGenerator(model));
 		streams.put("sequence", new SequenceOutputStream(
@@ -141,17 +142,15 @@ public class DesignParser {
 				line = scanner.nextLine();
 				line = line.toLowerCase().trim();
 
-				if (!generators.containsKey(line)) {
+				if (!streams.containsKey(line)) {
 					System.out.println(GENERATOR_NOT_SUPPORTED);
 					continue;
 				}
 
-				IGenerator generator = generators.get(line);
+				IStream stream = streams.get(line);
 
 				if (line.equals("sequence")) {
-					FilterOutputStream stream = streams.get(line);
-					//SDLogic(line, scanner, (SequenceGenerator) generator);
-					SDLogic2(line, scanner, stream);
+					SDLogic(line, scanner, stream);
 					SequenceOutputStream s = (SequenceOutputStream) stream;
 					s.write(model);
 				}
@@ -168,7 +167,7 @@ public class DesignParser {
 		scanner.close();
 	}
 
-	private static void SDLogic2(String line, Scanner scanner, FilterOutputStream stream) {
+	private static void SDLogic(String line, Scanner scanner, FilterOutputStream stream) {
 		System.out.print(INPUT_CLASS_NAME);
 		line = scanner.nextLine();
 		line = line.trim();
@@ -200,48 +199,5 @@ public class DesignParser {
 		s.InitializeStrings(className, methodName, desc, callDepth);
 	}
 
-	/**
-	 * Method to help handle the sequence Diagram creation
-	 * 
-	 * @param line
-	 *            - Given input line
-	 * @param scanner
-	 *            - Scanner reading information from the user
-	 * @param generator
-	 *            - The {@link SequenceGenerator} object being created
-	 */
-	private static void SDLogic(String line, Scanner scanner,
-			SequenceGenerator generator) {
-		System.out.print(INPUT_CLASS_NAME);
-		line = scanner.nextLine();
-		line = line.trim();
-		String className = line;
-		System.out.print(INPUT_METHOD_NAME);
-		line = scanner.nextLine();
-		line = line.trim();
-		String methodName = line;
-		System.out.print(INPUT_PARAMETERS);
-		line = scanner.nextLine();
-		line = line.trim();
-		String[] args = line.split(",");
-		System.out.print(INPUT_CALL_DEPTH);
-		line = scanner.nextLine();
-		line = line.toLowerCase().trim();
-		int callDepth;
-		if (line.equals("skip") || line.equals("")) {
-			callDepth = 5;
-		} else {
-			callDepth = Integer.parseInt(line);
-		}
 
-		List<String> params = new ArrayList<String>();
-		for (String arg : args) {
-			params.add(arg);
-		}
-		generator.setClassName(className);
-		generator.setMethodName(methodName);
-		generator.setParameters(params);
-		generator.setMaxCallDepth(callDepth);
-
-	}
 }
