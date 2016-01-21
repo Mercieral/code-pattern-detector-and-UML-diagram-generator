@@ -34,7 +34,9 @@ public class SingletonVisitor implements IPatternVisitor {
 	private void visitField(){
 		this.visitor.addVisit(VisitType.Visit, Field.class, (ITraverser t) -> {
 			IField f = (IField) t;
-			if (f.getDesc().equals(currentClass.getClassName())){
+			String desc = f.getDesc().replace(".", "/");
+			desc = desc.replaceAll("class", "");
+			if (desc.equals(currentClass.getClassName())){
 				currentClass.addPattern(new SingletonPattern(currentClass.getClassName()));
 				hasSingleton = true;
 			}

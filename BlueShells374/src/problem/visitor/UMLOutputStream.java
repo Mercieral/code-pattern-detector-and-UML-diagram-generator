@@ -144,8 +144,10 @@ public class UMLOutputStream extends FilterOutputStream implements IStream{
 			
 			//pattern code here;
 			StringBuilder sb = new StringBuilder();
+			StringBuilder sb2 = new StringBuilder();
 			for (IPattern pattern : obj.getPatterns()){
-				sb.append(pattern.UMLcommand());
+				sb.append(pattern.UMLproperty());
+				sb2.append(pattern.UMLlabel() + "\n\t\t\t");
 			}
 			
 			String labelStart = "\t\tlabel = \n\t\t\t\"{ ";
@@ -156,7 +158,7 @@ public class UMLOutputStream extends FilterOutputStream implements IStream{
 			if (obj.getAcessLevel() == Opcodes.ACC_INTERFACE) {
 				builder.append("<<interface>>\n");
 			}
-			builder.append(obj.getClassName() + "\n\t\t\t|\n");
+			builder.append(obj.getClassName() + "\n\t\t\t" + sb2.toString() + "|\n");
 			try {
 				this.write(builder.toString().getBytes());
 			} catch (Exception e) {
