@@ -73,6 +73,7 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 				(ITraverser t) -> {
 					IRelation r = (IRelation) t;
 					String pointerClass = parsePointerClass(r.getToObject());
+					//FIXME not drawing all uses arrows, hasClassNames is return true and not running the if statement (dcl.SingletonClient -> dcl.Singleton)
 					if (!useRelationList.containsKey(pointerClass)
 							&& !hasClassNames.contains(pointerClass)) {
 						useRelationList.put(pointerClass, r);
