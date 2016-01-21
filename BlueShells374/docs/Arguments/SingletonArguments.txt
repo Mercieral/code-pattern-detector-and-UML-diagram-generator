@@ -1,0 +1,12 @@
+chocolate.ChocolateBoiler
+chocolate.ChocolateController
+classic.Singleton
+dcl.Singleton
+dcl.SingletonClient
+stat.Singleton
+stat.SingletonClient
+subclass.CoolerSingleton
+subclass.HotterSingleton
+subclass.Singleton
+subclass.SingletonTestDrive
+threadsafe.Singleton

@@ -10,7 +10,7 @@ public class SingletonPattern implements IPattern {
 	public SingletonPattern(String className) {
 		this.className = className;
 		this.UMLproperty = "color=blue,";
-		this.UMLlabel = "<<Singleton>>";
+		this.UMLlabel = "\\<\\<Singleton\\>\\>";
 	}
 	
 	@Override

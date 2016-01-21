@@ -140,25 +140,27 @@ public class UMLOutputStream extends FilterOutputStream implements IStream{
 			StringBuilder builder = new StringBuilder();
 
 			String beginBrace = "[ \n";
-			String box = "\t\tshape = \"record\",\n";
+			String box = "\t\tshape = \"record\",\n\t\t";
 			
 			//pattern code here;
 			StringBuilder sb = new StringBuilder();
 			StringBuilder sb2 = new StringBuilder();
 			for (IPattern pattern : obj.getPatterns()){
-				sb.append(pattern.UMLproperty());
-				sb2.append(pattern.UMLlabel() + "\n\t\t\t");
+				sb.append(pattern.UMLproperty() + "\n\t\t");
+				sb2.append(pattern.UMLlabel() + "\\l\n\t\t\t");
 			}
 			
-			String labelStart = "\t\tlabel = \n\t\t\t\"{ ";
+			String labelStart = "label = \n\t\t\t\"{ ";
 			String className = "\t" + obj.getClassName().replace("/", "") + " ";
 
 			builder.append(className + beginBrace + box + sb.toString());
 			builder.append(labelStart);
+			System.out.println(obj.getAcessLevel());
+			System.out.println(Opcodes.ACC_INTERFACE);
 			if (obj.getAcessLevel() == Opcodes.ACC_INTERFACE) {
-				builder.append("<<interface>>\n");
+				builder.append("\\<\\<interface\\>\\>\n");
 			}
-			builder.append(obj.getClassName() + "\n\t\t\t" + sb2.toString() + "|\n");
+			builder.append(obj.getClassName() + " \\l\n\t\t\t" + sb2.toString() + "|\n");
 			try {
 				this.write(builder.toString().getBytes());
 			} catch (Exception e) {
