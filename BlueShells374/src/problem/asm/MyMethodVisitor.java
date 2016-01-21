@@ -5,21 +5,27 @@ import org.objectweb.asm.MethodVisitor;
 import problem.interfaces.IArrow;
 import problem.interfaces.IClass;
 import problem.interfaces.IMethod;
+import problem.interfaces.IModel;
+import problem.interfaces.IRelation;
 import problem.javaClasses.ArrowHas;
 import problem.javaClasses.ArrowUses;
+import problem.javaClasses.HasRelation;
 import problem.javaClasses.MethodContainer;
+import problem.javaClasses.UsesRelation;
 
 public class MyMethodVisitor extends MethodVisitor {
 	private IClass currentClass;
 	private String[] classes;
 	private IMethod currentMethod;
+	private IModel model;
 
 	public MyMethodVisitor(int api, MethodVisitor mv, IClass currentClass,
-			String[] classes, IMethod currentMethod) {
+			String[] classes, IMethod currentMethod, IModel m) {
 		super(api, mv);
 		this.currentClass = currentClass;
 		this.classes = classes;
 		this.currentMethod = currentMethod;
+		this.model = m;
 
 	}
 
@@ -41,10 +47,14 @@ public class MyMethodVisitor extends MethodVisitor {
 					this.currentMethod.addInnerCall(innerCall);
 					return;
 				}
-				IArrow arrow = new ArrowUses();
-				arrow.setFromObject(currentClass.getClassName());
-				arrow.setToObject(owner);
-				currentClass.addArrow(arrow);
+				IRelation relation = new UsesRelation();
+				relation.setFromObject(currentClass.getClassName());
+				relation.setToObject(owner);
+				model.addRelation(relation);
+//				IArrow arrow = new ArrowUses();
+//				arrow.setFromObject(currentClass.getClassName());
+//				arrow.setToObject(owner);
+//				currentClass.addArrow(arrow);
 			}
 		}
 		
@@ -67,10 +77,14 @@ public class MyMethodVisitor extends MethodVisitor {
 			String descName = desc.substring(1).replace("/", "").replace(";",
 					"");
 			if (ClassName.equals(descName)) {
-				IArrow arrow = new ArrowHas();
-				arrow.setFromObject(currentClass.getClassName());
-				arrow.setToObject(desc.replace(";", "").substring(1));
-				currentClass.addArrow(arrow);
+//				IRelation relation = new HasRelation();
+//				relation.setToObject(currentClass.getClassName());
+//				relation.setFromObject(desc.replace(";", "").substring(1));
+//				model.addRelation(relation);
+//				IArrow arrow = new ArrowHas();
+//				arrow.setFromObject(currentClass.getClassName());
+//				arrow.setToObject(desc.replace(";", "").substring(1));
+//				currentClass.addArrow(arrow);
 			}
 		}
 	}

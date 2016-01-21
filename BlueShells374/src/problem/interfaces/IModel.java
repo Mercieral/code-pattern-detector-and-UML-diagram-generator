@@ -15,5 +15,9 @@ public interface IModel {
 	 * @return - {@link List}
 	 */
 	public List<IClass> getClasses();
+	
+	public List<IRelation> getRelations();
+	
+	public void addRelation(IRelation relation);
 
 }

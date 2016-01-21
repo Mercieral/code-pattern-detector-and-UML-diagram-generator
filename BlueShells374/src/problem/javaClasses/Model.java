@@ -6,6 +6,7 @@ import java.util.List;
 
 import problem.interfaces.IClass;
 import problem.interfaces.IModel;
+import problem.interfaces.IRelation;
 import problem.visitor.ITraverser;
 import problem.visitor.IVisitor;
 
@@ -18,9 +19,11 @@ import problem.visitor.IVisitor;
 public class Model implements IModel, ITraverser {
 
 	private List<IClass> classes;
+	private List<IRelation> relations;
 
 	public Model() {
 		this.classes = new ArrayList<IClass>();
+		this.relations = new ArrayList<IRelation>();
 	}
 
 	@Override
@@ -41,8 +44,21 @@ public class Model implements IModel, ITraverser {
 			ITraverser t = (ITraverser) c;
 			t.accept(v);
 		}
+		
+		for(IRelation r : this.relations){
+			ITraverser t = (ITraverser) r;
+			t.accept(v);
+		}
 		v.postVisit(this);
 		
+	}
+	
+	public void addRelation(IRelation relation){
+		this.relations.add(relation);
+	}
+	
+	public List<IRelation> getRelations(){
+		return this.relations;
 	}
 
 }

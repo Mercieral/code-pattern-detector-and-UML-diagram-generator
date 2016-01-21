@@ -71,15 +71,15 @@ public class DesignParser {
 
 			// make class declaration visitor to get superclass and interfaces
 			ClassVisitor decVisitor = new ClassDeclarationVisitor(Opcodes.ASM5,
-					currentClass, args);
+					currentClass, args, model);
 
 			// DECORATE declaration visitor with field visitor
 			ClassVisitor fieldVisitor = new ClassFieldVisitor(Opcodes.ASM5,
-					decVisitor, currentClass, args);
+					decVisitor, currentClass, args, model);
 
 			// DECORATE field visitor with method visitor
 			ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5,
-					fieldVisitor, currentClass, args);
+					fieldVisitor, currentClass, args, model);
 
 			// Tell the Reader to use our (heavily decorated) ClassVisitor to
 			// visit the class

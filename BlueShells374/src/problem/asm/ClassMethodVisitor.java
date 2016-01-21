@@ -7,21 +7,24 @@ import org.objectweb.asm.Type;
 
 import problem.interfaces.IClass;
 import problem.interfaces.IMethod;
+import problem.interfaces.IModel;
 import problem.javaClasses.Method;
 
 public class ClassMethodVisitor extends ClassVisitor {
 	private IClass currentClass;
 	private String[] classes;
+	private IModel model;
 
 	public ClassMethodVisitor(int api) {
 		super(api);
 	}
 
 	public ClassMethodVisitor(int api, ClassVisitor decorated,
-			IClass currentClass, String[] classes) {
+			IClass currentClass, String[] classes, IModel m) {
 		super(api, decorated);
 		this.currentClass = currentClass;
 		this.classes = classes;
+		this.model = m;
 	}
 
 	@Override
@@ -44,7 +47,7 @@ public class ClassMethodVisitor extends ClassVisitor {
 		this.currentClass.addIMethod(currentMethod);
 
 		MethodVisitor mine = new MyMethodVisitor(Opcodes.ASM5, toDecorate,
-				currentClass, classes, currentMethod);
+				currentClass, classes, currentMethod, model);
 
 		return mine;
 	}

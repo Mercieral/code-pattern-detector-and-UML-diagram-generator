@@ -4,17 +4,23 @@ import org.objectweb.asm.ClassVisitor;
 
 import problem.interfaces.IArrow;
 import problem.interfaces.IClass;
+import problem.interfaces.IModel;
+import problem.interfaces.IRelation;
 import problem.javaClasses.ArrowExtension;
 import problem.javaClasses.ArrowInterface;
+import problem.javaClasses.ExtensionRelation;
+import problem.javaClasses.InterfaceRelation;
 
 public class ClassDeclarationVisitor extends ClassVisitor {
 	private IClass currentClass;
 	private String[] classes;
+	private IModel model;
 	
-	public ClassDeclarationVisitor(int api, IClass currentClass, String[] args){
+	public ClassDeclarationVisitor(int api, IClass currentClass, String[] args, IModel m){
 		super(api);
 		this.currentClass = currentClass;
 		this.classes = args;
+		this.model = m;
 		
 	}
 	
@@ -29,10 +35,14 @@ public class ClassDeclarationVisitor extends ClassVisitor {
 		if (superName != null){
 			for (String className : this.classes){
 				 if (className.replace(".", "").equals(superName.replace("/", ""))){
-					IArrow arrow1 = new ArrowExtension();
-					arrow1.setFromObject(currentClass.getClassName());
-					arrow1.setToObject(superName);
-					currentClass.addArrow(arrow1);
+					IRelation relation = new ExtensionRelation();
+					relation.setFromObject(currentClass.getClassName());
+					relation.setToObject(superName);
+					this.model.addRelation(relation);
+//					IArrow arrow1 = new ArrowExtension();
+//					arrow1.setFromObject(currentClass.getClassName());
+//					arrow1.setToObject(superName);
+//					currentClass.addArrow(arrow1);
 					break;
 				 }
 			}
@@ -45,10 +55,14 @@ public class ClassDeclarationVisitor extends ClassVisitor {
 			for (String className : this.classes){
 				if (className.replace(".", "").equals(inter.replace("/", ""))){
 					currentClass.addInterface(inter);
-					IArrow arrow2 = new ArrowInterface();
-					arrow2.setFromObject(currentClass.getClassName());
-					arrow2.setToObject(inter);
-					currentClass.addArrow(arrow2);
+					IRelation relation = new InterfaceRelation();
+					relation.setFromObject(currentClass.getClassName());
+					relation.setToObject(inter);
+					this.model.addRelation(relation);
+//					IArrow arrow2 = new ArrowInterface();
+//					arrow2.setFromObject(currentClass.getClassName());
+//					arrow2.setToObject(inter);
+//					currentClass.addArrow(arrow2);
 					break;
 				}
 			}

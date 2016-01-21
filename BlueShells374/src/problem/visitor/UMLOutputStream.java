@@ -2,24 +2,38 @@ package problem.visitor;
 
 import java.io.FilterOutputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.objectweb.asm.Opcodes;
 
+import problem.interfaces.IArrow;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IMethod;
 import problem.interfaces.IModel;
+import problem.interfaces.IRelation;
 import problem.javaClasses.ConcreteClass;
+import problem.javaClasses.ExtensionRelation;
 import problem.javaClasses.Field;
+import problem.javaClasses.HasRelation;
+import problem.javaClasses.InterfaceRelation;
 import problem.javaClasses.Method;
 import problem.javaClasses.Model;
+import problem.javaClasses.UsesRelation;
 
 public class UMLOutputStream extends FilterOutputStream implements IStream{
 	private IVisitor visitor;
+	private List<String> hasClassNames;
+	private Map<String, IRelation> useRelationList;
 	
 	public UMLOutputStream(OutputStream out) {
 		super(out);
 		this.visitor = new Visitor();
+		this.hasClassNames = new ArrayList<>();
+		this.useRelationList = new HashMap<String, IRelation>();
 		
 		this.setupPreVisitModel();
 		this.setupPreVisitClass();
@@ -28,13 +42,80 @@ public class UMLOutputStream extends FilterOutputStream implements IStream{
 		this.visitMethod();
 		this.postVisitClass();
 		this.postVisitModel();
+		this.visitHasRelation();
+		this.visitUsesRelation();
+		this.visitInterfaceRelation();
+		this.visitExtensionRelation();
 		
 	}
 	
+	private void visitHasRelation() {
+		this.visitor.addVisit(VisitType.Visit, HasRelation.class, (ITraverser t) -> {
+			IRelation r = (IRelation) t;
+			String pointerClass = parsePointerClass(r.getToObject());
+			if (!hasClassNames.contains(pointerClass)) {
+				hasClassNames.add(pointerClass);
+				try {
+					this.write(r.drawRelation().getBytes());
+					if (useRelationList.containsKey(pointerClass)) {
+						useRelationList.remove(pointerClass);
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	private void visitUsesRelation() {
+		this.visitor.addVisit(VisitType.Visit, UsesRelation.class, (ITraverser t) -> {
+			IRelation r = (IRelation) t;
+			String pointerClass = parsePointerClass(r.getToObject());
+			if (!useRelationList.containsKey(pointerClass)
+					&& !hasClassNames.contains(pointerClass)) {
+				useRelationList.put(pointerClass, r);
+				try {
+					this.write(r.drawRelation().getBytes());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		});
+	}
+	
+	private void visitInterfaceRelation() {
+		this.visitor.addVisit(VisitType.Visit, InterfaceRelation.class, (ITraverser t) -> {
+			IRelation r = (IRelation) t;
+			try {
+				this.write(r.drawRelation().getBytes());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+	}
+	
+	private void visitExtensionRelation() {
+		this.visitor.addVisit(VisitType.Visit, ExtensionRelation.class, (ITraverser t) -> {
+			IRelation r = (IRelation) t;
+			try {
+				this.write(r.drawRelation().getBytes());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		});
+		
+	}
+
 	private void setupPreVisitModel(){
 		this.visitor.addVisit(VisitType.PreVisit, Model.class, (ITraverser t) -> {
 			//code that runs goes here
-			byte[] FIRST_LINE = "digraph G {  rankdir=BT; \n ".getBytes();
+			byte[] FIRST_LINE = "digraph G {  rankdir=BT; \n splines=\"ortho\"; \n ".getBytes();
 			try {
 				this.write(FIRST_LINE);
 			} catch (Exception e) {
@@ -197,5 +278,11 @@ public class UMLOutputStream extends FilterOutputStream implements IStream{
 	public void write(IModel model) {
 		ITraverser traverser = (ITraverser) model;
 		traverser.accept(this.visitor);
+	}
+	
+
+	private String parsePointerClass(String classPath) {
+		String parsedClass = trimValue(classPath, "/");
+		return parsedClass;
 	}
 }

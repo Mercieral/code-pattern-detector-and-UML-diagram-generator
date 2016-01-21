@@ -8,22 +8,27 @@ import org.objectweb.asm.Type;
 import problem.interfaces.IArrow;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
+import problem.interfaces.IModel;
+import problem.interfaces.IRelation;
 import problem.javaClasses.ArrowHas;
 import problem.javaClasses.Field;
+import problem.javaClasses.HasRelation;
 
 public class ClassFieldVisitor extends ClassVisitor{
 	
 	private IClass currentClass;
 	private String[] classes;
+	private IModel model;
 
 	public ClassFieldVisitor(int api){
 		super(api);
 	}
 	
-	public ClassFieldVisitor(int api, ClassVisitor decorated, IClass currentClass, String[] args) {
+	public ClassFieldVisitor(int api, ClassVisitor decorated, IClass currentClass, String[] args, IModel m) {
 		super(api, decorated);
 		this.currentClass = currentClass;
 		this.classes = args;
+		this.model = m;
 	}
 	
 	public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) {
@@ -50,18 +55,26 @@ public class ClassFieldVisitor extends ClassVisitor{
 				String[] temp = sigType.split("<");
 				String field = temp[1].substring(1).replace(".","");
 				if (className.replace(".", "").equals(field)){
-					IArrow arrow = new ArrowHas();
-					arrow.setFromObject(currentClass.getClassName());
-					arrow.setToObject(field.replace(".", ""));
-					currentClass.addArrow(arrow);
+					IRelation relation = new HasRelation();
+					relation.setFromObject(currentClass.getClassName());
+					relation.setToObject(field.replace(".", ""));
+					this.model.addRelation(relation);
+//					IArrow arrow = new ArrowHas();
+//					arrow.setFromObject(currentClass.getClassName());
+//					arrow.setToObject(field.replace(".", ""));
+//					currentClass.addArrow(arrow);
 				}
 			}
 			else {
 				if (className.replace(".", "").equals(type.replace(".", ""))){
-					IArrow arrow = new ArrowHas();
-					arrow.setFromObject(currentClass.getClassName());
-					arrow.setToObject(type.replace(".", ""));
-					currentClass.addArrow(arrow);
+					IRelation relation = new HasRelation();
+					relation.setFromObject(currentClass.getClassName());
+					relation.setToObject(type.replace(".", ""));
+					model.addRelation(relation);
+//					IArrow arrow = new ArrowHas();
+//					arrow.setFromObject(currentClass.getClassName());
+//					arrow.setToObject(type.replace(".", ""));
+//					currentClass.addArrow(arrow);
 				}
 			}
 		}
