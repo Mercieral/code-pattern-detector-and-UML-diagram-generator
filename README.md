@@ -1,5 +1,64 @@
 # 374BlueShells
-Repository for our CSSE 374 Software Design project. 
+Repository for our CSSE 374 Software Design project.
+
+------------------------------------------------------------
+
+## Computer Science Joke
+
+TODO
+
+------------------------------------------------------------
+
+## Milestone 5
+
+#### Deliverables and Location
+
+1. Diagrams (Pictures below in same order):
+  1. [Manually Created UML](http://www.google.com) TODO
+  2. [Generated UML Project Diagram](http://www.google.com) TODO
+  3. [Auto-Generated Week 2-1 Solution](http://www.google.com) TODO
+  4. [Auto-Generated Week 5-1 Solution](http://www.google.com) TODO
+
+2. Pictures:
+  1. ![Manually Created UML](http://2.bp.blogspot.com/_auuGPI3is0Y/TUWv6n4yebI/AAAAAAAAACs/H4mpdOSfh5o/s320/todo.jpg) 
+  2. ![Generated UML Project Diagram](http://2.bp.blogspot.com/_auuGPI3is0Y/TUWv6n4yebI/AAAAAAAAACs/H4mpdOSfh5o/s320/todo.jpg) 
+  3. ![Auto-Generated Week 2-1 Solution](http://2.bp.blogspot.com/_auuGPI3is0Y/TUWv6n4yebI/AAAAAAAAACs/H4mpdOSfh5o/s320/todo.jpg) 
+  4. ![Auto-Generated Week 5-1 Solution](http://2.bp.blogspot.com/_auuGPI3is0Y/TUWv6n4yebI/AAAAAAAAACs/H4mpdOSfh5o/s320/todo.jpg) 
+
+------------------------------------------------------------
+
+#### Design (Milestone Evolution) here
+
+![Design Diagram](http://2.bp.blogspot.com/_auuGPI3is0Y/TUWv6n4yebI/AAAAAAAAACs/H4mpdOSfh5o/s320/todo.jpg)
+
+TODO
+
+------------------------------------------------------------
+
+#### Instructions
+
+TODO
+
+------------------------------------------------------------
+
+#### Code
+
+TODO
+
+------------------------------------------------------------
+
+#### Contributions
+
+TODO
+
+------------------------------------------------------------
+
+## Professor Feedback and Fixes
+
+After feedback from Chandan's review:
+* [ ]: TODO
+* [ ]: TODO
+* TODO
 
 ------------------------------------------------------------
 
@@ -157,6 +216,12 @@ public interface IInvoker {
 #### Testing
 
 Added tests into the document
+
+------------------------------------------------------------
+
+#### Contributions
+
+TODO
 
 ------------------------------------------------------------
 
