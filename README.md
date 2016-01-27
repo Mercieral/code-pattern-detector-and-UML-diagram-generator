@@ -5,7 +5,8 @@ Repository for our CSSE 374 Software Design project.
 
 ## Computer Science Joke
 
-TODO
+![Computer Code joke](http://imgs.xkcd.com/comics/git.png)
+![Computer Code joke](https://www.browserling.com/images/blog/web-designer-vim-radom-string-web-comic.png)
 
 ------------------------------------------------------------
 
@@ -27,7 +28,7 @@ TODO
 
 ------------------------------------------------------------
 
-#### Design (Milestone Evolution) here
+#### Design (Milestone Evolution)
 
 ![Design Diagram](http://2.bp.blogspot.com/_auuGPI3is0Y/TUWv6n4yebI/AAAAAAAAACs/H4mpdOSfh5o/s320/todo.jpg)
 
