@@ -99,7 +99,7 @@ public class AdapterVisitor implements IInvoker {
 									.equals(c0.getClassName().replace("/", ""))
 									&& r.getToObject().equals(
 											fieldType.replace(".", ""))) {
-								r.addProperty("label=\"\\<\\<adapts\\>\\>\"");
+								r.addProperty("xlabel=\"\\<\\<adapts\\>\\>\"");
 							}
 						}
 					}
