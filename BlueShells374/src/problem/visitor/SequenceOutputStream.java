@@ -18,8 +18,11 @@ import problem.javaClasses.Model;
 public class SequenceOutputStream extends FilterOutputStream implements IInvoker {
 	
 	public static final String GENERATOR_NAME = "SequenceGenerator";
+	@SuppressWarnings("unused")
 	private static final String ERROR_ITEM_NOT_FOUND = "ERROR: The specified class or method could not be found";
+	@SuppressWarnings("unused")
 	private static final String ERROR_EXCEPTION = "ERROR: Something went wrong while trying to generate the diagram";
+	@SuppressWarnings("unused")
 	private static final String SYSTEM_OUTPUT_FILE = "input_output/diagram.sd";
 	
 	private final Visitor visitor;

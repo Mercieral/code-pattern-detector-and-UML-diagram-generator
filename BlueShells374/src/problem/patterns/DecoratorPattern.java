@@ -25,7 +25,7 @@ public class DecoratorPattern implements IPattern{
 	}
 	
 	public String getClassName(){
-		return this.getClassName();
+		return this.className;
 	}
 
 }

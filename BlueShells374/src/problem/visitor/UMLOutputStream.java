@@ -3,11 +3,7 @@ package problem.visitor;
 import java.io.FilterOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.objectweb.asm.Opcodes;
 
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
@@ -303,10 +299,5 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 	public void write(IModel model) {
 		ITraverser traverser = (ITraverser) model;
 		traverser.accept(this.visitor);
-	}
-
-	private String parsePointerClass(String classPath) {
-		String parsedClass = trimValue(classPath, "/");
-		return parsedClass;
 	}
 }

@@ -13,9 +13,6 @@ import problem.javaClasses.Method;
 
 public class ConcreteClassTest {
 	
-	private static final String FROM_OBJECT = "FROM";
-	private static final String TO_OBJECT = "TO";
-
 	@Test
 	public void test() {
 		IClass abs = new ConcreteClass();

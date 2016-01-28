@@ -15,9 +15,7 @@ import problem.javaClasses.Field;
 import problem.javaClasses.HasRelation;
 import problem.javaClasses.Method;
 import problem.javaClasses.Model;
-import problem.javaClasses.UsesRelation;
 import problem.patterns.DecoratorPattern;
-import problem.patterns.SingletonPattern;
 import problem.visitor.DecoratorVisitor;
 import problem.visitor.IInvoker;
 import problem.visitor.SingletonVisitor;
@@ -90,13 +88,13 @@ public class Milestone5DecoratorIntegrationTesting {
 		if (IComponent.getPatterns().size() == 1){
 			assertTrue(IComponent.getPatterns().get(0) instanceof DecoratorPattern);
 			DecoratorPattern p = (DecoratorPattern)IComponent.getPatterns().get(0);
-			assertEquals(p.UMLlabel(), "\\<\\<component\\>\\>");
+			assertEquals(p.getLabel(), "\\<\\<component\\>\\>");
 		}
 		assertEquals(1, abstractDecorator.getPatterns().size());
 		if (abstractDecorator.getPatterns().size() == 1){
 			assertTrue(abstractDecorator.getPatterns().get(0) instanceof DecoratorPattern);
 			DecoratorPattern p = (DecoratorPattern)abstractDecorator.getPatterns().get(0);
-			assertEquals(p.UMLlabel(), "\\<\\<decorator\\>\\>");
+			assertEquals(p.getLabel(), "\\<\\<decorator\\>\\>");
 		}
 		//concrete component is not part of decorator pattern
 		assertEquals(0, ConcreteComponent.getPatterns().size());
@@ -216,25 +214,25 @@ public class Milestone5DecoratorIntegrationTesting {
 		if (IComponent.getPatterns().size() == 1){
 			assertTrue(IComponent.getPatterns().get(0) instanceof DecoratorPattern);
 			DecoratorPattern p = (DecoratorPattern)IComponent.getPatterns().get(0);
-			assertEquals(p.UMLlabel(), "\\<\\<component\\>\\>");
+			assertEquals(p.getLabel(), "\\<\\<component\\>\\>");
 		}
 		assertEquals(1, abstractDecorator.getPatterns().size());
 		if (abstractDecorator.getPatterns().size() == 1){
 			assertTrue(abstractDecorator.getPatterns().get(0) instanceof DecoratorPattern);
 			DecoratorPattern p = (DecoratorPattern)abstractDecorator.getPatterns().get(0);
-			assertEquals(p.UMLlabel(), "\\<\\<decorator\\>\\>");
+			assertEquals(p.getLabel(), "\\<\\<decorator\\>\\>");
 		}
 		assertEquals(1, concreteDecorator1.getPatterns().size());
 		if (concreteDecorator1.getPatterns().size() == 1){
 			assertTrue(concreteDecorator1.getPatterns().get(0) instanceof DecoratorPattern);
 			DecoratorPattern p = (DecoratorPattern)concreteDecorator1.getPatterns().get(0);
-			assertEquals(p.UMLlabel(), "\\<\\<decorator\\>\\>");
+			assertEquals(p.getLabel(), "\\<\\<decorator\\>\\>");
 		}
 		assertEquals(1, concreteDecorator2.getPatterns().size());
 		if (concreteDecorator2.getPatterns().size() == 1){
 			assertTrue(concreteDecorator2.getPatterns().get(0) instanceof DecoratorPattern);
 			DecoratorPattern p = (DecoratorPattern)concreteDecorator2.getPatterns().get(0);
-			assertEquals(p.UMLlabel(), "\\<\\<decorator\\>\\>");
+			assertEquals(p.getLabel(), "\\<\\<decorator\\>\\>");
 		}
 		//concrete component is not part of decorator pattern
 		assertEquals(0, ConcreteComponent.getPatterns().size());
