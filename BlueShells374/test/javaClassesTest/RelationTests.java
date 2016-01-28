@@ -79,7 +79,7 @@ public class RelationTests {
 		this.adaptsRelation.setToObject(TO_OBJECT);
 		this.adaptsRelation.setFromObject(FROM_OBJECT);
 		assertEquals(this.adaptsRelation.drawRelation(),
-				"\tFROM -> TO\n\t\t[arrowhead=\"onormal\"];\n");
+				"\tFROM -> TO\n\t\t[arrowhead=\"vee\", label=\"<<decorates>>\"];\n");
 	}
 	
 	@Test
