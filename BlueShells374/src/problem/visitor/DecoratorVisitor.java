@@ -15,7 +15,7 @@ import problem.javaClasses.HasRelation;
 import problem.patterns.DecoratorPattern;
 
 public class DecoratorVisitor implements IInvoker {
-	private Visitor visitor;	
+	private IVisitor visitor;	
 	private List<String> decoratorList;
 	private List<String> concreteDecorators;
 	private Collection<String> tempInterfaces;
