@@ -15,13 +15,13 @@ Repository for our CSSE 374 Software Design project.
 #### Deliverables and Location
 
 1. Diagrams (Pictures below in same order):
-  1. [Manually Created UML](http://www.google.com) TODO
+  1. [Manually Created UML](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Manual_Generated_UML_Project.png)
   2. [Generated UML Project Diagram](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Generated_UML_Project.png)
   3. [Auto-Generated Week 2-1 Solution](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Generated_UML_2-1.png)
   4. [Auto-Generated Week 5-1 Solution](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Generated_UML_5-1.png)
 
 2. Pictures:
-  1. ![Manually Created UML](http://2.bp.blogspot.com/_auuGPI3is0Y/TUWv6n4yebI/AAAAAAAAACs/H4mpdOSfh5o/s320/todo.jpg) 
+  1. ![Manually Created UML](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Manual_Generated_UML_Project.png) 
   2. ![Generated UML Project Diagram](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Generated_UML_Project.png) 
   3. ![Auto-Generated Week 2-1 Solution](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Generated_UML_2-1.png) 
   4. ![Auto-Generated Week 5-1 Solution](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Generated_UML_5-1.png) 
@@ -30,7 +30,7 @@ Repository for our CSSE 374 Software Design project.
 
 #### Design (Milestone Evolution)
 
-![Design Diagram](http://2.bp.blogspot.com/_auuGPI3is0Y/TUWv6n4yebI/AAAAAAAAACs/H4mpdOSfh5o/s320/todo.jpg)
+![Design Diagram](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Manual_Generated_UML_Project.png)
 
 We continued to use the visitor pattern. Left code the same in the framework/library unless bug was found. Add to add additional methods to the IRelation objects, as a way to add label descriptions to be used. 
 
@@ -177,15 +177,9 @@ public class DecoratorVisitor implements IInvoker {
 					for (int i = 0; i < this.decoratorList.size(); i++) {
 						String decorator = this.decoratorList.get(i);
 						decorator = decorator.replace("/", "");
-						if (ext.getToObject().equals(decorator)) { // once the
-																	// concrete
-																	// decorator
-																	// is found
-																	// add its
-																	// name to a
-																	// list of
-																	// concrete
-																	// decorators
+						if (ext.getToObject().equals(decorator)) { 
+						// once the concrete decorator is found add its
+						// name to a list of concrete decorators
 							this.concreteDecorators.add(ext.getFromObject());
 							break;
 						}
@@ -199,16 +193,8 @@ public class DecoratorVisitor implements IInvoker {
 					IModel m = (IModel) t;
 
 					List<IClass> classList = m.getClasses();
-					for (String tempComponent : this.componentList) { // find
-																		// all
-																		// component
-																		// classes
-																		// and
-																		// add a
-																		// decorator
-																		// pattern
-																		// object
-																		// to it
+					for (String tempComponent : this.componentList) { 
+					// find all component classes and add a decorator pattern object to it
 						for (IClass tempClass : classList) {
 							if (tempClass.getClassName()
 									.equals(tempComponent)) {
@@ -219,16 +205,8 @@ public class DecoratorVisitor implements IInvoker {
 						}
 					}
 
-					for (String tempConcrete : this.concreteDecorators) { // find
-																			// all
-																			// concrete
-																			// decorators
-																			// and
-																			// add
-																			// a
-																			// decorator
-																			// pattern
-																			// object
+					for (String tempConcrete : this.concreteDecorators) { 
+					// find all concrete decorators and add a decorator pattern object
 						for (IClass tempClass : classList) {
 							if (tempClass.getClassName().replace("/", "")
 									.equals(tempConcrete)) {
@@ -425,8 +403,8 @@ Aaron Mercier
 ## Professor Feedback and Fixes
 
 After feedback from Chandan's review:
-* [x]: Make UML Diagram easier to read
-* [x]: Fix integration testing
+* [x] : Make UML Diagram easier to read
+* [x] : Fix integration testing
 
 ------------------------------------------------------------
 
