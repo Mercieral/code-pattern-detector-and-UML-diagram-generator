@@ -17,7 +17,7 @@ Repository for our CSSE 374 Software Design project.
 1. Diagrams (Pictures below in same order):
   1. [Manually Created UML](http://www.google.com) TODO
   2. [Generated UML Project Diagram](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Generated_UML_Project.png)
-  3. [Auto-Generated Week 2-1 Solution](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Generated_UML_2-1.png) **NOTE:** The <<decorates>> label is on the HasRelation but GraphViz draws it far away. Working on a fix.  
+  3. [Auto-Generated Week 2-1 Solution](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Generated_UML_2-1.png) **NOTE:** The \<\<decorates\>\> label is on the HasRelation but GraphViz draws it far away. Working on a fix.  
   4. [Auto-Generated Week 5-1 Solution](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Generated_UML_5-1.png)
 
 2. Pictures:
