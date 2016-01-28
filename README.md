@@ -16,15 +16,15 @@ Repository for our CSSE 374 Software Design project.
 
 1. Diagrams (Pictures below in same order):
   1. [Manually Created UML](http://www.google.com) TODO
-  2. [Generated UML Project Diagram](http://www.google.com) TODO
-  3. [Auto-Generated Week 2-1 Solution](http://www.google.com) TODO
-  4. [Auto-Generated Week 5-1 Solution](http://www.google.com) TODO
+  2. [Generated UML Project Diagram](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Generated_UML_Project.png)
+  3. [Auto-Generated Week 2-1 Solution](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Generated_UML_2-1.png) **NOTE:** The <<decorates>> label is on the HasRelation but GraphViz draws it far away. Working on a fix.  
+  4. [Auto-Generated Week 5-1 Solution](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Generated_UML_5-1.png)
 
 2. Pictures:
   1. ![Manually Created UML](http://2.bp.blogspot.com/_auuGPI3is0Y/TUWv6n4yebI/AAAAAAAAACs/H4mpdOSfh5o/s320/todo.jpg) 
-  2. ![Generated UML Project Diagram](http://2.bp.blogspot.com/_auuGPI3is0Y/TUWv6n4yebI/AAAAAAAAACs/H4mpdOSfh5o/s320/todo.jpg) 
-  3. ![Auto-Generated Week 2-1 Solution](http://2.bp.blogspot.com/_auuGPI3is0Y/TUWv6n4yebI/AAAAAAAAACs/H4mpdOSfh5o/s320/todo.jpg) 
-  4. ![Auto-Generated Week 5-1 Solution](http://2.bp.blogspot.com/_auuGPI3is0Y/TUWv6n4yebI/AAAAAAAAACs/H4mpdOSfh5o/s320/todo.jpg) 
+  2. ![Generated UML Project Diagram](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Generated_UML_Project.png) 
+  3. ![Auto-Generated Week 2-1 Solution](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Generated_UML_2-1.png) 
+  4. ![Auto-Generated Week 5-1 Solution](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Generated_UML_5-1.png) 
 
 ------------------------------------------------------------
 
@@ -32,13 +32,27 @@ Repository for our CSSE 374 Software Design project.
 
 ![Design Diagram](http://2.bp.blogspot.com/_auuGPI3is0Y/TUWv6n4yebI/AAAAAAAAACs/H4mpdOSfh5o/s320/todo.jpg)
 
-TODO
+We continued to use the visitor pattern. Left code the same in the framework/library unless bug was found. Add to add additional methods to the IRelation objects, as a way to add label descriptions to be used. 
 
 ------------------------------------------------------------
 
 #### Instructions
 
-TODO
+Instructions are still similar to previous milestone.
+
+To test the program, there is a console available for use. 
+
+The client would input the desired classes, such as classes in a package, in as the initial arguments. Once that object is finished loading, a console type structure is loaded. From there, follow the prompts for desired inputs. 
+
+```
+Supported operations: Generator, Help, Quit 
+Input command:> Generator
+Generators: Supported generators - UML, Sequence 
+Input generator:> UML
+Generated graph, please refresh the input_output folder
+Supported operations: Generator, Help, Quit 
+Input command:> quit
+```
 
 ------------------------------------------------------------
 
