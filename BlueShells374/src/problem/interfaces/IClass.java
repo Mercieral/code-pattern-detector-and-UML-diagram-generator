@@ -49,12 +49,6 @@ public interface IClass extends ITraverser {
 	 */
 	public double getClassVersion();
 
-	/**
-	 * Gets the {@link IClass} that is the superClass of the Class
-	 * 
-	 * @return - {@link IClass} for super class
-	 */
-	public IClass getSuperName();
 
 	/**
 	 * Gets a collection of strings that are interfaces for this class
@@ -115,13 +109,6 @@ public interface IClass extends ITraverser {
 	 */
 	public void setClassVersion(double version);
 
-	/**
-	 * Set {@link IClass} super class
-	 * 
-	 * @param -
-	 *            {@link IClass} name
-	 */
-	public void setSuperName(IClass name);
 
 	/**
 	 * Add an interface

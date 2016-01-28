@@ -18,7 +18,6 @@ public class ConcreteClass implements IClass {
 	private String signature;
 	private String name;
 	private double version;
-	private IClass superClass;
 	private Collection<String> interfaceList;
 	private String extension;
 	private List<IPattern> patternList;
@@ -33,7 +32,6 @@ public class ConcreteClass implements IClass {
 		this.signature = "";
 		this.name = "";
 		this.version = 0.00;
-		this.superClass = null;
 		this.interfaceList = new ArrayList<>();
 		this.extension = "";
 		this.patternList = new ArrayList<>();
@@ -67,11 +65,6 @@ public class ConcreteClass implements IClass {
 	@Override
 	public double getClassVersion() {
 		return this.version;
-	}
-
-	@Override
-	public IClass getSuperName() {
-		return this.superClass;
 	}
 
 	@Override
@@ -113,11 +106,6 @@ public class ConcreteClass implements IClass {
 	@Override
 	public void setClassVersion(double version) {
 		this.version = version;
-	}
-
-	@Override
-	public void setSuperName(IClass name) {
-		this.superClass = name;
 	}
 
 	@Override
