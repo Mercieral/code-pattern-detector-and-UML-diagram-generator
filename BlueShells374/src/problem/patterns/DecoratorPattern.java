@@ -15,12 +15,12 @@ public class DecoratorPattern implements IPattern{
 	}
 	
 	@Override
-	public String UMLproperty() {
+	public String getProperty() {
 		return this.UMLproperty;
 	}
 
 	@Override
-	public String UMLlabel() {
+	public String getLabel() {
 		return this.UMLlabel;
 	}
 	

@@ -157,8 +157,8 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 					StringBuilder sb = new StringBuilder();
 					StringBuilder sb2 = new StringBuilder();
 					for (IPattern pattern : obj.getPatterns()) {
-						sb.append(pattern.UMLproperty() + "\n\t\t");
-						sb2.append(pattern.UMLlabel() + "\\n\n\t\t\t");
+						sb.append(pattern.getProperty() + "\n\t\t");
+						sb2.append(pattern.getLabel() + "\\n\n\t\t\t");
 					}
 
 					String labelStart = "label = \n\t\t\t\"{ ";

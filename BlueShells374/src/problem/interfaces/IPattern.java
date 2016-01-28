@@ -1,6 +1,7 @@
 package problem.interfaces;
 
 public interface IPattern {
-	public String UMLproperty();
-	public String UMLlabel();
+	public String getProperty();
+
+	public String getLabel();
 }

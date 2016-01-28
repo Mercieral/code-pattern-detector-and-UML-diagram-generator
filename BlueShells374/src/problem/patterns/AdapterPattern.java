@@ -14,12 +14,12 @@ public class AdapterPattern implements IPattern{
 	}
 	
 	@Override
-	public String UMLproperty() {
+	public String getProperty() {
 		return UMLproperty;
 	}
 
 	@Override
-	public String UMLlabel() {
+	public String getLabel() {
 		return UMLlabel;
 	}
 	

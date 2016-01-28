@@ -14,7 +14,7 @@ public class SingletonPattern implements IPattern {
 	}
 	
 	@Override
-	public String UMLproperty() {
+	public String getProperty() {
 		return this.UMLproperty;
 	}
 
@@ -23,7 +23,7 @@ public class SingletonPattern implements IPattern {
 	}
 
 	@Override
-	public String UMLlabel() {
+	public String getLabel() {
 		return this.UMLlabel;
 	}
 }
