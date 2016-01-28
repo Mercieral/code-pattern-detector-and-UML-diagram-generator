@@ -44,22 +44,332 @@ TODO
 
 #### Code
 
-TODO
+###### DecoratorPattern Object
+
+```java
+public class DecoratorPattern implements IPattern{
+	private String className;
+	private String UMLproperty;
+	private String UMLlabel;
+	//need something with relations
+	
+	public DecoratorPattern(String className, String type) {
+		this.className = className;
+		this.UMLproperty = "fillcolor=green, style=filled,";
+		this.UMLlabel = type; //type means decorator or component and will be provided from the visitor
+	}
+	
+	@Override
+	public String getProperty() {
+		return this.UMLproperty;
+	}
+
+	@Override
+	public String getLabel() {
+		return this.UMLlabel;
+	}
+	
+	public String getClassName(){
+		return this.className;
+	}
+
+}
+```
+
+###### DecoratorVisitor Object
+
+```java
+public class DecoratorVisitor implements IInvoker {
+	private Visitor visitor;	
+	private List<String> decoratorList;
+	private List<String> concreteDecorators;
+	private Collection<String> tempInterfaces;
+	private List<String> componentList;
+	private String tempExtension;
+	private IClass tempClass;
+	private boolean notAbstract;
+	private boolean isDecorator;
+	
+	public DecoratorVisitor() {
+		this.visitor = new Visitor();
+		this.decoratorList = new ArrayList<>();
+		this.concreteDecorators = new ArrayList<>();
+		this.componentList = new ArrayList<>();
+		
+		this.setupPreVisitClass();
+		this.visitField();
+		this.visitExtensionRelation();
+		this.postVisitModel();
+	}
+
+	@Override
+	public void write(IModel model) {
+		ITraverser traverser = (ITraverser) model;
+		traverser.accept(this.visitor);
+	}
+	
+	private void setupPreVisitClass(){ //search for a class that could potentially be the decorator and add it to a list
+		this.visitor.addVisit(VisitType.PreVisit, ConcreteClass.class, (ITraverser t) ->{
+			this.tempClass = (IClass) t;
+			this.tempInterfaces = new ArrayList<>();
+			this.tempExtension = "";
+			
+			this.notAbstract = false;
+			this.isDecorator = false;
+//			if (this.tempClass.getAcessLevel() != 1057){ //if the class is not abstract it cannot be a decorator
+//				this.notAbstract = true;
+//				return;
+//			}
+			
+			this.tempInterfaces = this.tempClass.getInterface();
+			this.tempExtension = this.tempClass.getExtension();
+		});
+	}
+	
+	private void visitField(){
+		this.visitor.addVisit(VisitType.Visit, Field.class, (ITraverser t) ->{
+			if (this.notAbstract) //if already determined to be a decorator or not return to avoid wasted computation
+				return;
+			
+			IField f = (IField) t;
+			String desc = f.getDesc().replace(".", "/");
+			if (desc.equals("java/lang/Object")){
+				return;
+			}
+			
+			if (desc.equals(this.tempExtension) || this.tempInterfaces.contains(desc)){
+				this.componentList.add(desc);
+				if (!this.isDecorator){
+					this.decoratorList.add(this.tempClass.getClassName());
+					this.tempClass.addPattern(new DecoratorPattern(this.tempClass.getClassName(), "\\<\\<decorator\\>\\>"));
+					this.isDecorator = true;
+				}
+			}
+		});
+	}
+	
+	private void visitExtensionRelation(){
+		this.visitor.addVisit(VisitType.Visit, ExtensionRelation.class, (ITraverser t) -> {
+			IRelation ext = (IRelation) t;
+			for (int i = 0; i < this.decoratorList.size(); i++){
+				String decorator = this.decoratorList.get(i);
+				decorator = decorator.replace("/", "");
+				if (ext.getToObject().equals(decorator)){ //once the concrete decorator is found add its name to a list of concrete decorators
+					this.concreteDecorators.add(ext.getFromObject());
+					break;
+				}
+			}
+		});
+	}
+	
+	private void postVisitModel(){
+		this.visitor.addVisit(VisitType.PostVisit, IModel.class, (ITraverser t) -> {
+			IModel m = (IModel) t;
+			
+			List<IClass> classList = m.getClasses();
+			for (String tempComponent : this.componentList){ //find all component classes and add a decorator pattern object to it
+				for (IClass tempClass : classList){
+					if (tempClass.getClassName().equals(tempComponent)){
+						tempClass.addPattern(new DecoratorPattern(tempClass.getClassName(), "\\<\\<component\\>\\>"));
+					}
+				}
+			}
+			
+			for (String tempConcrete : this.concreteDecorators){ //find all concrete decorators and add a decorator pattern object
+				for (IClass tempClass : classList){
+					if (tempClass.getClassName().replace("/", "").equals(tempConcrete)){
+						tempClass.addPattern(new DecoratorPattern(tempClass.getClassName(), "\\<\\<decorator\\>\\>"));
+					}
+				}
+			}
+			
+			List<IRelation> relations = m.getRelations();
+			for (String s : this.decoratorList){
+				for (IRelation r : relations){
+					if (r.getClass().equals(HasRelation.class)){
+						if (s.replace("/", "").equals(r.getFromObject())){
+							r.addProperty("label=\"<<decorates>>\"");
+						}	
+					}
+				}
+			}
+		});
+	}
+}
+```
+
+###### DesignParser
+
+```java
+		DecoratorVisitor decoratorVisitor = new DecoratorVisitor();
+		decoratorVisitor.write(model);
+```
+
+###### AdapterPattern Object
+
+```java
+public class AdapterPattern implements IPattern{
+	private String className;
+	private String UMLproperty;
+	private String UMLlabel;
+	
+	public AdapterPattern(String className, String type) {
+		this.className = className;
+		this.UMLproperty = "fillcolor=red, style=filled,";
+		this.UMLlabel = type; //type means target, adapter, or adaptee and will be provided from the visitor
+	}
+	
+	@Override
+	public String getProperty() {
+		return UMLproperty;
+	}
+
+	@Override
+	public String getLabel() {
+		return UMLlabel;
+	}
+	
+	public String getClassName(){
+		return this.className;
+	}
+}
+```
+###### AdapterVisitor Object
+
+```java
+public class AdapterVisitor implements IInvoker {
+
+	private IVisitor visitor;
+	private List<IClass> classList;
+
+	public AdapterVisitor() {
+		this.visitor = new Visitor();
+		this.classList = new ArrayList<>();
+		this.setupPreVisitClass();
+		this.visitHasRelation();
+		this.postVisitModel();
+
+	}
+
+	@Override
+	public void write(IModel model) {
+		ITraverser traverser = (ITraverser) model;
+		traverser.accept(this.visitor);
+	}
+
+	private void visitHasRelation() {
+		this.visitor.addVisit(VisitType.Visit, ConcreteClass.class,
+				(ITraverser t) -> {
+
+				});
+	}
+
+	private void setupPreVisitClass() {
+		this.visitor.addVisit(VisitType.PreVisit, ConcreteClass.class,
+				(ITraverser t) -> {
+					IClass c = (IClass) t;
+					if (c.getInterface().size() == 1) {
+						// Detecting adapter
+						if (c.getExtension().equals("java/lang/Object")) {
+							// Doesn't have an extension
+							if (c.getIField().size() == 1) {
+								// Only 1 field
+								this.classList.add(c);
+								// Adds it when all three parts exist
+							}
+						}
+					}
+				});
+	}
+
+	private void postVisitModel() {
+		this.visitor.addVisit(VisitType.PostVisit, IModel.class,
+				(ITraverser t) -> {
+					IModel m = (IModel) t;
+					for (IClass c0 : this.classList) {
+						boolean isAdaptee = false;
+						IClass adaptee = null;
+						boolean isTarget = false;
+						IClass target = null;
+						String fieldType = ((List<IField>) c0.getIField())
+								.get(0).getDesc();
+						String interfaceName = ((List<String>) c0
+								.getInterface()).get(0);
+						for (IClass c1 : m.getClasses()) {
+							if (c1.getClassName().equals(fieldType)
+									|| c1.getClassName().replace("/", ".")
+											.equals(fieldType)) {
+								isAdaptee = true;
+								adaptee = c1;
+								continue; // If this one, not the interface
+							}
+							if (c1.getClassName().equals(interfaceName)) {
+								isTarget = true;
+								target = c1;
+							}
+							if (target != null && adaptee != null) {
+								break;
+							}
+						}
+						if (isAdaptee && isTarget) {
+							adaptee.addPattern(
+									new AdapterPattern(adaptee.getClassName(),
+											"\\<\\<adaptee\\>\\>"));
+							target.addPattern(
+									new AdapterPattern(target.getClassName(),
+											"\\<\\<target\\>\\>"));
+							c0.addPattern(new AdapterPattern(c0.getClassName(),
+									"\\<\\<adapter\\>\\>"));
+						}
+						for (IRelation r : m.getRelations()) {
+							if (r.getFromObject()
+									.equals(c0.getClassName().replace("/", ""))
+									&& r.getToObject().equals(
+											fieldType.replace(".", ""))) {
+								r.addProperty("label=\"\\<\\<adapts\\>\\>\"");
+							}
+						}
+					}
+
+				});
+	}
+}
+```
+
+###### DesignParser
+
+```java
+		AdapterVisitor adapterVisitor = new AdapterVisitor();
+		adapterVisitor.write(model);
+```
 
 ------------------------------------------------------------
 
 #### Contributions
 
-TODO
+Luke Danielson
+
+1. Worked on Decorator Visitor
+2. Helped on Adapter Visitor
+
+Larry Gates
+
+1. Worked on Adapter Visitor
+2. Cleaned up code
+
+Aaron Mercier
+
+1. Started Integration testing
+2. Helped with Decorator Visitor
+3. Helped with Adapter Visitor
 
 ------------------------------------------------------------
 
 ## Professor Feedback and Fixes
 
 After feedback from Chandan's review:
-* [ ]: TODO
-* [ ]: TODO
-* TODO
+* [x]: Make UML Diagram easier to read
+* [x]: Fix integration testing
 
 ------------------------------------------------------------
 
@@ -222,7 +532,17 @@ Added tests into the document
 
 #### Contributions
 
-TODO
+Luke Danielson
+
+1. Got Singleton pattern working
+
+Larry Gates
+
+1. Unit test cases
+
+Aaron Mercier
+
+1. Converted Sequence Generator to Visitor Pattern
 
 ------------------------------------------------------------
 
