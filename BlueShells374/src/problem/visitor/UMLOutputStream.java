@@ -24,14 +24,14 @@ import problem.javaClasses.UsesRelation;
 
 public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 	private IVisitor visitor;
-	private Map<String, String> hasRelations;
-	private Map<String, String> useRelations;
+	private Map<String, List<String>> hasRelations;
+	private Map<String, List<String>> useRelations;
 
 	public UMLOutputStream(OutputStream out) {
 		super(out);
 		this.visitor = new Visitor();
-		this.hasRelations = new HashMap<String, String>();
-		this.useRelations = new HashMap<String, String>();
+		this.hasRelations = new HashMap<String, List<String>>();
+		this.useRelations = new HashMap<String, List<String>>();
 
 		this.setupPreVisitModel();
 		this.setupPreVisitClass();
@@ -52,14 +52,18 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 				(ITraverser t) -> {
 					IRelation r = (IRelation) t;
 					//String pointerClass = parsePointerClass(r.getToObject());
-					if (this.hasRelations.get(r.getFromObject()) == null){
-						this.hasRelations.put(r.getFromObject(), r.getToObject());
+					if (this.hasRelations.get(r.getFromObject()) == null || !this.hasRelations.get(r.getFromObject()).contains(r.getToObject())){
+						if (this.hasRelations.get(r.getFromObject()) == null) {
+							this.hasRelations.put(r.getFromObject(), new ArrayList<String>());
+							this.hasRelations.get(r.getFromObject()).add(r.getToObject());
+						}
+						else if (!this.hasRelations.get(r.getFromObject()).contains(r.getToObject())){
+							this.hasRelations.get(r.getFromObject()).add(r.getToObject());
+						}
 						try {
-							System.out.println("adding has " + r.getFromObject() + " to " + r.getToObject());
 							this.write(r.drawRelation().getBytes());
-							if (useRelations.get(r.getFromObject()) != null && useRelations.get(r.getFromObject()).equals(r.getToObject())) {
-								useRelations.remove(r);
-								System.out.println("removing uses " + r.getFromObject() + " to " + r.getToObject());
+							if (useRelations.get(r.getFromObject()) != null && useRelations.get(r.getFromObject()).contains(r.getToObject())) {
+								useRelations.remove(r.getFromObject());
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -72,19 +76,21 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 		this.visitor.addVisit(VisitType.Visit, UsesRelation.class,
 				(ITraverser t) -> {
 					IRelation r = (IRelation) t;
-					//String pointerClass = parsePointerClass(r.getToObject());
-					//FIXME not drawing all uses arrows, hasClassNames is return true and not running the if statement (dcl.SingletonClient -> dcl.Singleton)
-					if ((useRelations.get(r.getFromObject()) == null || !useRelations.get(r.getFromObject()).equals(r.getToObject())) 
-							&& (hasRelations.get(r.getFromObject()) == null || !hasRelations.get(r.getFromObject()).equals(r.getToObject()))) {
-						//&& !hasClassNames.contains(pointerClass)
-						useRelations.put(r.getFromObject(), r.getToObject());
+					if ((useRelations.get(r.getFromObject()) == null || !useRelations.get(r.getFromObject()).contains(r.getToObject())) 
+							&& ((hasRelations.get(r.getFromObject()) == null) || !hasRelations.get(r.getFromObject()).contains(r.getToObject()))) {
+						if (useRelations.get(r.getFromObject()) == null){
+							useRelations.put(r.getFromObject(), new ArrayList<String>());
+							useRelations.get(r.getFromObject()).add(r.getToObject());
+						}
+						else if (!useRelations.get(r.getFromObject()).contains(r.getToObject())){
+							useRelations.get(r.getFromObject()).add(r.getToObject());
+						}
 						try {
-							System.out.println("adding uses " + r.getFromObject() + " to " + r.getToObject());
 							this.write(r.drawRelation().getBytes());
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
-					} else { System.out.println("not adding uses " + r.getFromObject() + " to " + r.getToObject());}
+					}
 
 				});
 	}
@@ -148,8 +154,6 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 		this.visitor.addVisit(VisitType.PreVisit, ConcreteClass.class,
 				(ITraverser t) -> {
 					IClass obj = (IClass) t;
-					this.hasRelations = new HashMap<String, String>();
-					this.useRelations = new HashMap<String, String>();
 					StringBuilder builder = new StringBuilder();
 
 					String beginBrace = "[ \n";
