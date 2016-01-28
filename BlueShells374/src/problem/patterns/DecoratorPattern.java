@@ -16,14 +16,16 @@ public class DecoratorPattern implements IPattern{
 	
 	@Override
 	public String UMLproperty() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.UMLproperty;
 	}
 
 	@Override
 	public String UMLlabel() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.UMLlabel;
+	}
+	
+	public String getClassName(){
+		return this.getClassName();
 	}
 
 }

@@ -13,6 +13,7 @@ import problem.interfaces.IClass;
 import problem.interfaces.IModel;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Model;
+import problem.visitor.DecoratorVisitor;
 import problem.visitor.IInvoker;
 import problem.visitor.SequenceOutputStream;
 import problem.visitor.SingletonVisitor;
@@ -95,6 +96,8 @@ public class DesignParser {
 		streams.put("uml", new UMLOutputStream(new FileOutputStream("input_output/graph.gv")));
 		SingletonVisitor singletonVisitor = new SingletonVisitor();
 		singletonVisitor.write(model);
+		DecoratorVisitor decoratorVisitor = new DecoratorVisitor();
+		decoratorVisitor.write(model);
 		
 
 		commandConsole(model, streams);
