@@ -4,7 +4,6 @@ import problem.visitor.ITraverser;
 
 public interface IRelation extends ITraverser {
 
-
 	/**
 	 * Provides a string value to add the correct format needed to draw a
 	 * relation object
@@ -42,8 +41,13 @@ public interface IRelation extends ITraverser {
 	 * @return - String name of the end object
 	 */
 	public String getToObject();
-	
-	public void addLabel(String label);
-	
+
+	/**
+	 * Adds a property to the arrow
+	 * 
+	 * @param property
+	 *            - Adds a property description to the arrow
+	 */
+	public void addProperty(String property);
 
 }

@@ -7,8 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import problem.interfaces.IRelation;
-import problem.javaClasses.AdaptsRelation;
-import problem.javaClasses.DecorateRelation;
 import problem.javaClasses.ExtensionRelation;
 import problem.javaClasses.HasRelation;
 import problem.javaClasses.InterfaceRelation;
@@ -20,8 +18,6 @@ public class RelationTests {
 	private IRelation extensionRelation;
 	private IRelation interfaceRelation;
 	private IRelation usesRelation;
-	private IRelation adaptsRelation;
-	private IRelation decorateRelation;
 
 	private String FROM_OBJECT = "FROM";
 	private String TO_OBJECT = "TO";
@@ -32,8 +28,6 @@ public class RelationTests {
 		this.extensionRelation = new ExtensionRelation();
 		this.interfaceRelation = new InterfaceRelation();
 		this.usesRelation = new UsesRelation();
-		this.adaptsRelation = new AdaptsRelation();
-		this.decorateRelation = new DecorateRelation();
 	}
 
 	@After
@@ -48,14 +42,16 @@ public class RelationTests {
 	public void hasRelationTest() {
 		this.hasRelation.setToObject(TO_OBJECT);
 		this.hasRelation.setFromObject(FROM_OBJECT);
-		assertEquals(this.hasRelation.drawRelation(), "\tFROM -> TO\n\t\t[arrowhead=\"vee\"];\n");
+		assertEquals(this.hasRelation.drawRelation(),
+				"\tFROM -> TO\n\t\t[arrowhead=\"vee\"];\n");
 	}
 
 	@Test
 	public void usesRelationTest() {
 		this.usesRelation.setToObject(TO_OBJECT);
 		this.usesRelation.setFromObject(FROM_OBJECT);
-		assertEquals(this.usesRelation.drawRelation(), "\tFROM -> TO\n\t\t[arrowhead=\"vee\", style=\"dashed\"];\n");
+		assertEquals(this.usesRelation.drawRelation(),
+				"\tFROM -> TO\n\t\t[arrowhead=\"vee\", style=\"dashed\"];\n");
 	}
 
 	@Test
@@ -73,21 +69,23 @@ public class RelationTests {
 		assertEquals(this.extensionRelation.drawRelation(),
 				"\tFROM -> TO\n\t\t[arrowhead=\"onormal\"];\n");
 	}
-	
+
 	@Test
 	public void adaptsRelationTest() {
-		this.adaptsRelation.setToObject(TO_OBJECT);
-		this.adaptsRelation.setFromObject(FROM_OBJECT);
-		assertEquals(this.adaptsRelation.drawRelation(),
-				"\tFROM -> TO\n\t\t[arrowhead=\"vee\", label=\"<<decorates>>\"];\n");
+		fail();
+		// this.adaptsRelation.setToObject(TO_OBJECT);
+		// this.adaptsRelation.setFromObject(FROM_OBJECT);
+		// assertEquals(this.adaptsRelation.drawRelation(),
+		// "\tFROM -> TO\n\t\t[arrowhead=\"vee\", label=\"<<decorates>>\"];\n");
 	}
-	
+
 	@Test
 	public void decoratesRelationTest() {
-		this.decorateRelation.setToObject(TO_OBJECT);
-		this.decorateRelation.setFromObject(FROM_OBJECT);
-		assertEquals(this.decorateRelation.drawRelation(),
-				"\tFROM -> TO\n\t\t[arrowhead=\"vee\", label=\"<<decorates>>\"];\n");
+		fail();
+		// this.decorateRelation.setToObject(TO_OBJECT);
+		// this.decorateRelation.setFromObject(FROM_OBJECT);
+		// assertEquals(this.decorateRelation.drawRelation(),
+		// "\tFROM -> TO\n\t\t[arrowhead=\"vee\", label=\"<<decorates>>\"];\n");
 	}
 
 }

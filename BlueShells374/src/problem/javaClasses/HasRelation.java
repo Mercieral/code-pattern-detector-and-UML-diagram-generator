@@ -80,7 +80,7 @@ public class HasRelation implements IRelation {
 	}
 
 	@Override
-	public void addLabel(String label) {
+	public void addProperty(String label) {
 		this.labels.add(label);
 	}
 

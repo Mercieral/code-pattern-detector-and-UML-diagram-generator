@@ -124,7 +124,7 @@ public class DecoratorVisitor implements IInvoker {
 					if (r.getClass().equals(HasRelation.class)){
 						if (s.replace("/", "").equals(r.getFromObject())){
 							System.out.println("here");
-							r.addLabel("label=\"<<decorates>>\"");
+							r.addProperty("label=\"<<decorates>>\"");
 						}	
 					}
 				}

@@ -33,7 +33,7 @@ public class AdapterVisitor implements IInvoker {
 	private void visitHasRelation() {
 		this.visitor.addVisit(VisitType.Visit, ConcreteClass.class,
 				(ITraverser t) -> {
-					
+
 				});
 	}
 
@@ -48,9 +48,7 @@ public class AdapterVisitor implements IInvoker {
 							if (c.getIField().size() == 1) {
 								// Only 1 field
 								this.classList.add(c);
-								c.addPattern(
-										new AdapterPattern(c.getClassName(),
-												"\\<\\<adapter\\>\\>"));
+								// Adds it when all three parts exist
 							}
 						}
 					}
@@ -62,6 +60,10 @@ public class AdapterVisitor implements IInvoker {
 				(ITraverser t) -> {
 					IModel m = (IModel) t;
 					for (IClass c0 : this.classList) {
+						boolean isAdaptee = false;
+						IClass adaptee = null;
+						boolean isTarget = false;
+						IClass target = null;
 						String fieldType = ((List<IField>) c0.getIField())
 								.get(0).getDesc();
 						String interfaceName = ((List<String>) c0
@@ -70,20 +72,35 @@ public class AdapterVisitor implements IInvoker {
 							if (c1.getClassName().equals(fieldType)
 									|| c1.getClassName().replace("/", ".")
 											.equals(fieldType)) {
-								c1.addPattern(
-										new AdapterPattern(c1.getClassName(),
-												"\\<\\<adaptee\\>\\>"));
+								isAdaptee = true;
+								adaptee = c1;
 								continue; // If this one, not the interface
 							}
 							if (c1.getClassName().equals(interfaceName)) {
-								c1.addPattern(
-										new AdapterPattern(c1.getClassName(),
-												"\\<\\<target\\>\\>"));
+								isTarget = true;
+								target = c1;
+							}
+							if (target != null && adaptee != null) {
+								break;
 							}
 						}
-						
-						for (IRelation r : m.getRelations()){
-							
+						if (isAdaptee && isTarget) {
+							adaptee.addPattern(
+									new AdapterPattern(adaptee.getClassName(),
+											"\\<\\<adaptee\\>\\>"));
+							target.addPattern(
+									new AdapterPattern(target.getClassName(),
+											"\\<\\<target\\>\\>"));
+							c0.addPattern(new AdapterPattern(c0.getClassName(),
+									"\\<\\<adapter\\>\\>"));
+						}
+						for (IRelation r : m.getRelations()) {
+							if (r.getFromObject()
+									.equals(c0.getClassName().replace("/", ""))
+									&& r.getToObject().equals(
+											fieldType.replace(".", ""))) {
+								r.addProperty("label=\"\\<\\<adapts\\>\\>\"");
+							}
 						}
 					}
 
