@@ -51,10 +51,10 @@ public class DecoratorVisitor implements IInvoker {
 			
 			this.notAbstract = false;
 			this.isDecorator = false;
-			if (this.tempClass.getAcessLevel() != 1057){ //if the class is not abstract it cannot be a decorator
-				this.notAbstract = true;
-				return;
-			}
+//			if (this.tempClass.getAcessLevel() != 1057){ //if the class is not abstract it cannot be a decorator
+//				this.notAbstract = true;
+//				return;
+//			}
 			
 			this.tempInterfaces = this.tempClass.getInterface();
 			this.tempExtension = this.tempClass.getExtension();
@@ -63,16 +63,22 @@ public class DecoratorVisitor implements IInvoker {
 	
 	private void visitField(){
 		this.visitor.addVisit(VisitType.Visit, Field.class, (ITraverser t) ->{
-			if (this.notAbstract || this.isDecorator) //if already determined to be a decorator or not return to avoid wasted computation
+			if (this.notAbstract) //if already determined to be a decorator or not return to avoid wasted computation
 				return;
 			
 			IField f = (IField) t;
 			String desc = f.getDesc().replace(".", "/");
+			if (desc.equals("java/lang/Object")){
+				return;
+			}
+			
 			if (desc.equals(this.tempExtension) || this.tempInterfaces.contains(desc)){
 				this.componentList.add(desc);
-				this.decoratorList.add(this.tempClass.getClassName());
-				this.tempClass.addPattern(new DecoratorPattern(this.tempClass.getClassName(), "\\<\\<decorator\\>\\>"));
-				this.isDecorator = true;
+				if (!this.isDecorator){
+					this.decoratorList.add(this.tempClass.getClassName());
+					this.tempClass.addPattern(new DecoratorPattern(this.tempClass.getClassName(), "\\<\\<decorator\\>\\>"));
+					this.isDecorator = true;
+				}
 			}
 		});
 	}
