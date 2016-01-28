@@ -77,8 +77,6 @@ public class SingletonVisitor implements IInvoker {
 			
 			for (String s : this.singletonList){
 				for (IClass c : m.getClasses()){
-					System.out.println("s" + s);
-					System.out.println("c" + c.getExtension());
 					if (s.equals(c.getExtension())){
 						c.addPattern(new SingletonPattern(c.getClassName()));
 					}
