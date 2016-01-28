@@ -173,7 +173,7 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 					// System.out.println(Opcodes.ACC_INTERFACE);
 					// if (obj.getAcessLevel() == Opcodes.ACC_INTERFACE) {
 					if (obj.getAcessLevel() == 1537) {
-						builder.append("\\<\\<interface\\>\\>\\n\n");
+						builder.append("\\<\\<interface\\>\\>\\n\n\t\t\t");
 					}
 					builder.append(obj.getClassName() + "\n\t\t\t\\n\n\t\t\t"
 							+ sb2.toString() + "|\n");

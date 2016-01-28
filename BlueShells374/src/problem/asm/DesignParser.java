@@ -13,6 +13,7 @@ import problem.interfaces.IClass;
 import problem.interfaces.IModel;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Model;
+import problem.visitor.AdapterVisitor;
 import problem.visitor.DecoratorVisitor;
 import problem.visitor.IInvoker;
 import problem.visitor.SequenceOutputStream;
@@ -98,6 +99,8 @@ public class DesignParser {
 		singletonVisitor.write(model);
 		DecoratorVisitor decoratorVisitor = new DecoratorVisitor();
 		decoratorVisitor.write(model);
+		AdapterVisitor adapterVisitor = new AdapterVisitor();
+		adapterVisitor.write(model);
 		
 
 		commandConsole(model, streams);

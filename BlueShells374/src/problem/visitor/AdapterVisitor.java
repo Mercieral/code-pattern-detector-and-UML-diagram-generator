@@ -1,106 +1,27 @@
 package problem.visitor;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
-import problem.interfaces.IMethod;
 import problem.interfaces.IModel;
+import problem.interfaces.IRelation;
 import problem.javaClasses.ConcreteClass;
-import problem.javaClasses.ExtensionRelation;
-import problem.javaClasses.MethodContainer;
+import problem.patterns.AdapterPattern;
 
 public class AdapterVisitor implements IInvoker {
 
 	private IVisitor visitor;
-	private Map<String, Boolean> fieldMap;
 	private List<IClass> classList;
 
 	public AdapterVisitor() {
 		this.visitor = new Visitor();
-		this.fieldMap = new HashMap<>();
-
-		this.setupPreVisitModel();
+		this.classList = new ArrayList<>();
 		this.setupPreVisitClass();
-		this.visitField();
-		this.visitMethod();
-		this.visitExtensionRelation();
 		this.visitHasRelation();
 		this.postVisitModel();
 
-	}
-
-	private void setupPreVisitModel() {
-		this.visitor.addVisit(VisitType.PreVisit, IModel.class,
-				(ITraverser t) -> {
-					IModel m = (IModel) t;
-					this.classList = m.getClasses();
-				});
-	}
-
-	private void visitHasRelation() {
-
-	}
-
-	private void setupPreVisitClass() {
-		this.visitor.addVisit(VisitType.PreVisit, ConcreteClass.class,
-				(ITraverser t) -> {
-
-				});
-	}
-
-	private void visitMethod() {
-		this.visitor.addVisit(VisitType.Visit, IMethod.class,
-				(ITraverser t) -> {
-					IMethod m = (IMethod) t;
-					boolean inMethod = false;
-					boolean inClass = false;
-					for(IClass c: this.classList){
-						if(c.getIMethods().contains(m)){
-							
-						}
-					}
-					
-					
-					if (true) { // FIXME: Check if method is in interface
-						for (String field : this.fieldMap.keySet()) {
-							inMethod = false;
-							for (MethodContainer mc : m.getInnerCalls()) {
-								if (mc.getGoingFromClass().equals(field)) {
-									inMethod = true;
-								}
-							}
-							if (this.fieldMap.get(field) && !inMethod) {
-								this.fieldMap.replace(field, inMethod);
-							}
-						}
-					}
-
-				});
-	}
-
-	private void visitField() {
-		this.visitor.addVisit(VisitType.Visit, IField.class, (ITraverser t) -> {
-			IField f = (IField) t;
-			this.fieldMap.put(f.getName(), true);
-		});
-	}
-
-	private void visitExtensionRelation() {
-		this.visitor.addVisit(VisitType.Visit, ExtensionRelation.class,
-				(ITraverser t) -> {
-
-				});
-	}
-
-	private void postVisitModel() {
-		this.visitor.addVisit(VisitType.PostVisit, IModel.class,
-				(ITraverser t) -> {
-
-				});
 	}
 
 	@Override
@@ -109,4 +30,63 @@ public class AdapterVisitor implements IInvoker {
 		traverser.accept(this.visitor);
 	}
 
+	private void visitHasRelation() {
+		this.visitor.addVisit(VisitType.Visit, ConcreteClass.class,
+				(ITraverser t) -> {
+					
+				});
+	}
+
+	private void setupPreVisitClass() {
+		this.visitor.addVisit(VisitType.PreVisit, ConcreteClass.class,
+				(ITraverser t) -> {
+					IClass c = (IClass) t;
+					if (c.getInterface().size() == 1) {
+						// Detecting adapter
+						if (c.getExtension().equals("java/lang/Object")) {
+							// Doesn't have an extension
+							if (c.getIField().size() == 1) {
+								// Only 1 field
+								this.classList.add(c);
+								c.addPattern(
+										new AdapterPattern(c.getClassName(),
+												"\\<\\<adapter\\>\\>"));
+							}
+						}
+					}
+				});
+	}
+
+	private void postVisitModel() {
+		this.visitor.addVisit(VisitType.PostVisit, IModel.class,
+				(ITraverser t) -> {
+					IModel m = (IModel) t;
+					for (IClass c0 : this.classList) {
+						String fieldType = ((List<IField>) c0.getIField())
+								.get(0).getDesc();
+						String interfaceName = ((List<String>) c0
+								.getInterface()).get(0);
+						for (IClass c1 : m.getClasses()) {
+							if (c1.getClassName().equals(fieldType)
+									|| c1.getClassName().replace("/", ".")
+											.equals(fieldType)) {
+								c1.addPattern(
+										new AdapterPattern(c1.getClassName(),
+												"\\<\\<adaptee\\>\\>"));
+								continue; // If this one, not the interface
+							}
+							if (c1.getClassName().equals(interfaceName)) {
+								c1.addPattern(
+										new AdapterPattern(c1.getClassName(),
+												"\\<\\<target\\>\\>"));
+							}
+						}
+						
+						for (IRelation r : m.getRelations()){
+							
+						}
+					}
+
+				});
+	}
 }
