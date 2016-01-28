@@ -1,5 +1,8 @@
 package problem.javaClasses;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import problem.interfaces.IRelation;
 import problem.visitor.IVisitor;
 
@@ -11,6 +14,8 @@ public class InterfaceRelation implements IRelation {
 
 	private String details;
 
+	private List<String> labels;
+	
 	private final String ARROW = " -> ";
 
 	/**
@@ -19,11 +24,17 @@ public class InterfaceRelation implements IRelation {
 	public InterfaceRelation() {
 		this.start = "";
 		this.end = "";
-		this.details = "\n\t\t[arrowhead=\"onormal\", style=\"dashed\"];\n";
+		this.labels = new ArrayList<>();
 	}
 
 	@Override
 	public String drawRelation() {
+		StringBuilder labels = new StringBuilder();
+		labels.append("");
+		for (int i = 0; i < this.labels.size(); i++){
+			labels.append(this.labels.get(i));
+		}
+		this.details = "\n\t\t[arrowhead=\"onormal\", " + labels.toString() + "style=\"dashed\"];\n";
 		StringBuilder sb = new StringBuilder();
 		sb.append("\t");
 		sb.append(this.start);
@@ -68,6 +79,11 @@ public class InterfaceRelation implements IRelation {
 		v.preVisit(this);
 		v.visit(this);
 		v.postVisit(this);
+	}
+
+	@Override
+	public void addLabel(String label) {
+		this.labels.add(label);
 	}
 
 }

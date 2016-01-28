@@ -9,9 +9,9 @@ import problem.interfaces.IField;
 import problem.interfaces.IModel;
 import problem.interfaces.IRelation;
 import problem.javaClasses.ConcreteClass;
-import problem.javaClasses.DecorateRelation;
 import problem.javaClasses.ExtensionRelation;
 import problem.javaClasses.Field;
+import problem.javaClasses.HasRelation;
 import problem.patterns.DecoratorPattern;
 
 public class DecoratorVisitor implements IInvoker {
@@ -113,18 +113,21 @@ public class DecoratorVisitor implements IInvoker {
 			for (String tempConcrete : this.concreteDecorators){ //find all concrete decorators and add a decorator pattern object
 				for (IClass tempClass : classList){
 					if (tempClass.getClassName().replace("/", "").equals(tempConcrete)){
-						System.out.println("concrete" + tempConcrete);
-						System.out.println("class" + tempClass.getClassName());
 						tempClass.addPattern(new DecoratorPattern(tempClass.getClassName(), "\\<\\<decorator\\>\\>"));
 					}
 				}
 			}
 			
-			for (int i = 0; i < this.decoratorList.size(); i++){
-				IRelation decorator = new DecorateRelation();
-				decorator.setFromObject(this.decoratorList.get(i));
-				decorator.setToObject(this.componentList.get(i));
-				m.addRelation(decorator);
+			List<IRelation> relations = m.getRelations();
+			for (String s : this.decoratorList){
+				for (IRelation r : relations){
+					if (r.getClass().equals(HasRelation.class)){
+						if (s.replace("/", "").equals(r.getFromObject())){
+							System.out.println("here");
+							r.addLabel("label=\"<<decorates>>\"");
+						}	
+					}
+				}
 			}
 		});
 	}

@@ -42,5 +42,8 @@ public interface IRelation extends ITraverser {
 	 * @return - String name of the end object
 	 */
 	public String getToObject();
+	
+	public void addLabel(String label);
+	
 
 }
