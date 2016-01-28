@@ -3,7 +3,9 @@ package problem.visitor;
 import java.io.FilterOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
@@ -22,14 +24,14 @@ import problem.javaClasses.UsesRelation;
 
 public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 	private IVisitor visitor;
-	private List<IRelation> hasRelations;
-	private List<IRelation> useRelations;
+	private Map<String, String> hasRelations;
+	private Map<String, String> useRelations;
 
 	public UMLOutputStream(OutputStream out) {
 		super(out);
 		this.visitor = new Visitor();
-		this.hasRelations = new ArrayList<IRelation>();
-		this.useRelations = new ArrayList<IRelation>();
+		this.hasRelations = new HashMap<String, String>();
+		this.useRelations = new HashMap<String, String>();
 
 		this.setupPreVisitModel();
 		this.setupPreVisitClass();
@@ -50,12 +52,14 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 				(ITraverser t) -> {
 					IRelation r = (IRelation) t;
 					//String pointerClass = parsePointerClass(r.getToObject());
-					if (!this.hasRelations.contains(r)){
-						this.hasRelations.add(r);
+					if (this.hasRelations.get(r.getFromObject()) == null){
+						this.hasRelations.put(r.getFromObject(), r.getToObject());
 						try {
+							System.out.println("adding has " + r.getFromObject() + " to " + r.getToObject());
 							this.write(r.drawRelation().getBytes());
-							if (useRelations.contains(r)) {
+							if (useRelations.get(r.getFromObject()) != null && useRelations.get(r.getFromObject()).equals(r.getToObject())) {
 								useRelations.remove(r);
+								System.out.println("removing uses " + r.getFromObject() + " to " + r.getToObject());
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -70,15 +74,17 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 					IRelation r = (IRelation) t;
 					//String pointerClass = parsePointerClass(r.getToObject());
 					//FIXME not drawing all uses arrows, hasClassNames is return true and not running the if statement (dcl.SingletonClient -> dcl.Singleton)
-					if (!useRelations.contains(r) && !hasRelations.contains(r)) {
+					if ((useRelations.get(r.getFromObject()) == null || !useRelations.get(r.getFromObject()).equals(r.getToObject())) 
+							&& (hasRelations.get(r.getFromObject()) == null || !hasRelations.get(r.getFromObject()).equals(r.getToObject()))) {
 						//&& !hasClassNames.contains(pointerClass)
-						useRelations.add(r);
+						useRelations.put(r.getFromObject(), r.getToObject());
 						try {
+							System.out.println("adding uses " + r.getFromObject() + " to " + r.getToObject());
 							this.write(r.drawRelation().getBytes());
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
-					}
+					} else { System.out.println("not adding uses " + r.getFromObject() + " to " + r.getToObject());}
 
 				});
 	}
@@ -142,8 +148,8 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 		this.visitor.addVisit(VisitType.PreVisit, ConcreteClass.class,
 				(ITraverser t) -> {
 					IClass obj = (IClass) t;
-					this.hasRelations = new ArrayList<IRelation>();
-					this.useRelations = new ArrayList<IRelation>();
+					this.hasRelations = new HashMap<String, String>();
+					this.useRelations = new HashMap<String, String>();
 					StringBuilder builder = new StringBuilder();
 
 					String beginBrace = "[ \n";
