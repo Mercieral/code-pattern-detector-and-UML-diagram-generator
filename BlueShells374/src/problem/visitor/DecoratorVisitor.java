@@ -123,7 +123,6 @@ public class DecoratorVisitor implements IInvoker {
 				for (IRelation r : relations){
 					if (r.getClass().equals(HasRelation.class)){
 						if (s.replace("/", "").equals(r.getFromObject())){
-							System.out.println("here");
 							r.addProperty("label=\"<<decorates>>\"");
 						}	
 					}

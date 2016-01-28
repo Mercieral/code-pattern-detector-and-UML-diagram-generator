@@ -1,68 +1,176 @@
 package problem.blueshells.testing;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintStream;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
-import problem.asm.DesignParser;
+import problem.interfaces.IClass;
+import problem.interfaces.IField;
+import problem.interfaces.IMethod;
+import problem.interfaces.IModel;
+import problem.interfaces.IRelation;
+import problem.javaClasses.ConcreteClass;
+import problem.javaClasses.Field;
+import problem.javaClasses.Method;
+import problem.javaClasses.Model;
+import problem.javaClasses.UsesRelation;
+import problem.patterns.SingletonPattern;
+import problem.visitor.IInvoker;
+import problem.visitor.SingletonVisitor;
 
 public class Milestone4IntegrationTesting {
-	private String[] args;
-	private PrintStream standardOut;
-	
-	@Before
-	public void setup(){
-		this.args = new String[12];
-		this.standardOut = System.out;
-		System.setOut(new PrintStream(new ByteArrayOutputStream()));
-	}
 	
 	@Test 
-	public void IntegrationTest() throws IOException{
-		this.args[0] = "chocolate.ChocolateBoiler";
-		this.args[1] = "chocolate.ChocolateController";
-		this.args[2] = "classic.Singleton";
-		this.args[3] = "dcl.Singleton";
-		this.args[4] = "dcl.SingletonClient";
-		this.args[5] = "stat.Singleton";
-		this.args[6] = "stat.SingletonClient";
-		this.args[7] = "sub.CoolerSingleton";
-		this.args[8] = "sub.HotterSingleton";
-		this.args[9] = "sub.Singleton";
-		this.args[10] = "sub.SingletonTestDrive";
-		this.args[11] = "threadsafe.Singleton";
+	public void Simple_Singleton() throws IOException{
+		IModel m = new Model();
 		
-		InputStream Input1 = new ByteArrayInputStream(
-				"Generator\rUML\rQuit\r".getBytes());
-		InputStream old = System.in;
-		System.setIn(Input1);
-		DesignParser.parser(args);
-		BufferedReader br1 = new BufferedReader(
-				new FileReader("input_output/graph.gv"));
-		BufferedReader br2 = new BufferedReader(
-				new FileReader("test/problem/blueshells/testing/testDoc8"));
-
-		String line = "";
-		while ((line = br1.readLine()) != null) {
-			assertEquals(line, br2.readLine());
+		IClass singleton = new ConcreteClass();
+		singleton.setClassName("singleton");
+		
+		IField singletonField = new Field();
+		singletonField.setDesc("singleton");
+		singletonField.setName("instance");
+		singleton.addIField(singletonField);
+		
+		IMethod getInstance = new Method();
+		getInstance.setReturnType("singleton");
+		getInstance.setDesc("()Lsingleton;");
+		getInstance.setName("getInstance");
+		singleton.addIMethod(getInstance);
+		
+		m.addClass(singleton);
+		//test no patterns before running
+		assertEquals(singleton.getPatterns().size(), 0);
+		
+		IInvoker v = new SingletonVisitor();
+		v.write(m);
+		
+		//test that there is a pattern
+		assertEquals(1, singleton.getPatterns().size());
+		if (singleton.getPatterns().size() == 1){
+			assertTrue(singleton.getPatterns().get(0) instanceof SingletonPattern);
 		}
-		System.setIn(old);
-		br1.close();
-		br2.close();
 	}
 	
-	@After
-	public void tearDown(){
-		System.setOut(standardOut);
+	@Test
+	public void Advanced_Singleton(){
+		IModel m = new Model();
+		
+		IClass client = new ConcreteClass();
+		client.setClassName("client");
+		IClass singleton = new ConcreteClass();
+		singleton.setClassName("singleton");
+		
+		IField singletonField = new Field();
+		singletonField.setDesc("singleton");
+		singletonField.setName("instance");
+		singleton.addIField(singletonField);
+		IField randomField = new Field();
+		randomField.setDesc("blah");
+		randomField.setName("blahField");
+		singleton.addIField(randomField);
+		
+		IMethod getInstance = new Method();
+		getInstance.setReturnType("singleton");
+		getInstance.setDesc("()Lsingleton;");
+		getInstance.setName("getInstance");
+		singleton.addIMethod(getInstance);
+		IMethod useSingleton = new Method();
+		useSingleton.setReturnType("singleton");
+		useSingleton.setDesc("()Lsingleton;");
+		useSingleton.setName("useSingleton");
+		client.addIMethod(useSingleton);
+		
+		IRelation clientUsesSingleton = new UsesRelation();
+		clientUsesSingleton.setFromObject("client");
+		clientUsesSingleton.setToObject("singleton");
+		
+		m.addRelation(clientUsesSingleton);
+		m.addClass(client);
+		m.addClass(singleton);
+		//test no patterns before running
+		assertEquals(singleton.getPatterns().size(), 0);
+		
+		IInvoker v = new SingletonVisitor();
+		v.write(m);
+		
+		//test that there is a pattern
+		assertEquals(1, singleton.getPatterns().size());
+		if (singleton.getPatterns().size() == 1){
+			assertTrue(singleton.getPatterns().get(0) instanceof SingletonPattern);
+		}
 	}
+	
+	@Test
+	public void No_Singleton_with_Empty_Class(){
+		IModel m = new Model();
+		
+		IClass nosingleton = new ConcreteClass();
+		nosingleton.setClassName("empty");
+		
+		m.addClass(nosingleton);
+		//test no patterns before running
+		assertEquals(nosingleton.getPatterns().size(), 0);
+		
+		IInvoker v = new SingletonVisitor();
+		v.write(m);
+		
+		//test that there is no pattern
+		assertEquals(0, nosingleton.getPatterns().size());
+	}
+	
+	@Test
+	public void No_Singleton_with_Class_Returns_Itself(){
+		IModel m = new Model();
+		
+		IClass test = new ConcreteClass();
+		test.setClassName("test");
+		
+		IMethod getInstance = new Method();
+		getInstance.setReturnType("test");
+		getInstance.setReturnType("");
+		getInstance.setDesc("()Ltest;");
+		getInstance.setName("getInstance");
+		test.addIMethod(getInstance);
+		
+		
+		m.addClass(test);
+		//test no patterns before running
+		assertEquals(test.getPatterns().size(), 0);
+		
+		IInvoker v = new SingletonVisitor();
+		v.write(m);
+		
+		//test that there is no pattern
+		assertEquals(0, test.getPatterns().size());
+	}
+	
+	@Test
+	public void No_Singleton_with_Class_has_itself(){
+		IModel m = new Model();
+		
+		IClass test = new ConcreteClass();
+		test.setClassName("has");
+		
+		
+		IField singletonField = new Field();
+		singletonField.setDesc("test");
+		singletonField.setName("instance");
+		test.addIField(singletonField);
+		
+		
+		m.addClass(test);
+		//test no patterns before running
+		assertEquals(test.getPatterns().size(), 0);
+		
+		IInvoker v = new SingletonVisitor();
+		v.write(m);
+		
+		//test that there is no pattern
+		assertEquals(0, test.getPatterns().size());
+	}
+	
 }
