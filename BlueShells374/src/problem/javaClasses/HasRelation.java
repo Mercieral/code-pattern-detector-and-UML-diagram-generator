@@ -13,6 +13,15 @@ public class HasRelation implements IRelation {
 
 	private final String ARROW = " -> ";
 
+	@Override
+	public boolean equals(Object obj) {
+		IRelation inObj = (IRelation)obj;
+		if(!start.equals(inObj.getFromObject()) || !end.equals(inObj.getToObject()) || !this.drawRelation().equals(inObj.drawRelation())){
+			return false;
+		}
+		return true;
+	}
+
 	/**
 	 * Arrow to represent to association
 	 */

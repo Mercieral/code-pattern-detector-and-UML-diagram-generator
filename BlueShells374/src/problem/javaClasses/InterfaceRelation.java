@@ -32,6 +32,16 @@ public class InterfaceRelation implements IRelation {
 		sb.append(this.details);
 		return sb.toString();
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		IRelation inObj = (IRelation)obj;
+		if(!start.equals(inObj.getFromObject()) || !end.equals(inObj.getToObject()) || !this.drawRelation().equals(inObj.drawRelation())){
+			return false;
+		}
+		return true;
+	}
+
 
 	@Override
 	public void setFromObject(String startObject) {

@@ -4,6 +4,7 @@ import problem.visitor.ITraverser;
 
 public interface IRelation extends ITraverser {
 
+
 	/**
 	 * Provides a string value to add the correct format needed to draw a
 	 * relation object

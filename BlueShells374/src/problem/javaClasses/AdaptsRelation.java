@@ -28,6 +28,16 @@ public class AdaptsRelation implements IRelation {
 		v.visit(this);
 		v.postVisit(this);
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		IRelation inObj = (IRelation)obj;
+		if(!start.equals(inObj.getFromObject()) || !end.equals(inObj.getToObject()) || !this.drawRelation().equals(inObj.drawRelation())){
+			return false;
+		}
+		return true;
+	}
+
 
 	@Override
 	public String drawRelation() {

@@ -26,14 +26,14 @@ import problem.javaClasses.UsesRelation;
 
 public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 	private IVisitor visitor;
-	private List<String> hasClassNames;
-	private Map<String, IRelation> useRelationList;
+	private List<IRelation> hasRelations;
+	private List<IRelation> useRelations;
 
 	public UMLOutputStream(OutputStream out) {
 		super(out);
 		this.visitor = new Visitor();
-		this.hasClassNames = new ArrayList<>();
-		this.useRelationList = new HashMap<String, IRelation>();
+		this.hasRelations = new ArrayList<IRelation>();
+		this.useRelations = new ArrayList<IRelation>();
 
 		this.setupPreVisitModel();
 		this.setupPreVisitClass();
@@ -53,13 +53,13 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 		this.visitor.addVisit(VisitType.Visit, HasRelation.class,
 				(ITraverser t) -> {
 					IRelation r = (IRelation) t;
-					String pointerClass = parsePointerClass(r.getToObject());
-					if (!hasClassNames.contains(pointerClass)) {
-						hasClassNames.add(pointerClass);
+					//String pointerClass = parsePointerClass(r.getToObject());
+					if (!this.hasRelations.contains(r)){
+						this.hasRelations.add(r);
 						try {
 							this.write(r.drawRelation().getBytes());
-							if (useRelationList.containsKey(pointerClass)) {
-								useRelationList.remove(pointerClass);
+							if (useRelations.contains(r)) {
+								useRelations.remove(r);
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -72,11 +72,11 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 		this.visitor.addVisit(VisitType.Visit, UsesRelation.class,
 				(ITraverser t) -> {
 					IRelation r = (IRelation) t;
-					String pointerClass = parsePointerClass(r.getToObject());
+					//String pointerClass = parsePointerClass(r.getToObject());
 					//FIXME not drawing all uses arrows, hasClassNames is return true and not running the if statement (dcl.SingletonClient -> dcl.Singleton)
-					if (!useRelationList.containsKey(pointerClass)) {
+					if (!useRelations.contains(r) && !hasRelations.contains(r)) {
 						//&& !hasClassNames.contains(pointerClass)
-						useRelationList.put(pointerClass, r);
+						useRelations.add(r);
 						try {
 							this.write(r.drawRelation().getBytes());
 						} catch (Exception e) {
@@ -146,8 +146,8 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 		this.visitor.addVisit(VisitType.PreVisit, ConcreteClass.class,
 				(ITraverser t) -> {
 					IClass obj = (IClass) t;
-					this.hasClassNames = new ArrayList<String>();
-					this.useRelationList = new HashMap<String, IRelation>();
+					this.hasRelations = new ArrayList<IRelation>();
+					this.useRelations = new ArrayList<IRelation>();
 					StringBuilder builder = new StringBuilder();
 
 					String beginBrace = "[ \n";
@@ -226,8 +226,9 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 				sb.append(trimValue(f.getDesc(), ".") + " ");
 
 			else {
+				//System.out.println(f.getDesc() + " - " + f.getSignature() + " - " + trimValue(trimValue(f.getSignature(), "<"), "."));
 				sb.append(trimValue(f.getDesc(), ".") + "[");
-				sb.append(trimValue(f.getSignature(), ".") + "] ");
+				sb.append(trimValue(trimValue(f.getSignature(), "<"), ".") + "] ");
 			}
 			sb.append(f.getName());
 

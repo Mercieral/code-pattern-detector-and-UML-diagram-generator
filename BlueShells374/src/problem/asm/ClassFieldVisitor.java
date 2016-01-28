@@ -63,17 +63,15 @@ public class ClassFieldVisitor extends ClassVisitor{
 //					currentClass.addArrow(arrow);
 				}
 			}
-			else {
-				if (className.replace(".", "").equals(type.replace(".", ""))){
-					IRelation relation = new HasRelation();
-					relation.setFromObject(currentClass.getClassName());
-					relation.setToObject(type.replace(".", ""));
-					model.addRelation(relation);
+			if (className.replace(".", "").equals(type.replace(".", ""))){
+				IRelation relation = new HasRelation();
+				relation.setFromObject(currentClass.getClassName());
+				relation.setToObject(type.replace(".", ""));
+				model.addRelation(relation);
 //					IArrow arrow = new ArrowHas();
 //					arrow.setFromObject(currentClass.getClassName());
 //					arrow.setToObject(type.replace(".", ""));
 //					currentClass.addArrow(arrow);
-				}
 			}
 		}
 		currentClass.addIField(currentField);
