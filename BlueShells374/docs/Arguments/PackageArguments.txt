@@ -9,7 +9,9 @@ problem.interfaces.IMethod
 problem.interfaces.IModel
 problem.interfaces.IPattern
 problem.interfaces.IRelation
+problem.javaClasses.AdaptsRelation
 problem.javaClasses.ConcreteClass
+problem.javaClasses.DecorateRelation
 problem.javaClasses.ExtensionRelation
 problem.javaClasses.Field
 problem.javaClasses.HasRelation
@@ -18,7 +20,11 @@ problem.javaClasses.Method
 problem.javaClasses.MethodContainer
 problem.javaClasses.Model
 problem.javaClasses.UsesRelation
+problem.patterns.AdapterPattern
+problem.patterns.DecoratorPattern
 problem.patterns.SingletonPattern
+problem.visitor.AdapterVisitor
+problem.visitor.DecoratorVisitor
 problem.visitor.IInvoker
 problem.visitor.ITraverser
 problem.visitor.IVisitMethod
