@@ -6,19 +6,20 @@ public class SingletonPattern implements IPattern {
 	private String className;
 	private String UMLproperty;
 	private String UMLlabel;
-	
+
 	public SingletonPattern(String className) {
 		this.className = className;
 		this.UMLproperty = "color=blue,";
 		this.UMLlabel = "\\<\\<Singleton\\>\\>";
 	}
-	
+
 	@Override
 	public String getProperty() {
 		return this.UMLproperty;
 	}
 
-	public String getClassName(){
+	@Override
+	public String getClassName() {
 		return this.className;
 	}
 

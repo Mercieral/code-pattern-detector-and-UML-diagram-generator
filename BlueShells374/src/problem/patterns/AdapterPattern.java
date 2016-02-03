@@ -23,6 +23,7 @@ public class AdapterPattern implements IPattern{
 		return UMLlabel;
 	}
 	
+	@Override
 	public String getClassName(){
 		return this.className;
 	}

@@ -24,6 +24,7 @@ public class DecoratorPattern implements IPattern{
 		return this.UMLlabel;
 	}
 	
+	@Override
 	public String getClassName(){
 		return this.className;
 	}
