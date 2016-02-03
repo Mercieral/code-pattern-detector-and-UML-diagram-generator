@@ -7,6 +7,7 @@
 	<classpathentry kind="src" path="larry.pizzaaf"/>
 	<classpathentry kind="src" path="Lab5-1-Solution"/>
 	<classpathentry kind="src" path="Lab2-1-Solution"/>
+	<classpathentry kind="src" path="Lab7-2-Solution"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/asm-all-5.0.4.jar" sourcepath="lib/src.zip"/>
