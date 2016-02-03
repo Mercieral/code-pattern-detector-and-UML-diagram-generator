@@ -33,7 +33,7 @@ public class AdapterVisitor implements IInvoker {
 	private void visitHasRelation() {
 		this.visitor.addVisit(VisitType.Visit, ConcreteClass.class,
 				(ITraverser t) -> {
-
+					// FIXME
 				});
 	}
 
@@ -43,7 +43,8 @@ public class AdapterVisitor implements IInvoker {
 					IClass c = (IClass) t;
 					if (c.getInterface().size() == 1) {
 						// Detecting adapter
-						if (c.getExtension().equals("java/lang/Object") || c.getExtension().equals("")) {
+						if (c.getExtension().equals("java/lang/Object")
+								|| c.getExtension().equals("")) {
 							// Doesn't have an extension
 							if (c.getIField().size() == 1) {
 								// Only 1 field
