@@ -24,10 +24,10 @@ import problem.visitor.SingletonVisitor;
 public class Milestone5AdapterIntegrationTesting {
 
 	@Test
-	public void Simple_Adapter(){
+	public void Simple_Adapter() {
 		IModel m = new Model();
-		
-		//make classes 
+
+		// make classes
 		IClass Adaptee = new ConcreteClass();
 		Adaptee.setClassName("Adaptee");
 		IClass Adapter = new ConcreteClass();
@@ -35,14 +35,14 @@ public class Milestone5AdapterIntegrationTesting {
 		Adapter.addInterface("ITarget");
 		IClass ITarget = new ConcreteClass();
 		ITarget.setClassName("ITarget");
-		
-		//make fields
+
+		// make fields
 		IField adaptee = new Field();
 		adaptee.setDesc("Adaptee");
 		adaptee.setName("a");
 		Adapter.addIField(adaptee);
-		
-		//make methods
+
+		// make methods
 		IMethod m1 = new Method();
 		m1.setDesc("()V;");
 		m1.setName("m1");
@@ -52,127 +52,262 @@ public class Milestone5AdapterIntegrationTesting {
 		Adaptee.addIMethod(m1);
 		Adapter.addIMethod(m2);
 		ITarget.addIMethod(m2);
-		
-		//make relations
+
+		// make relations
 		IRelation targetImplement = new InterfaceRelation();
 		targetImplement.setFromObject("Adapter");
 		targetImplement.setToObject("ITarget");
 		IRelation hasRelation = new HasRelation();
 		hasRelation.setFromObject("Adapter");
 		hasRelation.setToObject("Adaptee");
-		
-		//add to model
+
+		// add to model
 		m.addClass(ITarget);
 		m.addClass(Adapter);
 		m.addClass(Adaptee);
 		m.addRelation(hasRelation);
 		m.addRelation(targetImplement);
-		
-		//test before running
+
+		// test before running
 		assertEquals(0, ITarget.getPatterns().size());
 		assertEquals(0, Adapter.getPatterns().size());
 		assertEquals(0, Adaptee.getPatterns().size());
-		
-		//run the Pattern Visitors
+
+		// run the Pattern Visitors
 		IInvoker v1 = new SingletonVisitor();
 		IInvoker v2 = new DecoratorVisitor();
 		IInvoker v3 = new AdapterVisitor();
 		v1.write(m);
 		v2.write(m);
 		v3.write(m);
-		
-		//test for patterns
+
+		// test for patterns
 		assertEquals(1, ITarget.getPatterns().size());
-		if (ITarget.getPatterns().size() == 1){
+		if (ITarget.getPatterns().size() == 1) {
 			assertTrue(ITarget.getPatterns().get(0) instanceof AdapterPattern);
-			AdapterPattern p = (AdapterPattern)ITarget.getPatterns().get(0);
+			AdapterPattern p = (AdapterPattern) ITarget.getPatterns().get(0);
 			assertEquals(p.getLabel(), "\\<\\<target\\>\\>");
 		}
 		assertEquals(1, Adapter.getPatterns().size());
-		if (Adapter.getPatterns().size() == 1){
+		if (Adapter.getPatterns().size() == 1) {
 			assertTrue(Adapter.getPatterns().get(0) instanceof AdapterPattern);
-			AdapterPattern p = (AdapterPattern)Adapter.getPatterns().get(0);
+			AdapterPattern p = (AdapterPattern) Adapter.getPatterns().get(0);
 			assertEquals(p.getLabel(), "\\<\\<adapter\\>\\>");
 		}
 		assertEquals(1, Adaptee.getPatterns().size());
-		if (Adaptee.getPatterns().size() == 1){
+		if (Adaptee.getPatterns().size() == 1) {
 			assertTrue(Adaptee.getPatterns().get(0) instanceof AdapterPattern);
-			AdapterPattern p = (AdapterPattern)Adaptee.getPatterns().get(0);
+			AdapterPattern p = (AdapterPattern) Adaptee.getPatterns().get(0);
 			assertEquals(p.getLabel(), "\\<\\<adaptee\\>\\>");
 		}
 	}
-	
+
 	@Test
-	public void No_Adapter_empty_Class() {
+	public void Multiple_Adapters() {
 		IModel m = new Model();
-		
-		//make classes
-		IClass IComponent = new ConcreteClass();
-		IComponent.setClassName("IComponent");
-		
-		//make Methods
-		IMethod testMethod = new Method();
-		testMethod.setDesc("()V;");
-		testMethod.setName("testMethod");
-		IComponent.addIMethod(testMethod);
-		
-		//add classes/relations to model
-		m.addClass(IComponent);
-		
-		//test no patterns before running
-		assertEquals(IComponent.getPatterns().size(), 0);
-		
-		//run the Pattern Visitors
-		IInvoker v1 = new SingletonVisitor();
-		IInvoker v2 = new DecoratorVisitor();
-		IInvoker v3 = new AdapterVisitor();
-		v1.write(m);
-		v2.write(m);
-		v3.write(m);
-		
-		//test that there is no pattern after visiting
-		assertEquals(0, IComponent.getPatterns().size());
-	}
-	
-	@Test
-	public void Incomplete_Adapter(){
-		IModel m = new Model();
-		
-		//make classes 
+
+		// make classes
+		IClass Adaptee = new ConcreteClass();
+		Adaptee.setClassName("Adaptee");
 		IClass Adapter = new ConcreteClass();
 		Adapter.setClassName("Adapter");
 		Adapter.addInterface("ITarget");
 		IClass ITarget = new ConcreteClass();
 		ITarget.setClassName("ITarget");
-		
-		//make fields
+		IClass Adaptee2 = new ConcreteClass();
+		Adaptee2.setClassName("Adaptee2");
+		IClass Adapter2 = new ConcreteClass();
+		Adapter2.setClassName("Adapter2");
+		Adapter2.addInterface("ITarget2");
+		IClass ITarget2 = new ConcreteClass();
+		ITarget2.setClassName("ITarget2");
+
+		// make fields
 		IField adaptee = new Field();
 		adaptee.setDesc("Adaptee");
 		adaptee.setName("a");
 		Adapter.addIField(adaptee);
-		
-		//make methods
+		IField adaptee2 = new Field();
+		adaptee2.setDesc("Adaptee2");
+		adaptee2.setName("a2");
+		Adapter2.addIField(adaptee2);
+
+		// make methods
+		IMethod m1 = new Method();
+		m1.setDesc("()V;");
+		m1.setName("m1");
 		IMethod m2 = new Method();
 		m2.setDesc("()V;");
 		m2.setName("method1");
+		Adaptee.addIMethod(m1);
 		Adapter.addIMethod(m2);
 		ITarget.addIMethod(m2);
-		
-		//make relations
+		IMethod m3 = new Method();
+		m3.setDesc("()V;");
+		m3.setName("m2");
+		IMethod m4 = new Method();
+		m4.setDesc("()V;");
+		m4.setName("method2");
+		Adaptee2.addIMethod(m3);
+		Adapter2.addIMethod(m4);
+		ITarget2.addIMethod(m4);
+
+		// make relations
 		IRelation targetImplement = new InterfaceRelation();
 		targetImplement.setFromObject("Adapter");
 		targetImplement.setToObject("ITarget");
+		IRelation hasRelation = new HasRelation();
+		hasRelation.setFromObject("Adapter");
+		hasRelation.setToObject("Adaptee");
+		IRelation targetImplement2 = new InterfaceRelation();
+		targetImplement2.setFromObject("Adapter2");
+		targetImplement2.setToObject("ITarget2");
+		IRelation hasRelation2 = new HasRelation();
+		hasRelation2.setFromObject("Adapter2");
+		hasRelation2.setToObject("Adaptee2");
 
-		//add to model
+		// add to model
 		m.addClass(ITarget);
 		m.addClass(Adapter);
+		m.addClass(Adaptee);
+		m.addRelation(hasRelation);
 		m.addRelation(targetImplement);
-		
-		//test before running
+		m.addClass(ITarget2);
+		m.addClass(Adapter2);
+		m.addClass(Adaptee2);
+		m.addRelation(hasRelation2);
+		m.addRelation(targetImplement2);
+
+		// test before running
 		assertEquals(0, ITarget.getPatterns().size());
 		assertEquals(0, Adapter.getPatterns().size());
-		
-		//run the Pattern Visitors
+		assertEquals(0, Adaptee.getPatterns().size());
+		assertEquals(0, ITarget2.getPatterns().size());
+		assertEquals(0, Adapter2.getPatterns().size());
+		assertEquals(0, Adaptee2.getPatterns().size());
+
+		// run the Pattern Visitors
+		IInvoker v1 = new SingletonVisitor();
+		IInvoker v2 = new DecoratorVisitor();
+		IInvoker v3 = new AdapterVisitor();
+		v1.write(m);
+		v2.write(m);
+		v3.write(m);
+
+		// test for patterns
+		assertEquals(1, ITarget.getPatterns().size());
+		if (ITarget.getPatterns().size() == 1) {
+			assertTrue(ITarget.getPatterns().get(0) instanceof AdapterPattern);
+			AdapterPattern p = (AdapterPattern) ITarget.getPatterns().get(0);
+			assertEquals(p.getLabel(), "\\<\\<target\\>\\>");
+		}
+		assertEquals(1, Adapter.getPatterns().size());
+		if (Adapter.getPatterns().size() == 1) {
+			assertTrue(Adapter.getPatterns().get(0) instanceof AdapterPattern);
+			AdapterPattern p = (AdapterPattern) Adapter.getPatterns().get(0);
+			assertEquals(p.getLabel(), "\\<\\<adapter\\>\\>");
+		}
+		assertEquals(1, Adaptee.getPatterns().size());
+		if (Adaptee.getPatterns().size() == 1) {
+			assertTrue(Adaptee.getPatterns().get(0) instanceof AdapterPattern);
+			AdapterPattern p = (AdapterPattern) Adaptee.getPatterns().get(0);
+			assertEquals(p.getLabel(), "\\<\\<adaptee\\>\\>");
+		}
+		assertEquals(1, ITarget2.getPatterns().size());
+		if (ITarget2.getPatterns().size() == 1) {
+			assertTrue(ITarget2.getPatterns().get(0) instanceof AdapterPattern);
+			AdapterPattern p = (AdapterPattern) ITarget2.getPatterns().get(0);
+			assertEquals(p.getLabel(), "\\<\\<target\\>\\>");
+		}
+		assertEquals(1, Adapter2.getPatterns().size());
+		if (Adapter2.getPatterns().size() == 1) {
+			assertTrue(Adapter2.getPatterns().get(0) instanceof AdapterPattern);
+			AdapterPattern p = (AdapterPattern) Adapter2.getPatterns().get(0);
+			assertEquals(p.getLabel(), "\\<\\<adapter\\>\\>");
+		}
+		assertEquals(1, Adaptee2.getPatterns().size());
+		if (Adaptee2.getPatterns().size() == 1) {
+			assertTrue(Adaptee2.getPatterns().get(0) instanceof AdapterPattern);
+			AdapterPattern p = (AdapterPattern) Adaptee2.getPatterns().get(0);
+			assertEquals(p.getLabel(), "\\<\\<adaptee\\>\\>");
+		}
+
+	}
+
+	@Test
+	public void Complex_Adapter() {
+		IModel m = new Model();
+
+		// make classes
+		IClass Adaptee = new ConcreteClass();
+		Adaptee.setClassName("Adaptee");
+		IClass Adapter = new ConcreteClass();
+		Adapter.setClassName("Adapter");
+		Adapter.addInterface("ITarget");
+		IClass ITarget = new ConcreteClass();
+		ITarget.setClassName("ITarget");
+		IClass Adapter2 = new ConcreteClass();
+		Adapter2.setClassName("Adapter2");
+		Adapter2.addInterface("ITarget2");
+		IClass ITarget2 = new ConcreteClass();
+		ITarget2.setClassName("ITarget2");
+
+		// make fields
+		IField adaptee = new Field();
+		adaptee.setDesc("Adaptee");
+		adaptee.setName("a");
+		Adapter.addIField(adaptee);
+		Adapter2.addIField(adaptee);
+
+		// make methods
+		IMethod m1 = new Method();
+		m1.setDesc("()V;");
+		m1.setName("m1");
+		IMethod m2 = new Method();
+		m2.setDesc("()V;");
+		m2.setName("method1");
+		IMethod m3 = new Method();
+		m3.setDesc("()V;");
+		m3.setName("m3");
+		Adaptee.addIMethod(m1);
+		Adapter.addIMethod(m2);
+		ITarget.addIMethod(m2);
+		Adapter2.addIMethod(m3);
+		ITarget2.addIMethod(m3);
+
+		// make relations
+		IRelation targetImplement = new InterfaceRelation();
+		targetImplement.setFromObject("Adapter");
+		targetImplement.setToObject("ITarget");
+		IRelation hasRelation = new HasRelation();
+		hasRelation.setFromObject("Adapter");
+		hasRelation.setToObject("Adaptee");
+		IRelation targetImplement2 = new InterfaceRelation();
+		targetImplement2.setFromObject("Adapter2");
+		targetImplement2.setToObject("ITarget2");
+		IRelation hasRelation2 = new HasRelation();
+		hasRelation2.setFromObject("Adapter2");
+		hasRelation2.setToObject("Adaptee");
+
+		// add to model
+		m.addClass(ITarget);
+		m.addClass(Adapter);
+		m.addClass(Adaptee);
+		m.addRelation(hasRelation);
+		m.addRelation(targetImplement);
+		m.addClass(ITarget2);
+		m.addClass(Adapter2);
+		m.addRelation(targetImplement2);
+		m.addRelation(hasRelation2);
+
+		// test before running
+		assertEquals(0, ITarget.getPatterns().size());
+		assertEquals(0, Adapter.getPatterns().size());
+		assertEquals(0, Adaptee.getPatterns().size());
+		assertEquals(0, ITarget2.getPatterns().size());
+		assertEquals(0, Adapter2.getPatterns().size());
+
+		// run the Pattern Visitors
 		IInvoker v1 = new SingletonVisitor();
 		IInvoker v2 = new DecoratorVisitor();
 		IInvoker v3 = new AdapterVisitor();
@@ -180,8 +315,169 @@ public class Milestone5AdapterIntegrationTesting {
 		v2.write(m);
 		v3.write(m);
 		
-		//test for patterns
+		// test for patterns
+		assertEquals(1, ITarget.getPatterns().size());
+		if (ITarget.getPatterns().size() == 1) {
+			assertTrue(ITarget.getPatterns().get(0) instanceof AdapterPattern);
+			AdapterPattern p = (AdapterPattern) ITarget.getPatterns().get(0);
+			assertEquals(p.getLabel(), "\\<\\<target\\>\\>");
+		}
+		assertEquals(1, Adapter.getPatterns().size());
+		if (Adapter.getPatterns().size() == 1) {
+			assertTrue(Adapter.getPatterns().get(0) instanceof AdapterPattern);
+			AdapterPattern p = (AdapterPattern) Adapter.getPatterns().get(0);
+			assertEquals(p.getLabel(), "\\<\\<adapter\\>\\>");
+		}
+		assertEquals(2, Adaptee.getPatterns().size());
+		if (Adaptee.getPatterns().size() == 2) {
+			assertTrue(Adaptee.getPatterns().get(0) instanceof AdapterPattern);
+			AdapterPattern p = (AdapterPattern) Adaptee.getPatterns().get(0);
+			assertEquals(p.getLabel(), "\\<\\<adaptee\\>\\>");
+			assertTrue(Adaptee.getPatterns().get(1) instanceof AdapterPattern);
+			AdapterPattern p2 = (AdapterPattern) Adaptee.getPatterns().get(1);
+			assertEquals(p2.getLabel(), "\\<\\<adaptee\\>\\>");
+		}
+		assertEquals(1, ITarget2.getPatterns().size());
+		if (ITarget2.getPatterns().size() == 1) {
+			assertTrue(ITarget2.getPatterns().get(0) instanceof AdapterPattern);
+			AdapterPattern p = (AdapterPattern) ITarget2.getPatterns().get(0);
+			assertEquals(p.getLabel(), "\\<\\<target\\>\\>");
+		}
+		assertEquals(1, Adapter2.getPatterns().size());
+		if (Adapter2.getPatterns().size() == 1) {
+			assertTrue(Adapter2.getPatterns().get(0) instanceof AdapterPattern);
+			AdapterPattern p = (AdapterPattern) Adapter2.getPatterns().get(0);
+			assertEquals(p.getLabel(), "\\<\\<adapter\\>\\>");
+		}
+	}
+
+	@Test
+	public void No_Adapter_empty_Class() {
+		IModel m = new Model();
+
+		// make classes
+		IClass IComponent = new ConcreteClass();
+		IComponent.setClassName("IComponent");
+
+		// make Methods
+		IMethod testMethod = new Method();
+		testMethod.setDesc("()V;");
+		testMethod.setName("testMethod");
+		IComponent.addIMethod(testMethod);
+
+		// add classes/relations to model
+		m.addClass(IComponent);
+
+		// test no patterns before running
+		assertEquals(IComponent.getPatterns().size(), 0);
+
+		// run the Pattern Visitors
+		IInvoker v1 = new SingletonVisitor();
+		IInvoker v2 = new DecoratorVisitor();
+		IInvoker v3 = new AdapterVisitor();
+		v1.write(m);
+		v2.write(m);
+		v3.write(m);
+
+		// test that there is no pattern after visiting
+		assertEquals(0, IComponent.getPatterns().size());
+	}
+
+	@Test
+	public void Incomplete_Adapter_No_Adaptee() {
+		IModel m = new Model();
+
+		// make classes
+		IClass Adapter = new ConcreteClass();
+		Adapter.setClassName("Adapter");
+		Adapter.addInterface("ITarget");
+		IClass ITarget = new ConcreteClass();
+		ITarget.setClassName("ITarget");
+
+		// make fields
+		IField adaptee = new Field();
+		adaptee.setDesc("Adaptee");
+		adaptee.setName("a");
+		Adapter.addIField(adaptee);
+
+		// make methods
+		IMethod m2 = new Method();
+		m2.setDesc("()V;");
+		m2.setName("method1");
+		Adapter.addIMethod(m2);
+		ITarget.addIMethod(m2);
+
+		// make relations
+		IRelation targetImplement = new InterfaceRelation();
+		targetImplement.setFromObject("Adapter");
+		targetImplement.setToObject("ITarget");
+
+		// add to model
+		m.addClass(ITarget);
+		m.addClass(Adapter);
+		m.addRelation(targetImplement);
+
+		// test before running
 		assertEquals(0, ITarget.getPatterns().size());
 		assertEquals(0, Adapter.getPatterns().size());
+
+		// run the Pattern Visitors
+		IInvoker v1 = new SingletonVisitor();
+		IInvoker v2 = new DecoratorVisitor();
+		IInvoker v3 = new AdapterVisitor();
+		v1.write(m);
+		v2.write(m);
+		v3.write(m);
+
+		// test for patterns
+		assertEquals(0, ITarget.getPatterns().size());
+		assertEquals(0, Adapter.getPatterns().size());
+	}
+
+	@Test
+	public void Incomplete_Adapter_No_Adapter() {
+		IModel m = new Model();
+
+		// make classes
+		IClass Adaptee = new ConcreteClass();
+		Adaptee.setClassName("Adapter");
+		IClass ITarget = new ConcreteClass();
+		ITarget.setClassName("ITarget");
+
+		// make methods
+		IMethod m1 = new Method();
+		m1.setDesc("()V;");
+		m1.setName("m1");
+		IMethod m2 = new Method();
+		m2.setDesc("()V;");
+		m2.setName("method1");
+		Adaptee.addIMethod(m1);
+		ITarget.addIMethod(m2);
+
+		// make relations
+		IRelation targetImplement = new InterfaceRelation();
+		targetImplement.setFromObject("Adapter");
+		targetImplement.setToObject("ITarget");
+
+		// add to model
+		m.addClass(ITarget);
+		m.addClass(Adaptee);
+		m.addRelation(targetImplement);
+
+		// test before running
+		assertEquals(0, ITarget.getPatterns().size());
+		assertEquals(0, Adaptee.getPatterns().size());
+
+		// run the Pattern Visitors
+		IInvoker v1 = new SingletonVisitor();
+		IInvoker v2 = new DecoratorVisitor();
+		IInvoker v3 = new AdapterVisitor();
+		v1.write(m);
+		v2.write(m);
+		v3.write(m);
+
+		// test for patterns
+		assertEquals(0, ITarget.getPatterns().size());
+		assertEquals(0, Adaptee.getPatterns().size());
 	}
 }
