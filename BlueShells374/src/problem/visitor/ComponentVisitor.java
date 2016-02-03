@@ -1,17 +1,27 @@
 package problem.visitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import problem.interfaces.IClass;
+import problem.interfaces.IField;
+import problem.interfaces.IMethod;
 import problem.interfaces.IModel;
 
 /**
  * Refer to:<br/>
  * ~ <a>https://en.wikipedia.org/wiki/Composite_pattern</a> <br/>
- * Important Information: <br/>
- * ~ Composite has children component <br/>
- * ~ Component is an interface / abstract class <br/>
- * ~ Leaf just uses all of component's methods <br/>
- * ~ Composite methods to manipulate children <br/>
- * ~ Has-a relation between component and leaf / composite <br/>
- * ~ Composite has a collection of children <br/>
+ * Rules: <br/>
+ * ~ <strong>Component</strong>: <br/>
+ * ~~Interface / Abstract Class <br/>
+ * ~ <strong>Composite</strong>: <br/>
+ * ~~ Extends component <br/>
+ * ~~ List / Collection of components <br/>
+ * ~~ Only Single has-a relation to component <br/>
+ * ~~ Anything extending composite is a composite <br/>
+ * ~ <strong>Leaf</strong> <br/>
+ * ~~ Extends Component <br/>
+ * ~~ No relations <br/>
  * 
  * @author gateslm
  *
@@ -20,30 +30,30 @@ public class ComponentVisitor implements IInvoker {
 
 	private IVisitor visitor;
 
-	// private List<IRelation> hasRelations; // According to Wikipedia
+	private List<IClass> possibleComponents;
+	private List<IClass> possibleLeafComposite;
 
 	public ComponentVisitor() {
+		this.possibleComponents = new ArrayList<>();
+		this.possibleLeafComposite = new ArrayList<>();
 		this.visitor = new Visitor();
-		this.preVisitClasses();
-		this.postVisitHasARelation();
-		this.postVisitClassesFindLeaf();
-		this.postVisitFindComposites();
+		this.preVisitClass();
+		this.visitField();
+		this.visitMethods();
 	}
 
-	/**
-	 * Finds all the classes that are composite. Good luck
-	 */
-	private void postVisitFindComposites() {
-		// TODO Auto-generated method stub
+	private void visitMethods() {
+		this.visitor.addVisit(VisitType.Visit, IMethod.class,
+				(ITraverser t) -> {
+					// TODO
+				});
 
 	}
 
-	/**
-	 * Finds the classes that should be the leaf nodes. FIXME: Not sure if it
-	 * should be post visit
-	 */
-	private void postVisitClassesFindLeaf() {
-		// TODO Auto-generated method stub
+	private void visitField() {
+		this.visitor.addVisit(VisitType.Visit, IField.class, (ITraverser t) -> {
+			// TODO
+		});
 
 	}
 
@@ -53,18 +63,12 @@ public class ComponentVisitor implements IInvoker {
 		traverser.accept(this.visitor);
 	}
 
-	/**
-	 * Checks the relations between the
-	 */
-	private void postVisitHasARelation() {
-
-	}
-
-	/**
-	 * Visits all the classes to find the Components of the Component Pattern.
-	 */
-	private void preVisitClasses() {
-
+	private void preVisitClass() {
+		this.visitor.addVisit(VisitType.PreVisit, IClass.class,
+				(ITraverser t) -> {
+					IClass c = (IClass) t;
+					
+				});
 	}
 
 }
