@@ -2,6 +2,49 @@
 Repository for our CSSE 374 Software Design project.
 
 ------------------------------------------------------------
+## Computer Science Joke
+
+TODO
+
+------------------------------------------------------------
+
+## Milestone 6
+
+#### Deliverables and Locations 
+
+TODO
+
+------------------------------------------------------------
+
+#### Design (Milestone Evolution)
+
+TODO
+
+------------------------------------------------------------
+
+#### Instructions 
+
+TODO
+
+------------------------------------------------------------
+
+#### Code
+
+TODO
+
+------------------------------------------------------------
+
+#### Contributions
+
+TODO
+
+------------------------------------------------------------
+
+## Professor Feedback and Fixes
+
+TODO
+
+------------------------------------------------------------
 
 ## Computer Science Joke
 
@@ -12,7 +55,7 @@ Repository for our CSSE 374 Software Design project.
 
 ## Milestone 5
 
-#### Deliverables and Location
+#### Deliverables and Locations
 
 1. Diagrams (Pictures below in same order):
   1. [Manually Created UML](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone5/Manual_Generated_UML_Project.png)
