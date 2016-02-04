@@ -15,6 +15,7 @@ import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Model;
 import problem.visitor.AdapterVisitor;
 import problem.visitor.BruteForceAdapterDetector;
+import problem.visitor.CompositeVisitor;
 import problem.visitor.DecoratorVisitor;
 import problem.visitor.IInvoker;
 import problem.visitor.SequenceOutputStream;
@@ -102,6 +103,8 @@ public class DesignParser {
 		decoratorVisitor.write(model);
 		AdapterVisitor adapterVisitor = new AdapterVisitor();
 		adapterVisitor.write(model);
+		CompositeVisitor compositeVisitor = new CompositeVisitor();
+		compositeVisitor.write(model);
 //		BruteForceAdapterDetector adapterVisitor = new BruteForceAdapterDetector(model);
 //		adapterVisitor.adapterDetect();
 		

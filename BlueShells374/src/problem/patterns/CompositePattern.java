@@ -2,7 +2,7 @@ package problem.patterns;
 
 import problem.interfaces.IPattern;
 
-public class ComponentPattern implements IPattern {
+public class CompositePattern implements IPattern {
 
 	private String className;
 	private String UMLProperty;
@@ -20,7 +20,7 @@ public class ComponentPattern implements IPattern {
 	 *            components having children and to store child component), Leaf
 	 *            (Behavior for the elements in the composition)
 	 */
-	public ComponentPattern(String className, String type) {
+	public CompositePattern(String className, String type) {
 		this.className = className;
 		this.UMLProperty = "fillcolor=yellow, style=filled, ";
 		this.UMLlabel = type;
