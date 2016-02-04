@@ -146,10 +146,13 @@ public class CompositeVisitor implements IInvoker {
 							if (hasComField){
 								break;
 							}
-							String[] sig = f.getSignature().split("<");
-							String sigCheck = sig[sig.length - 1];
-							sigCheck = sigCheck.replace(".", "/");
-							sigCheck = sigCheck.substring(1);
+							String sigCheck = f.getSignature();
+							if (!sigCheck.equals("")){
+								String[] sig = f.getSignature().split("<");
+								sigCheck = sig[sig.length - 1];
+								sigCheck = sigCheck.replace(".", "/");
+								sigCheck = sigCheck.substring(1);
+							}
 							
 							if (sigCheck.equals(s)){
 								hasComField = true;
@@ -179,10 +182,13 @@ public class CompositeVisitor implements IInvoker {
 			for (IClass s2 : this.possibleComposites){
 				List<IField> classFields = (List<IField>) s2.getIField();
 				for (IField f : classFields){
-					String[] sig = f.getSignature().split("<");
-					String sigCheck = sig[sig.length - 1];
-					sigCheck = sigCheck.replace(".", "/");
-					sigCheck = sigCheck.substring(1);
+					String sigCheck = f.getSignature();
+					if (!sigCheck.equals("")){
+						String[] sig = f.getSignature().split("<");
+						sigCheck = sig[sig.length - 1];
+						sigCheck = sigCheck.replace(".", "/");
+						sigCheck = sigCheck.substring(1);
+					}
 					if (comfComp.contains(sigCheck)){
 						s2.addPattern(new CompositePattern(s2.getClassName(), "\\<\\<Composite\\>\\>"));
 						comfComposite.add(s2.getClassName());
