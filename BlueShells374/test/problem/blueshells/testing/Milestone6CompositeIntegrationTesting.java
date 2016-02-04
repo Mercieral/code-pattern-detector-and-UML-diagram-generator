@@ -45,7 +45,7 @@ public class Milestone6CompositeIntegrationTesting {
 		//make fields
 		IField compositeField = new Field();
 		compositeField.setName("compositeField");
-		compositeField.setSignature("Ljava/util/List<MyComponent;>;");
+		compositeField.setSignature("Ljava/util/List<LMyComponent");
 		MyComposite.addIField(compositeField);
 		
 		//make methods
@@ -136,7 +136,7 @@ public class Milestone6CompositeIntegrationTesting {
 		//make fields
 		IField compositeField = new Field();
 		compositeField.setName("compositeField");
-		compositeField.setSignature("Ljava/util/List<IComponent;>;");
+		compositeField.setSignature("Ljava/util/List<LIComponent");
 		MyComposite.addIField(compositeField);
 		
 		//make methods
@@ -227,15 +227,15 @@ public class Milestone6CompositeIntegrationTesting {
 		MyComposite.addInterface("IComponent");
 		IClass LeafA = new ConcreteClass();
 		LeafA.setClassName("LeafA");
-		LeafA.addInterface("MyComponent");
+		LeafA.addInterface("IComponent");
 		IClass LeafB = new ConcreteClass();
 		LeafB.setClassName("LeafB");
-		LeafB.addInterface("MyComponent");
+		LeafB.addInterface("IComponent");
 		
 		//make fields
 		IField compositeField = new Field();
 		compositeField.setName("compositeField");
-		compositeField.setSignature("Ljava/util/List<IComponent;>;");
+		compositeField.setSignature("Ljava/util/List<LIComponent");
 		MyComposite.addIField(compositeField);
 		
 		//make methods
@@ -325,7 +325,7 @@ public class Milestone6CompositeIntegrationTesting {
 		//make fields
 		IField compositeField = new Field();
 		compositeField.setName("compositeField");
-		compositeField.setSignature("Ljava/util/List<MyComponent;>;");
+		compositeField.setSignature("Ljava/util/List<LMyComponent");
 		MyComposite.addIField(compositeField);
 		
 		//make methods
@@ -447,7 +447,7 @@ IModel m = new Model();
 		//make fields
 		IField compositeField = new Field();
 		compositeField.setName("compositeField");
-		compositeField.setSignature("Ljava/util/List<MyComponent;>;");
+		compositeField.setSignature("Ljava/util/List<LMyComponent");
 		MyComposite.addIField(compositeField);
 		
 		//make methods
