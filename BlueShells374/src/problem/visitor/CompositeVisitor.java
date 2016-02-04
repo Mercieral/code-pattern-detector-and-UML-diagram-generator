@@ -54,7 +54,7 @@ public class CompositeVisitor implements IInvoker {
 		this.visitor.addVisit(VisitType.PreVisit, IModel.class, (ITraverser t) -> {
 			IModel m = (IModel) t;
 			for (IClass c : m.getClasses()) {
-				if (c.getAcessLevel() == 1057) {
+				if (c.getAccessLevel() == 1057) {
 					if (c.getInterface().size() == 1) {
 						String inter = "";
 						for (String interfaze : c.getInterface()) {
@@ -131,7 +131,7 @@ public class CompositeVisitor implements IInvoker {
 			List<String> comfComposite = new ArrayList<>();
 			for (IClass c : m.getClasses()) {
 				for (String s : this.possibleComponents) {
-					if (c.getInterface().size() > 1 || c.getAcessLevel() == 1057) {
+					if (c.getInterface().size() > 1 || c.getAccessLevel() == 1057) {
 						break;
 					}
 					List<String> classInterface = (List<String>) c.getInterface();

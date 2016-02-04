@@ -26,7 +26,7 @@ public interface IClass extends ITraverser {
 	 * 
 	 * @return - Access level of class
 	 */
-	public int getAcessLevel();
+	public int getAccessLevel();
 
 	/**
 	 * Gets the signature of the Class

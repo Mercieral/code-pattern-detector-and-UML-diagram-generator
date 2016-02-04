@@ -48,7 +48,7 @@ public class ConcreteClass implements IClass {
 	}
 
 	@Override
-	public int getAcessLevel() {
+	public int getAccessLevel() {
 		return this.accessLevel;
 	}
 
