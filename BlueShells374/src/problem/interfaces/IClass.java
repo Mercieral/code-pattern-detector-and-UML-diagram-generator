@@ -22,9 +22,9 @@ public interface IClass extends ITraverser {
 	public Collection<IField> getIField();
 
 	/**
-	 * Gets the {@link EFieldAccess} of the Class
+	 * Gets the access level of the Class
 	 * 
-	 * @return - {@link EFieldAccess}
+	 * @return - Access level of class
 	 */
 	public int getAcessLevel();
 
@@ -49,11 +49,10 @@ public interface IClass extends ITraverser {
 	 */
 	public double getClassVersion();
 
-
 	/**
 	 * Gets a collection of strings that are interfaces for this class
 	 * 
-	 * @return - Collection<String>
+	 * @return - Collection of strings representing interfaces of the class
 	 */
 	public Collection<String> getInterface();
 
@@ -68,7 +67,7 @@ public interface IClass extends ITraverser {
 	 * Add a {@link IMethod}
 	 * 
 	 * @param {@link
-	 * 			IMethod} method
+	 * 			IMethod} method - Method in the class
 	 */
 	public void addIMethod(IMethod method);
 
@@ -76,15 +75,15 @@ public interface IClass extends ITraverser {
 	 * Add a {@link IField}
 	 * 
 	 * @param {@link
-	 * 			IField} field
+	 * 			IField} field - Field in the class
 	 */
 	public void addIField(IField field);
 
 	/**
-	 * Set class access level
+	 * Set the access level of this object
 	 * 
-	 * @param {@link
-	 * 			EClassAccess} access
+	 * @param access
+	 *            - Access level of class
 	 */
 	public void setAccessLevel(int access);
 
@@ -92,6 +91,7 @@ public interface IClass extends ITraverser {
 	 * Set class signature
 	 * 
 	 * @param signature
+	 *            - signature of class
 	 */
 	public void setSignature(String signature);
 
@@ -99,39 +99,53 @@ public interface IClass extends ITraverser {
 	 * Set class name
 	 * 
 	 * @param name
+	 *            - Name of the class
 	 */
 	public void setClassName(String name);
 
 	/**
-	 * Set Class version
+	 * Set class version
 	 * 
 	 * @param version
+	 *            - Version of class
 	 */
 	public void setClassVersion(double version);
-
 
 	/**
 	 * Add an interface
 	 * 
 	 * @param inter
+	 *            - Interface this object uses
 	 */
 	public void addInterface(String inter);
 
 	/**
-	 * Set the class extension
+	 * Set the class extension. Only one extension for a class in Java.
 	 * 
 	 * @param extension
+	 *            - Extension for class
 	 */
 	public void setExtension(String extension);
 
 	/**
 	 * For debugging prints out contents of the class
 	 * 
-	 * @return
+	 * @return - Needed if special string was used
 	 */
 	public String toString();
-	
+
+	/**
+	 * Adds an {@link IPattern} object to the collection in the IClass object.
+	 * 
+	 * @param pattern
+	 *            - Pattern object that needs to be held by this object
+	 */
 	public void addPattern(IPattern pattern);
-	
+
+	/**
+	 * Provides the collection of {@link IPattern} object in this object.
+	 * 
+	 * @return - Collection of IPattern objects
+	 */
 	public List<IPattern> getPatterns();
 }

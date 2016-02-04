@@ -67,17 +67,17 @@ public interface IField extends ITraverser {
 	public void setValue(Object value);
 
 	/**
-	 * Uses {@link EFieldAccess} to determine the access level of the field
+	 * The access level of the field
 	 * 
-	 * @return - {@link EFieldAccess} for the field
+	 * @return - Access level for the field
 	 */
 	public String getAccessLevel();
 
 	/**
-	 * Sets {@link EFieldAccess} for the field
+	 * Sets access level for the field
 	 * 
 	 * @param access
-	 *            - Uses {@link EFieldAccess} for values
+	 *            - Uses access level for values
 	 */
 	public void setAccessLevel(String access);
 

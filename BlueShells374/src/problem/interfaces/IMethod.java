@@ -119,18 +119,21 @@ public interface IMethod extends ITraverser {
 	 *         readable
 	 */
 	public String toString();
-	
+
 	/**
-	 * Gets the list which contains all of the inner calls from the current method in the order they happen
+	 * Gets the list which contains all of the inner calls from the current
+	 * method in the order they happen
 	 * 
 	 * @return
 	 */
 	public List<MethodContainer> getInnerCalls();
-	
+
 	/**
 	 * Add an inner call to the inner call list inside of method
 	 * 
 	 * @param innerCall
+	 *            - {@link MethodContainer} container class that holds info
+	 *            about calls made in the methods
 	 */
 	public void addInnerCall(MethodContainer innerCall);
 
