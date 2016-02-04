@@ -16,8 +16,11 @@ import problem.javaClasses.InterfaceRelation;
 import problem.javaClasses.Method;
 import problem.javaClasses.Model;
 import problem.patterns.CompositePattern;
+import problem.visitor.AdapterVisitor;
 import problem.visitor.CompositeVisitor;
+import problem.visitor.DecoratorVisitor;
 import problem.visitor.IInvoker;
+import problem.visitor.SingletonVisitor;
 
 public class Milestone6CompositeIntegrationTesting {
 
@@ -402,17 +405,125 @@ public class Milestone6CompositeIntegrationTesting {
 	
 	@Test
 	public void Empty_Class_No_Composite() {
-		fail("Not yet implemented");
+		IModel m = new Model();
+
+		// make classes
+		IClass IComponent = new ConcreteClass();
+		IComponent.setClassName("IComponent");
+
+
+		// add classes/relations to model
+		m.addClass(IComponent);
+
+		// test no patterns before running
+		assertEquals(IComponent.getPatterns().size(), 0);
+
+		// run the Pattern Visitors
+		IInvoker v1 = new SingletonVisitor();
+		IInvoker v2 = new DecoratorVisitor();
+		IInvoker v3 = new AdapterVisitor();
+		IInvoker v4 = new CompositeVisitor();
+		v1.write(m);
+		v2.write(m);
+		v3.write(m);
+		v4.write(m);
+
+		// test that there is no pattern after visiting
+		assertEquals(0, IComponent.getPatterns().size());
 	}
 	
 	@Test
 	public void No_Leaf_No_Composite() {
-		fail("Not yet implemented");
+IModel m = new Model();
+		
+		//make classes
+		IClass MyComponent = new ConcreteClass();
+		MyComponent.setClassName("MyComponent");
+		MyComponent.setAccessLevel(1057);
+		IClass MyComposite = new ConcreteClass();
+		MyComposite.setClassName("MyComposite");
+		MyComposite.setExtension("MyComponent");
+		
+		//make fields
+		IField compositeField = new Field();
+		compositeField.setName("compositeField");
+		compositeField.setSignature("Ljava/util/List<MyComponent;>;");
+		MyComposite.addIField(compositeField);
+		
+		//make methods
+		IMethod addMethod = new Method();
+		addMethod.setDesc("(MyComponent)V;");
+		addMethod.setName("add");
+		MyComposite.addIMethod(addMethod);
+		
+		//make relations
+		IRelation compositeToComponent = new ExtensionRelation();
+		compositeToComponent.setFromObject("MyComposite");
+		compositeToComponent.setToObject("MyComponent");
+		
+		//add Classes/relations to model
+		m.addClass(MyComponent);
+		m.addClass(MyComposite);
+		m.addRelation(compositeToComponent);
+		//test no patterns before running
+		assertEquals(MyComponent.getPatterns().size(), 0);
+		assertEquals(MyComposite.getPatterns().size(), 0);
+		
+		//run the Pattern Visitors
+		IInvoker v1 = new CompositeVisitor();
+		v1.write(m);
+		
+		//check that they still do not have the pattern
+		assertEquals(MyComponent.getPatterns().size(), 0);
+		assertEquals(MyComposite.getPatterns().size(), 0);
+		
+		
+
 	}
 	
 	@Test
 	public void Leaf_Only_No_Composite() {
-		fail("Not yet implemented");
+IModel m = new Model();
+		
+		//make classes
+		IClass MyComponent = new ConcreteClass();
+		MyComponent.setClassName("MyComponent");
+		MyComponent.setAccessLevel(1057);
+		IClass LeafA = new ConcreteClass();
+		LeafA.setClassName("LeafA");
+		LeafA.setExtension("MyComponent");
+		IClass LeafB = new ConcreteClass();
+		LeafB.setClassName("LeafB");
+		LeafB.setExtension("MyComponent");
+		
+		//make relations
+		IRelation leafAToComponent = new ExtensionRelation();
+		leafAToComponent.setFromObject("LeafA");
+		leafAToComponent.setToObject("MyComponent");
+		IRelation leafBToComponent = new ExtensionRelation();
+		leafBToComponent.setFromObject("LeafB");
+		leafBToComponent.setToObject("MyComponent");
+		
+		//add Classes/relations to model
+		m.addClass(MyComponent);
+		m.addClass(LeafA);
+		m.addClass(LeafB);
+		m.addRelation(leafAToComponent);
+		m.addRelation(leafBToComponent);
+		
+		//test no patterns before running
+		assertEquals(MyComponent.getPatterns().size(), 0);
+		assertEquals(LeafA.getPatterns().size(), 0);
+		assertEquals(LeafB.getPatterns().size(), 0);
+		
+		//run the Pattern Visitors
+		IInvoker v1 = new CompositeVisitor();
+		v1.write(m);
+		
+		//test that there is no pattern
+		assertEquals(MyComponent.getPatterns().size(), 0);
+		assertEquals(LeafA.getPatterns().size(), 0);
+		assertEquals(LeafB.getPatterns().size(), 0);
 	}
 	
 
