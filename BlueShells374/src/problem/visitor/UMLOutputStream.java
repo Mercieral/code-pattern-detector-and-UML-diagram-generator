@@ -254,7 +254,7 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 			IMethod m = (IMethod) t;
 			StringBuilder sb = new StringBuilder();
 
-			if (!m.getName().equals("<init>")) {
+			if (!m.getName().equals("<init>") && !m.getName().equals("<clinit>")) {
 				sb.append("\t\t\t");
 
 				StringBuilder sb2 = new StringBuilder();

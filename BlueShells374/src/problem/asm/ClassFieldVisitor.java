@@ -38,7 +38,7 @@ public class ClassFieldVisitor extends ClassVisitor{
 		//System.out.println(name + "here is sig " + signature + "now for desc " + desc);
 		String sigType = "";
 		if (signature != null){
-			sigType = Type.getType(signature).getClassName();
+			sigType = Type.getType(signature).getClassName().replace(">", "\\>" );
 		}
 		
 		IField currentField = new Field();
