@@ -14,17 +14,15 @@ TODO
 
 1. Diagrams (Pictures below in smae order):
   1. [Auto-Generated UML Week 7-2 Solution](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_7-2.png)
-  2. [Auto-Generated UML java.awt](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_java_awt.png)
-  3. [Auto-Generated UML java.swing](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_java_swing.png)
-  4. [Auto-Generated UML of Project](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_Project.png)
-  5. [Manually Generated UML of Project](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Manually_Generated_UML_Project.png)
+  2. [Auto-Generated UML java.awt and java.swing](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_AWT_Swing.png)
+  3. [Auto-Generated UML of Project](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_Project.png)
+  4. [Manually Generated UML of Project](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Manually_Generated_UML_Project.png)
 
 2. Pictures
   1. ![Auto-Generated UML Week 7-2 Solution](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_7-2.png)
-  2. ![Auto-Generated UML java.awt](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_java_awt.png)
-  3. ![Auto-Generated UML java.swing](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_java_swing.png)
-  4. ![Auto-Generated UML of Project](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_Project.png)
-  5. ![Manually Generated UML of Project](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Manually_Generated_UML_Project.png)
+  2. ![Auto-Generated UML java.awt and java.swing](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_AWT_Swing.png)
+  3. ![Auto-Generated UML of Project](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_Project.png)
+  4. ![Manually Generated UML of Project](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Manually_Generated_UML_Project.png)
 
 ------------------------------------------------------------
 
@@ -70,15 +68,21 @@ TODO
 
 Luke Danielson
 
-1. TODO
+1. Wrote the composite visitor pattern
+2. Additional testing from previous milestone
+3. Found java.awt and java.swing arguments
 
 Larry Gates
 
-1. TODO
+1. Started the composite visitor pattern
+2. Created composite pattern object
+3. Update README and cleaned and commented code 
 
 Aaron Mercier
 
-1. TODO
+1. Worked on integration testing
+2. Worked on Composite Visitor Pattern
+3. Fixed bugs in previous code
 
 ------------------------------------------------------------
 
