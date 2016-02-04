@@ -86,7 +86,7 @@ Aaron Mercier
 
 After feedback from Chandan's review:
 * [x] : Add additional testing to the integration testing, four or more additional testing
-* [ ] : TODO 
+* [x] : Brute force version as we he had earlier
 
 ------------------------------------------------------------
 
