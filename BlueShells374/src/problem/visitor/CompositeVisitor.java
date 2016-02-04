@@ -46,7 +46,6 @@ public class CompositeVisitor implements IInvoker {
 		this.preVisitModel();
 		this.preVisitClass();
 		this.visitField();
-		this.visitMethods();
 		this.postVisitModel();
 	}
 
@@ -116,13 +115,6 @@ public class CompositeVisitor implements IInvoker {
 
 	}
 
-	private void visitMethods() {
-		this.visitor.addVisit(VisitType.Visit, IMethod.class, (ITraverser t) -> {
-			if (this.notPossibleComposite) {
-				return;
-			}
-		});
-	}
 
 	private void postVisitModel() {
 		this.visitor.addVisit(VisitType.PostVisit, IModel.class, (ITraverser t) -> {
