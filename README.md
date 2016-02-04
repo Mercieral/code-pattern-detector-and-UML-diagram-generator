@@ -4,7 +4,10 @@ Repository for our CSSE 374 Software Design project.
 ------------------------------------------------------------
 ## Computer Science Joke
 
-TODO
+Look the adapter pattern
+![Adapter Pattern](http://imgs.xkcd.com/comics/universal_converter_box.png)
+
+![Wisdom of the ancients](http://imgs.xkcd.com/comics/wisdom_of_the_ancients.png)
 
 ------------------------------------------------------------
 
