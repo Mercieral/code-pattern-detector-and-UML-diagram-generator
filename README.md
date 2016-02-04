@@ -12,19 +12,51 @@ TODO
 
 #### Deliverables and Locations 
 
-TODO
+1. Diagrams (Pictures below in smae order):
+  1. [Auto-Generated UML Week 7-2 Solution](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_7-2.png)
+  2. [Auto-Generated UML java.awt](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_java_awt.png)
+  3. [Auto-Generated UML java.swing](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_java_swing.png)
+  4. [Auto-Generated UML of Project](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_Project.png)
+  5. [Manually Generated UML of Project](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Manually_Generated_UML_Project.png)
+
+2. Pictures
+  1. ![Auto-Generated UML Week 7-2 Solution](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_7-2.png)
+  2. ![Auto-Generated UML java.awt](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_java_awt.png)
+  3. ![Auto-Generated UML java.swing](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_java_swing.png)
+  4. ![Auto-Generated UML of Project](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_Project.png)
+  5. ![Manually Generated UML of Project](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Manually_Generated_UML_Project.png)
 
 ------------------------------------------------------------
 
 #### Design (Milestone Evolution)
 
-TODO
+![Design Diagram](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Manually_Generated_UML_Project.png)
+
+We continued to use the visitor pattern. Left code the same in the framework/library unless bug was found or additional functionality that was not there in the first place.
+
+We also made a brute force Adapter Pattern Detector. To see it in work, there are lines that can be uncommented. When GUI is made, an option could be made to see it separate. 
 
 ------------------------------------------------------------
 
 #### Instructions 
 
-TODO
+Instructions are still similar to previous milestone.
+
+To test the program, there is a console available for use. 
+
+The client would input the desired classes, such as classes in a package, in as the initial arguments. Once that object is finished loading, a console type structure is loaded. From there, follow the prompts for desired inputs. 
+
+To the see the brute force Adapter Pattern finder, code must be changed for the current console implementation.
+
+```
+Supported operations: Generator, Help, Quit 
+Input command:> Generator
+Generators: Supported generators - UML, Sequence 
+Input generator:> UML
+Generated graph, please refresh the input_output folder
+Supported operations: Generator, Help, Quit 
+Input command:> quit
+```
 
 ------------------------------------------------------------
 
@@ -36,13 +68,25 @@ TODO
 
 #### Contributions
 
-TODO
+Luke Danielson
+
+1. TODO
+
+Larry Gates
+
+1. TODO
+
+Aaron Mercier
+
+1. TODO
 
 ------------------------------------------------------------
 
 ## Professor Feedback and Fixes
 
-TODO
+After feedback from Chandan's review:
+* [x] : Add additional testing to the integration testing, four or more additional testing
+* [ ] : TODO 
 
 ------------------------------------------------------------
 
