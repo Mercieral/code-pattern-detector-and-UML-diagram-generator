@@ -141,7 +141,6 @@ public class CompositeVisitor implements IInvoker {
 							|| (this.abstractToInterface.get(cExt) != null
 									&& this.abstractToInterface.get(cExt).equals(s))) {
 						// detect maybe leaf check fields
-						System.out.println("hit+++===+++=+++" + c.getClassName());
 						boolean hasComField = false;
 						for (IField f : c.getIField()){
 							if (hasComField){
@@ -157,7 +156,6 @@ public class CompositeVisitor implements IInvoker {
 							}
 						}
 						if (!hasComField){
-							System.out.println("hitLEAF");
 							if (!comfComp.contains(s)){
 								comfComp.add(s);
 							}
@@ -186,7 +184,6 @@ public class CompositeVisitor implements IInvoker {
 					sigCheck = sigCheck.replace(".", "/");
 					sigCheck = sigCheck.substring(1);
 					if (comfComp.contains(sigCheck)){
-						System.out.println("HITTTTTT");
 						s2.addPattern(new CompositePattern(s2.getClassName(), "\\<\\<Composite\\>\\>"));
 						comfComposite.add(s2.getClassName());
 					}
