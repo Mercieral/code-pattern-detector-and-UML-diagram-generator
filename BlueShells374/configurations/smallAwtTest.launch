@@ -6,8 +6,11 @@
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
 </listAttribute>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+</listAttribute>
 <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="problem.asm.DesignParser"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="java.awt.Component&#13;&#10;java.awt.Container&#13;&#10;java.awt.Frame&#13;&#10;java.awt.Panel &#13;&#10;java.awt.Dialog&#13;&#10;java.awt.Label&#13;&#10;java.awt.Button&#13;&#10;java.awt.TextField"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="java.awt.Component&#13;&#10;java.awt.Container&#13;&#10;java.awt.Panel &#13;&#10;java.awt.Label&#13;&#10;java.awt.Button&#13;&#10;javax.swing.JComponent&#13;&#10;javax.swing.JPanel"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="BlueShells374"/>
 </launchConfiguration>

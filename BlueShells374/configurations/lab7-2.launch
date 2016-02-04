@@ -6,6 +6,9 @@
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
 </listAttribute>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+</listAttribute>
 <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="problem.asm.DesignParser"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="problem.client.AnimatorApp&#13;&#10;problem.graphics.AnimationPanel&#13;&#10;problem.graphics.MainWindow&#13;&#10;problem.sprites.AbstractSprite&#13;&#10;problem.sprites.CircleSprite&#13;&#10;problem.sprites.CompositeSprite&#13;&#10;problem.sprites.CompositeSpriteIterator&#13;&#10;problem.sprites.CrystalBall&#13;&#10;problem.sprites.ISprite&#13;&#10;problem.sprites.NullSpriteIterator&#13;&#10;problem.sprites.RectangleSprite&#13;&#10;problem.sprites.RectangleTower&#13;&#10;problem.sprites.SpriteFactory"/>
