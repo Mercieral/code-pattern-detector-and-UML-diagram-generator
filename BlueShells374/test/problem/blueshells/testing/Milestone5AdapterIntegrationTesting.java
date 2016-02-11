@@ -14,6 +14,7 @@ import problem.javaClasses.Field;
 import problem.javaClasses.HasRelation;
 import problem.javaClasses.InterfaceRelation;
 import problem.javaClasses.Method;
+import problem.javaClasses.MethodContainer;
 import problem.javaClasses.Model;
 import problem.patterns.AdapterPattern;
 import problem.visitor.AdapterVisitor;
@@ -25,6 +26,89 @@ public class Milestone5AdapterIntegrationTesting {
 
 	@Test
 	public void Simple_Adapter() {
+		IModel m = new Model();
+
+		// make classes
+		IClass Adaptee = new ConcreteClass();
+		Adaptee.setClassName("Adaptee");
+		IClass Adapter = new ConcreteClass();
+		Adapter.setClassName("Adapter");
+		Adapter.addInterface("ITarget");
+		IClass ITarget = new ConcreteClass();
+		ITarget.setClassName("ITarget");
+
+		// make fields
+		IField adaptee = new Field();
+		adaptee.setDesc("Adaptee");
+		adaptee.setName("a");
+		Adapter.addIField(adaptee);
+
+		// make methods
+		IMethod m1 = new Method();
+		m1.setDesc("()V;");
+		m1.setName("m1");
+		IMethod m2 = new Method();
+		m2.setDesc("()V;");
+		m2.setName("method1");
+		MethodContainer m2In = new MethodContainer();
+		m2In.setGoingFromClass("Adapter");
+		m2In.setGoingToClass("Adaptee");
+		m2.addInnerCall(m2In);
+		Adaptee.addIMethod(m1);
+		Adapter.addIMethod(m2);
+		ITarget.addIMethod(m2);
+
+		// make relations
+		IRelation targetImplement = new InterfaceRelation();
+		targetImplement.setFromObject("Adapter");
+		targetImplement.setToObject("ITarget");
+		IRelation hasRelation = new HasRelation();
+		hasRelation.setFromObject("Adapter");
+		hasRelation.setToObject("Adaptee");
+
+		// add to model
+		m.addClass(ITarget);
+		m.addClass(Adapter);
+		m.addClass(Adaptee);
+		m.addRelation(hasRelation);
+		m.addRelation(targetImplement);
+
+		// test before running
+		assertEquals(0, ITarget.getPatterns().size());
+		assertEquals(0, Adapter.getPatterns().size());
+		assertEquals(0, Adaptee.getPatterns().size());
+
+		// run the Pattern Visitors
+		IInvoker v1 = new SingletonVisitor();
+		IInvoker v2 = new DecoratorVisitor();
+		IInvoker v3 = new AdapterVisitor(1);
+		v1.write(m);
+		v2.write(m);
+		v3.write(m);
+
+		// test for patterns
+		assertEquals(1, ITarget.getPatterns().size());
+		if (ITarget.getPatterns().size() == 1) {
+			assertTrue(ITarget.getPatterns().get(0) instanceof AdapterPattern);
+			AdapterPattern p = (AdapterPattern) ITarget.getPatterns().get(0);
+			assertEquals(p.getLabel(), "\\<\\<target\\>\\>");
+		}
+		assertEquals(1, Adapter.getPatterns().size());
+		if (Adapter.getPatterns().size() == 1) {
+			assertTrue(Adapter.getPatterns().get(0) instanceof AdapterPattern);
+			AdapterPattern p = (AdapterPattern) Adapter.getPatterns().get(0);
+			assertEquals(p.getLabel(), "\\<\\<adapter\\>\\>");
+		}
+		assertEquals(1, Adaptee.getPatterns().size());
+		if (Adaptee.getPatterns().size() == 1) {
+			assertTrue(Adaptee.getPatterns().get(0) instanceof AdapterPattern);
+			AdapterPattern p = (AdapterPattern) Adaptee.getPatterns().get(0);
+			assertEquals(p.getLabel(), "\\<\\<adaptee\\>\\>");
+		}
+	}
+	
+	@Test
+	public void No_Adapter_not_enough_Method_Calls() {
 		IModel m = new Model();
 
 		// make classes
@@ -82,24 +166,9 @@ public class Milestone5AdapterIntegrationTesting {
 		v3.write(m);
 
 		// test for patterns
-		assertEquals(1, ITarget.getPatterns().size());
-		if (ITarget.getPatterns().size() == 1) {
-			assertTrue(ITarget.getPatterns().get(0) instanceof AdapterPattern);
-			AdapterPattern p = (AdapterPattern) ITarget.getPatterns().get(0);
-			assertEquals(p.getLabel(), "\\<\\<target\\>\\>");
-		}
-		assertEquals(1, Adapter.getPatterns().size());
-		if (Adapter.getPatterns().size() == 1) {
-			assertTrue(Adapter.getPatterns().get(0) instanceof AdapterPattern);
-			AdapterPattern p = (AdapterPattern) Adapter.getPatterns().get(0);
-			assertEquals(p.getLabel(), "\\<\\<adapter\\>\\>");
-		}
-		assertEquals(1, Adaptee.getPatterns().size());
-		if (Adaptee.getPatterns().size() == 1) {
-			assertTrue(Adaptee.getPatterns().get(0) instanceof AdapterPattern);
-			AdapterPattern p = (AdapterPattern) Adaptee.getPatterns().get(0);
-			assertEquals(p.getLabel(), "\\<\\<adaptee\\>\\>");
-		}
+		assertEquals(0, ITarget.getPatterns().size());
+		assertEquals(0, Adapter.getPatterns().size());
+		assertEquals(0, Adaptee.getPatterns().size());
 	}
 
 	@Test
@@ -139,6 +208,10 @@ public class Milestone5AdapterIntegrationTesting {
 		IMethod m2 = new Method();
 		m2.setDesc("()V;");
 		m2.setName("method1");
+		MethodContainer m2In = new MethodContainer();
+		m2In.setGoingFromClass("Adapter");
+		m2In.setGoingToClass("Adaptee");
+		m2.addInnerCall(m2In);
 		Adaptee.addIMethod(m1);
 		Adapter.addIMethod(m2);
 		ITarget.addIMethod(m2);
@@ -148,6 +221,10 @@ public class Milestone5AdapterIntegrationTesting {
 		IMethod m4 = new Method();
 		m4.setDesc("()V;");
 		m4.setName("method2");
+		MethodContainer m4In = new MethodContainer();
+		m4In.setGoingFromClass("Adapter2");
+		m4In.setGoingToClass("Adaptee2");
+		m4.addInnerCall(m4In);
 		Adaptee2.addIMethod(m3);
 		Adapter2.addIMethod(m4);
 		ITarget2.addIMethod(m4);
@@ -266,7 +343,15 @@ public class Milestone5AdapterIntegrationTesting {
 		IMethod m2 = new Method();
 		m2.setDesc("()V;");
 		m2.setName("method1");
+		MethodContainer m2In = new MethodContainer();
+		m2In.setGoingFromClass("Adapter");
+		m2In.setGoingToClass("Adaptee");
+		m2.addInnerCall(m2In);
 		IMethod m3 = new Method();
+		MethodContainer m3In = new MethodContainer();
+		m3In.setGoingFromClass("Adapter2");
+		m3In.setGoingToClass("Adaptee");
+		m3.addInnerCall(m3In);
 		m3.setDesc("()V;");
 		m3.setName("m3");
 		Adaptee.addIMethod(m1);

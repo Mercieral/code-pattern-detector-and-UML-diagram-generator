@@ -108,24 +108,25 @@ public class AdapterVisitor implements IInvoker {
 								break;
 							}
 						}
-						String adapteeName = adaptee.getClassName();
-						String adapterName = c0.getClassName();						
-						if (isAdaptee && isTarget && this.getFromMap(adapterName, adapteeName) >= this.maxMethods) {
-							System.out.println("have adapter pattern");
-							adaptee.addPattern(
-									new AdapterPattern(adaptee.getClassName(),
-											"\\<\\<adaptee\\>\\>"));
-							target.addPattern(
-									new AdapterPattern(target.getClassName(),
-											"\\<\\<target\\>\\>"));
-							c0.addPattern(new AdapterPattern(c0.getClassName(),
-									"\\<\\<adapter\\>\\>"));
-							for (IRelation r : m.getRelations()) {
-								if (r.getFromObject()
-										.equals(c0.getClassName().replace("/", ""))
-										&& r.getToObject().equals(
-												fieldType.replace(".", ""))) {
-									r.addProperty("xlabel=\"\\<\\<adapts\\>\\>\"");
+						if (adaptee != null && target != null){
+							String adapteeName = adaptee.getClassName();
+							String adapterName = c0.getClassName();						
+							if (isAdaptee && isTarget && this.getFromMap(adapterName, adapteeName) >= this.maxMethods) {
+								adaptee.addPattern(
+										new AdapterPattern(adaptee.getClassName(),
+												"\\<\\<adaptee\\>\\>"));
+								target.addPattern(
+										new AdapterPattern(target.getClassName(),
+												"\\<\\<target\\>\\>"));
+								c0.addPattern(new AdapterPattern(c0.getClassName(),
+										"\\<\\<adapter\\>\\>"));
+								for (IRelation r : m.getRelations()) {
+									if (r.getFromObject()
+											.equals(c0.getClassName().replace("/", ""))
+											&& r.getToObject().equals(
+													fieldType.replace(".", ""))) {
+										r.addProperty("xlabel=\"\\<\\<adapts\\>\\>\"");
+									}
 								}
 							}
 						}
