@@ -15,16 +15,15 @@ import javax.swing.JProgressBar;
 import problem.asm.DesignParser;
 
 @SuppressWarnings("serial")
-public class RunPanel extends JPanel {
+public class RunnerPanel extends JPanel {
 
-	public RunPanel(String[] args) {
+	public RunnerPanel(String[] args) {
 		super();
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
 		JLabel taskLabel = new JLabel();
-		taskLabel.setText("FIXME: Will Change");
-		JProgressBar loadingBar = new JProgressBar();
+		JProgressBar loadingBar = new JProgressBar(6 + args.length);
 		
 		JButton loadButton = new JButton("Load Config");
 		JButton analyzeButton = new JButton("Analyze");

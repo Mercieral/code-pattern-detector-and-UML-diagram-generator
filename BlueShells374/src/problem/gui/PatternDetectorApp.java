@@ -8,7 +8,7 @@ public class PatternDetectorApp {
 		JFrame mainFrame = new JFrame("Design Parser");
 		mainFrame.setSize(500, 500);
 		
-		RunPanel run = new RunPanel(args);
+		RunnerPanel run = new RunnerPanel(args);
 		mainFrame.add(run);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
