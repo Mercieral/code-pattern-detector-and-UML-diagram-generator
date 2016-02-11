@@ -101,7 +101,7 @@ public class DesignParser {
 		singletonVisitor.write(model);
 		DecoratorVisitor decoratorVisitor = new DecoratorVisitor();
 		decoratorVisitor.write(model);
-		AdapterVisitor adapterVisitor = new AdapterVisitor();
+		AdapterVisitor adapterVisitor = new AdapterVisitor(4);
 		adapterVisitor.write(model);
 		CompositeVisitor compositeVisitor = new CompositeVisitor();
 		compositeVisitor.write(model);

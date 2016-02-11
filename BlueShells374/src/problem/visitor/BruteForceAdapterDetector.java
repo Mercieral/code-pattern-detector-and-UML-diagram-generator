@@ -9,17 +9,15 @@ import problem.interfaces.IModel;
 import problem.interfaces.IRelation;
 import problem.patterns.AdapterPattern;
 
-public class BruteForceAdapterDetector {
-	IModel model;
+public class BruteForceAdapterDetector implements IInvoker{
 	private List<IClass> classList;
 
-	public BruteForceAdapterDetector(IModel m){
-		this.model = m;
+	public BruteForceAdapterDetector(){
 		this.classList = new ArrayList<>();
 	}
 	
-	public void adapterDetect(){
-		for(IClass c: this.model.getClasses()){
+	public void write(IModel model){
+		for(IClass c: model.getClasses()){
 			if (c.getInterface().size() == 1) {
 				// Detecting adapter
 				if (c.getExtension().equals("java/lang/Object")
@@ -42,7 +40,7 @@ public class BruteForceAdapterDetector {
 					.get(0).getDesc();
 			String interfaceName = ((List<String>) c0
 					.getInterface()).get(0);
-			for (IClass c1 : this.model.getClasses()) {
+			for (IClass c1 : model.getClasses()) {
 				if (c1.getClassName().equals(fieldType)
 						|| c1.getClassName().replace("/", ".")
 								.equals(fieldType)) {
@@ -68,7 +66,7 @@ public class BruteForceAdapterDetector {
 				c0.addPattern(new AdapterPattern(c0.getClassName(),
 						"\\<\\<adapter\\>\\>"));
 			}
-			for (IRelation r : this.model.getRelations()) {
+			for (IRelation r : model.getRelations()) {
 				if (r.getFromObject()
 						.equals(c0.getClassName().replace("/", ""))
 						&& r.getToObject().equals(

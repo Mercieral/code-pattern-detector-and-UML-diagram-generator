@@ -1,25 +1,35 @@
 package problem.visitor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
+import problem.interfaces.IMethod;
 import problem.interfaces.IModel;
 import problem.interfaces.IRelation;
 import problem.javaClasses.ConcreteClass;
+import problem.javaClasses.Method;
 import problem.patterns.AdapterPattern;
 
 public class AdapterVisitor implements IInvoker {
 
 	private IVisitor visitor;
 	private List<IClass> classList;
-
-	public AdapterVisitor() {
+	private int maxMethods;
+	private boolean posAdap;
+	private Map<String[], Integer> adapteeCalls;
+	
+	public AdapterVisitor(int maxMethods) {
 		this.visitor = new Visitor();
 		this.classList = new ArrayList<>();
+		this.maxMethods = maxMethods;
+		this.adapteeCalls = new HashMap<>();
 		this.setupPreVisitClass();
-		this.visitHasRelation();
+		this.visitMethod();
 		this.postVisitModel();
 
 	}
@@ -30,17 +40,11 @@ public class AdapterVisitor implements IInvoker {
 		traverser.accept(this.visitor);
 	}
 
-	private void visitHasRelation() {
-		this.visitor.addVisit(VisitType.Visit, ConcreteClass.class,
-				(ITraverser t) -> {
-					// FIXME
-				});
-	}
-
 	private void setupPreVisitClass() {
 		this.visitor.addVisit(VisitType.PreVisit, ConcreteClass.class,
 				(ITraverser t) -> {
 					IClass c = (IClass) t;
+					this.posAdap = false;
 					if (c.getInterface().size() == 1) {
 						// Detecting adapter
 						if (c.getExtension().equals("java/lang/Object")
@@ -50,12 +54,38 @@ public class AdapterVisitor implements IInvoker {
 								// Only 1 field
 								this.classList.add(c);
 								// Adds it when all three parts exist
+								this.posAdap = true;
+								System.out.println("set true");
 							}
 						}
 					}
 				});
 	}
 
+	private void visitMethod(){
+		this.visitor.addVisit(VisitType.Visit, Method.class, (ITraverser t) -> {
+			if (!this.posAdap){
+				System.out.println("before return");
+				return;
+			}
+			IMethod m = (IMethod) t;
+			System.out.println("here");
+			for (int i = 0; i < m.getInnerCalls().size(); i++){
+				String[] temp = {m.getInnerCalls().get(i).getGoingFromClass(), m.getInnerCalls().get(i).getGoingToClass()};
+				if (this.getFromMap(m.getInnerCalls().get(i).getGoingFromClass(), m.getInnerCalls().get(i).getGoingToClass()) == -1){
+					System.out.println("creating array in adaptee calls");
+					System.out.println("from " + m.getInnerCalls().get(i).getGoingFromClass() + "->to " + m.getInnerCalls().get(i).getGoingToClass());
+					this.adapteeCalls.put(temp, 1);
+				}
+				else {
+					int calls = this.getFromMap(m.getInnerCalls().get(i).getGoingFromClass(), m.getInnerCalls().get(i).getGoingToClass());
+					this.adapteeCalls.put(temp, calls++);
+					System.out.println("incrementing calls");
+
+				}
+			}
+		});
+	}
 	private void postVisitModel() {
 		this.visitor.addVisit(VisitType.PostVisit, IModel.class,
 				(ITraverser t) -> {
@@ -85,7 +115,10 @@ public class AdapterVisitor implements IInvoker {
 								break;
 							}
 						}
-						if (isAdaptee && isTarget) {
+						String adapteeName = adaptee.getClassName();
+						String adapterName = c0.getClassName();						
+						if (isAdaptee && isTarget && this.getFromMap(adapterName, adapteeName) >= this.maxMethods) {
+							System.out.println("have adapter pattern");
 							adaptee.addPattern(
 									new AdapterPattern(adaptee.getClassName(),
 											"\\<\\<adaptee\\>\\>"));
@@ -94,17 +127,26 @@ public class AdapterVisitor implements IInvoker {
 											"\\<\\<target\\>\\>"));
 							c0.addPattern(new AdapterPattern(c0.getClassName(),
 									"\\<\\<adapter\\>\\>"));
-						}
-						for (IRelation r : m.getRelations()) {
-							if (r.getFromObject()
-									.equals(c0.getClassName().replace("/", ""))
-									&& r.getToObject().equals(
-											fieldType.replace(".", ""))) {
-								r.addProperty("xlabel=\"\\<\\<adapts\\>\\>\"");
+							for (IRelation r : m.getRelations()) {
+								if (r.getFromObject()
+										.equals(c0.getClassName().replace("/", ""))
+										&& r.getToObject().equals(
+												fieldType.replace(".", ""))) {
+									r.addProperty("xlabel=\"\\<\\<adapts\\>\\>\"");
+								}
 							}
 						}
 					}
 
 				});
+	}
+	
+	private int getFromMap(String from, String to){
+		for (String[] a : this.adapteeCalls.keySet()){
+			if (a[0].equals(from) && a[1].equals(to)){
+				return this.adapteeCalls.get(a);
+			}
+		}
+		return -1;
 	}
 }

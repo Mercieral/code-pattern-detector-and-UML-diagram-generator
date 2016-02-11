@@ -421,7 +421,7 @@ public class Milestone6CompositeIntegrationTesting {
 		// run the Pattern Visitors
 		IInvoker v1 = new SingletonVisitor();
 		IInvoker v2 = new DecoratorVisitor();
-		IInvoker v3 = new AdapterVisitor();
+		IInvoker v3 = new AdapterVisitor(1);
 		IInvoker v4 = new CompositeVisitor();
 		v1.write(m);
 		v2.write(m);
