@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
@@ -49,9 +55,82 @@ public class DesignParser {
 	 *            edu.rosehulman.csse374.ClassFieldVisitor java.lang.Math
 	 * @throws IOException
 	 */
-//	public static void main(String[] args) throws IOException {
-//		parse(args);
-//	}
+	public static void main(String[] args) throws IOException {
+		DesignParser parser = new DesignParser();
+		parser.parse(args);
+	}
+	
+	public void parse(String[] args, JProgressBar loading, JLabel task) throws IOException {
+		task.setText("initializing");
+		task.repaint();
+		IModel model = new Model();
+		IClass currentClass = null;
+
+		for (String className : args) {
+			// ASM's ClassReader does the heavy lifting of parsing the compiled
+			// Java class
+			task.setText("Analyzing class: " + className);
+			ClassReader reader = new ClassReader(className);
+			currentClass = new ConcreteClass();
+
+			// make class declaration visitor to get superclass and interfaces
+			ClassVisitor decVisitor = new ClassDeclarationVisitor(Opcodes.ASM5,
+					currentClass, args, model);
+
+			// DECORATE declaration visitor with field visitor
+			ClassVisitor fieldVisitor = new ClassFieldVisitor(Opcodes.ASM5,
+					decVisitor, currentClass, args, model);
+
+			// DECORATE field visitor with method visitor
+			ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5,
+					fieldVisitor, currentClass, args, model);
+
+			// Tell the Reader to use our (heavily decorated) ClassVisitor to
+			// visit the class
+			reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
+
+			// Add the class to the model
+			model.addClass(currentClass);
+		}
+
+		HashMap<String, IInvoker> streams = new HashMap<>();
+		streams.put("sequence", new SequenceOutputStream(
+				new FileOutputStream("input_output/diagram.sd")));
+		streams.put("uml", new UMLOutputStream(new FileOutputStream("input_output/graph.gv")));
+		
+		task.setText("Detecting Singleton Pattern");
+		SingletonVisitor singletonVisitor = new SingletonVisitor();
+		singletonVisitor.write(model);
+		
+		task.setText("Detecting Decorator Pattern");
+		DecoratorVisitor decoratorVisitor = new DecoratorVisitor();
+		decoratorVisitor.write(model);
+		
+		task.setText("Detecting Adapter Pattern");
+		AdapterVisitor adapterVisitor = new AdapterVisitor(4);
+		adapterVisitor.write(model);
+		
+		task.setText("Detecting Composite Pattern");
+		CompositeVisitor compositeVisitor = new CompositeVisitor();
+		compositeVisitor.write(model);
+//		BruteForceAdapterDetector adapterVisitor = new BruteForceAdapterDetector(model);
+//		adapterVisitor.adapterDetect();
+		
+		
+		//Comment out to use console input (in for GUI)
+		task.setText("Generating UML");
+		IInvoker UMLGenerator = new UMLOutputStream(new FileOutputStream("input_output/graph.gv"));
+		UMLGenerator.write(model);
+		((UMLOutputStream)UMLGenerator).close();
+		System.out.println("Generating UML");
+		
+		//FIXME wait for proxy to display this
+		task.setText("Finished Generating UML");
+
+		//Uncomment to use console input (out for GUI)
+		//commandConsole(model, streams);
+	}
+
 
 	/**
 	 * Used primarily for testing, allows to be run for arguments outside of
@@ -108,9 +187,14 @@ public class DesignParser {
 //		BruteForceAdapterDetector adapterVisitor = new BruteForceAdapterDetector(model);
 //		adapterVisitor.adapterDetect();
 		
+		
+		//Comment out to use console input (in for GUI)
 		IInvoker UMLGenerator = new UMLOutputStream(new FileOutputStream("input_output/graph.gv"));
 		UMLGenerator.write(model);
+		((UMLOutputStream)UMLGenerator).close();
+		System.out.println("Generating UML");
 
+		//Uncomment to use console input (out for GUI)
 		//commandConsole(model, streams);
 	}
 
