@@ -2,6 +2,23 @@
 Repository for our CSSE 374 Software Design project.
 
 ------------------------------------------------------------
+
+## Computer Science Joke
+
+![Joke](http://imgs.xkcd.com/comics/commented.png)
+
+------------------------------------------------------------
+
+## Milestone 6.5
+
+For this half-milestone, we added further detection to the Adapter Pattern. We also made all detectors implement one interface, the Invoker interface. This was in place for brute force detection or visitor detection, allowing either to be called without changing core code.
+
+##### Milestone 7 steps
+
+We are planning to do a GUI. We plan to make further progress during the weekend, once we all finish the exam and other homework. General framework started. 
+
+
+------------------------------------------------------------
 ## Computer Science Joke
 
 Look the adapter pattern
