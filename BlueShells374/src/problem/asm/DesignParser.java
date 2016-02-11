@@ -49,9 +49,9 @@ public class DesignParser {
 	 *            edu.rosehulman.csse374.ClassFieldVisitor java.lang.Math
 	 * @throws IOException
 	 */
-	public static void main(String[] args) throws IOException {
-		parser(args);
-	}
+//	public static void main(String[] args) throws IOException {
+//		parse(args);
+//	}
 
 	/**
 	 * Used primarily for testing, allows to be run for arguments outside of
@@ -63,7 +63,7 @@ public class DesignParser {
 	 * @throws IOException
 	 *             - Exception if unable to read file
 	 */
-	public static void parser(String[] args) throws IOException {
+	public void parse(String[] args) throws IOException {
 		IModel model = new Model();
 		IClass currentClass = null;
 
@@ -108,8 +108,10 @@ public class DesignParser {
 //		BruteForceAdapterDetector adapterVisitor = new BruteForceAdapterDetector(model);
 //		adapterVisitor.adapterDetect();
 		
+		IInvoker UMLGenerator = new UMLOutputStream(new FileOutputStream("input_output/graph.gv"));
+		UMLGenerator.write(model);
 
-		commandConsole(model, streams);
+		//commandConsole(model, streams);
 	}
 
 	/**

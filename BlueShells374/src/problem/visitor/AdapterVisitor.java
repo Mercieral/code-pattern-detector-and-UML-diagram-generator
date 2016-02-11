@@ -1,7 +1,6 @@
 package problem.visitor;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +54,6 @@ public class AdapterVisitor implements IInvoker {
 								this.classList.add(c);
 								// Adds it when all three parts exist
 								this.posAdap = true;
-								System.out.println("set true");
 							}
 						}
 					}
@@ -65,22 +63,17 @@ public class AdapterVisitor implements IInvoker {
 	private void visitMethod(){
 		this.visitor.addVisit(VisitType.Visit, Method.class, (ITraverser t) -> {
 			if (!this.posAdap){
-				System.out.println("before return");
 				return;
 			}
 			IMethod m = (IMethod) t;
-			System.out.println("here");
 			for (int i = 0; i < m.getInnerCalls().size(); i++){
 				String[] temp = {m.getInnerCalls().get(i).getGoingFromClass(), m.getInnerCalls().get(i).getGoingToClass()};
 				if (this.getFromMap(m.getInnerCalls().get(i).getGoingFromClass(), m.getInnerCalls().get(i).getGoingToClass()) == -1){
-					System.out.println("creating array in adaptee calls");
-					System.out.println("from " + m.getInnerCalls().get(i).getGoingFromClass() + "->to " + m.getInnerCalls().get(i).getGoingToClass());
 					this.adapteeCalls.put(temp, 1);
 				}
 				else {
 					int calls = this.getFromMap(m.getInnerCalls().get(i).getGoingFromClass(), m.getInnerCalls().get(i).getGoingToClass());
 					this.adapteeCalls.put(temp, calls++);
-					System.out.println("incrementing calls");
 
 				}
 			}
