@@ -23,7 +23,7 @@ public class RunnerPanel extends JPanel {
 		GridBagConstraints c = new GridBagConstraints();
 		
 		JLabel taskLabel = new JLabel();
-		JProgressBar loadingBar = new JProgressBar(6 + args.length);
+		JProgressBar loadingBar = new JProgressBar(0, 7 + args.length);
 		
 		JButton loadButton = new JButton("Load Config");
 		JButton analyzeButton = new JButton("Analyze");
@@ -61,6 +61,7 @@ public class RunnerPanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			loading.setValue(0);
 			Thread t = new Thread(new Runnable() {
 
 				@Override

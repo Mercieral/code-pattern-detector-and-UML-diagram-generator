@@ -62,7 +62,7 @@ public class DesignParser {
 	
 	public void parse(String[] args, JProgressBar loading, JLabel task) throws IOException {
 		task.setText("initializing");
-		task.repaint();
+		loading.setValue(loading.getValue() + 1);
 		IModel model = new Model();
 		IClass currentClass = null;
 
@@ -70,6 +70,7 @@ public class DesignParser {
 			// ASM's ClassReader does the heavy lifting of parsing the compiled
 			// Java class
 			task.setText("Analyzing class: " + className);
+			loading.setValue(loading.getValue() + 1);
 			ClassReader reader = new ClassReader(className);
 			currentClass = new ConcreteClass();
 
@@ -99,18 +100,22 @@ public class DesignParser {
 		streams.put("uml", new UMLOutputStream(new FileOutputStream("input_output/graph.gv")));
 		
 		task.setText("Detecting Singleton Pattern");
+		loading.setValue(loading.getValue() + 1);
 		SingletonVisitor singletonVisitor = new SingletonVisitor();
 		singletonVisitor.write(model);
 		
 		task.setText("Detecting Decorator Pattern");
+		loading.setValue(loading.getValue() + 1);
 		DecoratorVisitor decoratorVisitor = new DecoratorVisitor();
 		decoratorVisitor.write(model);
 		
 		task.setText("Detecting Adapter Pattern");
+		loading.setValue(loading.getValue() + 1);
 		AdapterVisitor adapterVisitor = new AdapterVisitor(4);
 		adapterVisitor.write(model);
 		
 		task.setText("Detecting Composite Pattern");
+		loading.setValue(loading.getValue() + 1);
 		CompositeVisitor compositeVisitor = new CompositeVisitor();
 		compositeVisitor.write(model);
 //		BruteForceAdapterDetector adapterVisitor = new BruteForceAdapterDetector(model);
@@ -119,12 +124,14 @@ public class DesignParser {
 		
 		//Comment out to use console input (in for GUI)
 		task.setText("Generating UML");
+		loading.setValue(loading.getValue() + 1);
 		IInvoker UMLGenerator = new UMLOutputStream(new FileOutputStream("input_output/graph.gv"));
 		UMLGenerator.write(model);
 		((UMLOutputStream)UMLGenerator).close();
 		System.out.println("Generating UML");
 		
 		//FIXME wait for proxy to display this
+		loading.setValue(loading.getValue() + 1);
 		task.setText("Finished Generating UML");
 
 		//Uncomment to use console input (out for GUI)
