@@ -1,13 +1,18 @@
 package problem.gui;
 
+import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
+import java.awt.MediaTracker;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -17,7 +22,7 @@ import problem.asm.DesignParser;
 @SuppressWarnings("serial")
 public class RunnerPanel extends JPanel {
 
-	public RunnerPanel(String[] args) {
+	public RunnerPanel(String[] args, JFrame f) {
 		super();
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -28,7 +33,7 @@ public class RunnerPanel extends JPanel {
 		JButton loadButton = new JButton("Load Config");
 		JButton analyzeButton = new JButton("Analyze");
 		loadButton.addActionListener(new load());
-		analyzeButton.addActionListener(new analyze(args, loadingBar, taskLabel));
+		analyzeButton.addActionListener(new analyze(args, loadingBar, taskLabel, f));
 		
 		c.gridx = 0; c.gridy = 0; c.insets = new Insets(0,0,30,20);
 		this.add(loadButton, c);
@@ -50,13 +55,15 @@ public class RunnerPanel extends JPanel {
 	
 	private class analyze implements ActionListener{
 		private String[] args;
+		private JFrame frame;
 		private JProgressBar loading;
 		private JLabel task;
 		
-		public analyze(String[] args, JProgressBar load, JLabel task){
+		public analyze(String[] args, JProgressBar load, JLabel task, JFrame f){
 			this.args = args;
 			this.loading = load;
 			this.task = task;
+			this.frame = f;
 		}
 
 		@Override
@@ -70,6 +77,14 @@ public class RunnerPanel extends JPanel {
 					try {
 						System.out.println("Analyzing");
 						parser.parse(args, loading, task);
+						JPanel panel = new JPanel();
+						panel.setLayout(new BorderLayout());
+						CheckboxPanel cbpane = new CheckboxPanel();
+						ImagePanel imagepane = new ImagePanel();
+						panel.add(cbpane, BorderLayout.WEST);
+						panel.add(imagepane, BorderLayout.CENTER);
+						frame.setContentPane(panel);
+						frame.revalidate();
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
