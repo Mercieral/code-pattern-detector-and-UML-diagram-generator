@@ -111,7 +111,7 @@ public class DesignParser {
 		
 		task.setText("Detecting Adapter Pattern");
 		loading.setValue(loading.getValue() + 1);
-		AdapterVisitor adapterVisitor = new AdapterVisitor(4);
+		AdapterVisitor adapterVisitor = new AdapterVisitor(1);
 		adapterVisitor.write(model);
 		
 		task.setText("Detecting Composite Pattern");
@@ -187,7 +187,7 @@ public class DesignParser {
 		singletonVisitor.write(model);
 		DecoratorVisitor decoratorVisitor = new DecoratorVisitor();
 		decoratorVisitor.write(model);
-		AdapterVisitor adapterVisitor = new AdapterVisitor(4);
+		AdapterVisitor adapterVisitor = new AdapterVisitor(1);
 		adapterVisitor.write(model);
 		CompositeVisitor compositeVisitor = new CompositeVisitor();
 		compositeVisitor.write(model);

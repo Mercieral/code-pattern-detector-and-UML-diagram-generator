@@ -142,8 +142,9 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 					try {
 						this.write(LAST_LINE);
 						Runtime rt = Runtime.getRuntime();
-						rt.exec("\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe\" "
+						Process graphviz = rt.exec("\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe\" "
 								+ "-Tpng input_output\\graph.gv -o input_output\\graph.png");
+						while(graphviz.isAlive()){}
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

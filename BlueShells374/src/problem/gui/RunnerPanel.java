@@ -1,11 +1,10 @@
 package problem.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Insets;
-import java.awt.MediaTracker;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -16,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JScrollPane;
 
 import problem.asm.DesignParser;
 
@@ -77,13 +77,22 @@ public class RunnerPanel extends JPanel {
 					try {
 						System.out.println("Analyzing");
 						parser.parse(args, loading, task);
+						
 						JPanel panel = new JPanel();
 						panel.setLayout(new BorderLayout());
+						
+						
 						CheckboxPanel cbpane = new CheckboxPanel();
-						ImagePanel imagepane = new ImagePanel();
+						Icon umlImage = new ImageProxy("input_output/graph.png");
+						JScrollPane scrollPane = new JScrollPane(new JLabel(umlImage));
+						
 						panel.add(cbpane, BorderLayout.WEST);
-						panel.add(imagepane, BorderLayout.CENTER);
+						panel.add(scrollPane, BorderLayout.CENTER);
+						
 						frame.setContentPane(panel);
+						frame.setPreferredSize(new Dimension(1000, 800));
+						frame.repaint();
+						frame.pack();
 						frame.revalidate();
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
