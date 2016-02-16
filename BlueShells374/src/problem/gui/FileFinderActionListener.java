@@ -6,18 +6,20 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class FileFinderActionListener implements ActionListener {
 
 	private JLabel label;
-	private JPanel panel;
+	private ConfigMaker panel;
 	private String location;
+	private boolean status;
 
-	public FileFinderActionListener(JLabel label, JPanel rootPanel) {
+	public FileFinderActionListener(JLabel label, ConfigMaker rootPanel,
+			boolean locationStatus) {
 		this.label = label;
 		this.panel = rootPanel;
 		this.location = "";
+		this.status = locationStatus;
 	}
 
 	@Override
@@ -33,12 +35,10 @@ public class FileFinderActionListener implements ActionListener {
 		if (value == JFileChooser.APPROVE_OPTION) {
 			this.location = fileChooser.getSelectedFile().toString();
 			this.label.setText(fileChooser.getSelectedFile().toString());
-			this.panel.updateUI();
+			if (this.status) {
+				this.panel.setDirLocation(this.location);
+			}
 		}
-	}
-	
-	public String getLocation(){
-		return this.location;
 	}
 
 }

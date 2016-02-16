@@ -15,12 +15,13 @@ public class ConfigMaker extends JPanel {
 	 * Added by default
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private String inputLocation;
+	
+	private String dirLocation;
 
 	public ConfigMaker() {
 		JPanel titlePanel = new JPanel();
 		JLabel title = new JLabel("Configuration Panel");
+		dirLocation = "";
 		titlePanel.add(title);
 		this.setLayout(new GridLayout(7, 6));
 		this.add(titlePanel);
@@ -36,7 +37,7 @@ public class ConfigMaker extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(inputLocation.equals("")){
+				if(dirLocation.equals("")){
 					System.out.println("Location not choosen");
 				} else {
 					System.out.println("Location choosen");
@@ -55,7 +56,7 @@ public class ConfigMaker extends JPanel {
 		JButton button = new JButton("Find Output Path");
 		JLabel locationLabel = new JLabel("Folder location");
 		button.addActionListener(
-				new FileFinderActionListener(locationLabel, panelButton));
+				new FileFinderActionListener(locationLabel, this, false));
 		panelButton.add(label);
 		panelButton.add(button);
 		panelButton.add(locationLabel);
@@ -69,12 +70,26 @@ public class ConfigMaker extends JPanel {
 		JButton button = new JButton("Find main path");
 		JLabel locationLabel = new JLabel("Folder location");
 		FileFinderActionListener ffal = new FileFinderActionListener(
-				locationLabel, panelButton);
+				locationLabel, this, true);
 		button.addActionListener(ffal);
 		panelButton.add(label);
 		panelButton.add(button);
 		panelButton.add(locationLabel);
 		this.add(panelButton);
+	}
+
+	/**
+	 * @return the dirLocation
+	 */
+	public String getDirLocation() {
+		return dirLocation;
+	}
+
+	/**
+	 * @param dirLocation the dirLocation to set
+	 */
+	public void setDirLocation(String dirLocation) {
+		this.dirLocation = dirLocation;
 	}
 
 }
