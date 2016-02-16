@@ -18,6 +18,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 
 import problem.asm.DesignParser;
+import problem.interfaces.IModel;
 
 @SuppressWarnings("serial")
 public class RunnerPanel extends JPanel {
@@ -76,13 +77,13 @@ public class RunnerPanel extends JPanel {
 					DesignParser parser = new DesignParser();
 					try {
 						System.out.println("Analyzing");
-						parser.parse(args, loading, task);
+						IModel model = parser.parse(args, loading, task);
 						
 						JPanel panel = new JPanel();
 						panel.setLayout(new BorderLayout());
 						
 						
-						CheckboxPanel cbpane = new CheckboxPanel();
+						CheckboxPanel cbpane = new CheckboxPanel(model);
 						Icon umlImage = new ImageProxy("input_output/graph.png");
 						JScrollPane scrollPane = new JScrollPane(new JLabel(umlImage));
 						

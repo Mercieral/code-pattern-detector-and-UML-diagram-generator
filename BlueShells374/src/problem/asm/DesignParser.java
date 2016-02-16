@@ -60,7 +60,7 @@ public class DesignParser {
 		parser.parse(args);
 	}
 	
-	public void parse(String[] args, JProgressBar loading, JLabel task) throws IOException {
+	public IModel parse(String[] args, JProgressBar loading, JLabel task) throws IOException {
 		task.setText("initializing");
 		loading.setValue(loading.getValue() + 1);
 		IModel model = new Model();
@@ -129,10 +129,12 @@ public class DesignParser {
 		UMLGenerator.write(model);
 		((UMLOutputStream)UMLGenerator).close();
 		System.out.println("Generating UML");
+
 		
-		//FIXME wait for proxy to display this
 		loading.setValue(loading.getValue() + 1);
 		task.setText("Finished Generating UML");
+		
+		return model;
 
 		//Uncomment to use console input (out for GUI)
 		//commandConsole(model, streams);
@@ -149,7 +151,7 @@ public class DesignParser {
 	 * @throws IOException
 	 *             - Exception if unable to read file
 	 */
-	public void parse(String[] args) throws IOException {
+	public IModel parse(String[] args) throws IOException {
 		IModel model = new Model();
 		IClass currentClass = null;
 
@@ -200,6 +202,8 @@ public class DesignParser {
 		UMLGenerator.write(model);
 		((UMLOutputStream)UMLGenerator).close();
 		System.out.println("Generating UML");
+		
+		return model;
 
 		//Uncomment to use console input (out for GUI)
 		//commandConsole(model, streams);

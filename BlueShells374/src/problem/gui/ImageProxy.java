@@ -1,7 +1,6 @@
 package problem.gui;
 
 import java.awt.*;
-import java.io.File;
 
 import javax.swing.*;
 
