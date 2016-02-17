@@ -60,7 +60,7 @@ public class DesignParser {
 		parser.parse(args);
 	}
 	
-	public IModel parse(String[] args, JProgressBar loading, JLabel task) throws IOException {
+	public static IModel parse(String[] args, JProgressBar loading, JLabel task) throws IOException {
 		task.setText("initializing");
 		loading.setValue(loading.getValue() + 1);
 		IModel model = new Model();
@@ -151,7 +151,7 @@ public class DesignParser {
 	 * @throws IOException
 	 *             - Exception if unable to read file
 	 */
-	public IModel parse(String[] args) throws IOException {
+	public static IModel parse(String[] args) throws IOException {
 		IModel model = new Model();
 		IClass currentClass = null;
 

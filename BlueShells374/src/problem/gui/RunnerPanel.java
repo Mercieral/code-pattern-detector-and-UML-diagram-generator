@@ -74,21 +74,20 @@ public class RunnerPanel extends JPanel {
 
 				@Override
 				public void run() {
-					DesignParser parser = new DesignParser();
 					try {
 						System.out.println("Analyzing");
-						IModel model = parser.parse(args, loading, task);
+						IModel model = DesignParser.parse(args, loading, task);
 						
 						JPanel panel = new JPanel();
 						panel.setLayout(new BorderLayout());
 						
 						
-						CheckboxPanel cbpane = new CheckboxPanel(model);
+						CheckboxPanel cbpane = new CheckboxPanel(panel, model);
 						Icon umlImage = new ImageProxy("input_output/graph.png");
-						JScrollPane scrollPane = new JScrollPane(new JLabel(umlImage));
+						JScrollPane imageScrollPane = new JScrollPane(new JLabel(umlImage));
 						
 						panel.add(cbpane, BorderLayout.WEST);
-						panel.add(scrollPane, BorderLayout.CENTER);
+						panel.add(imageScrollPane, BorderLayout.CENTER);
 						
 						frame.setContentPane(panel);
 						frame.setPreferredSize(new Dimension(1000, 800));
