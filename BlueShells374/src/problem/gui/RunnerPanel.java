@@ -46,6 +46,7 @@ public class RunnerPanel extends JPanel {
 		this.add(loadingBar, c);
 	}
 	
+	
 	private class load implements ActionListener{
 
 		@Override
@@ -82,9 +83,9 @@ public class RunnerPanel extends JPanel {
 						panel.setLayout(new BorderLayout());
 						
 						
-						CheckboxPanel cbpane = new CheckboxPanel(panel, model);
-						Icon umlImage = new ImageProxy("input_output/graph.png");
-						JScrollPane imageScrollPane = new JScrollPane(new JLabel(umlImage));
+						ImageProxy image = new ImageProxy("input_output/graph.png");
+						CheckboxPanel cbpane = new CheckboxPanel(panel, model, image);
+						JScrollPane imageScrollPane = new JScrollPane(new JLabel(image));
 						
 						panel.add(cbpane, BorderLayout.WEST);
 						panel.add(imageScrollPane, BorderLayout.CENTER);

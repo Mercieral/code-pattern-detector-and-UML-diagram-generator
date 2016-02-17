@@ -10,6 +10,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,8 +34,10 @@ public class CheckboxPanel extends JPanel {
 	Map<String, List<JCheckBox>> checkboxGroups;
 	List<String> classes;
 	JPanel parent;
+	ImageProxy image;
 
-	public CheckboxPanel(JPanel parent, IModel model) {
+	public CheckboxPanel(JPanel parent, IModel model, ImageProxy image) {
+		this.image = image;
 		// this.setPreferredSize(new Dimension(200 ,this.getHeight()));
 		this.setLayout(new GridBagLayout());
 		this.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.BLACK));
@@ -58,12 +61,14 @@ public class CheckboxPanel extends JPanel {
 					System.out.println("Analyzing");
 					classes.remove(classBox.getText().replace("/", "."));
 					try {
+						image.flushImage();
 						File oldImage = new File("input_output/graph.png");
 						if (oldImage.exists()) {
 							oldImage.delete();
 						}
 						BorderLayout layout = (BorderLayout) parent.getLayout();
 						parent.remove(layout.getLayoutComponent(BorderLayout.CENTER));
+						
 						parent.repaint();
 						parent.revalidate();
 						DesignParser.parse(classes.toArray(new String[0]));

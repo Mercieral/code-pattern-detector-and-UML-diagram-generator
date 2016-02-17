@@ -14,6 +14,10 @@ class ImageProxy implements Icon {
 	public ImageProxy(String path) {
 		pathToImage = path;
 	}
+	
+	public void flushImage(){
+		imageIcon.getImage().flush();
+	}
 
 	public int getIconWidth() {
 		if (imageIcon != null) {
