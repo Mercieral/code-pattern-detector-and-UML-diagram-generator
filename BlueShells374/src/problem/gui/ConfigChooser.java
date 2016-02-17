@@ -36,9 +36,10 @@ public class ConfigChooser extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String file = fileList.getSelectedItem().toString();
-				System.out.println("File selected: " + file);
+				System.out.println("File selected: " + file); // FIXME
 				cp.setFileLocation(file);
 				ConfigChooser.this.dispose();
+				System.out.println("Done"); // FIXME
 			}
 		});
 		JLabel chooseLabel = new JLabel("Choose Configuration File: ");

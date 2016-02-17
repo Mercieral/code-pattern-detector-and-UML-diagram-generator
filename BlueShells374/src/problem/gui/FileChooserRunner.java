@@ -4,10 +4,13 @@ public class FileChooserRunner {
 
 	public static void main(String[] args) {
 		ConfigParser cp = new ConfigParser();
-		System.out.println("Empty string" + cp.getFileLocation());
+		System.out.println("Empty string" + cp.getFileLocation()); // FIXME
 		ConfigChooser cc = new ConfigChooser(cp);
 		cc.createFrame();
-		System.out.println("File selected" + cp.getFileLocation());
+		while(cp.getFileLocation().equals("") && cc.isActive()){
+			
+		} 
+		System.out.println("Location : "+ cp.getFileLocation()); // FIXME
 		
 	}
 
