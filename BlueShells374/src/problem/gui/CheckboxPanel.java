@@ -33,7 +33,6 @@ public class CheckboxPanel extends JPanel {
 		
 		//fills in map of CheckBoxes
 		for (IClass c : model.getClasses()){
-			clas
 			JCheckBox classBox = new JCheckBox(c.getClassName());
 			classBox.setSelected(true);
 			if (c.getPatterns().isEmpty()){
