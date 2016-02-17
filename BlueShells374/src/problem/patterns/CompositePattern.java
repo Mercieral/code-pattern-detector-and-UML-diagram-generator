@@ -7,6 +7,7 @@ public class CompositePattern implements IPattern {
 	private String className;
 	private String UMLProperty;
 	private String UMLlabel;
+	private String patternName;
 
 	/**
 	 * Container class for holding information about creating representation of
@@ -24,6 +25,7 @@ public class CompositePattern implements IPattern {
 		this.className = className;
 		this.UMLProperty = "fillcolor=yellow, style=filled, ";
 		this.UMLlabel = type;
+		this.patternName = "Composite Pattern";
 	}
 
 	@Override
@@ -39,6 +41,11 @@ public class CompositePattern implements IPattern {
 	@Override
 	public String getClassName() {
 		return this.className;
+	}
+
+	@Override
+	public String getType() {
+		return patternName;
 	}
 
 }

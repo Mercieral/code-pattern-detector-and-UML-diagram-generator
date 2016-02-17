@@ -1,6 +1,11 @@
 package problem.interfaces;
 
 public interface IPattern {
+	
+	/**
+	 * Specific name of the pattern type
+	 */
+	public String getType();
 
 	/**
 	 * Property needed for creating visual representation
