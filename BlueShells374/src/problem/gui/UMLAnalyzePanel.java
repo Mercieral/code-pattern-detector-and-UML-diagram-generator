@@ -10,19 +10,17 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
-
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
-
 import problem.asm.Config;
 import problem.asm.DesignParser;
 import problem.interfaces.IModel;
@@ -105,12 +103,12 @@ public class UMLAnalyzePanel extends JPanel {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					String file = fileList.getSelectedItem().toString();
-					configPath = file;
+					String filepath = fileList.getSelectedItem().toString();
+					configPath = filepath;
 					task.setForeground(Color.BLACK);
-					task.setText("loaded configuration at " + file);
+					task.setText("loaded configuration at " + filepath);
 					chooserFrame.dispose();
-					cfg = loadCfg();
+					cfg = ConfigLoader.loadFile(filepath);
 				}
 			});
 			JLabel chooseLabel = new JLabel("Choose Configuration File: ");
@@ -125,12 +123,7 @@ public class UMLAnalyzePanel extends JPanel {
 			chooserFrame.setVisible(true);
 			
 		}
-		private Config loadCfg() {
-			File file = new File(configPath);
-			Config config = new Config();
-			System.out.println("loaded");
-			return config;
-		}
+
 	}
 	
 	private class analyze implements ActionListener{
@@ -148,11 +141,17 @@ public class UMLAnalyzePanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (configPath == null){
+			if (cfg == null){
 				task.setForeground(Color.RED);
 				task.setText("no configuration was selected");
 				return;
 			}
+			System.out.println(cfg.InputDir);
+			System.out.println(cfg.classes);
+			System.out.println(cfg.outDir);
+			System.out.println(cfg.dotPath);
+			System.out.println(cfg.phases);
+			System.out.println(cfg.adapterMethodDelegation);
 			task.setForeground(Color.BLACK);
 			loading.setValue(0);
 			Thread t = new Thread(new Runnable() {
