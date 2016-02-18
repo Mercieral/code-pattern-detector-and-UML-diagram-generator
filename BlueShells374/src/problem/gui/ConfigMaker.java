@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -31,8 +32,11 @@ public class ConfigMaker extends JPanel {
 
 	private String additionalSettings;
 
-	public ConfigMaker() {
+	private JFrame startFrame;
+
+	public ConfigMaker(JFrame startFrame) {
 		JPanel titlePanel = new JPanel();
+		this.startFrame = startFrame;
 		JLabel title = new JLabel("Configuration Panel");
 		this.inputLocation = "";
 		this.outputLocation = "";
@@ -41,6 +45,17 @@ public class ConfigMaker extends JPanel {
 		this.additionalClasses = "";
 		this.additionalSettings = "";
 		titlePanel.add(title);
+		JButton button = new JButton("Back");
+		button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				startFrame.setContentPane(new MainMenuPanel(startFrame, null));
+				startFrame.repaint();
+				startFrame.revalidate();
+			}
+		});
+		titlePanel.add(button);
 		this.setLayout(new GridLayout(9, 3));
 		this.add(titlePanel);
 		findInputWindow();
@@ -81,9 +96,9 @@ public class ConfigMaker extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String temp = JOptionPane.showInputDialog(
 						"AdditionalSettings \n" + "Single setting at a time");
-				if(additionalSettings != ""){
-					additionalSettings += "\n" + temp;					
-				} else { 
+				if (additionalSettings != "") {
+					additionalSettings += "\n" + temp;
+				} else {
 					additionalSettings = temp;
 				}
 			}
@@ -101,7 +116,7 @@ public class ConfigMaker extends JPanel {
 		panel.add(viewButton);
 		JButton clear = new JButton("Clear Additional");
 		clear.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				additionalSettings = "";
@@ -235,6 +250,7 @@ public class ConfigMaker extends JPanel {
 
 	private void writeFile() {
 		System.out.println("Saving file");
+		// if(false){
 		if (this.inputLocation == "" || this.outputLocation == ""
 				|| this.exeLocation == "" || this.additionalSettings == "") {
 			JOptionPane.showMessageDialog(null,
@@ -255,7 +271,10 @@ public class ConfigMaker extends JPanel {
 			sb.append("\n");
 			sb.append("" + this.additionalSettings);
 			System.out.println(sb.toString());
-
+			JOptionPane.showMessageDialog(null, "File saved");
+			startFrame.setContentPane(new MainMenuPanel(startFrame, null));
+			startFrame.repaint();
+			startFrame.revalidate();
 		}
 
 	}

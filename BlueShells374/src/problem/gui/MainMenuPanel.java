@@ -65,7 +65,7 @@ public class MainMenuPanel extends JPanel {
 	private class configAction implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			JPanel configPanel = new ConfigMaker();
+			JPanel configPanel = new ConfigMaker(frame);
 			frame.setContentPane(configPanel);
 			frame.pack();
 			frame.repaint();
