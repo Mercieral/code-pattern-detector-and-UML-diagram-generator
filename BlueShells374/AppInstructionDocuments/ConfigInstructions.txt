@@ -2,3 +2,28 @@ Config Command
 By: BlueShells374
 
 Instructions:
+
+- Click on the Config Maker button from the main menu
+- The Config Maker contains the following parts:
+
+Find Input Path: select the folder in which the files to be loaded are stored
+
+(Optional) Add Additional Classes: manually enter any classes that are to be loaded
+
+Output Path: select the folder in which the output file will be stored
+
+Output File Name: specify the name of the output file
+
+Set Dot Path: Specifies the path to the graphiz dot executable
+
+Check boxes: Check the desired analysis of the package (in order to have anything generate Class-Loading must be checked)
+
+Set Additional Settings: optional adjustments analysis (must be included as shown here)
+	- Adapter-MethodDelegation: # (this determines the amount of methods that the adapter calls to the adaptee to determin if its an adapter)
+	
+
+View Settings: shows which additional settings have been added
+
+Clear Additional Settings: remove any additional settings added
+
+Save File: saves the config file with the specified name
