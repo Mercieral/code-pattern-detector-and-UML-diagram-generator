@@ -1,5 +1,6 @@
 package problem.asm;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import problem.visitor.ClassLoading;
@@ -17,6 +18,7 @@ public class PhaseFactory {
 	
 	// Pre-populate phases here
 	static{
+		phases = new HashMap<>();
 		phases.put("Class-Loading", new ClassLoading());
 		phases.put("Decorator-Detection", new DecoratorVisitor());
 		phases.put("Singleton-Detection", new SingletonVisitor());
@@ -25,7 +27,6 @@ public class PhaseFactory {
 		phases.put("Composite-Detection", new CompositeVisitor());
 		phases.put("UML-Generation", new UMLGenerator());
 		//phases.put("Sequence-Generation", new SequenceOutputStream());
-	}
-	
+	}	
 
 }

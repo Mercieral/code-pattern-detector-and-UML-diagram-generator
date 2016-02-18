@@ -5,17 +5,24 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import problem.asm.PhaseFactory;
 
 public class ConfigMaker extends JPanel {
 
@@ -206,17 +213,32 @@ public class ConfigMaker extends JPanel {
 	 */
 	private void addClassOptions() {
 		JPanel panel = new JPanel();
-		JButton button = new JButton("Add Additional Classes");
-		button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				additionalClasses = JOptionPane.showInputDialog(
-						"Add additional classes \n" + "Separated by comma",
-						additionalClasses);
-			}
-		});
-		panel.add(button);
+		List<JCheckBox> listCheck = new ArrayList<>();
+		for(String value: PhaseFactory.phases.keySet()){ // FIXME
+			JCheckBox classBox = new JCheckBox(value);
+			classBox.setSelected(false);
+			classBox.addItemListener(new ItemListener() {
+				
+				@Override
+				public void itemStateChanged(ItemEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+			listCheck.add(classBox);
+			panel.add(classBox);
+		}
+//		JButton button = new JButton("Add Additional Classes");
+//		button.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				additionalClasses = JOptionPane.showInputDialog(
+//						"Add additional classes \n" + "Separated by comma",
+//						additionalClasses);
+//			}
+//		});
+//		panel.add(button);
 		this.add(panel);
 	}
 
