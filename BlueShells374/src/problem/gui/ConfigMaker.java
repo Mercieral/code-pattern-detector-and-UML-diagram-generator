@@ -44,6 +44,8 @@ public class ConfigMaker extends JPanel {
 	private String additionalSettings;
 
 	private JFrame startFrame;
+	
+	private List<String> selectedFrames;
 
 	public ConfigMaker(JFrame startFrame) {
 		JPanel titlePanel = new JPanel();
@@ -55,6 +57,7 @@ public class ConfigMaker extends JPanel {
 		this.phases = "";
 		this.additionalClasses = "";
 		this.additionalSettings = "";
+		this.selectedFrames = new ArrayList<>();
 		titlePanel.add(title);
 		JButton button = new JButton("Back");
 		button.addActionListener(new ActionListener() {
@@ -221,8 +224,17 @@ public class ConfigMaker extends JPanel {
 				
 				@Override
 				public void itemStateChanged(ItemEvent e) {
-					// TODO Auto-generated method stub
-					
+					if(classBox.isSelected()){
+						if(!selectedFrames.contains(classBox.getText())){
+							selectedFrames.add(classBox.getText());
+							System.out.println("Add");
+						}
+					} else {
+						if(selectedFrames.contains(classBox.getText())){
+							selectedFrames.remove(classBox.getText());
+							System.out.println("Remove");
+						}
+					}
 				}
 			});
 			listCheck.add(classBox);
