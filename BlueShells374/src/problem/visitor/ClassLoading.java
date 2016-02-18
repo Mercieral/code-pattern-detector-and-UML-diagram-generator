@@ -19,16 +19,13 @@ public class ClassLoading implements IPhase {
 
 	@Override
 	public void execute(Config config, IModel model) {
-		
-		IClass currentClass = null;
-
 		try {
 			for (String className : config.classes) {
 				// ASM's ClassReader does the heavy lifting of parsing the compiled
 				// Java class
 				ClassReader reader;
 					reader = new ClassReader(className);
-				currentClass = new ConcreteClass();
+				IClass currentClass = new ConcreteClass();
 	
 				// make class declaration visitor to get superclass and interfaces
 				ClassVisitor decVisitor = new ClassDeclarationVisitor(Opcodes.ASM5,

@@ -64,7 +64,7 @@ public class ConfigMaker extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				startFrame.setContentPane(new MainMenuPanel(startFrame, null));
+				startFrame.setContentPane(new MainMenuPanel(startFrame));
 				startFrame.repaint();
 				startFrame.revalidate();
 				startFrame.pack();
@@ -359,7 +359,7 @@ public class ConfigMaker extends JPanel {
 			}
 			JOptionPane.showMessageDialog(null,
 					"File saved to config/" + fileName);
-			startFrame.setContentPane(new MainMenuPanel(startFrame, null));
+			startFrame.setContentPane(new MainMenuPanel(startFrame));
 			startFrame.repaint();
 			startFrame.revalidate();
 			startFrame.pack();

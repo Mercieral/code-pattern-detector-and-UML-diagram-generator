@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
@@ -33,7 +35,6 @@ public class CheckboxPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	Map<String, List<JCheckBox>> checkboxGroups;
-	List<String> classes;
 	JPanel parent;
 	ImageProxy image;
 	private Config config;
@@ -44,7 +45,6 @@ public class CheckboxPanel extends JPanel {
 		// this.setPreferredSize(new Dimension(200 ,this.getHeight()));
 		this.setLayout(new GridBagLayout());
 		this.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.BLACK));
-		classes = new ArrayList<String>();
 		checkboxGroups = new HashMap<String, List<JCheckBox>>();
 		this.parent = parent;
 		// fills in map of CheckBoxes
@@ -61,19 +61,16 @@ public class CheckboxPanel extends JPanel {
 
 	private void fillMapWithCheckBoxes(IModel model) {
 		for (IClass c : model.getClasses()) {
-			classes.add(c.getClassName().replace("/", "."));
 			JCheckBox classBox = new JCheckBox(c.getClassName());
 			classBox.setSelected(true);
-			classBox.addItemListener(new ItemListener() {
+			classBox.addActionListener( new ActionListener() {
 				@Override
-				public void itemStateChanged(ItemEvent e) {
+				public void actionPerformed(ActionEvent e) {
 					if (classBox.isSelected()){
 						config.classes.add(classBox.getText().replace("/", "."));
-						classes.add(classBox.getText().replace("/", "."));
 					}
 					else{
 						config.classes.remove(classBox.getText().replace("/", "."));
-						classes.remove(classBox.getText().replace("/", "."));
 					}
 					try {
 						image.flushImage();
@@ -86,7 +83,7 @@ public class CheckboxPanel extends JPanel {
 						
 						parent.repaint();
 						parent.revalidate();
-						DesignParser.parse(config, classes.toArray(new String[0]));
+						DesignParser.parse(config);
 						Icon umlImage = new ImageProxy("input_output/graph.png");
 						JScrollPane imageScrollPane = new JScrollPane(new JLabel(umlImage));
 						parent.add(imageScrollPane, BorderLayout.CENTER);

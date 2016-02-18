@@ -23,7 +23,6 @@ public class MainMenuPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	JFrame frame;
-	String[] args;
 
 	private String[] URLS = { "http://xkcd.com/612/", "http://xkcd.com/349/",
 			"http://xkcd.com/619/", "http://xkcd.com/1638/",
@@ -47,9 +46,8 @@ public class MainMenuPanel extends JPanel {
 			"http://xkcd.com/810/", "https://xkcd.com/1406/",
 			"https://xkcd.com/979/", "https://xkcd.com/1597/" };
 
-	public MainMenuPanel(JFrame mainframe, String[] args) {
+	public MainMenuPanel(JFrame mainframe) {
 		this.frame = mainframe;
-		this.args = args;
 		this.setLayout(new GridBagLayout());
 
 		JButton UMLrunner = new JButton("Analyze");
@@ -78,7 +76,7 @@ public class MainMenuPanel extends JPanel {
 	private class UMLAction implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			JPanel runner = new UMLAnalyzePanel(args, frame);
+			JPanel runner = new UMLAnalyzePanel(frame);
 			frame.setContentPane(runner);
 			frame.setPreferredSize(new Dimension(400, 400));
 			frame.pack();

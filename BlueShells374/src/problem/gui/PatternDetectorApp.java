@@ -12,7 +12,7 @@ public class PatternDetectorApp {
 //		RunnerPanel run = new RunnerPanel(args, mainFrame);
 //		run.setPreferredSize(new Dimension(500, 500));
 //		mainFrame.setContentPane(run);
-		MainMenuPanel main = new MainMenuPanel(mainFrame, args);
+		MainMenuPanel main = new MainMenuPanel(mainFrame);
 		mainFrame.setContentPane(main);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

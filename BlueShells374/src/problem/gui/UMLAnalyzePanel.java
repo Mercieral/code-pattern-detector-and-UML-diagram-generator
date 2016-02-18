@@ -28,20 +28,21 @@ public class UMLAnalyzePanel extends JPanel {
 	
 	private Config cfg;
 
-	public UMLAnalyzePanel(String[] args, JFrame f) {
+	public UMLAnalyzePanel(JFrame f) {
 		super();
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
 		JLabel taskLabel = new JLabel();
-		JProgressBar loadingBar = new JProgressBar(0, 7 + args.length);
+		JProgressBar loadingBar = new JProgressBar();
+		loadingBar.setMinimum(0);
 		
 		JButton loadButton = new JButton("Load Config");
 		JButton analyzeButton = new JButton("Analyze");
 		JButton backButton = new JButton("Back to main menu");
 		loadButton.addActionListener(new load(taskLabel));
-		analyzeButton.addActionListener(new analyze(args, loadingBar, taskLabel, f));
-		backButton.addActionListener(new back(f, args));
+		analyzeButton.addActionListener(new analyze(loadingBar, taskLabel, f));
+		backButton.addActionListener(new back(f));
 		
 		c.gridx = 0; c.gridy = 0; c.insets = new Insets(0,0,30,20); c.gridwidth = 1;
 		this.add(loadButton, c);
@@ -57,16 +58,14 @@ public class UMLAnalyzePanel extends JPanel {
 	
 	private class back implements ActionListener{
 		JFrame frame;
-		String[] args;
 		
-		public back(JFrame f, String[] args){
+		public back(JFrame f){
 			this.frame = f;
-			this.args = args;
 		}
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			MainMenuPanel main = new MainMenuPanel(frame, args);
+			MainMenuPanel main = new MainMenuPanel(frame);
 			frame.setContentPane(main);
 			frame.pack();
 			frame.repaint();
@@ -122,13 +121,11 @@ public class UMLAnalyzePanel extends JPanel {
 	}
 	
 	private class analyze implements ActionListener{
-		private String[] args;
 		private JFrame frame;
 		private JProgressBar loading;
 		private JLabel task;
 		
-		public analyze(String[] args, JProgressBar load, JLabel task, JFrame f){
-			this.args = args;
+		public analyze(JProgressBar load, JLabel task, JFrame f){
 			this.loading = load;
 			this.task = task;
 			this.frame = f;
@@ -148,7 +145,7 @@ public class UMLAnalyzePanel extends JPanel {
 				@Override
 				public void run() {
 					try {
-						IModel model = DesignParser.parse(cfg, args, loading, task);
+						IModel model = DesignParser.parse(cfg, loading, task);
 						
 						JPanel panel = new JPanel();
 						panel.setLayout(new BorderLayout());
@@ -163,7 +160,7 @@ public class UMLAnalyzePanel extends JPanel {
 
 							@Override
 							public void actionPerformed(ActionEvent e) {
-								JPanel runner = new UMLAnalyzePanel(args, frame);
+								JPanel runner = new UMLAnalyzePanel(frame);
 								frame.setContentPane(runner);
 								frame.repaint();
 								frame.revalidate();
