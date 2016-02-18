@@ -37,7 +37,15 @@ public class MainMenuPanel extends JPanel {
 			"http://xkcd.com/859/", "http://xkcd.com/1323/",
 			"http://xkcd.com/1275/", "http://xkcd.com/156/",
 			"http://xkcd.com/297/", "http://xkcd.com/801/",
-			"http://xkcd.com/1188/", "http://xkcd.com/257/" };
+			"http://xkcd.com/1188/", "http://xkcd.com/257/",
+			"http://xkcd.com/138/", "http://xkcd.com/371/",
+			"http://xkcd.com/974/", "http://xkcd.com/953/",
+			"http://xkcd.com/292/", "http://xkcd.com/761/",
+			"http://xkcd.com/737/", "http://xkcd.com/518/",
+			"http://xkcd.com/505/", "http://xkcd.com/399/",
+			"http://xkcd.com/233/", "http://xkcd.com/632/",
+			"http://xkcd.com/810/", "https://xkcd.com/1406/",
+			"https://xkcd.com/979/", "https://xkcd.com/1597/" };
 
 	public MainMenuPanel(JFrame mainframe, String[] args) {
 		this.frame = mainframe;
