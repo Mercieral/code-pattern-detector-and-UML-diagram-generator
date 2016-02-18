@@ -1,6 +1,7 @@
 package problem.asm;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import problem.visitor.ClassLoading;
@@ -17,7 +18,7 @@ public class PhaseFactory {
 	
 	// Pre-populate phases here
 	static{
-		phases = new HashMap<>();
+		phases = new LinkedHashMap<>();
 		phases.put("Class-Loading", ClassLoading.class);
 		phases.put("Decorator-Detection", DecoratorVisitor.class);
 		phases.put("Singleton-Detection", SingletonVisitor.class);

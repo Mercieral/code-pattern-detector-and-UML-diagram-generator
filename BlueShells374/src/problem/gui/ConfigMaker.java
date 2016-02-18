@@ -46,6 +46,8 @@ public class ConfigMaker extends JPanel {
 	private JFrame startFrame;
 	
 	private List<String> selectedFrames;
+	
+	private String[] phaseOrder;
 
 	public ConfigMaker(JFrame startFrame) {
 		JPanel titlePanel = new JPanel();
@@ -58,6 +60,7 @@ public class ConfigMaker extends JPanel {
 		this.additionalClasses = "";
 		this.additionalSettings = "";
 		this.selectedFrames = new ArrayList<>();
+		this.phaseOrder = new String[PhaseFactory.phases.keySet().size()];
 		titlePanel.add(title);
 		JButton button = new JButton("Back");
 		button.addActionListener(new ActionListener() {
@@ -155,17 +158,44 @@ public class ConfigMaker extends JPanel {
 	 */
 	private void setPhases() {
 		JPanel panel = new JPanel();
-		JButton button = new JButton("Set phases");
-		button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				phases = JOptionPane
-						.showInputDialog("Framework's Execution Phases \n"
-								+ "Separated by comma");
-			}
-		});
-		panel.add(button);
+		List<JCheckBox> listCheck = new ArrayList<>();
+		int counter = -1;
+		for(String value: PhaseFactory.phases.keySet()){ // FIXME
+			counter++;
+			this.phaseOrder[counter] = value;
+			JCheckBox classBox = new JCheckBox(value);
+			classBox.setSelected(false);
+			classBox.addItemListener(new ItemListener() {
+				
+				@Override
+				public void itemStateChanged(ItemEvent e) {
+					if(classBox.isSelected()){
+						if(!selectedFrames.contains(classBox.getText())){
+							selectedFrames.add(classBox.getText());
+							System.out.println("Add");
+						}
+					} else {
+						if(selectedFrames.contains(classBox.getText())){
+							selectedFrames.remove(classBox.getText());
+							System.out.println("Remove");
+						}
+					}
+				}
+			});
+			listCheck.add(classBox);
+			panel.add(classBox);
+		}
+//		JButton button = new JButton("Set phases");
+//		button.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				phases = JOptionPane
+//						.showInputDialog("Framework's Execution Phases \n"
+//								+ "Separated by comma");
+//			}
+//		});
+//		panel.add(button);
 		this.add(panel);
 	}
 
@@ -216,41 +246,17 @@ public class ConfigMaker extends JPanel {
 	 */
 	private void addClassOptions() {
 		JPanel panel = new JPanel();
-		List<JCheckBox> listCheck = new ArrayList<>();
-		for(String value: PhaseFactory.phases.keySet()){ // FIXME
-			JCheckBox classBox = new JCheckBox(value);
-			classBox.setSelected(false);
-			classBox.addItemListener(new ItemListener() {
-				
-				@Override
-				public void itemStateChanged(ItemEvent e) {
-					if(classBox.isSelected()){
-						if(!selectedFrames.contains(classBox.getText())){
-							selectedFrames.add(classBox.getText());
-							System.out.println("Add");
-						}
-					} else {
-						if(selectedFrames.contains(classBox.getText())){
-							selectedFrames.remove(classBox.getText());
-							System.out.println("Remove");
-						}
-					}
-				}
-			});
-			listCheck.add(classBox);
-			panel.add(classBox);
-		}
-//		JButton button = new JButton("Add Additional Classes");
-//		button.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				additionalClasses = JOptionPane.showInputDialog(
-//						"Add additional classes \n" + "Separated by comma",
-//						additionalClasses);
-//			}
-//		});
-//		panel.add(button);
+		JButton button = new JButton("Add Additional Classes");
+		button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				additionalClasses = JOptionPane.showInputDialog(
+						"Add additional classes \n" + "Separated by comma",
+						additionalClasses);
+			}
+		});
+		panel.add(button);
 		this.add(panel);
 	}
 
@@ -341,9 +347,16 @@ public class ConfigMaker extends JPanel {
 			sb.append("\n");
 			sb.append("Dot-Path: " + this.exeLocation);
 			sb.append("\n");
-			if (this.phases == null) {
-				this.phases = "";
-			}
+			String temp = selectedFrames.toString();
+//			for(int i = 0; i < this.phaseOrder.length; i++){
+//				for(String tempPhase: selectedFrames){
+//					if(tempPhase.equals(anObject)){
+//						
+//					}
+//				}
+//			}
+			temp = temp.replace(" ", "").replace("[", "").replace("]", "");
+			System.out.println(temp);
 			sb.append("Phases: " + this.phases);
 			sb.append("\n");
 			sb.append("" + this.additionalSettings);
