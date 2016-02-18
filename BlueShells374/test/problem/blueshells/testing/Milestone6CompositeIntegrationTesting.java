@@ -4,10 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import problem.asm.Config;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IMethod;
 import problem.interfaces.IModel;
+import problem.interfaces.IPhase;
 import problem.interfaces.IRelation;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.ExtensionRelation;
@@ -16,11 +18,7 @@ import problem.javaClasses.InterfaceRelation;
 import problem.javaClasses.Method;
 import problem.javaClasses.Model;
 import problem.patterns.CompositePattern;
-import problem.visitor.AdapterVisitor;
 import problem.visitor.CompositeVisitor;
-import problem.visitor.DecoratorVisitor;
-import problem.visitor.IInvoker;
-import problem.visitor.SingletonVisitor;
 
 public class Milestone6CompositeIntegrationTesting {
 
@@ -81,8 +79,9 @@ public class Milestone6CompositeIntegrationTesting {
 		assertEquals(LeafB.getPatterns().size(), 0);
 		
 		//run the Pattern Visitors
-		IInvoker v1 = new CompositeVisitor();
-		v1.write(m);
+		IPhase v1 = new CompositeVisitor();
+		Config config = new Config();
+		v1.execute(config, m);
 		
 		//test that there is a pattern
 		assertEquals(1, MyComponent.getPatterns().size());
@@ -178,8 +177,9 @@ public class Milestone6CompositeIntegrationTesting {
 		assertEquals(LeafB.getPatterns().size(), 0);
 		
 		//run the Pattern Visitors
-		IInvoker v1 = new CompositeVisitor();
-		v1.write(m);
+		IPhase v1 = new CompositeVisitor();
+		Config config = new Config();
+		v1.execute(config, m);
 		
 		//test that there is a pattern
 		assertEquals(1, IComponent.getPatterns().size());
@@ -271,8 +271,9 @@ public class Milestone6CompositeIntegrationTesting {
 		assertEquals(LeafB.getPatterns().size(), 0);
 		
 		//run the Pattern Visitors
-		IInvoker v1 = new CompositeVisitor();
-		v1.write(m);
+		IPhase v1 = new CompositeVisitor();
+		Config config = new Config();
+		v1.execute(config, m);
 		
 		//test that there is a pattern
 		assertEquals(1, IComponent.getPatterns().size());
@@ -367,8 +368,9 @@ public class Milestone6CompositeIntegrationTesting {
 		assertEquals(LeafB.getPatterns().size(), 0);
 		
 		//run the Pattern Visitors
-		IInvoker v1 = new CompositeVisitor();
-		v1.write(m);
+		IPhase v1 = new CompositeVisitor();
+		Config config = new Config();
+		v1.execute(config, m);
 		
 		//test that there is a pattern
 		assertEquals(1, MyComponent.getPatterns().size());
@@ -419,14 +421,9 @@ public class Milestone6CompositeIntegrationTesting {
 		assertEquals(IComponent.getPatterns().size(), 0);
 
 		// run the Pattern Visitors
-		IInvoker v1 = new SingletonVisitor();
-		IInvoker v2 = new DecoratorVisitor();
-		IInvoker v3 = new AdapterVisitor(1);
-		IInvoker v4 = new CompositeVisitor();
-		v1.write(m);
-		v2.write(m);
-		v3.write(m);
-		v4.write(m);
+		IPhase v1 = new CompositeVisitor();
+		Config config = new Config();
+		v1.execute(config, m);
 
 		// test that there is no pattern after visiting
 		assertEquals(0, IComponent.getPatterns().size());
@@ -470,8 +467,9 @@ IModel m = new Model();
 		assertEquals(MyComposite.getPatterns().size(), 0);
 		
 		//run the Pattern Visitors
-		IInvoker v1 = new CompositeVisitor();
-		v1.write(m);
+		IPhase v1 = new CompositeVisitor();
+		Config config = new Config();
+		v1.execute(config, m);
 		
 		//check that they still do not have the pattern
 		assertEquals(MyComponent.getPatterns().size(), 0);
@@ -517,8 +515,9 @@ IModel m = new Model();
 		assertEquals(LeafB.getPatterns().size(), 0);
 		
 		//run the Pattern Visitors
-		IInvoker v1 = new CompositeVisitor();
-		v1.write(m);
+		IPhase v1 = new CompositeVisitor();
+		Config config = new Config();
+		v1.execute(config, m);
 		
 		//test that there is no pattern
 		assertEquals(MyComponent.getPatterns().size(), 0);

@@ -4,10 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import problem.asm.Config;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IMethod;
 import problem.interfaces.IModel;
+import problem.interfaces.IPhase;
 import problem.interfaces.IRelation;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.ExtensionRelation;
@@ -17,7 +19,6 @@ import problem.javaClasses.Method;
 import problem.javaClasses.Model;
 import problem.patterns.DecoratorPattern;
 import problem.visitor.DecoratorVisitor;
-import problem.visitor.IInvoker;
 import problem.visitor.SingletonVisitor;
 
 public class Milestone5DecoratorIntegrationTesting {
@@ -78,10 +79,11 @@ public class Milestone5DecoratorIntegrationTesting {
 		assertEquals(ConcreteComponent.getPatterns().size(), 0);
 		
 		//run the Pattern Visitors
-		IInvoker v1 = new SingletonVisitor();
-		IInvoker v2 = new DecoratorVisitor();
-		v1.write(m);
-		v2.write(m);
+		IPhase v1 = new SingletonVisitor();
+		IPhase v2 = new DecoratorVisitor();
+		Config config = new Config();
+		v1.execute(config, m);
+		v2.execute(config, m);
 		
 		//test that there is a pattern
 		assertEquals(1, IComponent.getPatterns().size());
@@ -121,10 +123,11 @@ public class Milestone5DecoratorIntegrationTesting {
 		assertEquals(IComponent.getPatterns().size(), 0);
 		
 		//run the Pattern Visitors
-		IInvoker v1 = new SingletonVisitor();
-		IInvoker v2 = new DecoratorVisitor();
-		v1.write(m);
-		v2.write(m);
+		IPhase v1 = new SingletonVisitor();
+		IPhase v2 = new DecoratorVisitor();
+		Config config = new Config();
+		v1.execute(config, m);
+		v2.execute(config, m);
 		
 		//test that there is no pattern after visiting
 		assertEquals(0, IComponent.getPatterns().size());
@@ -204,10 +207,11 @@ public class Milestone5DecoratorIntegrationTesting {
 		assertEquals(concreteDecorator2.getPatterns().size(), 0);
 		
 		//run the Pattern Visitors
-		IInvoker v1 = new SingletonVisitor();
-		IInvoker v2 = new DecoratorVisitor();
-		v1.write(m);
-		v2.write(m);
+		IPhase v1 = new SingletonVisitor();
+		IPhase v2 = new DecoratorVisitor();
+		Config config = new Config();
+		v1.execute(config, m);
+		v2.execute(config, m);
 		
 		//test that there is a pattern
 		assertEquals(1, IComponent.getPatterns().size());
@@ -282,10 +286,11 @@ public class Milestone5DecoratorIntegrationTesting {
 		assertEquals(concreteDecorator2.getPatterns().size(), 0);
 		
 		//run the Pattern Visitors
-		IInvoker v1 = new SingletonVisitor();
-		IInvoker v2 = new DecoratorVisitor();
-		v1.write(m);
-		v2.write(m);
+		IPhase v1 = new SingletonVisitor();
+		IPhase v2 = new DecoratorVisitor();
+		Config config = new Config();
+		v1.execute(config, m);
+		v2.execute(config, m);
 		
 		//test that there is no pattern
 		assertEquals(0, abstractDecorator.getPatterns().size());
@@ -402,10 +407,11 @@ public class Milestone5DecoratorIntegrationTesting {
 		assertEquals(concreteDecorator4.getPatterns().size(), 0);
 		
 		//run the Pattern Visitors
-		IInvoker v1 = new SingletonVisitor();
-		IInvoker v2 = new DecoratorVisitor();
-		v1.write(m);
-		v2.write(m);
+		IPhase v1 = new SingletonVisitor();
+		IPhase v2 = new DecoratorVisitor();
+		Config config = new Config();
+		v1.execute(config, m);
+		v2.execute(config, m);
 		
 		//test that there is a pattern
 		assertEquals(2, IComponent.getPatterns().size());
@@ -503,10 +509,11 @@ public class Milestone5DecoratorIntegrationTesting {
 		assertEquals(ConcreteComponent.getPatterns().size(), 0);
 		
 		//run the Pattern Visitors
-		IInvoker v1 = new SingletonVisitor();
-		IInvoker v2 = new DecoratorVisitor();
-		v1.write(m);
-		v2.write(m);
+		IPhase v1 = new SingletonVisitor();
+		IPhase v2 = new DecoratorVisitor();
+		Config config = new Config();
+		v1.execute(config, m);
+		v2.execute(config, m);
 		
 		//test that there is a pattern
 		assertEquals(0, IComponent.getPatterns().size());

@@ -9,13 +9,15 @@ import java.util.Map;
 
 import org.objectweb.asm.Type;
 
+import problem.asm.Config;
 import problem.interfaces.IClass;
 import problem.interfaces.IMethod;
 import problem.interfaces.IModel;
+import problem.interfaces.IPhase;
 import problem.javaClasses.MethodContainer;
 import problem.javaClasses.Model;
 
-public class SequenceOutputStream extends FilterOutputStream implements IInvoker {
+public class SequenceOutputStream extends FilterOutputStream implements IPhase {
 	
 	public static final String GENERATOR_NAME = "SequenceGenerator";
 	@SuppressWarnings("unused")
@@ -276,6 +278,12 @@ public class SequenceOutputStream extends FilterOutputStream implements IInvoker
 			}
 		}
 		return argString;
+	}
+
+	@Override
+	public void execute(Config config, IModel model) {
+		ITraverser traverser = (ITraverser) model;
+		traverser.accept(this.visitor);
 	}
 
 

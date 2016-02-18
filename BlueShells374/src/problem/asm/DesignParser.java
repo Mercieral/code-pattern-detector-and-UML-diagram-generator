@@ -17,13 +17,13 @@ import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 import problem.interfaces.IClass;
 import problem.interfaces.IModel;
+import problem.interfaces.IPhase;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Model;
 import problem.visitor.AdapterVisitor;
 import problem.visitor.BruteForceAdapterDetector;
 import problem.visitor.CompositeVisitor;
 import problem.visitor.DecoratorVisitor;
-import problem.visitor.IInvoker;
 import problem.visitor.SequenceOutputStream;
 import problem.visitor.SingletonVisitor;
 import problem.visitor.UMLOutputStream;
@@ -55,12 +55,12 @@ public class DesignParser {
 	 *            edu.rosehulman.csse374.ClassFieldVisitor java.lang.Math
 	 * @throws IOException
 	 */
-	public static void main(String[] args) throws IOException {
-		DesignParser parser = new DesignParser();
-		parser.parse(args);
-	}
+//	public static void main(String[] args) throws IOException {
+//		DesignParser parser = new DesignParser();
+//		parser.parse(args);
+//	}
 	
-	public static IModel parse(String[] args, JProgressBar loading, JLabel task) throws IOException {
+	public static IModel parse(Config config, String[] args, JProgressBar loading, JLabel task) throws IOException {
 		task.setText("initializing");
 		loading.setValue(loading.getValue() + 1);
 		IModel model = new Model();
@@ -94,7 +94,7 @@ public class DesignParser {
 			model.addClass(currentClass);
 		}
 
-		HashMap<String, IInvoker> streams = new HashMap<>();
+		HashMap<String, IPhase> streams = new HashMap<>();
 		streams.put("sequence", new SequenceOutputStream(
 				new FileOutputStream("input_output/diagram.sd")));
 		streams.put("uml", new UMLOutputStream(new FileOutputStream("input_output/graph.gv")));
@@ -102,22 +102,22 @@ public class DesignParser {
 		task.setText("Detecting Singleton Pattern");
 		loading.setValue(loading.getValue() + 1);
 		SingletonVisitor singletonVisitor = new SingletonVisitor();
-		singletonVisitor.write(model);
+		singletonVisitor.execute(config, model);
 		
 		task.setText("Detecting Decorator Pattern");
 		loading.setValue(loading.getValue() + 1);
 		DecoratorVisitor decoratorVisitor = new DecoratorVisitor();
-		decoratorVisitor.write(model);
+		decoratorVisitor.execute(config, model);
 		
 		task.setText("Detecting Adapter Pattern");
 		loading.setValue(loading.getValue() + 1);
-		AdapterVisitor adapterVisitor = new AdapterVisitor(1);
-		adapterVisitor.write(model);
+		AdapterVisitor adapterVisitor = new AdapterVisitor();
+		adapterVisitor.execute(config, model);
 		
 		task.setText("Detecting Composite Pattern");
 		loading.setValue(loading.getValue() + 1);
 		CompositeVisitor compositeVisitor = new CompositeVisitor();
-		compositeVisitor.write(model);
+		compositeVisitor.execute(config, model);
 //		BruteForceAdapterDetector adapterVisitor = new BruteForceAdapterDetector(model);
 //		adapterVisitor.adapterDetect();
 		
@@ -125,8 +125,8 @@ public class DesignParser {
 		//Comment out to use console input (in for GUI)
 		task.setText("Generating UML");
 		loading.setValue(loading.getValue() + 1);
-		IInvoker UMLGenerator = new UMLOutputStream(new FileOutputStream("input_output/graph.gv"));
-		UMLGenerator.write(model);
+		IPhase UMLGenerator = new UMLOutputStream(new FileOutputStream("input_output/graph.gv"));
+		UMLGenerator.execute(config, model);
 		((UMLOutputStream)UMLGenerator).close();
 		System.out.println("Generating UML");
 
@@ -151,7 +151,7 @@ public class DesignParser {
 	 * @throws IOException
 	 *             - Exception if unable to read file
 	 */
-	public static IModel parse(String[] args) throws IOException {
+	public static IModel parse(Config config, String[] args) throws IOException {
 		IModel model = new Model();
 		IClass currentClass = null;
 
@@ -181,25 +181,25 @@ public class DesignParser {
 			model.addClass(currentClass);
 		}
 
-		HashMap<String, IInvoker> streams = new HashMap<>();
+		HashMap<String, IPhase> streams = new HashMap<>();
 		streams.put("sequence", new SequenceOutputStream(
 				new FileOutputStream("input_output/diagram.sd")));
 		streams.put("uml", new UMLOutputStream(new FileOutputStream("input_output/graph.gv")));
 		SingletonVisitor singletonVisitor = new SingletonVisitor();
-		singletonVisitor.write(model);
+		singletonVisitor.execute(config, model);
 		DecoratorVisitor decoratorVisitor = new DecoratorVisitor();
-		decoratorVisitor.write(model);
-		AdapterVisitor adapterVisitor = new AdapterVisitor(1);
-		adapterVisitor.write(model);
+		decoratorVisitor.execute(config, model);
+		AdapterVisitor adapterVisitor = new AdapterVisitor();
+		adapterVisitor.execute(config, model);
 		CompositeVisitor compositeVisitor = new CompositeVisitor();
-		compositeVisitor.write(model);
+		compositeVisitor.execute(config, model);
 //		BruteForceAdapterDetector adapterVisitor = new BruteForceAdapterDetector(model);
 //		adapterVisitor.adapterDetect();
 		
 		
 		//Comment out to use console input (in for GUI)
-		IInvoker UMLGenerator = new UMLOutputStream(new FileOutputStream("input_output/graph.gv"));
-		UMLGenerator.write(model);
+		IPhase UMLGenerator = new UMLOutputStream(new FileOutputStream("input_output/graph.gv"));
+		UMLGenerator.execute(config, model);
 		((UMLOutputStream)UMLGenerator).close();
 		System.out.println("Generating UML");
 		
@@ -217,7 +217,7 @@ public class DesignParser {
 	 * @param generators
 	 *            - Types of {@link IGenerator} objects that can build graphs
 	 */
-	private static void commandConsole(IModel model, HashMap<String, IInvoker> streams) throws IOException {
+	private static void commandConsole(Config config, IModel model, HashMap<String, IPhase> streams) throws IOException {
 		boolean quit = false;
 		Scanner scanner = new Scanner(System.in);
 		
@@ -245,14 +245,14 @@ public class DesignParser {
 					continue;
 				}
 
-				IInvoker stream = streams.get(line);
+				IPhase stream = streams.get(line);
 
 				if (line.equals("sequence")) {
 					SDLogic(line, scanner, stream);
-					stream.write(model);
+					stream.execute(config,model);
 				}
 				else {
-					stream.write(model);
+					stream.execute(config, model);
 				}
 				System.out.println(REFRESH_SUPPORT);
 			}
@@ -265,7 +265,7 @@ public class DesignParser {
 		scanner.close();
 	}
 
-	private static void SDLogic(String line, Scanner scanner, IInvoker stream) {
+	private static void SDLogic(String line, Scanner scanner, IPhase stream) {
 		System.out.print(INPUT_CLASS_NAME);
 		line = scanner.nextLine();
 		line = line.trim();

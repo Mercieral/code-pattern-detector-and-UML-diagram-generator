@@ -5,16 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import problem.asm.Config;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IMethod;
 import problem.interfaces.IModel;
+import problem.interfaces.IPhase;
 import problem.interfaces.IRelation;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Method;
 import problem.patterns.AdapterPattern;
 
-public class AdapterVisitor implements IInvoker {
+public class AdapterVisitor implements IPhase {
 
 	private IVisitor visitor;
 	private List<IClass> classList;
@@ -22,19 +24,19 @@ public class AdapterVisitor implements IInvoker {
 	private boolean posAdap;
 	private Map<String[], Integer> adapteeCalls;
 	
-	public AdapterVisitor(int maxMethods) {
+	public AdapterVisitor() {
 		this.visitor = new Visitor();
 		this.classList = new ArrayList<>();
-		this.maxMethods = maxMethods;
 		this.adapteeCalls = new HashMap<>();
 		this.setupPreVisitClass();
 		this.visitMethod();
 		this.postVisitModel();
 
 	}
-
+	
 	@Override
-	public void write(IModel model) {
+	public void execute(Config config, IModel model) {
+		this.maxMethods = config.adapterMethodDelegation;
 		ITraverser traverser = (ITraverser) model;
 		traverser.accept(this.visitor);
 	}

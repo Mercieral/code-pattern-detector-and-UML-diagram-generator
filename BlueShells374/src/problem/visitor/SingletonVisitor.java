@@ -5,17 +5,19 @@ import java.util.List;
 
 import org.objectweb.asm.Type;
 
+import problem.asm.Config;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IMethod;
 import problem.interfaces.IModel;
+import problem.interfaces.IPhase;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Field;
 import problem.javaClasses.Method;
 import problem.javaClasses.Model;
 import problem.patterns.SingletonPattern;
 
-public class SingletonVisitor implements IInvoker {
+public class SingletonVisitor implements IPhase {
 	private Visitor visitor;
 	private IClass currentClass;
 	private boolean hasFieldInstance;
@@ -84,9 +86,9 @@ public class SingletonVisitor implements IInvoker {
 			}
 		});
 	}
-	
+
 	@Override
-	public void write(IModel model) {
+	public void execute(Config config, IModel model) {
 		ITraverser traverser = (ITraverser) model;
 		traverser.accept(this.visitor);		
 	}

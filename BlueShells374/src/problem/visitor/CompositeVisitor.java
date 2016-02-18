@@ -5,12 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import problem.asm.Config;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IModel;
+import problem.interfaces.IPhase;
 import problem.patterns.CompositePattern;
 
-public class CompositeVisitor implements IInvoker {
+public class CompositeVisitor implements IPhase {
 
 	private IVisitor visitor;
 	private Map<String, String> abstractToInterface; // extension, interface
@@ -206,7 +208,7 @@ public class CompositeVisitor implements IInvoker {
 	}
 
 	@Override
-	public void write(IModel model) {
+	public void execute(Config config, IModel model) {
 		ITraverser traverser = (ITraverser) model;
 		traverser.accept(this.visitor);
 	}

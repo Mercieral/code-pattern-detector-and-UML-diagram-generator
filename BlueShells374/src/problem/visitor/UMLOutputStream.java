@@ -7,11 +7,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import problem.asm.Config;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IMethod;
 import problem.interfaces.IModel;
 import problem.interfaces.IPattern;
+import problem.interfaces.IPhase;
 import problem.interfaces.IRelation;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.ExtensionRelation;
@@ -22,7 +24,7 @@ import problem.javaClasses.Method;
 import problem.javaClasses.Model;
 import problem.javaClasses.UsesRelation;
 
-public class UMLOutputStream extends FilterOutputStream implements IInvoker {
+public class UMLOutputStream extends FilterOutputStream implements IPhase {
 	private IVisitor visitor;
 	private Map<String, List<String>> hasRelations;
 	private Map<String, List<String>> useRelations;
@@ -307,7 +309,7 @@ public class UMLOutputStream extends FilterOutputStream implements IInvoker {
 	}
 
 	@Override
-	public void write(IModel model) {
+	public void execute(Config config, IModel model) {
 		ITraverser traverser = (ITraverser) model;
 		traverser.accept(this.visitor);
 	}

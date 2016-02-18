@@ -7,10 +7,12 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import problem.asm.Config;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IMethod;
 import problem.interfaces.IModel;
+import problem.interfaces.IPhase;
 import problem.interfaces.IRelation;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Field;
@@ -18,7 +20,6 @@ import problem.javaClasses.Method;
 import problem.javaClasses.Model;
 import problem.javaClasses.UsesRelation;
 import problem.patterns.SingletonPattern;
-import problem.visitor.IInvoker;
 import problem.visitor.SingletonVisitor;
 
 public class Milestone4IntegrationTesting {
@@ -45,8 +46,9 @@ public class Milestone4IntegrationTesting {
 		//test no patterns before running
 		assertEquals(singleton.getPatterns().size(), 0);
 		
-		IInvoker v = new SingletonVisitor();
-		v.write(m);
+		IPhase v = new SingletonVisitor();
+		Config config = new Config();
+		v.execute(config, m);
 		
 		//test that there is a pattern
 		assertEquals(1, singleton.getPatterns().size());
@@ -94,8 +96,9 @@ public class Milestone4IntegrationTesting {
 		//test no patterns before running
 		assertEquals(singleton.getPatterns().size(), 0);
 		
-		IInvoker v = new SingletonVisitor();
-		v.write(m);
+		IPhase v = new SingletonVisitor();
+		Config config = new Config();
+		v.execute(config, m);
 		
 		//test that there is a pattern
 		assertEquals(1, singleton.getPatterns().size());
@@ -115,8 +118,9 @@ public class Milestone4IntegrationTesting {
 		//test no patterns before running
 		assertEquals(nosingleton.getPatterns().size(), 0);
 		
-		IInvoker v = new SingletonVisitor();
-		v.write(m);
+		IPhase v = new SingletonVisitor();
+		Config config = new Config();
+		v.execute(config, m);
 		
 		//test that there is no pattern
 		assertEquals(0, nosingleton.getPatterns().size());
@@ -141,8 +145,9 @@ public class Milestone4IntegrationTesting {
 		//test no patterns before running
 		assertEquals(test.getPatterns().size(), 0);
 		
-		IInvoker v = new SingletonVisitor();
-		v.write(m);
+		IPhase v = new SingletonVisitor();
+		Config config = new Config();
+		v.execute(config, m);
 		
 		//test that there is no pattern
 		assertEquals(0, test.getPatterns().size());
@@ -166,8 +171,9 @@ public class Milestone4IntegrationTesting {
 		//test no patterns before running
 		assertEquals(test.getPatterns().size(), 0);
 		
-		IInvoker v = new SingletonVisitor();
-		v.write(m);
+		IPhase v = new SingletonVisitor();
+		Config config = new Config();
+		v.execute(config, m);
 		
 		//test that there is no pattern
 		assertEquals(0, test.getPatterns().size());

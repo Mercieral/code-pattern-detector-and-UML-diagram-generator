@@ -3,20 +3,23 @@ package problem.visitor;
 import java.util.ArrayList;
 import java.util.List;
 
+import problem.asm.Config;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IModel;
+import problem.interfaces.IPhase;
 import problem.interfaces.IRelation;
 import problem.patterns.AdapterPattern;
 
-public class BruteForceAdapterDetector implements IInvoker{
+public class BruteForceAdapterDetector implements IPhase{
 	private List<IClass> classList;
 
 	public BruteForceAdapterDetector(){
 		this.classList = new ArrayList<>();
 	}
 	
-	public void write(IModel model){
+	@Override
+	public void execute(Config config, IModel model){
 		for(IClass c: model.getClasses()){
 			if (c.getInterface().size() == 1) {
 				// Detecting adapter

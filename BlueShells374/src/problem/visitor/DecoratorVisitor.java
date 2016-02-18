@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import problem.asm.Config;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IModel;
+import problem.interfaces.IPhase;
 import problem.interfaces.IRelation;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.ExtensionRelation;
@@ -14,7 +16,7 @@ import problem.javaClasses.Field;
 import problem.javaClasses.HasRelation;
 import problem.patterns.DecoratorPattern;
 
-public class DecoratorVisitor implements IInvoker {
+public class DecoratorVisitor implements IPhase {
 	private IVisitor visitor;	
 	private List<String> decoratorList;
 	private List<String> concreteDecorators;
@@ -35,12 +37,6 @@ public class DecoratorVisitor implements IInvoker {
 		this.visitField();
 		this.visitExtensionRelation();
 		this.postVisitModel();
-	}
-
-	@Override
-	public void write(IModel model) {
-		ITraverser traverser = (ITraverser) model;
-		traverser.accept(this.visitor);
 	}
 	
 	private void setupPreVisitClass(){ //search for a class that could potentially be the decorator and add it to a list
@@ -129,5 +125,11 @@ public class DecoratorVisitor implements IInvoker {
 				}
 			}
 		});
+	}
+
+	@Override
+	public void execute(Config config, IModel model) {
+		ITraverser traverser = (ITraverser) model;
+		traverser.accept(this.visitor);
 	}
 }

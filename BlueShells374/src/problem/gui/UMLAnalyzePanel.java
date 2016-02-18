@@ -146,12 +146,6 @@ public class UMLAnalyzePanel extends JPanel {
 				task.setText("no configuration was selected");
 				return;
 			}
-			System.out.println(cfg.InputDir);
-			System.out.println(cfg.classes);
-			System.out.println(cfg.outDir);
-			System.out.println(cfg.dotPath);
-			System.out.println(cfg.phases);
-			System.out.println(cfg.adapterMethodDelegation);
 			task.setForeground(Color.BLACK);
 			loading.setValue(0);
 			Thread t = new Thread(new Runnable() {
@@ -160,14 +154,14 @@ public class UMLAnalyzePanel extends JPanel {
 				public void run() {
 					try {
 						System.out.println("Analyzing");
-						IModel model = DesignParser.parse(args, loading, task);
+						IModel model = DesignParser.parse(cfg, args, loading, task);
 						
 						JPanel panel = new JPanel();
 						panel.setLayout(new BorderLayout());
 						
 						
 						ImageProxy image = new ImageProxy("input_output/graph.png");
-						CheckboxPanel cbpane = new CheckboxPanel(panel, model, image);
+						CheckboxPanel cbpane = new CheckboxPanel(panel, cfg, model, image);
 						JScrollPane imageScrollPane = new JScrollPane(new JLabel(image));
 						
 						JButton backButton = new JButton("Back to runner panel");

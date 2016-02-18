@@ -4,10 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import problem.asm.Config;
 import problem.interfaces.IClass;
 import problem.interfaces.IField;
 import problem.interfaces.IMethod;
 import problem.interfaces.IModel;
+import problem.interfaces.IPhase;
 import problem.interfaces.IRelation;
 import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Field;
@@ -19,7 +21,6 @@ import problem.javaClasses.Model;
 import problem.patterns.AdapterPattern;
 import problem.visitor.AdapterVisitor;
 import problem.visitor.DecoratorVisitor;
-import problem.visitor.IInvoker;
 import problem.visitor.SingletonVisitor;
 
 public class Milestone5AdapterIntegrationTesting {
@@ -79,12 +80,14 @@ public class Milestone5AdapterIntegrationTesting {
 		assertEquals(0, Adaptee.getPatterns().size());
 
 		// run the Pattern Visitors
-		IInvoker v1 = new SingletonVisitor();
-		IInvoker v2 = new DecoratorVisitor();
-		IInvoker v3 = new AdapterVisitor(1);
-		v1.write(m);
-		v2.write(m);
-		v3.write(m);
+		IPhase v1 = new SingletonVisitor();
+		IPhase v2 = new DecoratorVisitor();
+		IPhase v3 = new AdapterVisitor();
+		Config config = new Config();
+		config.adapterMethodDelegation =1;
+		v1.execute(config, m);
+		v2.execute(config, m);
+		v3.execute(config, m);
 
 		// test for patterns
 		assertEquals(1, ITarget.getPatterns().size());
@@ -158,12 +161,14 @@ public class Milestone5AdapterIntegrationTesting {
 		assertEquals(0, Adaptee.getPatterns().size());
 
 		// run the Pattern Visitors
-		IInvoker v1 = new SingletonVisitor();
-		IInvoker v2 = new DecoratorVisitor();
-		IInvoker v3 = new AdapterVisitor(1);
-		v1.write(m);
-		v2.write(m);
-		v3.write(m);
+		IPhase v1 = new SingletonVisitor();
+		IPhase v2 = new DecoratorVisitor();
+		IPhase v3 = new AdapterVisitor();
+		Config config = new Config();
+		config.adapterMethodDelegation =1;
+		v1.execute(config, m);
+		v2.execute(config, m);
+		v3.execute(config, m);
 
 		// test for patterns
 		assertEquals(0, ITarget.getPatterns().size());
@@ -264,12 +269,14 @@ public class Milestone5AdapterIntegrationTesting {
 		assertEquals(0, Adaptee2.getPatterns().size());
 
 		// run the Pattern Visitors
-		IInvoker v1 = new SingletonVisitor();
-		IInvoker v2 = new DecoratorVisitor();
-		IInvoker v3 = new AdapterVisitor(1);
-		v1.write(m);
-		v2.write(m);
-		v3.write(m);
+		IPhase v1 = new SingletonVisitor();
+		IPhase v2 = new DecoratorVisitor();
+		IPhase v3 = new AdapterVisitor();
+		Config config = new Config();
+		config.adapterMethodDelegation =1;
+		v1.execute(config, m);
+		v2.execute(config, m);
+		v3.execute(config, m);
 
 		// test for patterns
 		assertEquals(1, ITarget.getPatterns().size());
@@ -393,12 +400,14 @@ public class Milestone5AdapterIntegrationTesting {
 		assertEquals(0, Adapter2.getPatterns().size());
 
 		// run the Pattern Visitors
-		IInvoker v1 = new SingletonVisitor();
-		IInvoker v2 = new DecoratorVisitor();
-		IInvoker v3 = new AdapterVisitor(1);
-		v1.write(m);
-		v2.write(m);
-		v3.write(m);
+		IPhase v1 = new SingletonVisitor();
+		IPhase v2 = new DecoratorVisitor();
+		IPhase v3 = new AdapterVisitor();
+		Config config = new Config();
+		config.adapterMethodDelegation =1;
+		v1.execute(config, m);
+		v2.execute(config, m);
+		v3.execute(config, m);
 		
 		// test for patterns
 		assertEquals(1, ITarget.getPatterns().size());
@@ -457,12 +466,14 @@ public class Milestone5AdapterIntegrationTesting {
 		assertEquals(IComponent.getPatterns().size(), 0);
 
 		// run the Pattern Visitors
-		IInvoker v1 = new SingletonVisitor();
-		IInvoker v2 = new DecoratorVisitor();
-		IInvoker v3 = new AdapterVisitor(1);
-		v1.write(m);
-		v2.write(m);
-		v3.write(m);
+		IPhase v1 = new SingletonVisitor();
+		IPhase v2 = new DecoratorVisitor();
+		IPhase v3 = new AdapterVisitor();
+		Config config = new Config();
+		config.adapterMethodDelegation =1;
+		v1.execute(config, m);
+		v2.execute(config, m);
+		v3.execute(config, m);
 
 		// test that there is no pattern after visiting
 		assertEquals(0, IComponent.getPatterns().size());
@@ -507,12 +518,14 @@ public class Milestone5AdapterIntegrationTesting {
 		assertEquals(0, Adapter.getPatterns().size());
 
 		// run the Pattern Visitors
-		IInvoker v1 = new SingletonVisitor();
-		IInvoker v2 = new DecoratorVisitor();
-		IInvoker v3 = new AdapterVisitor(1);
-		v1.write(m);
-		v2.write(m);
-		v3.write(m);
+		IPhase v1 = new SingletonVisitor();
+		IPhase v2 = new DecoratorVisitor();
+		IPhase v3 = new AdapterVisitor();
+		Config config = new Config();
+		config.adapterMethodDelegation =1;
+		v1.execute(config, m);
+		v2.execute(config, m);
+		v3.execute(config, m);
 
 		// test for patterns
 		assertEquals(0, ITarget.getPatterns().size());
@@ -554,12 +567,14 @@ public class Milestone5AdapterIntegrationTesting {
 		assertEquals(0, Adaptee.getPatterns().size());
 
 		// run the Pattern Visitors
-		IInvoker v1 = new SingletonVisitor();
-		IInvoker v2 = new DecoratorVisitor();
-		IInvoker v3 = new AdapterVisitor(1);
-		v1.write(m);
-		v2.write(m);
-		v3.write(m);
+		IPhase v1 = new SingletonVisitor();
+		IPhase v2 = new DecoratorVisitor();
+		IPhase v3 = new AdapterVisitor();
+		Config config = new Config();
+		config.adapterMethodDelegation =1;
+		v1.execute(config, m);
+		v2.execute(config, m);
+		v3.execute(config, m);
 
 		// test for patterns
 		assertEquals(0, ITarget.getPatterns().size());

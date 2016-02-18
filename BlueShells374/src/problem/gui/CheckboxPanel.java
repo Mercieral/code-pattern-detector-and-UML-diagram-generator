@@ -24,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import problem.asm.Config;
 import problem.asm.DesignParser;
 import problem.interfaces.IClass;
 import problem.interfaces.IModel;
@@ -36,9 +37,11 @@ public class CheckboxPanel extends JPanel {
 	List<String> classes;
 	JPanel parent;
 	ImageProxy image;
+	private Config config;
 
-	public CheckboxPanel(JPanel parent, IModel model, ImageProxy image) {
+	public CheckboxPanel(JPanel parent, Config config, IModel model, ImageProxy image) {
 		this.image = image;
+		this.config = config;
 		// this.setPreferredSize(new Dimension(200 ,this.getHeight()));
 		this.setLayout(new GridBagLayout());
 		this.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.BLACK));
@@ -82,7 +85,7 @@ public class CheckboxPanel extends JPanel {
 						
 						parent.repaint();
 						parent.revalidate();
-						DesignParser.parse(classes.toArray(new String[0]));
+						DesignParser.parse(config, classes.toArray(new String[0]));
 						Icon umlImage = new ImageProxy("input_output/graph.png");
 						JScrollPane imageScrollPane = new JScrollPane(new JLabel(umlImage));
 						parent.add(imageScrollPane, BorderLayout.CENTER);
