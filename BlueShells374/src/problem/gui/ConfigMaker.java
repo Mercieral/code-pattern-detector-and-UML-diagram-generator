@@ -254,10 +254,15 @@ public class ConfigMaker extends JPanel {
 			sb.append("\n");
 			sb.append("Input-Classes: " + this.additionalClasses);
 			sb.append("\n");
+			this.outputLocation = this.outputLocation.replace("\\", "\\\\");
 			sb.append("Output-Directory: " + this.outputLocation);
+			this.exeLocation = this.exeLocation.replace("\\", "\\\\");
 			sb.append("\n");
 			sb.append("Dot-Path: " + this.exeLocation);
 			sb.append("\n");
+			if(this.phases == null){
+				this.phases ="";
+			}
 			sb.append("Phases: " + this.phases);
 			sb.append("\n");
 			sb.append("" + this.additionalSettings);
