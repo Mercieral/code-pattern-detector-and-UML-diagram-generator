@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -72,6 +73,9 @@ public class ConfigMaker extends JPanel {
 		saveFile();
 	}
 
+	/**
+	 * Adds the panel that contains saving the file
+	 */
 	private void saveFile() {
 		JPanel panel = new JPanel();
 		JButton button = new JButton("Save file");
@@ -91,6 +95,9 @@ public class ConfigMaker extends JPanel {
 		this.add(panel);
 	}
 
+	/**
+	 * Adds the additional settings bar to the Configuration maker.
+	 */
 	private void setSettings() {
 		JPanel panel = new JPanel();
 		JButton button = new JButton("Set Additional Settings");
@@ -132,6 +139,10 @@ public class ConfigMaker extends JPanel {
 		this.add(panel);
 	}
 
+	/**
+	 * Adds the phases button to the panel to allow for name of framework's
+	 * execution phases
+	 */
 	private void setPhases() {
 		JPanel panel = new JPanel();
 		JButton button = new JButton("Set phases");
@@ -148,12 +159,21 @@ public class ConfigMaker extends JPanel {
 		this.add(panel);
 	}
 
+	/**
+	 * Adds panel to the Configuration maker that allows choosing path to
+	 * execution
+	 */
 	private void setDotPath() {
 		JPanel panelButton = new JPanel();
 		panelButton.setBackground(Color.GRAY);
 		JLabel label = new JLabel("Set Dot Path");
 		JButton button = new JButton("Find Dot EXE");
 		JLabel locationLabel = new JLabel("Folder location");
+		if (new File("C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe")
+				.exists()) {
+			locationLabel.setText(
+					"C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe");
+		}
 		ExecutableActionListener eal = new ExecutableActionListener(
 				locationLabel, this, true, this.startFrame);
 		button.addActionListener(eal);
@@ -164,6 +184,10 @@ public class ConfigMaker extends JPanel {
 		this.add(panelButton);
 	}
 
+	/**
+	 * Adds the output name bar to the Configuration Panel and stored the output
+	 * name chosen by the user
+	 */
 	private void saveOutputName() {
 		JPanel panelButton = new JPanel();
 		panelButton.setSize(new Dimension(this.getWidth(), this.getHeight()));
@@ -177,6 +201,9 @@ public class ConfigMaker extends JPanel {
 		this.add(panelButton);
 	}
 
+	/**
+	 * Adds the class option panel to the Configuration Panel
+	 */
 	private void addClassOptions() {
 		JPanel panel = new JPanel();
 		JButton button = new JButton("Add Additional Classes");
@@ -185,27 +212,36 @@ public class ConfigMaker extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				additionalClasses = JOptionPane.showInputDialog(
-						"Add additional classes \n" + "Separated by comma");
+						"Add additional classes \n" + "Separated by comma",
+						additionalClasses);
 			}
 		});
 		panel.add(button);
 		this.add(panel);
 	}
 
+	/**
+	 * Adds the output name bar to the Configuration Panel and stored the output
+	 * folder chosen by the user
+	 */
 	private void findOutputWindow() {
 		JPanel panelButton = new JPanel();
 		panelButton.setBackground(Color.GRAY);
 		JLabel label = new JLabel("Output Path");
 		JButton button = new JButton("Find Output Path");
 		JLabel locationLabel = new JLabel("Folder location");
-		button.addActionListener(
-				new FileFinderActionListener(locationLabel, this, false, this.startFrame));
+		button.addActionListener(new FileFinderActionListener(locationLabel,
+				this, false, this.startFrame));
 		panelButton.add(label);
 		panelButton.add(button);
 		panelButton.add(locationLabel);
 		this.add(panelButton);
 	}
 
+	/**
+	 * Adds the input location bar to the Configuration Panel for the user to
+	 * show where an input folder is
+	 */
 	private void findInputWindow() {
 		JPanel panelButton = new JPanel();
 		panelButton.setBackground(Color.GRAY);
@@ -223,14 +259,18 @@ public class ConfigMaker extends JPanel {
 	}
 
 	/**
+	 * Set the input folder location
+	 * 
 	 * @param dirLocation
-	 *            the dirLocation to set
+	 *            - the dirLocation to set
 	 */
 	public void setInputLocation(String dirLocation) {
 		this.inputLocation = dirLocation;
 	}
 
 	/**
+	 * Sets the executable location
+	 * 
 	 * @param exeLocation
 	 *            - the exeLocation to set
 	 */
@@ -238,8 +278,15 @@ public class ConfigMaker extends JPanel {
 		this.exeLocation = exeLocation;
 	}
 
+	/**
+	 * Writes the configuration file after checking if all inputs are valid for
+	 * the field
+	 * 
+	 * @param fileName
+	 *            - File name to save the file as
+	 */
 	private void writeFile(String fileName) {
-		// if(false){
+		// if(false){ // Bypasses safety testing
 		if ((this.outputLocation == "" || this.exeLocation == ""
 				|| this.additionalSettings == "" || fileName == "")
 				&& (this.inputLocation == "" && this.additionalClasses == "")) {
@@ -260,8 +307,8 @@ public class ConfigMaker extends JPanel {
 			sb.append("\n");
 			sb.append("Dot-Path: " + this.exeLocation);
 			sb.append("\n");
-			if(this.phases == null){
-				this.phases ="";
+			if (this.phases == null) {
+				this.phases = "";
 			}
 			sb.append("Phases: " + this.phases);
 			sb.append("\n");
@@ -287,6 +334,8 @@ public class ConfigMaker extends JPanel {
 	}
 
 	/**
+	 * Sets the output folder location
+	 * 
 	 * @param outputLocation
 	 *            the outputLocation to set
 	 */
