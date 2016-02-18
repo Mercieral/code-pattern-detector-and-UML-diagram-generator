@@ -33,10 +33,12 @@ public class RunnerPanel extends JPanel {
 		
 		JButton loadButton = new JButton("Load Config");
 		JButton analyzeButton = new JButton("Analyze");
+		JButton backButton = new JButton("Back to main menu");
 		loadButton.addActionListener(new load());
 		analyzeButton.addActionListener(new analyze(args, loadingBar, taskLabel, f));
+		backButton.addActionListener(new back(f, args));
 		
-		c.gridx = 0; c.gridy = 0; c.insets = new Insets(0,0,30,20);
+		c.gridx = 0; c.gridy = 0; c.insets = new Insets(0,0,30,20); c.gridwidth = 1;
 		this.add(loadButton, c);
 		c.gridx = 1; c.gridy = 0;
 		this.add(analyzeButton, c);
@@ -44,11 +46,31 @@ public class RunnerPanel extends JPanel {
 		this.add(taskLabel, c);
 		c.gridx = 0; c.gridy = 2; c.gridwidth = 2;
 		this.add(loadingBar, c);
+		c.gridx = 0; c.gridy = 3; c.gridwidth = 2; c.insets = new Insets(0,0,20,20);
+		this.add(backButton, c);
+	}
+	
+	private class back implements ActionListener{
+		JFrame frame;
+		String[] args;
+		
+		public back(JFrame f, String[] args){
+			this.frame = f;
+			this.args = args;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			MainMenuPanel main = new MainMenuPanel(frame, args);
+			frame.setContentPane(main);
+			frame.pack();
+			frame.repaint();
+			frame.revalidate();
+		}
 	}
 	
 	
 	private class load implements ActionListener{
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("load");
@@ -86,6 +108,20 @@ public class RunnerPanel extends JPanel {
 						ImageProxy image = new ImageProxy("input_output/graph.png");
 						CheckboxPanel cbpane = new CheckboxPanel(panel, model, image);
 						JScrollPane imageScrollPane = new JScrollPane(new JLabel(image));
+						
+						JButton backButton = new JButton("Back to runner panel");
+						backButton.addActionListener(new ActionListener(){
+
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								JPanel runner = new RunnerPanel(args, frame);
+								frame.setContentPane(runner);
+								frame.repaint();
+								frame.revalidate();
+							}
+							
+						});
+						cbpane.addToPanel(backButton);
 						
 						panel.add(cbpane, BorderLayout.WEST);
 						panel.add(imageScrollPane, BorderLayout.CENTER);

@@ -19,6 +19,7 @@ import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -48,6 +49,13 @@ public class CheckboxPanel extends JPanel {
 		this.fillMapWithCheckBoxes(model);
 		this.drawCheckBoxes();
 	}
+	
+	public void addToPanel(JComponent c){
+		GridBagConstraints cons = new GridBagConstraints();
+		cons.anchor = GridBagConstraints.WEST;
+		cons.gridy = 0;
+		this.add(c, cons);
+	}
 
 	private void fillMapWithCheckBoxes(IModel model) {
 		for (IClass c : model.getClasses()) {
@@ -57,9 +65,12 @@ public class CheckboxPanel extends JPanel {
 			classBox.addItemListener(new ItemListener() {
 				@Override
 				public void itemStateChanged(ItemEvent e) {
-					System.out.println("class " + classBox.getText() + " is now set to " + classBox.isSelected());
-					System.out.println("Analyzing");
-					classes.remove(classBox.getText().replace("/", "."));
+					if (classBox.isSelected()){
+						classes.add(classBox.getText().replace("/", "."));
+					}
+					else{
+						classes.remove(classBox.getText().replace("/", "."));
+					}
 					try {
 						image.flushImage();
 						File oldImage = new File("input_output/graph.png");
@@ -104,7 +115,7 @@ public class CheckboxPanel extends JPanel {
 	}
 
 	private void drawCheckBoxes() {
-		int counter = 0;
+		int counter = 1;
 		GridBagConstraints c = new GridBagConstraints();
 		c.anchor = GridBagConstraints.WEST;
 		for (String s : this.checkboxGroups.keySet()) {
