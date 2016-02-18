@@ -14,7 +14,16 @@ import problem.visitor.UMLGenerator;
 
 public class PhaseFactory {
 	
+	/**
+	 * Maps the phase name as a string to the class of the phase. You can 
+	 * use reflection to instantiate the class and cast as IPhase.
+	 */
 	public static Map<String, Class<?>> phases = new HashMap<String, Class<?>>();
+	
+	/**
+	 * Maps the pattern's name to it's corresponding Phase name
+	 */
+	public static Map<String, String> patternToPhaseName = new HashMap<String, String>();
 	
 	// Pre-populate phases here
 	static{
@@ -27,6 +36,11 @@ public class PhaseFactory {
 		phases.put("Composite-Detection", CompositeVisitor.class);
 		phases.put("UML-Generation", UMLGenerator.class);
 		//phases.put("Sequence-Generation", new SequenceOutputStream());
+		
+		patternToPhaseName.put("Adapter Pattern", "Adapter-Detection");
+		patternToPhaseName.put("Composite Pattern", "Composite-Detection");
+		patternToPhaseName.put("Decorator Pattern", "Decorator-Detection");
+		patternToPhaseName.put("Singleton Pattern", "Singleton-Detection");
 	}	
 
 }

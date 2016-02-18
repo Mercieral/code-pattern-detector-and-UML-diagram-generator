@@ -69,8 +69,7 @@ public class DesignParser {
 					phase.execute(config, model);
 				}
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("The phase " + phaseName + " does not exist");
 			}
 		}
 		return model;

@@ -27,6 +27,7 @@ import javax.swing.JScrollPane;
 
 import problem.asm.Config;
 import problem.asm.DesignParser;
+import problem.asm.PhaseFactory;
 import problem.interfaces.IClass;
 import problem.interfaces.IModel;
 import problem.interfaces.IPattern;
@@ -134,6 +135,33 @@ public class CheckboxPanel extends JPanel {
 					@Override
 					public void itemStateChanged(ItemEvent e) {
 						patternBox.setFont(patternFont);
+						String PhaseName = PhaseFactory.patternToPhaseName.get(s);
+						if (patternBox.isSelected()){
+							config.phases.add(1, PhaseName);
+						}
+						else{
+							config.phases.remove(PhaseName);
+						}
+						try {
+							image.flushImage();
+							File oldImage = new File("input_output/graph.png");
+							if (oldImage.exists()) {
+								oldImage.delete();
+							}
+							BorderLayout layout = (BorderLayout) parent.getLayout();
+							parent.remove(layout.getLayoutComponent(BorderLayout.CENTER));
+							
+							parent.repaint();
+							parent.revalidate();
+							DesignParser.parse(config);
+							Icon umlImage = new ImageProxy("input_output/graph.png");
+							JScrollPane imageScrollPane = new JScrollPane(new JLabel(umlImage));
+							parent.add(imageScrollPane, BorderLayout.CENTER);
+							parent.repaint();
+							parent.revalidate();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
 					}
 				});
 				this.add(patternBox, c);
