@@ -31,7 +31,9 @@ public class UMLGenerator implements IPhase {
 	private Map<String, List<String>> hasRelations;
 	private Map<String, List<String>> useRelations;
 	private FileOutputStream out;
+	private String dotPath;
 
+	
 	public UMLGenerator() {
 		this.visitor = new Visitor();
 		this.hasRelations = new HashMap<String, List<String>>();
@@ -146,7 +148,7 @@ public class UMLGenerator implements IPhase {
 					try {
 						out.write(LAST_LINE);
 						Runtime rt = Runtime.getRuntime();
-						Process graphviz = rt.exec("\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe\" "
+						Process graphviz = rt.exec("\"" + dotPath +  "\" "
 								+ "-Tpng input_output\\graph.gv -o input_output\\graph.png");
 						while(graphviz.isAlive()){}
 					} catch (Exception e) {
@@ -308,6 +310,7 @@ public class UMLGenerator implements IPhase {
 	@Override
 	public void execute(Config config, IModel model) {
 		try {
+			this.dotPath = config.dotPath;
 			this.out = new FileOutputStream("input_output/graph.gv");
 			ITraverser traverser = (ITraverser) model;
 			traverser.accept(this.visitor);
