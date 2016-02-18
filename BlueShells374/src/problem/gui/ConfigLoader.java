@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import problem.asm.Config;
 
@@ -28,7 +30,7 @@ public class ConfigLoader {
 						continue;
 					}
 					line = line.split(": ")[1];
-					config.classes = line.split(",");
+					config.classes = Arrays.asList(line.split(","));
 				}
 				else if (type.equals("Output-Directory")){
 					config.outDir = line.split(": ")[1];
@@ -41,7 +43,7 @@ public class ConfigLoader {
 						continue;
 					}
 					line = line.split(": ")[1];
-					config.phases = line.split(",");
+					config.phases = Arrays.asList(line.split(","));
 				}
 				else if (type.equals("Adapter-MethodDelegation")){
 					line = line.split(": ")[1];

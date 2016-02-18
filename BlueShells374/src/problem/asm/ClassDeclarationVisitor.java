@@ -1,5 +1,7 @@
 package problem.asm;
 
+import java.util.List;
+
 import org.objectweb.asm.ClassVisitor;
 
 import problem.interfaces.IClass;
@@ -10,10 +12,10 @@ import problem.javaClasses.InterfaceRelation;
 
 public class ClassDeclarationVisitor extends ClassVisitor {
 	private IClass currentClass;
-	private String[] classes;
+	private List<String> classes;
 	private IModel model;
 	
-	public ClassDeclarationVisitor(int api, IClass currentClass, String[] args, IModel m){
+	public ClassDeclarationVisitor(int api, IClass currentClass, List<String> args, IModel m){
 		super(api);
 		this.currentClass = currentClass;
 		this.classes = args;

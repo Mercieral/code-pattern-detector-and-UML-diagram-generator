@@ -22,11 +22,12 @@ import problem.javaClasses.ConcreteClass;
 import problem.javaClasses.Model;
 import problem.visitor.AdapterVisitor;
 import problem.visitor.BruteForceAdapterDetector;
+import problem.visitor.ClassLoading;
 import problem.visitor.CompositeVisitor;
 import problem.visitor.DecoratorVisitor;
 import problem.visitor.SequenceOutputStream;
 import problem.visitor.SingletonVisitor;
-import problem.visitor.UMLOutputStream;
+import problem.visitor.UMLGenerator;
 
 public class DesignParser {
 
@@ -64,40 +65,9 @@ public class DesignParser {
 		task.setText("initializing");
 		loading.setValue(loading.getValue() + 1);
 		IModel model = new Model();
-		IClass currentClass = null;
+		ClassLoading loader = new ClassLoading();
+		loader.execute(config,  model);
 
-		for (String className : args) {
-			// ASM's ClassReader does the heavy lifting of parsing the compiled
-			// Java class
-			task.setText("Analyzing class: " + className);
-			loading.setValue(loading.getValue() + 1);
-			ClassReader reader = new ClassReader(className);
-			currentClass = new ConcreteClass();
-
-			// make class declaration visitor to get superclass and interfaces
-			ClassVisitor decVisitor = new ClassDeclarationVisitor(Opcodes.ASM5,
-					currentClass, args, model);
-
-			// DECORATE declaration visitor with field visitor
-			ClassVisitor fieldVisitor = new ClassFieldVisitor(Opcodes.ASM5,
-					decVisitor, currentClass, args, model);
-
-			// DECORATE field visitor with method visitor
-			ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5,
-					fieldVisitor, currentClass, args, model);
-
-			// Tell the Reader to use our (heavily decorated) ClassVisitor to
-			// visit the class
-			reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
-
-			// Add the class to the model
-			model.addClass(currentClass);
-		}
-
-		HashMap<String, IPhase> streams = new HashMap<>();
-		streams.put("sequence", new SequenceOutputStream(
-				new FileOutputStream("input_output/diagram.sd")));
-		streams.put("uml", new UMLOutputStream(new FileOutputStream("input_output/graph.gv")));
 		
 		task.setText("Detecting Singleton Pattern");
 		loading.setValue(loading.getValue() + 1);
@@ -125,9 +95,8 @@ public class DesignParser {
 		//Comment out to use console input (in for GUI)
 		task.setText("Generating UML");
 		loading.setValue(loading.getValue() + 1);
-		IPhase UMLGenerator = new UMLOutputStream(new FileOutputStream("input_output/graph.gv"));
+		IPhase UMLGenerator = new UMLGenerator();
 		UMLGenerator.execute(config, model);
-		((UMLOutputStream)UMLGenerator).close();
 
 		
 		loading.setValue(loading.getValue() + 1);
@@ -152,38 +121,9 @@ public class DesignParser {
 	 */
 	public static IModel parse(Config config, String[] args) throws IOException {
 		IModel model = new Model();
-		IClass currentClass = null;
+		ClassLoading loader = new ClassLoading();
+		loader.execute(config,  model);
 
-		for (String className : args) {
-			// ASM's ClassReader does the heavy lifting of parsing the compiled
-			// Java class
-			ClassReader reader = new ClassReader(className);
-			currentClass = new ConcreteClass();
-
-			// make class declaration visitor to get superclass and interfaces
-			ClassVisitor decVisitor = new ClassDeclarationVisitor(Opcodes.ASM5,
-					currentClass, args, model);
-
-			// DECORATE declaration visitor with field visitor
-			ClassVisitor fieldVisitor = new ClassFieldVisitor(Opcodes.ASM5,
-					decVisitor, currentClass, args, model);
-
-			// DECORATE field visitor with method visitor
-			ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5,
-					fieldVisitor, currentClass, args, model);
-
-			// Tell the Reader to use our (heavily decorated) ClassVisitor to
-			// visit the class
-			reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
-
-			// Add the class to the model
-			model.addClass(currentClass);
-		}
-
-		HashMap<String, IPhase> streams = new HashMap<>();
-		streams.put("sequence", new SequenceOutputStream(
-				new FileOutputStream("input_output/diagram.sd")));
-		streams.put("uml", new UMLOutputStream(new FileOutputStream("input_output/graph.gv")));
 		SingletonVisitor singletonVisitor = new SingletonVisitor();
 		singletonVisitor.execute(config, model);
 		DecoratorVisitor decoratorVisitor = new DecoratorVisitor();
@@ -197,9 +137,8 @@ public class DesignParser {
 		
 		
 		//Comment out to use console input (in for GUI)
-		IPhase UMLGenerator = new UMLOutputStream(new FileOutputStream("input_output/graph.gv"));
+		IPhase UMLGenerator = new UMLGenerator();
 		UMLGenerator.execute(config, model);
-		((UMLOutputStream)UMLGenerator).close();
 		
 		return model;
 

@@ -1,5 +1,7 @@
 package problem.asm;
 
+import java.util.List;
+
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -12,7 +14,7 @@ import problem.javaClasses.Method;
 
 public class ClassMethodVisitor extends ClassVisitor {
 	private IClass currentClass;
-	private String[] classes;
+	private List<String> classes;
 	private IModel model;
 
 	public ClassMethodVisitor(int api) {
@@ -20,7 +22,7 @@ public class ClassMethodVisitor extends ClassVisitor {
 	}
 
 	public ClassMethodVisitor(int api, ClassVisitor decorated,
-			IClass currentClass, String[] classes, IModel m) {
+			IClass currentClass, List<String> classes, IModel m) {
 		super(api, decorated);
 		this.currentClass = currentClass;
 		this.classes = classes;

@@ -1,12 +1,15 @@
 package problem.asm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Config {
 	
 	public String InputDir;
-	public String[] classes;
+	public List<String> classes;
 	public String outDir;
 	public String dotPath;
-	public String[] phases;
+	public List<String> phases;
 	public int adapterMethodDelegation;
 	
 

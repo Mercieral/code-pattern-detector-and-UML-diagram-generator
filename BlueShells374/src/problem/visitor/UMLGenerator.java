@@ -1,5 +1,7 @@
 package problem.visitor;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FilterOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -24,13 +26,13 @@ import problem.javaClasses.Method;
 import problem.javaClasses.Model;
 import problem.javaClasses.UsesRelation;
 
-public class UMLOutputStream extends FilterOutputStream implements IPhase {
+public class UMLGenerator implements IPhase {
 	private IVisitor visitor;
 	private Map<String, List<String>> hasRelations;
 	private Map<String, List<String>> useRelations;
+	private FileOutputStream out;
 
-	public UMLOutputStream(OutputStream out) {
-		super(out);
+	public UMLGenerator() {
 		this.visitor = new Visitor();
 		this.hasRelations = new HashMap<String, List<String>>();
 		this.useRelations = new HashMap<String, List<String>>();
@@ -63,7 +65,7 @@ public class UMLOutputStream extends FilterOutputStream implements IPhase {
 							this.hasRelations.get(r.getFromObject()).add(r.getToObject());
 						}
 						try {
-							this.write(r.drawRelation().getBytes());
+							out.write(r.drawRelation().getBytes());
 							if (useRelations.get(r.getFromObject()) != null && useRelations.get(r.getFromObject()).contains(r.getToObject())) {
 								useRelations.remove(r.getFromObject());
 							}
@@ -88,7 +90,7 @@ public class UMLOutputStream extends FilterOutputStream implements IPhase {
 							useRelations.get(r.getFromObject()).add(r.getToObject());
 						}
 						try {
-							this.write(r.drawRelation().getBytes());
+							out.write(r.drawRelation().getBytes());
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -102,7 +104,7 @@ public class UMLOutputStream extends FilterOutputStream implements IPhase {
 				(ITraverser t) -> {
 					IRelation r = (IRelation) t;
 					try {
-						this.write(r.drawRelation().getBytes());
+						out.write(r.drawRelation().getBytes());
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -114,7 +116,7 @@ public class UMLOutputStream extends FilterOutputStream implements IPhase {
 				(ITraverser t) -> {
 					IRelation r = (IRelation) t;
 					try {
-						this.write(r.drawRelation().getBytes());
+						out.write(r.drawRelation().getBytes());
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -130,7 +132,7 @@ public class UMLOutputStream extends FilterOutputStream implements IPhase {
 					byte[] FIRST_LINE = "digraph G {  rankdir=BT; \n splines=\"ortho\"; \n "
 							.getBytes();
 					try {
-						this.write(FIRST_LINE);
+						out.write(FIRST_LINE);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -142,7 +144,7 @@ public class UMLOutputStream extends FilterOutputStream implements IPhase {
 				(ITraverser t) -> {
 					byte[] LAST_LINE = "\n}".getBytes();
 					try {
-						this.write(LAST_LINE);
+						out.write(LAST_LINE);
 						Runtime rt = Runtime.getRuntime();
 						Process graphviz = rt.exec("\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe\" "
 								+ "-Tpng input_output\\graph.gv -o input_output\\graph.png");
@@ -183,7 +185,7 @@ public class UMLOutputStream extends FilterOutputStream implements IPhase {
 					builder.append(obj.getClassName() + "\n\t\t\t\\n\n\t\t\t"
 							+ sb2.toString() + "|\n");
 					try {
-						this.write(builder.toString().getBytes());
+						out.write(builder.toString().getBytes());
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -194,7 +196,7 @@ public class UMLOutputStream extends FilterOutputStream implements IPhase {
 		this.visitor.addVisit(VisitType.Visit, ConcreteClass.class,
 				(ITraverser t) -> {
 					try {
-						this.write("\t\t\t| \n ".getBytes());
+						out.write("\t\t\t| \n ".getBytes());
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -210,7 +212,7 @@ public class UMLOutputStream extends FilterOutputStream implements IPhase {
 					sb.append(labelEnd);
 					sb.append(endBrace);
 					try {
-						this.write(sb.toString().getBytes());
+						out.write(sb.toString().getBytes());
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -240,7 +242,7 @@ public class UMLOutputStream extends FilterOutputStream implements IPhase {
 			sb.append(end);
 
 			try {
-				this.write(sb.toString().getBytes());
+				out.write(sb.toString().getBytes());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -273,7 +275,7 @@ public class UMLOutputStream extends FilterOutputStream implements IPhase {
 				sb.append(" \\l\n");
 
 				try {
-					this.write(sb.toString().getBytes());
+					out.write(sb.toString().getBytes());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -305,7 +307,13 @@ public class UMLOutputStream extends FilterOutputStream implements IPhase {
 
 	@Override
 	public void execute(Config config, IModel model) {
-		ITraverser traverser = (ITraverser) model;
-		traverser.accept(this.visitor);
+		try {
+			this.out = new FileOutputStream("input_output/graph.gv");
+			ITraverser traverser = (ITraverser) model;
+			traverser.accept(this.visitor);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

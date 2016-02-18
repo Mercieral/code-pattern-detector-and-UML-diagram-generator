@@ -1,5 +1,7 @@
 package problem.asm;
 
+import java.util.List;
+
 import org.objectweb.asm.MethodVisitor;
 
 import problem.interfaces.IClass;
@@ -11,12 +13,12 @@ import problem.javaClasses.UsesRelation;
 
 public class MyMethodVisitor extends MethodVisitor {
 	private IClass currentClass;
-	private String[] classes;
+	private List<String> classes;
 	private IMethod currentMethod;
 	private IModel model;
 
 	public MyMethodVisitor(int api, MethodVisitor mv, IClass currentClass,
-			String[] classes, IMethod currentMethod, IModel m) {
+			List<String> classes, IMethod currentMethod, IModel m) {
 		super(api, mv);
 		this.currentClass = currentClass;
 		this.classes = classes;

@@ -1,5 +1,7 @@
 package problem.asm;
 
+import java.util.List;
+
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.Opcodes;
@@ -15,14 +17,14 @@ import problem.javaClasses.HasRelation;
 public class ClassFieldVisitor extends ClassVisitor{
 	
 	private IClass currentClass;
-	private String[] classes;
+	private List<String> classes;
 	private IModel model;
 
 	public ClassFieldVisitor(int api){
 		super(api);
 	}
 	
-	public ClassFieldVisitor(int api, ClassVisitor decorated, IClass currentClass, String[] args, IModel m) {
+	public ClassFieldVisitor(int api, ClassVisitor decorated, IClass currentClass, List<String> args, IModel m) {
 		super(api, decorated);
 		this.currentClass = currentClass;
 		this.classes = args;
