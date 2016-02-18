@@ -123,7 +123,7 @@ public class MainMenuPanel extends JPanel {
 	private class HelpAction implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			JPanel helpPanel = new HelpPanel(MainMenuPanel.this.frame, MainMenuPanel.this.args);
+			JPanel helpPanel = new HelpPanel(MainMenuPanel.this.frame);
 			frame.setContentPane(helpPanel);
 			frame.pack();
 			frame.repaint();

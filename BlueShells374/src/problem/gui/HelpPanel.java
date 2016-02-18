@@ -14,11 +14,9 @@ public class HelpPanel extends JPanel{
 
 	private static final long serialVersionUID = 2L;
 	private JFrame mainMenuFrame;
-	private String[] args;
 	
-	public HelpPanel(JFrame mainMenuFrame, String[] args){
+	public HelpPanel(JFrame mainMenuFrame){
 		this.mainMenuFrame = mainMenuFrame;
-		this.args = args;
 		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -26,12 +24,10 @@ public class HelpPanel extends JPanel{
 		c.gridy = 0;
 		this.backButton(c);
 		c.gridy = 1;
-		this.UMLHelpButton(c);
+		this.AnalyzeHelpButton(c);
 		c.gridy = 2;
-		this.SDHelpButton(c);
-		c.gridy = 3; 
 		this.ConfigHelpButton(c);
-		c.gridy = 4;
+		c.gridy = 3;
 		this.patternAdditionHelpButton(c);
 	}
 	
@@ -41,16 +37,10 @@ public class HelpPanel extends JPanel{
 		this.add(backButton, c);
 	}
 	
-	private void UMLHelpButton(GridBagConstraints c){
+	private void AnalyzeHelpButton(GridBagConstraints c){
 		JButton UMLHelpButton = new JButton("UML Instructions");
-		UMLHelpButton.addActionListener(new UMLAction());
+		UMLHelpButton.addActionListener(new AnalyzeAction());
 		this.add(UMLHelpButton, c);
-	}
-	
-	private void SDHelpButton(GridBagConstraints c){
-		JButton SDHelpButton = new JButton("SD Instructions");
-		SDHelpButton.addActionListener(new SDAction());
-		this.add(SDHelpButton, c);
 	}
 	
 	private void ConfigHelpButton(GridBagConstraints c){
@@ -68,7 +58,7 @@ public class HelpPanel extends JPanel{
 	private class BackAction implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			JPanel mainMenu = new MainMenuPanel(HelpPanel.this.mainMenuFrame, HelpPanel.this.args);
+			JPanel mainMenu = new MainMenuPanel(HelpPanel.this.mainMenuFrame);
 			HelpPanel.this.mainMenuFrame.setContentPane(mainMenu);
 			HelpPanel.this.mainMenuFrame.pack();
 			HelpPanel.this.mainMenuFrame.repaint();
@@ -76,17 +66,10 @@ public class HelpPanel extends JPanel{
 		}
 	}
 	
-	private class UMLAction implements ActionListener{
+	private class AnalyzeAction implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("UML Instructions");
-		}
-	}
-	
-	private class SDAction implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			System.out.println("SD Instructions");
+			System.out.println("Analyze Instructions");
 		}
 	}
 	
