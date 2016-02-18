@@ -58,7 +58,7 @@ public class HelpPanel extends JPanel{
 	}
 	
 	private void patternAdditionHelpButton(GridBagConstraints c){
-		JButton patternHelpButton = new JButton("Adding Patterns Instructions");
+		JButton patternHelpButton = new JButton("Adding Phases Instructions");
 		patternHelpButton.addActionListener(new PatternAction());
 		this.add(patternHelpButton, c);
 		
