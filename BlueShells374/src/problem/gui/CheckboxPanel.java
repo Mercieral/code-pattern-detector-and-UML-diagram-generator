@@ -10,7 +10,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -135,8 +134,6 @@ public class CheckboxPanel extends JPanel {
 				patternBox.addItemListener(new ItemListener() {
 					@Override
 					public void itemStateChanged(ItemEvent e) {
-						System.out.println(
-								"pattern " + patternBox.getText() + " is now set to " + patternBox.isSelected());
 						patternBox.setFont(patternFont);
 					}
 				});

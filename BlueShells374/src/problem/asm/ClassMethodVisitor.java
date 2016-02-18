@@ -33,7 +33,7 @@ public class ClassMethodVisitor extends ClassVisitor {
 		MethodVisitor toDecorate = super.visitMethod(access, name, desc,
 				signature, exceptions);
 		if (name.equals("shuffle") || name.equals("main")){
-			System.out.println(desc);
+//			System.out.println(desc);
 		}
 		IMethod currentMethod = new Method();
 		currentMethod.setName(name);

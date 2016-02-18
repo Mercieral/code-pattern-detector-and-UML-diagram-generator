@@ -177,10 +177,6 @@ public class UMLOutputStream extends FilterOutputStream implements IPhase {
 					builder.append(
 							className + beginBrace + box + sb.toString());
 					builder.append(labelStart);
-					// System.out.println(obj.getAcessLevel() +
-					// obj.getClassName());
-					// System.out.println(Opcodes.ACC_INTERFACE);
-					// if (obj.getAcessLevel() == Opcodes.ACC_INTERFACE) {
 					if (obj.getAccessLevel() == 1537) {
 						builder.append("\\<\\<interface\\>\\>\\n\n\t\t\t");
 					}
@@ -235,7 +231,6 @@ public class UMLOutputStream extends FilterOutputStream implements IPhase {
 				sb.append(trimValue(f.getDesc(), ".") + " ");
 
 			else {
-				//System.out.println(f.getDesc() + " - " + f.getSignature() + " - " + trimValue(trimValue(f.getSignature(), "<"), "."));
 				sb.append(trimValue(f.getDesc(), ".") + "[");
 				sb.append(trimValue(trimValue(f.getSignature(), "<"), ".") + "] ");
 			}

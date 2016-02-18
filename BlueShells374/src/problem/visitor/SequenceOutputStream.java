@@ -62,11 +62,6 @@ public class SequenceOutputStream extends FilterOutputStream implements IPhase {
 	public void setUpVisitModel(){
 		this.visitor.addVisit(VisitType.Visit, Model.class, (ITraverser t) -> {
 			IModel m = (IModel) t;
-			System.out.println("class: " + this.className);
-			System.out.println("method: " + this.methodName);
-			System.out.println("params: " + this.parameters);
-			System.out.println("depth: " + this.callDepth);
-			// TODO fill in variables
 			this.variables = new HashMap<String, String>();
 			this.instances = new ArrayList<String>();
 			this.classList = new ArrayList<>();

@@ -10,8 +10,6 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import javax.swing.JButton;
@@ -28,14 +26,12 @@ import problem.interfaces.IModel;
 @SuppressWarnings("serial")
 public class UMLAnalyzePanel extends JPanel {
 	
-	private String configPath;
 	private Config cfg;
 
 	public UMLAnalyzePanel(String[] args, JFrame f) {
 		super();
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		configPath = null;
 		
 		JLabel taskLabel = new JLabel();
 		JProgressBar loadingBar = new JProgressBar(0, 7 + args.length);
@@ -104,7 +100,6 @@ public class UMLAnalyzePanel extends JPanel {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					String filepath = fileList.getSelectedItem().toString();
-					configPath = filepath;
 					task.setForeground(Color.BLACK);
 					task.setText("loaded configuration at " + filepath);
 					chooserFrame.dispose();
@@ -153,7 +148,6 @@ public class UMLAnalyzePanel extends JPanel {
 				@Override
 				public void run() {
 					try {
-						System.out.println("Analyzing");
 						IModel model = DesignParser.parse(cfg, args, loading, task);
 						
 						JPanel panel = new JPanel();

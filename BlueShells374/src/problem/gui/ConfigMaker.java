@@ -239,7 +239,6 @@ public class ConfigMaker extends JPanel {
 	}
 
 	private void writeFile(String fileName) {
-		System.out.println("Saving file");
 		// if(false){
 		if ((this.outputLocation == "" || this.exeLocation == ""
 				|| this.additionalSettings == "" || fileName == "")

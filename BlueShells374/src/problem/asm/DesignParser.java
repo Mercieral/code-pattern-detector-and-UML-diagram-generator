@@ -128,7 +128,6 @@ public class DesignParser {
 		IPhase UMLGenerator = new UMLOutputStream(new FileOutputStream("input_output/graph.gv"));
 		UMLGenerator.execute(config, model);
 		((UMLOutputStream)UMLGenerator).close();
-		System.out.println("Generating UML");
 
 		
 		loading.setValue(loading.getValue() + 1);
@@ -201,7 +200,6 @@ public class DesignParser {
 		IPhase UMLGenerator = new UMLOutputStream(new FileOutputStream("input_output/graph.gv"));
 		UMLGenerator.execute(config, model);
 		((UMLOutputStream)UMLGenerator).close();
-		System.out.println("Generating UML");
 		
 		return model;
 

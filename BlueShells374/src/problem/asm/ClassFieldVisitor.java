@@ -33,9 +33,7 @@ public class ClassFieldVisitor extends ClassVisitor{
 		FieldVisitor toDecorate = super.visitField(access, name, desc, signature, value);
 		String type = Type.getType(desc).getClassName();
 		// WARNING: delete this line *waiting*
-		//System.out.println("	"+type+" "+ name);
 		// DONE: add this field to your internal representation of the current class.
-		//System.out.println(name + "here is sig " + signature + "now for desc " + desc);
 		String sigType = "";
 		if (signature != null){
 			sigType = Type.getType(signature).getClassName().replace(">", "\\>" );
@@ -57,10 +55,6 @@ public class ClassFieldVisitor extends ClassVisitor{
 					relation.setFromObject(currentClass.getClassName());
 					relation.setToObject(field.replace(".", ""));
 					this.model.addRelation(relation);
-//					IArrow arrow = new ArrowHas();
-//					arrow.setFromObject(currentClass.getClassName());
-//					arrow.setToObject(field.replace(".", ""));
-//					currentClass.addArrow(arrow);
 				}
 			}
 			if (className.replace(".", "").equals(type.replace(".", ""))){
@@ -68,10 +62,6 @@ public class ClassFieldVisitor extends ClassVisitor{
 				relation.setFromObject(currentClass.getClassName());
 				relation.setToObject(type.replace(".", ""));
 				model.addRelation(relation);
-//					IArrow arrow = new ArrowHas();
-//					arrow.setFromObject(currentClass.getClassName());
-//					arrow.setToObject(type.replace(".", ""));
-//					currentClass.addArrow(arrow);
 			}
 		}
 		currentClass.addIField(currentField);

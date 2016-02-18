@@ -47,10 +47,6 @@ public class MyMethodVisitor extends MethodVisitor {
 				relation.setFromObject(currentClass.getClassName());
 				relation.setToObject(owner);
 				model.addRelation(relation);
-//				IArrow arrow = new ArrowUses();
-//				arrow.setFromObject(currentClass.getClassName());
-//				arrow.setToObject(owner);
-//				currentClass.addArrow(arrow);
 			}
 		}
 		
@@ -61,28 +57,6 @@ public class MyMethodVisitor extends MethodVisitor {
 		innerCall.setGoingToMethod(name);
 		innerCall.setDesc(desc);
 		this.currentMethod.addInnerCall(innerCall);
-	}
-
-	@Override
-	public void visitFieldInsn(int opcode, String owner, String name,
-			String desc) {
-//		System.out.println("--FieldInsn--");
-//		System.out.println(owner + name + desc);
-		for (String Class : this.classes) {
-			String ClassName = Class.replace(".", "");
-			String descName = desc.substring(1).replace("/", "").replace(";",
-					"");
-			if (ClassName.equals(descName)) {
-//				IRelation relation = new HasRelation();
-//				relation.setToObject(currentClass.getClassName());
-//				relation.setFromObject(desc.replace(";", "").substring(1));
-//				model.addRelation(relation);
-//				IArrow arrow = new ArrowHas();
-//				arrow.setFromObject(currentClass.getClassName());
-//				arrow.setToObject(desc.replace(";", "").substring(1));
-//				currentClass.addArrow(arrow);
-			}
-		}
 	}
 
 	@Override
@@ -100,8 +74,6 @@ public class MyMethodVisitor extends MethodVisitor {
 	@Override
 	public void visitVarInsn(int opcode, int var) {
 		super.visitVarInsn(opcode, var);
-		//System.out.println("-- visitVarInsn --");
-		//System.out.println("Opcode: " + opcode + "  Var: " + var);
 	}
 
 }

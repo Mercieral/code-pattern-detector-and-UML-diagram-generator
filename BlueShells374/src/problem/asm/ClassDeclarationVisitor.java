@@ -24,7 +24,6 @@ public class ClassDeclarationVisitor extends ClassVisitor {
 	@Override
 	public void visit(int version, int access, String name, String signature, String superName, String[] interfaces){
 		// HELP: delete the line below
-		//System.out.println("Class: "+name+" extends "+superName+" implements "+Arrays.toString(interfaces));
 		// HELP: construct an internal representation of the class for later use by decorators
 		currentClass.setClassName(name);
 		currentClass.setAccessLevel(access);
@@ -36,16 +35,11 @@ public class ClassDeclarationVisitor extends ClassVisitor {
 					relation.setFromObject(currentClass.getClassName());
 					relation.setToObject(superName);
 					this.model.addRelation(relation);
-//					IArrow arrow1 = new ArrowExtension();
-//					arrow1.setFromObject(currentClass.getClassName());
-//					arrow1.setToObject(superName);
-//					currentClass.addArrow(arrow1);
 					break;
 				 }
 			}
 		}
 		
-		//System.out.println("----- " + superName);
 		currentClass.setSignature(signature);
 		currentClass.setClassVersion((double) version); 
 		for(String inter : interfaces){
@@ -56,10 +50,6 @@ public class ClassDeclarationVisitor extends ClassVisitor {
 					relation.setFromObject(currentClass.getClassName());
 					relation.setToObject(inter);
 					this.model.addRelation(relation);
-//					IArrow arrow2 = new ArrowInterface();
-//					arrow2.setFromObject(currentClass.getClassName());
-//					arrow2.setToObject(inter);
-//					currentClass.addArrow(arrow2);
 					break;
 				}
 			}
