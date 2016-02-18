@@ -5,10 +5,18 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 
 public class HelpPanel extends JPanel{
 
@@ -38,7 +46,7 @@ public class HelpPanel extends JPanel{
 	}
 	
 	private void AnalyzeHelpButton(GridBagConstraints c){
-		JButton UMLHelpButton = new JButton("UML Instructions");
+		JButton UMLHelpButton = new JButton("Analyze Instructions");
 		UMLHelpButton.addActionListener(new AnalyzeAction());
 		this.add(UMLHelpButton, c);
 	}
@@ -70,6 +78,14 @@ public class HelpPanel extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Analyze Instructions");
+			String file = "AppInstructionDocuments\\AnalyzeInstructions.txt";
+			try {
+				String text = readInstructionFile(file);
+				createInstructionFrame(text);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+				System.out.println("File does not exist");
+			}
 		}
 	}
 	
@@ -77,6 +93,14 @@ public class HelpPanel extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Config Instructions");
+			String file = "AppInstructionDocuments\\ConfigInstructions.txt";
+			try {
+				String text = readInstructionFile(file);
+				createInstructionFrame(text);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+				System.out.println("File does not exist");
+			}
 		}
 	}
 	
@@ -84,7 +108,35 @@ public class HelpPanel extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Pattern addition instructions");
+			String file = "AppInstructionDocuments\\AddingAdditionalPatternInstructions.txt";
+			try {
+				String text = readInstructionFile(file);
+				createInstructionFrame(text);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+				System.out.println("File does not exist");
+			}
 		}
-		
+	}
+	
+	private String readInstructionFile(String File) throws IOException{
+		BufferedReader br = new BufferedReader(new FileReader(File));
+		String line;
+		StringBuilder sb = new StringBuilder();
+		while ((line = br.readLine()) != null){
+			sb.append(line);
+			sb.append("\n");
+		}
+		return sb.toString();
+	}
+	
+	private void createInstructionFrame(String text){
+		JFrame instructionFrame = new JFrame("Design Parser");
+		JTextArea instructions = new JTextArea(text);
+		instructions.setEditable(false);
+		instructionFrame.setContentPane(instructions);
+		instructionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		instructionFrame.pack();
+		instructionFrame.setVisible(true);
 	}
 }
