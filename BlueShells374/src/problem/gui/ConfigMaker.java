@@ -5,6 +5,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -53,6 +56,7 @@ public class ConfigMaker extends JPanel {
 				startFrame.setContentPane(new MainMenuPanel(startFrame, null));
 				startFrame.repaint();
 				startFrame.revalidate();
+				startFrame.pack();
 			}
 		});
 		titlePanel.add(button);
@@ -79,7 +83,7 @@ public class ConfigMaker extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				writeFile();
+				writeFile(fileName.getText());
 			}
 		});
 		panel.add(button);
@@ -151,7 +155,7 @@ public class ConfigMaker extends JPanel {
 		JButton button = new JButton("Find Dot EXE");
 		JLabel locationLabel = new JLabel("Folder location");
 		ExecutableActionListener eal = new ExecutableActionListener(
-				locationLabel, this, true);
+				locationLabel, this, true, this.startFrame);
 		button.addActionListener(eal);
 
 		panelButton.add(label);
@@ -195,7 +199,7 @@ public class ConfigMaker extends JPanel {
 		JButton button = new JButton("Find Output Path");
 		JLabel locationLabel = new JLabel("Folder location");
 		button.addActionListener(
-				new FileFinderActionListener(locationLabel, this, false));
+				new FileFinderActionListener(locationLabel, this, false, this.startFrame));
 		panelButton.add(label);
 		panelButton.add(button);
 		panelButton.add(locationLabel);
@@ -209,20 +213,13 @@ public class ConfigMaker extends JPanel {
 		JButton button = new JButton("Find main path");
 		JLabel locationLabel = new JLabel("Folder location");
 		FileFinderActionListener ffal = new FileFinderActionListener(
-				locationLabel, this, true);
+				locationLabel, this, true, this.startFrame);
 		button.addActionListener(ffal);
 
 		panelButton.add(label);
 		panelButton.add(button);
 		panelButton.add(locationLabel);
 		this.add(panelButton);
-	}
-
-	/**
-	 * @return the dirLocation
-	 */
-	public String getInputLocation() {
-		return inputLocation;
 	}
 
 	/**
@@ -234,13 +231,6 @@ public class ConfigMaker extends JPanel {
 	}
 
 	/**
-	 * @return the exeLocation
-	 */
-	public String getExeLocation() {
-		return exeLocation;
-	}
-
-	/**
 	 * @param exeLocation
 	 *            - the exeLocation to set
 	 */
@@ -248,17 +238,19 @@ public class ConfigMaker extends JPanel {
 		this.exeLocation = exeLocation;
 	}
 
-	private void writeFile() {
+	private void writeFile(String fileName) {
 		System.out.println("Saving file");
 		// if(false){
-		if (this.inputLocation == "" || this.outputLocation == ""
-				|| this.exeLocation == "" || this.additionalSettings == "") {
+		if ((this.outputLocation == "" || this.exeLocation == ""
+				|| this.additionalSettings == "" || fileName == "")
+				&& (this.inputLocation == "" && this.additionalClasses == "")) {
 			JOptionPane.showMessageDialog(null,
 					"Not all fields filled out. \nEnsure that there is an input directory, "
 							+ "output directory, executable location, \n"
 							+ "and additional " + "settings are filled out");
 		} else {
 			StringBuffer sb = new StringBuffer();
+			this.inputLocation = this.inputLocation.replace("\\", "\\\\");
 			sb.append("Input-Folder: " + this.inputLocation);
 			sb.append("\n");
 			sb.append("Input-Classes: " + this.additionalClasses);
@@ -270,20 +262,24 @@ public class ConfigMaker extends JPanel {
 			sb.append("Phases: " + this.phases);
 			sb.append("\n");
 			sb.append("" + this.additionalSettings);
-			System.out.println(sb.toString());
-			JOptionPane.showMessageDialog(null, "File saved");
+			try {
+				PrintWriter writer = new PrintWriter(
+						"config/" + fileName + ".cfg", "UTF-8");
+				writer.write(sb.toString());
+				writer.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			JOptionPane.showMessageDialog(null,
+					"File saved to config/" + fileName);
 			startFrame.setContentPane(new MainMenuPanel(startFrame, null));
 			startFrame.repaint();
 			startFrame.revalidate();
+			startFrame.pack();
 		}
 
-	}
-
-	/**
-	 * @return the outputLocation
-	 */
-	public String getOutputLocation() {
-		return outputLocation;
 	}
 
 	/**

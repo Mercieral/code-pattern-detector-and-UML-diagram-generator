@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class FileFinderActionListener implements ActionListener {
@@ -13,13 +14,15 @@ public class FileFinderActionListener implements ActionListener {
 	private ConfigMaker panel;
 	private String location;
 	private boolean status;
+	private JFrame frame;
 
 	public FileFinderActionListener(JLabel label, ConfigMaker rootPanel,
-			boolean locationStatus) {
+			boolean locationStatus, JFrame frame) {
 		this.label = label;
 		this.panel = rootPanel;
 		this.location = "";
 		this.status = locationStatus;
+		this.frame = frame;
 	}
 
 	@Override
@@ -41,6 +44,8 @@ public class FileFinderActionListener implements ActionListener {
 				this.panel.setOutputLocation(this.location);
 			}
 		}
+		
+		this.frame.pack();
 	}
 
 }
