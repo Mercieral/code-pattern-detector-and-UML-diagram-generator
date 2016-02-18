@@ -65,47 +65,13 @@ public class DesignParser {
 		task.setText("initializing");
 		loading.setValue(loading.getValue() + 1);
 		IModel model = new Model();
-		ClassLoading loader = new ClassLoading();
-		loader.execute(config,  model);
-
-		
-		task.setText("Detecting Singleton Pattern");
-		loading.setValue(loading.getValue() + 1);
-		SingletonVisitor singletonVisitor = new SingletonVisitor();
-		singletonVisitor.execute(config, model);
-		
-		task.setText("Detecting Decorator Pattern");
-		loading.setValue(loading.getValue() + 1);
-		DecoratorVisitor decoratorVisitor = new DecoratorVisitor();
-		decoratorVisitor.execute(config, model);
-		
-		task.setText("Detecting Adapter Pattern");
-		loading.setValue(loading.getValue() + 1);
-		AdapterVisitor adapterVisitor = new AdapterVisitor();
-		adapterVisitor.execute(config, model);
-		
-		task.setText("Detecting Composite Pattern");
-		loading.setValue(loading.getValue() + 1);
-		CompositeVisitor compositeVisitor = new CompositeVisitor();
-		compositeVisitor.execute(config, model);
-//		BruteForceAdapterDetector adapterVisitor = new BruteForceAdapterDetector(model);
-//		adapterVisitor.adapterDetect();
-		
-		
-		//Comment out to use console input (in for GUI)
-		task.setText("Generating UML");
-		loading.setValue(loading.getValue() + 1);
-		IPhase UMLGenerator = new UMLGenerator();
-		UMLGenerator.execute(config, model);
-
-		
-		loading.setValue(loading.getValue() + 1);
-		task.setText("Finished Generating UML");
-		
+		for (String phaseName: config.phases){
+			IPhase phase = PhaseFactory.phases.get(phaseName);
+			if (phase != null){
+				phase.execute(config, model);
+			}
+		}
 		return model;
-
-		//Uncomment to use console input (out for GUI)
-		//commandConsole(model, streams);
 	}
 
 

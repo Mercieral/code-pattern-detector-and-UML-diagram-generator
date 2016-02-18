@@ -30,7 +30,11 @@ public class ConfigLoader {
 						continue;
 					}
 					line = line.split(": ")[1];
-					config.classes = Arrays.asList(line.split(","));
+					ArrayList<String> classList = new ArrayList<String>();
+					for (String phase : line.split(",")){
+						classList.add(phase);
+					}
+					config.classes = classList;
 				}
 				else if (type.equals("Output-Directory")){
 					config.outDir = line.split(": ")[1];
@@ -43,7 +47,11 @@ public class ConfigLoader {
 						continue;
 					}
 					line = line.split(": ")[1];
-					config.phases = Arrays.asList(line.split(","));
+					ArrayList<String> phaseList = new ArrayList<String>();
+					for (String phase : line.split(",")){
+						phaseList.add(phase);
+					}
+					config.phases = phaseList;
 				}
 				else if (type.equals("Adapter-MethodDelegation")){
 					line = line.split(": ")[1];

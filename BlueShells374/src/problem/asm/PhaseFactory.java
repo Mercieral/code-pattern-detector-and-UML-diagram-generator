@@ -14,7 +14,7 @@ import problem.visitor.UMLGenerator;
 
 public class PhaseFactory {
 	
-	public static Map<String, IPhase> phases;
+	public static Map<String, IPhase> phases = new HashMap<String, IPhase>();
 	
 	// Pre-populate phases here
 	static{

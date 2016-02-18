@@ -68,9 +68,11 @@ public class CheckboxPanel extends JPanel {
 				@Override
 				public void itemStateChanged(ItemEvent e) {
 					if (classBox.isSelected()){
+						config.classes.add(classBox.getText().replace("/", "."));
 						classes.add(classBox.getText().replace("/", "."));
 					}
 					else{
+						config.classes.remove(classBox.getText().replace("/", "."));
 						classes.remove(classBox.getText().replace("/", "."));
 					}
 					try {
