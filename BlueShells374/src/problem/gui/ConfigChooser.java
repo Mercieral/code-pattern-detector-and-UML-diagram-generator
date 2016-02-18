@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class ConfigChooser extends JFrame {
+	
+	private String file;
 
 	/**
 	 * 
@@ -35,7 +37,7 @@ public class ConfigChooser extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String file = fileList.getSelectedItem().toString();
+				file = fileList.getSelectedItem().toString();
 				System.out.println("File selected: " + file); // FIXME
 				ConfigChooser.this.dispose();
 				System.out.println("Done"); // FIXME

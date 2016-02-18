@@ -6,13 +6,16 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,13 +30,14 @@ import problem.interfaces.IModel;
 @SuppressWarnings("serial")
 public class UMLAnalyzePanel extends JPanel {
 	
-	private Config config;
+	private String configPath;
+	private Config cfg;
 
 	public UMLAnalyzePanel(String[] args, JFrame f) {
 		super();
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		config = null;
+		configPath = null;
 		
 		JLabel taskLabel = new JLabel();
 		JProgressBar loadingBar = new JProgressBar(0, 7 + args.length);
@@ -85,15 +89,47 @@ public class UMLAnalyzePanel extends JPanel {
 		}
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			JFileChooser fileChooser = new JFileChooser("Select Config file");
-			File defaultDir = new File("/config");
-			fileChooser.setCurrentDirectory(defaultDir);
-			int value = fileChooser.showOpenDialog(null);
-			if (value == JFileChooser.APPROVE_OPTION) {
-				File configFile = fileChooser.getSelectedFile();
-				task.setForeground(Color.BLACK);
-				task.setText("Loading configuration " + configFile.getName());
-			}
+			JFrame chooserFrame = new JFrame();
+			File folder = new File("config\\");
+			File[] listOfFiles = folder.listFiles(new FilenameFilter() {
+
+				@Override
+				public boolean accept(File dir, String name) {
+					return name.toLowerCase().endsWith(".cfg");
+				}
+			});
+			chooserFrame.setTitle("Configuration File Chooser");
+			chooserFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			JComboBox<File> fileList = new JComboBox<>(listOfFiles);
+			fileList.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					String file = fileList.getSelectedItem().toString();
+					configPath = file;
+					task.setForeground(Color.BLACK);
+					task.setText("loaded configuration at " + file);
+					chooserFrame.dispose();
+					cfg = loadCfg();
+				}
+			});
+			JLabel chooseLabel = new JLabel("Choose Configuration File: ");
+			JPanel chooser = new JPanel();
+			chooser.add(chooseLabel);
+			chooser.add(fileList);
+			Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+			chooserFrame.setLocation(dim.width / 2 - chooserFrame.getSize().width / 2,
+					dim.height / 2 - chooserFrame.getSize().height / 2);
+			chooserFrame.add(chooser);
+			chooserFrame.pack();
+			chooserFrame.setVisible(true);
+			
+		}
+		private Config loadCfg() {
+			File file = new File(configPath);
+			Config config = new Config();
+			System.out.println("loaded");
+			return config;
 		}
 	}
 	
@@ -112,7 +148,7 @@ public class UMLAnalyzePanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (config == null){
+			if (configPath == null){
 				task.setForeground(Color.RED);
 				task.setText("no configuration was selected");
 				return;
@@ -158,7 +194,6 @@ public class UMLAnalyzePanel extends JPanel {
 						frame.pack();
 						frame.revalidate();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -170,6 +205,4 @@ public class UMLAnalyzePanel extends JPanel {
 		
 	}
 	
-	
-
 }

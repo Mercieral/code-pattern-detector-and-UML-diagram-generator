@@ -1,5 +1,6 @@
 package problem.gui;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -47,6 +48,8 @@ public class MainMenuPanel extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			JPanel runner = new UMLAnalyzePanel(args, frame);
 			frame.setContentPane(runner);
+			frame.setPreferredSize(new Dimension(400,400));
+			frame.pack();
 			frame.repaint();
 			frame.revalidate();
 		}
@@ -64,6 +67,7 @@ public class MainMenuPanel extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			JPanel configPanel = new ConfigMaker();
 			frame.setContentPane(configPanel);
+			frame.pack();
 			frame.repaint();
 			frame.revalidate();
 		}
