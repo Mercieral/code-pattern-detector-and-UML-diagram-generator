@@ -52,14 +52,12 @@ public class MainMenuPanel extends JPanel {
 		this.args = args;
 		this.setLayout(new GridBagLayout());
 
-		JButton UMLrunner = new JButton("Generate UML diagram");
-		JButton SDrunner = new JButton("Generate sequence diagram");
+		JButton UMLrunner = new JButton("Analyze");
 		JButton config = new JButton("Config maker");
 		JButton help = new JButton("Help");
 		JButton openRandomPicture = new JButton("CS Related Picture");
 
 		UMLrunner.addActionListener(new UMLAction());
-		SDrunner.addActionListener(new SDAction());
 		config.addActionListener(new ConfigAction());
 		help.addActionListener(new HelpAction());
 		openRandomPicture.addActionListener(new RandomPicture());
@@ -69,12 +67,10 @@ public class MainMenuPanel extends JPanel {
 		c.insets = new Insets(20, 20, 20, 20);
 		this.add(UMLrunner, c);
 		c.gridy = 1;
-		this.add(SDrunner, c);
-		c.gridy = 2;
 		this.add(config, c);
-		c.gridy = 3;
+		c.gridy = 2;
 		this.add(help, c);
-		c.gridy = 4;
+		c.gridy = 3;
 		this.add(openRandomPicture, c);
 
 	}
@@ -114,14 +110,7 @@ public class MainMenuPanel extends JPanel {
 		}
 
 	}
-
-	private class SDAction implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			System.out.println("not yet implemented in GUI");
-		}
-	}
-
+	
 	private class ConfigAction implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -136,7 +125,11 @@ public class MainMenuPanel extends JPanel {
 	private class HelpAction implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("not yet implemented in GUI");
+			JPanel helpPanel = new HelpPanel(MainMenuPanel.this.frame, MainMenuPanel.this.args);
+			frame.setContentPane(helpPanel);
+			frame.pack();
+			frame.repaint();
+			frame.revalidate();
 		}
 	}
 
