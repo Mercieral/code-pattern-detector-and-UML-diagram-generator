@@ -36,7 +36,9 @@ public class FileFinderActionListener implements ActionListener {
 			this.location = fileChooser.getSelectedFile().toString();
 			this.label.setText(fileChooser.getSelectedFile().toString());
 			if (this.status) {
-				this.panel.setDirLocation(this.location);
+				this.panel.setInputLocation(this.location);
+			} else {
+				this.panel.setOutputLocation(this.location);
 			}
 		}
 	}

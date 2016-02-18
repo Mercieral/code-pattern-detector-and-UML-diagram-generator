@@ -19,7 +19,9 @@ public class ConfigMaker extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String dirLocation;
+	private String inputLocation;
+
+	private String outputLocation;
 
 	private String exeLocation;
 
@@ -27,11 +29,17 @@ public class ConfigMaker extends JPanel {
 
 	private String phases;
 
+	private String additionalSettings;
+
 	public ConfigMaker() {
 		JPanel titlePanel = new JPanel();
 		JLabel title = new JLabel("Configuration Panel");
-		this.dirLocation = "";
+		this.inputLocation = "";
+		this.outputLocation = "";
+		this.exeLocation = "";
+		this.phases = "";
 		this.additionalClasses = "";
+		this.additionalSettings = "";
 		titlePanel.add(title);
 		this.setLayout(new GridLayout(9, 3));
 		this.add(titlePanel);
@@ -51,11 +59,12 @@ public class ConfigMaker extends JPanel {
 		JTextField fileName = new JTextField();
 		fileName.setPreferredSize(new Dimension(250,
 				(int) fileName.getPreferredSize().getHeight()));
+		fileName.setText("defaultConfigName");
 		button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Saving file here");
+				writeFile();
 			}
 		});
 		panel.add(button);
@@ -70,10 +79,37 @@ public class ConfigMaker extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Creating Options");
+				String temp = JOptionPane.showInputDialog(
+						"AdditionalSettings \n" + "Single setting at a time");
+				if(additionalSettings != ""){
+					additionalSettings += "\n" + temp;					
+				} else { 
+					additionalSettings = temp;
+				}
 			}
 		});
 		panel.add(button);
+		JButton viewButton = new JButton("View Settings");
+		viewButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null,
+						"Additional Settings: \n" + additionalSettings);
+			}
+		});
+		panel.add(viewButton);
+		JButton clear = new JButton("Clear Additional");
+		clear.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				additionalSettings = "";
+				JOptionPane.showMessageDialog(null, "Cleared Settings");
+			}
+		});
+		panel.setBackground(Color.GRAY);
+		panel.add(clear);
 		this.add(panel);
 	}
 
@@ -139,7 +175,7 @@ public class ConfigMaker extends JPanel {
 
 	private void findOutputWindow() {
 		JPanel panelButton = new JPanel();
-		panelButton.setBackground(Color.DARK_GRAY);
+		panelButton.setBackground(Color.GRAY);
 		JLabel label = new JLabel("Output Path");
 		JButton button = new JButton("Find Output Path");
 		JLabel locationLabel = new JLabel("Folder location");
@@ -170,16 +206,16 @@ public class ConfigMaker extends JPanel {
 	/**
 	 * @return the dirLocation
 	 */
-	public String getDirLocation() {
-		return dirLocation;
+	public String getInputLocation() {
+		return inputLocation;
 	}
 
 	/**
 	 * @param dirLocation
 	 *            the dirLocation to set
 	 */
-	public void setDirLocation(String dirLocation) {
-		this.dirLocation = dirLocation;
+	public void setInputLocation(String dirLocation) {
+		this.inputLocation = dirLocation;
 	}
 
 	/**
@@ -191,10 +227,52 @@ public class ConfigMaker extends JPanel {
 
 	/**
 	 * @param exeLocation
-	 *            the exeLocation to set
+	 *            - the exeLocation to set
 	 */
 	public void setExeLocation(String exeLocation) {
 		this.exeLocation = exeLocation;
+	}
+
+	private void writeFile() {
+		System.out.println("Saving file");
+		if (this.inputLocation == "" || this.outputLocation == ""
+				|| this.exeLocation == "" || this.additionalSettings == "") {
+			JOptionPane.showMessageDialog(null,
+					"Not all fields filled out. \nEnsure that there is an input directory, "
+							+ "output directory, executable location, \n"
+							+ "and additional " + "settings are filled out");
+		} else {
+			StringBuffer sb = new StringBuffer();
+			sb.append("Input-Folder: " + this.inputLocation);
+			sb.append("\n");
+			sb.append("Input-Classes: " + this.additionalClasses);
+			sb.append("\n");
+			sb.append("Output-Directory: " + this.outputLocation);
+			sb.append("\n");
+			sb.append("Dot-Path: " + this.exeLocation);
+			sb.append("\n");
+			sb.append("Phases: " + this.phases);
+			sb.append("\n");
+			sb.append("" + this.additionalSettings);
+			System.out.println(sb.toString());
+
+		}
+
+	}
+
+	/**
+	 * @return the outputLocation
+	 */
+	public String getOutputLocation() {
+		return outputLocation;
+	}
+
+	/**
+	 * @param outputLocation
+	 *            the outputLocation to set
+	 */
+	public void setOutputLocation(String outputLocation) {
+		this.outputLocation = outputLocation;
 	}
 
 }

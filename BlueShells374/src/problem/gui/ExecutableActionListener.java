@@ -6,6 +6,7 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class ExecutableActionListener implements ActionListener {
 
@@ -30,6 +31,8 @@ public class ExecutableActionListener implements ActionListener {
 		} else {
 			fileChooser = new JFileChooser();
 		}
+		fileChooser.setFileFilter(
+				new FileNameExtensionFilter("Executables", "exe"));
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		int value = fileChooser.showOpenDialog(panel);
 		if (value == JFileChooser.APPROVE_OPTION) {
