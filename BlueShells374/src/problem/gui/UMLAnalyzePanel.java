@@ -1,32 +1,39 @@
 package problem.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 
+import problem.asm.Config;
 import problem.asm.DesignParser;
 import problem.interfaces.IModel;
 
 @SuppressWarnings("serial")
-public class RunnerPanel extends JPanel {
+public class UMLAnalyzePanel extends JPanel {
+	
+	private Config config;
 
-	public RunnerPanel(String[] args, JFrame f) {
+	public UMLAnalyzePanel(String[] args, JFrame f) {
 		super();
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
+		config = null;
 		
 		JLabel taskLabel = new JLabel();
 		JProgressBar loadingBar = new JProgressBar(0, 7 + args.length);
@@ -34,7 +41,7 @@ public class RunnerPanel extends JPanel {
 		JButton loadButton = new JButton("Load Config");
 		JButton analyzeButton = new JButton("Analyze");
 		JButton backButton = new JButton("Back to main menu");
-		loadButton.addActionListener(new load());
+		loadButton.addActionListener(new load(taskLabel));
 		analyzeButton.addActionListener(new analyze(args, loadingBar, taskLabel, f));
 		backButton.addActionListener(new back(f, args));
 		
@@ -71,9 +78,22 @@ public class RunnerPanel extends JPanel {
 	
 	
 	private class load implements ActionListener{
+		private JLabel task;
+		
+		public load(JLabel task){
+			this.task = task;
+		}
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("load");
+			JFileChooser fileChooser = new JFileChooser("Select Config file");
+			File defaultDir = new File("/config");
+			fileChooser.setCurrentDirectory(defaultDir);
+			int value = fileChooser.showOpenDialog(null);
+			if (value == JFileChooser.APPROVE_OPTION) {
+				File configFile = fileChooser.getSelectedFile();
+				task.setForeground(Color.BLACK);
+				task.setText("Loading configuration " + configFile.getName());
+			}
 		}
 	}
 	
@@ -92,6 +112,12 @@ public class RunnerPanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			if (config == null){
+				task.setForeground(Color.RED);
+				task.setText("no configuration was selected");
+				return;
+			}
+			task.setForeground(Color.BLACK);
 			loading.setValue(0);
 			Thread t = new Thread(new Runnable() {
 
@@ -114,7 +140,7 @@ public class RunnerPanel extends JPanel {
 
 							@Override
 							public void actionPerformed(ActionEvent e) {
-								JPanel runner = new RunnerPanel(args, frame);
+								JPanel runner = new UMLAnalyzePanel(args, frame);
 								frame.setContentPane(runner);
 								frame.repaint();
 								frame.revalidate();

@@ -45,7 +45,7 @@ public class MainMenuPanel extends JPanel {
 	private class umlAction implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			JPanel runner = new RunnerPanel(args, frame);
+			JPanel runner = new UMLAnalyzePanel(args, frame);
 			frame.setContentPane(runner);
 			frame.repaint();
 			frame.revalidate();

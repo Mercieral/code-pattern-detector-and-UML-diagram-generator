@@ -19,7 +19,7 @@ public class ConfigChooser extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ConfigChooser(ConfigParser cp) {
+	public ConfigChooser() {
 		File folder = new File("config\\");
 		File[] listOfFiles = folder.listFiles(new FilenameFilter() {
 
@@ -37,7 +37,6 @@ public class ConfigChooser extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String file = fileList.getSelectedItem().toString();
 				System.out.println("File selected: " + file); // FIXME
-				cp.setFileLocation(file);
 				ConfigChooser.this.dispose();
 				System.out.println("Done"); // FIXME
 			}
