@@ -44,10 +44,10 @@ public class ConfigMaker extends JPanel {
 	private String additionalSettings;
 
 	private JFrame startFrame;
-	
+
 	private List<String> selectedFrames;
-	
-	private String[] phaseOrder;
+
+	private boolean[] phaseOrder;
 
 	public ConfigMaker(JFrame startFrame) {
 		JPanel titlePanel = new JPanel();
@@ -60,7 +60,7 @@ public class ConfigMaker extends JPanel {
 		this.additionalClasses = "";
 		this.additionalSettings = "";
 		this.selectedFrames = new ArrayList<>();
-		this.phaseOrder = new String[PhaseFactory.phases.keySet().size()];
+		this.phaseOrder = new boolean[PhaseFactory.phases.keySet().size()];
 		titlePanel.add(title);
 		JButton button = new JButton("Back");
 		button.addActionListener(new ActionListener() {
@@ -159,43 +159,31 @@ public class ConfigMaker extends JPanel {
 	private void setPhases() {
 		JPanel panel = new JPanel();
 		List<JCheckBox> listCheck = new ArrayList<>();
-		int counter = -1;
-		for(String value: PhaseFactory.phases.keySet()){ // FIXME
-			counter++;
-			this.phaseOrder[counter] = value;
+		int counter = 0;
+		for (String value : PhaseFactory.phases.keySet()) {
+			this.selectedFrames.add(value);
+			final int currentCounter = counter;
+			this.phaseOrder[counter] = false;
 			JCheckBox classBox = new JCheckBox(value);
 			classBox.setSelected(false);
 			classBox.addItemListener(new ItemListener() {
-				
+
 				@Override
 				public void itemStateChanged(ItemEvent e) {
-					if(classBox.isSelected()){
-						if(!selectedFrames.contains(classBox.getText())){
-							selectedFrames.add(classBox.getText());
-							System.out.println("Add");
-						}
+					if (classBox.isSelected()) {
+						// System.out.println("Add");
+						phaseOrder[currentCounter] = true;
+						// }
 					} else {
-						if(selectedFrames.contains(classBox.getText())){
-							selectedFrames.remove(classBox.getText());
-							System.out.println("Remove");
-						}
+						// System.out.println("Remove");
+						phaseOrder[currentCounter] = false;
 					}
 				}
 			});
+			counter++;
 			listCheck.add(classBox);
 			panel.add(classBox);
 		}
-//		JButton button = new JButton("Set phases");
-//		button.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				phases = JOptionPane
-//						.showInputDialog("Framework's Execution Phases \n"
-//								+ "Separated by comma");
-//			}
-//		});
-//		panel.add(button);
 		this.add(panel);
 	}
 
@@ -347,16 +335,17 @@ public class ConfigMaker extends JPanel {
 			sb.append("\n");
 			sb.append("Dot-Path: " + this.exeLocation);
 			sb.append("\n");
-			String temp = selectedFrames.toString();
-//			for(int i = 0; i < this.phaseOrder.length; i++){
-//				for(String tempPhase: selectedFrames){
-//					if(tempPhase.equals(anObject)){
-//						
-//					}
-//				}
-//			}
-			temp = temp.replace(" ", "").replace("[", "").replace("]", "");
-			System.out.println(temp);
+			String temp = "";
+			for (int i = 0; i < this.phaseOrder.length; i++) {
+				if (this.phaseOrder[i]) {
+					temp += this.selectedFrames.get(i) + ",";
+				}
+			}
+			if (temp.length() > 1) {
+				temp = temp.substring(0, temp.length() - 1);
+			}
+			// System.out.println(temp);
+			this.phases = temp;
 			sb.append("Phases: " + this.phases);
 			sb.append("\n");
 			sb.append("" + this.additionalSettings);
