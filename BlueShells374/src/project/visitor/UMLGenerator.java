@@ -176,7 +176,7 @@ public class UMLGenerator implements IPhase {
 
 					String labelStart = "label = \n\t\t\t\"{ ";
 					String className = "\t"
-							+ obj.getClassName().replace("/", "") + " ";
+							+ obj.getClassName().replace("/", "").replace("$", "") + " ";
 
 					builder.append(
 							className + beginBrace + box + sb.toString());
@@ -232,13 +232,13 @@ public class UMLGenerator implements IPhase {
 			// field string
 			sb.append(f.getAccessLevel() + " ");
 			if (f.getSignature().equals(""))
-				sb.append(trimValue(f.getDesc(), ".") + " ");
+				sb.append(trimValue(f.getDesc().replace("$", ""), ".") + " ");
 
 			else {
-				sb.append(trimValue(f.getDesc(), ".") + "[");
-				sb.append(trimValue(trimValue(f.getSignature(), "<"), ".") + "] ");
+				sb.append(trimValue(f.getDesc().replace("$", ""), ".") + "[");
+				sb.append(trimValue(trimValue(f.getSignature().replace("$", ""), "<"), ".") + "] ");
 			}
-			sb.append(f.getName());
+			sb.append(f.getName().replace("$", ""));
 
 			String end = " \\l\n";
 			sb.append(end);
@@ -273,7 +273,7 @@ public class UMLGenerator implements IPhase {
 				result = result + ") : ";
 				result = result + trimValue(m.getReturnType(), ".");
 
-				sb.append(result);
+				sb.append(result.replace("$", ""));
 				sb.append(" \\l\n");
 
 				try {
