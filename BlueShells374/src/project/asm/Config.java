@@ -12,6 +12,7 @@ public class Config {
 	public String dotPath;
 	public List<String> phases;
 	public int adapterMethodDelegation = 1;
+	public boolean singletonGetInstance = false;
 	
 
 }

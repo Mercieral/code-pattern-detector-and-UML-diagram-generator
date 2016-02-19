@@ -1,5 +1,7 @@
 package project.patterns;
 
+import java.awt.Color;
+
 import project.interfaces.IPattern;
 
 public class AdapterPattern implements IPattern{
@@ -7,6 +9,7 @@ public class AdapterPattern implements IPattern{
 	private String UMLproperty;
 	private String UMLlabel;
 	private String patternName;
+	public Color color = Color.RED;
 	
 	public AdapterPattern(String className, String type) {
 		this.className = className;
@@ -33,6 +36,11 @@ public class AdapterPattern implements IPattern{
 	@Override
 	public String getType() {
 		return patternName;
+	}
+
+	@Override
+	public Color getColor() {
+		return this.color;
 	}
 
 }

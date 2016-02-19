@@ -22,6 +22,7 @@ public class SingletonVisitor implements IPhase {
 	private IClass currentClass;
 	private boolean hasFieldInstance;
 	private boolean hasMethodInstance;
+	private boolean requireGetInstance;
 	private List<String> singletonList;
 	
 	public SingletonVisitor(){
@@ -60,6 +61,9 @@ public class SingletonVisitor implements IPhase {
 			if (arg2.equals(currentClass.getClassName())){
 				hasMethodInstance = true;
 			}
+			if (this.requireGetInstance && !m.getName().equals("getInstance")){
+				hasMethodInstance = false;
+			}
 		});
 	}
 	
@@ -89,6 +93,7 @@ public class SingletonVisitor implements IPhase {
 
 	@Override
 	public void execute(Config config, IModel model) {
+		this.requireGetInstance = config.singletonGetInstance;
 		ITraverser traverser = (ITraverser) model;
 		traverser.accept(this.visitor);		
 	}

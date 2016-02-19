@@ -1,5 +1,7 @@
 package project.patterns;
 
+import java.awt.Color;
+
 import project.interfaces.IPattern;
 
 public class DecoratorPattern implements IPattern{
@@ -7,6 +9,7 @@ public class DecoratorPattern implements IPattern{
 	private String UMLproperty;
 	private String UMLlabel;
 	private String patternName;
+	private Color color = Color.GREEN;
 	//need something with relations
 	
 	public DecoratorPattern(String className, String type) {
@@ -35,5 +38,11 @@ public class DecoratorPattern implements IPattern{
 	public String getType() {
 		return patternName;
 	}
+	
+	@Override
+	public Color getColor() {
+		return this.color;
+	}
+
 
 }

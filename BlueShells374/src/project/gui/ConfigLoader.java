@@ -57,6 +57,9 @@ public class ConfigLoader {
 				else if (type.equals("File-Name")){
 					config.outputFileName = line.split(": ")[1];
 				}
+				else if (type.equals("Singleton-requireGetInstance")){
+					config.singletonGetInstance = Boolean.getBoolean( line.split(": ")[1]);
+				}
 			}
 			if (config.classes == null){
 				config.classes = new ArrayList<String>();

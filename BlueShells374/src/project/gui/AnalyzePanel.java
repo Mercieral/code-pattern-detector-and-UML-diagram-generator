@@ -156,7 +156,7 @@ public class AnalyzePanel extends JPanel {
 						CheckboxPanel cbpane = new CheckboxPanel(panel, cfg, model, image);
 						JScrollPane imageScrollPane = new JScrollPane(new JLabel(image));
 						
-						JButton backButton = new JButton("Back to runner panel");
+						JButton backButton = new JButton("Back to analyze");
 						backButton.addActionListener(new ActionListener(){
 
 							@Override
@@ -164,6 +164,7 @@ public class AnalyzePanel extends JPanel {
 								JPanel runner = new AnalyzePanel(frame);
 								image.flushImage();
 								frame.setContentPane(runner);
+								frame.pack();
 								frame.repaint();
 								frame.revalidate();
 							}

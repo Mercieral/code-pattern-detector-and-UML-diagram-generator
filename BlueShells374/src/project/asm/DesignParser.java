@@ -28,7 +28,7 @@ public class DesignParser {
 	public static IModel parse(Config config, JProgressBar loading, JLabel task) throws IOException {
 		
 		
-		loading.setMaximum(config.phases.size());
+		loading.setMaximum(config.phases.size()+1);
 		task.setText("initializing");
 		loading.setValue(loading.getValue() + 1);
 		IModel model = new Model();

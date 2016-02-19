@@ -1,6 +1,13 @@
 package project.interfaces;
 
+import java.awt.Color;
+
 public interface IPattern {
+	
+	/**
+	 * 
+	 */
+	public Color getColor();
 	
 	/**
 	 * Specific name of the pattern type

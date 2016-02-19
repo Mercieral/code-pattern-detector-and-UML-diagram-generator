@@ -22,6 +22,7 @@ Check boxes: Check the desired analysis of the package (in order to have anythin
 
 Set Additional Settings: optional adjustments analysis (must be included as shown here)
 	- Adapter-MethodDelegation: # (this determines the amount of methods that the adapter calls to the adaptee to determin if its an adapter)
+	- Singleton-requireGetInstance: true/false (this determines if a singleton requires a method specifically called "getInstance")
 	
 
 View Settings: shows which additional settings have been added

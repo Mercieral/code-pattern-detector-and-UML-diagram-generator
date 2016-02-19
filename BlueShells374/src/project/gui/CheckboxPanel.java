@@ -101,6 +101,7 @@ public class CheckboxPanel extends JPanel {
 			});
 
 			if (c.getPatterns().isEmpty()) {
+				classBox.setForeground(Color.BLACK);
 				if (checkboxGroups.containsKey("No Pattern")) {
 					checkboxGroups.get("No Pattern").add(classBox);
 				} else {
@@ -109,6 +110,7 @@ public class CheckboxPanel extends JPanel {
 				}
 			} else {
 				for (IPattern p : c.getPatterns()) {
+					classBox.setForeground(p.getColor());
 					if (checkboxGroups.containsKey(p.getType())) {
 						checkboxGroups.get(p.getType()).add(classBox);
 					} else {
@@ -133,6 +135,7 @@ public class CheckboxPanel extends JPanel {
 				this.add(noPatternLabel, c);
 			} else {
 				JCheckBox patternBox = new JCheckBox(s);
+				patternBox.setForeground(this.checkboxGroups.get(s).get(0).getForeground());
 				patternBox.setSelected(true);
 				patternBox.setFont(patternFont);
 				patternBox.addItemListener(new ItemListener() {

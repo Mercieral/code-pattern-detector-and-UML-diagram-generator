@@ -1,5 +1,7 @@
 package project.patterns;
 
+import java.awt.Color;
+
 import project.interfaces.IPattern;
 
 public class CompositePattern implements IPattern {
@@ -8,6 +10,7 @@ public class CompositePattern implements IPattern {
 	private String UMLProperty;
 	private String UMLlabel;
 	private String patternName;
+	private Color color = Color.YELLOW;
 
 	/**
 	 * Container class for holding information about creating representation of
@@ -46,6 +49,11 @@ public class CompositePattern implements IPattern {
 	@Override
 	public String getType() {
 		return patternName;
+	}
+	
+	@Override
+	public Color getColor() {
+		return this.color;
 	}
 
 }
