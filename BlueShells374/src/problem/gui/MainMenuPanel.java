@@ -76,7 +76,7 @@ public class MainMenuPanel extends JPanel {
 	private class UMLAction implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			JPanel runner = new UMLAnalyzePanel(frame);
+			JPanel runner = new AnalyzePanel(frame);
 			frame.setContentPane(runner);
 			frame.setPreferredSize(new Dimension(400, 400));
 			frame.pack();

@@ -24,11 +24,11 @@ import problem.asm.DesignParser;
 import problem.interfaces.IModel;
 
 @SuppressWarnings("serial")
-public class UMLAnalyzePanel extends JPanel {
+public class AnalyzePanel extends JPanel {
 	
 	private Config cfg;
 
-	public UMLAnalyzePanel(JFrame f) {
+	public AnalyzePanel(JFrame f) {
 		super();
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -151,7 +151,7 @@ public class UMLAnalyzePanel extends JPanel {
 						panel.setLayout(new BorderLayout());
 						
 						
-						ImageProxy image = new ImageProxy(cfg.outDir + "/graph.png");
+						ImageProxy image = new ImageProxy(cfg.outDir + "/" + cfg.outputFileName + ".png");
 						CheckboxPanel cbpane = new CheckboxPanel(panel, cfg, model, image);
 						JScrollPane imageScrollPane = new JScrollPane(new JLabel(image));
 						
@@ -160,7 +160,7 @@ public class UMLAnalyzePanel extends JPanel {
 
 							@Override
 							public void actionPerformed(ActionEvent e) {
-								JPanel runner = new UMLAnalyzePanel(frame);
+								JPanel runner = new AnalyzePanel(frame);
 								image.flushImage();
 								frame.setContentPane(runner);
 								frame.repaint();
