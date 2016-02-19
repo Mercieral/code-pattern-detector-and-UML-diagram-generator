@@ -354,6 +354,9 @@ public class ConfigMaker extends JPanel {
 			this.phases = temp;
 			sb.append("Phases: " + this.phases);
 			sb.append("\n");
+			if(this.additionalSettings == null){
+				this.additionalSettings = "";
+			}
 			sb.append("" + this.additionalSettings);
 			try {
 				PrintWriter writer = new PrintWriter(
