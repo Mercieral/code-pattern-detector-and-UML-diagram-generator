@@ -75,7 +75,7 @@ public class CheckboxPanel extends JPanel {
 					}
 					try {
 						image.flushImage();
-						File oldImage = new File("input_output/graph.png");
+						File oldImage = new File(config.outDir + "/graph.png");
 						if (oldImage.exists()) {
 							oldImage.delete();
 						}
@@ -85,7 +85,7 @@ public class CheckboxPanel extends JPanel {
 						parent.repaint();
 						parent.revalidate();
 						DesignParser.parse(config);
-						Icon umlImage = new ImageProxy("input_output/graph.png");
+						Icon umlImage = new ImageProxy(config.outDir + "/graph.png");
 						JScrollPane imageScrollPane = new JScrollPane(new JLabel(umlImage));
 						parent.add(imageScrollPane, BorderLayout.CENTER);
 						parent.repaint();
@@ -144,7 +144,7 @@ public class CheckboxPanel extends JPanel {
 						}
 						try {
 							image.flushImage();
-							File oldImage = new File("input_output/graph.png");
+							File oldImage = new File(config.outDir + "/graph.png");
 							if (oldImage.exists()) {
 								oldImage.delete();
 							}
@@ -154,7 +154,7 @@ public class CheckboxPanel extends JPanel {
 							parent.repaint();
 							parent.revalidate();
 							DesignParser.parse(config);
-							Icon umlImage = new ImageProxy("input_output/graph.png");
+							Icon umlImage = new ImageProxy(config.outDir + "/graph.png");
 							JScrollPane imageScrollPane = new JScrollPane(new JLabel(umlImage));
 							parent.add(imageScrollPane, BorderLayout.CENTER);
 							parent.repaint();

@@ -151,7 +151,7 @@ public class UMLAnalyzePanel extends JPanel {
 						panel.setLayout(new BorderLayout());
 						
 						
-						ImageProxy image = new ImageProxy("input_output/graph.png");
+						ImageProxy image = new ImageProxy(cfg.outDir + "/graph.png");
 						CheckboxPanel cbpane = new CheckboxPanel(panel, cfg, model, image);
 						JScrollPane imageScrollPane = new JScrollPane(new JLabel(image));
 						
