@@ -19,7 +19,7 @@ These are Scary Stories in 5 words from the Facebook group I Love Programming:
 
 #### Deliverables
 
-1. Diagrams (Pictures below in same order):P
+1. Diagrams (Pictures below in same order):
   1. [Auto-Generated UML of Project](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone7/Generated_UMLpng.png)
   2. [Manually Generated UML of Project](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone7/manually_generated_uml.png)
 2. Pictures
