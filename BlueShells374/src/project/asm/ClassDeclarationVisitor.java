@@ -25,8 +25,6 @@ public class ClassDeclarationVisitor extends ClassVisitor {
 	
 	@Override
 	public void visit(int version, int access, String name, String signature, String superName, String[] interfaces){
-		// HELP: delete the line below
-		// HELP: construct an internal representation of the class for later use by decorators
 		currentClass.setClassName(name);
 		currentClass.setAccessLevel(access);
 		currentClass.setExtension(superName);

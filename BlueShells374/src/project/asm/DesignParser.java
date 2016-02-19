@@ -41,7 +41,6 @@ public class DesignParser {
 					phase.execute(config, model);
 				}
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			loading.setValue(loading.getValue() + 1);

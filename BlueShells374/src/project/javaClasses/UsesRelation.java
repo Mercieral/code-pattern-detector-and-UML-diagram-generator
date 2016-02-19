@@ -51,7 +51,7 @@ public class UsesRelation implements IRelation {
 		sb.append(ARROW);
 		sb.append(this.end);
 		sb.append(this.details);
-		return sb.toString();
+		return sb.toString().replace("$", "");
 	}
 
 	@Override

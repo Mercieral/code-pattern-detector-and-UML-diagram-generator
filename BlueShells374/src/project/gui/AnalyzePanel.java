@@ -170,8 +170,9 @@ public class AnalyzePanel extends JPanel {
 							
 						});
 						cbpane.addToPanel(backButton);
+						JScrollPane leftpane = new JScrollPane(cbpane);
 						
-						panel.add(cbpane, BorderLayout.WEST);
+						panel.add(leftpane, BorderLayout.WEST);
 						panel.add(imageScrollPane, BorderLayout.CENTER);
 						
 						frame.setContentPane(panel);

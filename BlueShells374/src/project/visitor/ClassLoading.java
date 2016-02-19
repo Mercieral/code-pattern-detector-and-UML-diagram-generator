@@ -29,6 +29,13 @@ public class ClassLoading implements IPhase {
 			DirFiles = new ArrayList<File>();
 			File dir = new File(config.InputDir);
 			this.getFilesRecursive(dir);
+			ArrayList<String> classes = new ArrayList<String>();
+			for (String clazz : config.classes){
+				classes.add(clazz);
+			}
+			for (File file : DirFiles){
+				classes.add(file.getPath().split("bin\\\\")[1].replace(".class","").replace("\\", "."));
+			}
 			for (File file : DirFiles){
 				if (config.classesDiscludedFromDir.contains(file.getName().replace(".class", ""))){
 					continue;
@@ -37,9 +44,9 @@ public class ClassLoading implements IPhase {
 				reader = new ClassReader(new FileInputStream(file));
 				IClass currentClass = new ConcreteClass();
 
-				ClassVisitor decVisitor = new ClassDeclarationVisitor(Opcodes.ASM5, currentClass, config.classes,model);
-				ClassVisitor fieldVisitor = new ClassFieldVisitor(Opcodes.ASM5, decVisitor, currentClass,config.classes, model);
-				ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5, fieldVisitor, currentClass,config.classes, model);
+				ClassVisitor decVisitor = new ClassDeclarationVisitor(Opcodes.ASM5, currentClass, classes,model);
+				ClassVisitor fieldVisitor = new ClassFieldVisitor(Opcodes.ASM5, decVisitor, currentClass,classes, model);
+				ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5, fieldVisitor, currentClass,classes, model);
 
 				reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
 
@@ -55,16 +62,16 @@ public class ClassLoading implements IPhase {
 
 				// make class declaration visitor to get superclass and
 				// interfaces
-				ClassVisitor decVisitor = new ClassDeclarationVisitor(Opcodes.ASM5, currentClass, config.classes,
+				ClassVisitor decVisitor = new ClassDeclarationVisitor(Opcodes.ASM5, currentClass, classes,
 						model);
 
 				// DECORATE declaration visitor with field visitor
 				ClassVisitor fieldVisitor = new ClassFieldVisitor(Opcodes.ASM5, decVisitor, currentClass,
-						config.classes, model);
+						classes, model);
 
 				// DECORATE field visitor with method visitor
 				ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5, fieldVisitor, currentClass,
-						config.classes, model);
+						classes, model);
 
 				// Tell the Reader to use our (heavily decorated) ClassVisitor
 				// to
@@ -85,7 +92,6 @@ public class ClassLoading implements IPhase {
 				getFilesRecursive(files);
 			} else {
 				if (files.getName().endsWith(".class")){
-					System.out.println(files.getName());
 					DirFiles.add(files);
 				}
 			}
