@@ -38,7 +38,7 @@ To run the program, run the [PatternDetectorApp](https://github.com/Mercieral/37
 
 Code remained about the same, most of GUI did not requiring knowing about ASM parsing.
 
-We improved code by using a common interface, IPhase, which allowed us to easily add new phases and the configuration file recognize these new phases will small changes to the code. To add a new phase, please refer to instructions in the application. 
+We improved code by using a common interface, IPhase, which allowed us to easily add new phases and the configuration file recognize these new phases with only small changes to the code. To add a new phase, please refer to instructions in the application. 
 
 ------------------------------------------------------------
 
@@ -51,13 +51,12 @@ Please refer to the following link: [GUI Package](https://github.com/Mercieral/3
 #### Sample Config File
 
 ```
-Input-Folder: C:\\Users\\mercieal\\Documents\\School\\csse374\\374BlueShells\\BlueShells374\\bin\\project
-Input-Classes: 
-Output-Directory: C:\\Users\\mercieal\\Desktop
-File-Name: UML
+Input-Folder: C:\Users\mercieal\Documents\School\csse374\374BlueShells\BlueShells374\bin\problem\client
+Input-Classes: problem.lib.LinearTransformer,java.util.Enumeration,java.util.Iterator
+Output-Directory: input_output
 Dot-Path: C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe
-Phases: Class-Loading,Decorator-Detection,Singleton-Detection,Adapter-Detection,Composite-Detection,UML-Generation
-
+Phases: Class-Loading,Adapter-Detection,UML-Generation
+Adapter-MethodDelegation: 1
 ```
 
 ------------------------------------------------------------
