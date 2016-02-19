@@ -15,6 +15,8 @@ Output Path: select the folder in which the output file will be stored
 Output File Name: specify the name of the output file
 
 Set Dot Path: Specifies the path to the graphiz dot executable
+*Graphiz is a crucial part of this application, without graphiz the application will not work properly. Only set the Dot Path to the 
+graphiz executable in order for the application to work as intended.
 
 Check boxes: Check the desired analysis of the package (in order to have anything generate Class-Loading must be checked)
 
