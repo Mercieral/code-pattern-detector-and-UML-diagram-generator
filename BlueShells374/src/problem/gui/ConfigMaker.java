@@ -49,6 +49,8 @@ public class ConfigMaker extends JPanel {
 
 	private boolean[] phaseOrder;
 
+	private JTextField nameLabel;
+
 	public ConfigMaker(JFrame startFrame) {
 		JPanel titlePanel = new JPanel();
 		this.startFrame = startFrame;
@@ -220,12 +222,12 @@ public class ConfigMaker extends JPanel {
 		JPanel panelButton = new JPanel();
 		panelButton.setSize(new Dimension(this.getWidth(), this.getHeight()));
 		JLabel outputFileName = new JLabel("Output File Name");
-		JTextField fileName = new JTextField();
-		fileName.setPreferredSize(new Dimension(250,
-				(int) fileName.getPreferredSize().getHeight()));
+		this.nameLabel = new JTextField();
+		this.nameLabel.setPreferredSize(new Dimension(250,
+				(int) this.nameLabel.getPreferredSize().getHeight()));
 		panelButton.add(outputFileName);
-		panelButton.add(fileName);
-		fileName.setText("defaultFileName");
+		panelButton.add(this.nameLabel);
+		this.nameLabel.setText("defaultFileName");
 		this.add(panelButton);
 	}
 
@@ -316,7 +318,8 @@ public class ConfigMaker extends JPanel {
 	private void writeFile(String fileName) {
 		// if(false){ // Bypasses safety testing
 		if ((this.outputLocation == "" || this.exeLocation == ""
-				|| this.additionalSettings == "" || fileName == "")
+				|| this.additionalSettings == "" || fileName == ""
+				|| this.nameLabel.getText() == "")
 				&& (this.inputLocation == "" && this.additionalClasses == "")) {
 			JOptionPane.showMessageDialog(null,
 					"Not all fields filled out. \nEnsure that there is an input directory, "
@@ -332,6 +335,8 @@ public class ConfigMaker extends JPanel {
 			this.outputLocation = this.outputLocation.replace("\\", "\\\\");
 			sb.append("Output-Directory: " + this.outputLocation);
 			this.exeLocation = this.exeLocation.replace("\\", "\\\\");
+			sb.append("\n");
+			sb.append("File-Name: " + this.nameLabel.getText().replace(".", ""));
 			sb.append("\n");
 			sb.append("Dot-Path: " + this.exeLocation);
 			sb.append("\n");
