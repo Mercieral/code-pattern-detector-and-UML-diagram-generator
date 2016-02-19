@@ -161,6 +161,7 @@ public class UMLAnalyzePanel extends JPanel {
 							@Override
 							public void actionPerformed(ActionEvent e) {
 								JPanel runner = new UMLAnalyzePanel(frame);
+								image.flushImage();
 								frame.setContentPane(runner);
 								frame.repaint();
 								frame.revalidate();

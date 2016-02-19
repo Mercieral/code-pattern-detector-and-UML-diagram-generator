@@ -19,6 +19,7 @@ public class ConfigLoader {
 			String line;
 			while((line = in.readLine()) != null){
 				String type = line.split(": ")[0];
+				config.classesDiscludedFromDir = new ArrayList<String>();
 				if (type.equals("Input-Folder")){
 					if (line.split(": ").length <= 1){
 						continue;

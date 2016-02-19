@@ -69,9 +69,13 @@ public class CheckboxPanel extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					if (classBox.isSelected()){
 						config.classes.add(classBox.getText().replace("/", "."));
+						String[] temp = classBox.getText().split("/");
+						config.classesDiscludedFromDir.remove(temp[temp.length - 1]);
 					}
 					else{
 						config.classes.remove(classBox.getText().replace("/", "."));
+						String[] temp = classBox.getText().split("/");
+						config.classesDiscludedFromDir.add(temp[temp.length - 1]);
 					}
 					try {
 						image.flushImage();

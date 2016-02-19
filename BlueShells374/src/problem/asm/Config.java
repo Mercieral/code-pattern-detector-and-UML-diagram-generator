@@ -5,6 +5,7 @@ import java.util.List;
 public class Config {
 	
 	public String InputDir;
+	public List<String> classesDiscludedFromDir;
 	public List<String> classes;
 	public String outDir;
 	public String dotPath;
