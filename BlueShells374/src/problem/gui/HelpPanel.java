@@ -37,6 +37,8 @@ public class HelpPanel extends JPanel{
 		this.ConfigHelpButton(c);
 		c.gridy = 3;
 		this.patternAdditionHelpButton(c);
+		c.gridy = 4;
+		this.includedPhasesButton(c);
 	}
 	
 	private void backButton(GridBagConstraints c){
@@ -63,6 +65,13 @@ public class HelpPanel extends JPanel{
 		this.add(patternHelpButton, c);
 		
 	}
+	
+	private void includedPhasesButton(GridBagConstraints c){
+		JButton inludedPhasesButton = new JButton("Included Phases");
+		inludedPhasesButton.addActionListener(new IncludedAction());
+		this.add(inludedPhasesButton, c);
+	}
+	
 	private class BackAction implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -77,7 +86,6 @@ public class HelpPanel extends JPanel{
 	private class AnalyzeAction implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Analyze Instructions");
 			String file = "AppInstructionDocuments\\AnalyzeInstructions.txt";
 			try {
 				String text = readInstructionFile(file);
@@ -92,7 +100,6 @@ public class HelpPanel extends JPanel{
 	private class ConfigAction implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Config Instructions");
 			String file = "AppInstructionDocuments\\ConfigInstructions.txt";
 			try {
 				String text = readInstructionFile(file);
@@ -107,8 +114,21 @@ public class HelpPanel extends JPanel{
 	private class PatternAction implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Pattern addition instructions");
 			String file = "AppInstructionDocuments\\AddingAdditionalPatternInstructions.txt";
+			try {
+				String text = readInstructionFile(file);
+				createInstructionFrame(text);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+				System.out.println("File does not exist");
+			}
+		}
+	}
+	
+	private class IncludedAction implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String file = "AppInstructionDocuments\\IncludedPhases.txt";
 			try {
 				String text = readInstructionFile(file);
 				createInstructionFrame(text);

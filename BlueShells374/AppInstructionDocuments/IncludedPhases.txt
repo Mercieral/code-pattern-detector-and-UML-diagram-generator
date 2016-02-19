@@ -1,0 +1,14 @@
+Included Phases
+By: BlueShells374
+
+Phases:
+
+Class Loading : Loads the classes from the specified config into ASM and populates the Model object
+Decorator Detection : Detects any occurrence of the Decorator design pattern within the given config
+Singleton Detection : Detects any occurrence of the Singleton design pattern within the given config
+Adapter Detection : Detects any occurrence of the Adapter design pattern within the given config 
+*The adapter detection can be specify the amount of calls the adapter must make to the adaptee for it to be considered a detector
+Brute Force : Detects the adapter design pattern but without the visitor pattern
+Composite Detection : Detects any occurrence of the Composite design pattern within the given config
+UML Generation : Generates a UML class diagram from the given config
+
