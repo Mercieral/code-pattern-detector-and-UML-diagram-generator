@@ -8,15 +8,11 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
 
 public class HelpPanel extends JPanel{
 
@@ -147,6 +143,7 @@ public class HelpPanel extends JPanel{
 			sb.append(line);
 			sb.append("\n");
 		}
+		br.close();
 		return sb.toString();
 	}
 	

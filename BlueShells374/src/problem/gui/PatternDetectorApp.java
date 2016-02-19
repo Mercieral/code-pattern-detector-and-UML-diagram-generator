@@ -1,7 +1,5 @@
 package problem.gui;
 
-import java.awt.Dimension;
-
 import javax.swing.JFrame;
 
 public class PatternDetectorApp {
