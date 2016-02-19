@@ -135,7 +135,7 @@ public class HelpPanel extends JPanel{
 		JTextArea instructions = new JTextArea(text);
 		instructions.setEditable(false);
 		instructionFrame.setContentPane(instructions);
-		instructionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		instructionFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		instructionFrame.pack();
 		instructionFrame.setVisible(true);
 	}
