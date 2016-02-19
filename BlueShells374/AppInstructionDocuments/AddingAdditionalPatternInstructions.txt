@@ -2,3 +2,28 @@ Adding Additional Phases
 By: BlueShells374
 
 Instructions:
+
+Creating a new Phase class
+	- Create a new class which implements IPhase 
+	- Create a constructor which contains no parameters (if needed)
+	- The execute method provides the parameters that may be used to design your class
+	- Implement the desired logic of the class
+	
+	Using our models visitor design pattern is suggested but not required.
+	If you wish to use the visitor design pattern here is the visit order within our model
+	
+	Visit Order:
+	Model Previsit
+	Class Previsit
+	Field Previsti -> Visit -> PostVisit
+	Class Visit
+	Method Previsit -> Visit -> PostVisit
+	Class PostVisit
+	Model Visit
+	Relations Previsit -> Visit -> PostVisit
+	Model PostVisit
+	
+	- Once the new phase class has been created, in the PhaseFactory class add your created phase class to the phases hashmap
+	- If the new phase is a software pattern detector also include the pattern name and pattern detection as such
+		"Example patter", "Example-Detector"
+	- Once that is done your new pattern will be able to be used by the app

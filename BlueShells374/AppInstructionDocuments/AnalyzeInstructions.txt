@@ -4,7 +4,8 @@ By: BlueShells374
 Instructions:
 
 - Click on the Analyze button from the main menu
-- Using the drop down menu, select which package is to be analyzed (Use the LoadConfig button to change packages)
-- Click on the Analyze button to analyze the package or click Back to Main Menu to go back
+- Click on load config
+- Using the drop down menu, select which config is to be used
+- Click on the Analyze button to analyze the config or click Back to Main Menu to go back
 - Once the image has been displayed use the check boxes on the left to change what the picture displays and what is analyzed
-- Once finished with a given package, click the Back to Runner Panel button to return to the previous screen.
+- Once finished with a given config, click the Back to Runner Panel button to return to the previous screen.
