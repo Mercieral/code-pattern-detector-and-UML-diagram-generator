@@ -18,7 +18,7 @@ public class PhaseFactory {
 	 * Maps the phase name as a string to the class of the phase. You can 
 	 * use reflection to instantiate the class and cast as IPhase.
 	 */
-	public static Map<String, Class<?>> phases = new HashMap<String, Class<?>>();
+	public static Map<String, Class<?>> phases = new LinkedHashMap<String, Class<?>>();
 	
 	/**
 	 * Maps the pattern's name to it's corresponding Phase name
@@ -27,7 +27,6 @@ public class PhaseFactory {
 	
 	// Pre-populate phases here
 	static{
-		phases = new LinkedHashMap<>();
 		phases.put("Class-Loading", ClassLoading.class);
 		phases.put("Decorator-Detection", DecoratorVisitor.class);
 		phases.put("Singleton-Detection", SingletonVisitor.class);
