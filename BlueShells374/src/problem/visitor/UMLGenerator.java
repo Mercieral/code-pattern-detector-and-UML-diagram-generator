@@ -33,6 +33,7 @@ public class UMLGenerator implements IPhase {
 	private FileOutputStream out;
 	private String dotPath;
 	private String outPath;
+	private String outName;
 
 	
 	public UMLGenerator() {
@@ -150,7 +151,7 @@ public class UMLGenerator implements IPhase {
 						out.write(LAST_LINE);
 						Runtime rt = Runtime.getRuntime();
 						Process graphviz = rt.exec("\"" + dotPath +  "\" "
-								+ "-Tpng input_output\\graph.gv -o " + this.outPath + "\\graph.png");
+								+ "-Tpng input_output\\graph.gv -o " + this.outPath + "\\" + this.outName + ".png");
 						while(graphviz.isAlive()){}
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -313,6 +314,7 @@ public class UMLGenerator implements IPhase {
 		try {
 			this.dotPath = config.dotPath;
 			this.outPath = config.outDir;
+			this.outName = config.outputFileName;
 			this.out = new FileOutputStream("input_output/graph.gv");
 			ITraverser traverser = (ITraverser) model;
 			traverser.accept(this.visitor);

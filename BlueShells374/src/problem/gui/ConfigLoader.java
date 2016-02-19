@@ -26,18 +26,18 @@ public class ConfigLoader {
 					}
 					config.InputDir = line.split(": ")[1];
 				}
-				else if (type.equals("Input-Classes")){
+				ArrayList<String> classList = new ArrayList<String>();
+				if (type.equals("Input-Classes")){
 					if (line.split(": ").length <= 1){
 						continue;
 					}
 					line = line.split(": ")[1];
-					ArrayList<String> classList = new ArrayList<String>();
 					for (String phase : line.split(",")){
 						classList.add(phase);
 					}
-					config.classes = classList;
 				}
-				else if (type.equals("Output-Directory")){
+				config.classes = classList;
+				if (type.equals("Output-Directory")){
 					config.outDir = line.split(": ")[1];
 				}
 				else if (type.equals("Dot-Path")){
@@ -57,6 +57,9 @@ public class ConfigLoader {
 				else if (type.equals("Adapter-MethodDelegation")){
 					line = line.split(": ")[1];
 					config.adapterMethodDelegation = Integer.parseInt(line);
+				}
+				else if (type.equals("File-Name")){
+					config.outputFileName = line.split(": ")[1];
 				}
 			}
 			

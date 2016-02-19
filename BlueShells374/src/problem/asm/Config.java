@@ -8,9 +8,10 @@ public class Config {
 	public List<String> classesDiscludedFromDir;
 	public List<String> classes;
 	public String outDir;
+	public String outputFileName;
 	public String dotPath;
 	public List<String> phases;
-	public int adapterMethodDelegation;
+	public int adapterMethodDelegation = 1;
 	
 
 }
