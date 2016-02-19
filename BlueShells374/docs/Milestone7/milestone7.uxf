@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="13.3">
-  <zoom_level>6</zoom_level>
+<diagram program="umlet" version="14.1.1">
+  <zoom_level>5</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2286</x>
-      <y>1158</y>
-      <w>192</w>
-      <h>180</h>
+      <x>1915</x>
+      <y>1185</y>
+      <w>160</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 IMethod
@@ -33,10 +33,10 @@ IMethod
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1650</x>
-      <y>1158</y>
-      <w>150</w>
-      <h>150</h>
+      <x>1385</x>
+      <y>1185</y>
+      <w>125</w>
+      <h>125</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 IField
@@ -58,10 +58,10 @@ IField
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1890</x>
-      <y>786</y>
-      <w>150</w>
-      <h>72</h>
+      <x>1585</x>
+      <y>875</y>
+      <w>125</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 IModel
@@ -76,32 +76,31 @@ IModel
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1812</x>
-      <y>534</y>
-      <w>318</w>
-      <h>60</h>
+      <x>1520</x>
+      <y>665</y>
+      <w>265</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>DesignParser
 --
 --
-+ main(String[] args) void
-+ parser(String args[]) void
-- commandConsole(IModel model, HashMap&lt;String, IInvoker&gt; stream): void
-- SDLogic(String line, Scanner scanner, IInvoker stream): void</panel_attributes>
++ parse(Config config, JProgressBar loading, JLabel task) IModel
++ parse(Config config) IModel</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>834</x>
-      <y>990</y>
-      <w>390</w>
-      <h>54</h>
+      <x>705</x>
+      <y>1045</y>
+      <w>325</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>ClassDeclarationVisitor
 --
 - IClass: currentClass
 - String[]: currectClass
+- IModel: model
 --
 + visit(int version, int access, String name, String signature, String superName, String[] interfaces): void</panel_attributes>
     <additional_attributes/>
@@ -109,14 +108,16 @@ IModel
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>876</x>
-      <y>912</y>
-      <w>348</w>
-      <h>54</h>
+      <x>740</x>
+      <y>980</y>
+      <w>290</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>ClassFieldVisitor
 --
 - IClass: currentClass
+- List&lt;String&gt;: classes
+- IModel: model
 --
 + visitField(int access, String name, String desc, String signature, Object value): FieldVisitor 
 addAccessLevel(int access, IField currentField): void </panel_attributes>
@@ -125,10 +126,10 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1020</x>
-      <y>654</y>
-      <w>390</w>
-      <h>138</h>
+      <x>860</x>
+      <y>765</y>
+      <w>325</w>
+      <h>115</h>
     </coordinates>
     <panel_attributes>ClassVisitor
 --
@@ -150,10 +151,10 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1890</x>
-      <y>912</y>
-      <w>150</w>
-      <h>96</h>
+      <x>1585</x>
+      <y>980</y>
+      <w>125</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>Model
 --
@@ -171,10 +172,10 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2250</x>
-      <y>1788</y>
-      <w>192</w>
-      <h>240</h>
+      <x>1885</x>
+      <y>1710</y>
+      <w>160</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>Method
 --
@@ -206,10 +207,10 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1650</x>
-      <y>1566</y>
-      <w>150</w>
-      <h>180</h>
+      <x>1385</x>
+      <y>1525</y>
+      <w>125</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>Field
 --
@@ -235,10 +236,10 @@ addAccessLevel(int access, IField currentField): void </panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1878</x>
-      <y>1158</y>
-      <w>162</w>
-      <h>240</h>
+      <x>1575</x>
+      <y>1185</y>
+      <w>135</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 IClass
@@ -270,10 +271,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1878</x>
-      <y>1566</y>
-      <w>162</w>
-      <h>342</h>
+      <x>1575</x>
+      <y>1525</y>
+      <w>135</w>
+      <h>285</h>
     </coordinates>
     <panel_attributes>ConcreteClass
 --
@@ -316,19 +317,20 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>798</y>
-      <w>336</w>
-      <h>96</h>
+      <x>10</x>
+      <y>885</y>
+      <w>280</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>myMethodVisitor
 --
 - currentClass: IClass
-- classes: String[]
+- classes: List&lt;String&gt;
+- currentMethod: IMethod
+- model: IModel
+
 --
-+ visitFieldInsn(int opcode, String owner, String name, String desc): void
 + visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf): void
-+ visitFieldInsn(int opcode, String owner, String name, String desc): void
 + visitTypeInsn(int opcode, String type): void
 + visitVarInsn(int opcode, int var): void</panel_attributes>
     <additional_attributes/>
@@ -336,10 +338,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>402</x>
-      <y>690</y>
-      <w>384</w>
-      <h>342</h>
+      <x>345</x>
+      <y>795</y>
+      <w>320</w>
+      <h>285</h>
     </coordinates>
     <panel_attributes>/MethodVisitor/
 --
@@ -383,15 +385,16 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>834</x>
-      <y>810</y>
-      <w>390</w>
-      <h>90</h>
+      <x>705</x>
+      <y>895</y>
+      <w>325</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>ClassMethodVisitor
 --
--currentClass: IClass
--classes: String[]
+- currentClass: IClass
+- classes: String[]
+- model: IModel
 --
 +visitMethod(int access, String name, String desc, String signature, String[] exceptions): MethodVisitor
 ~addAccessLevel(int access, IMethod currentMethod): void
@@ -404,10 +407,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2544</x>
-      <y>1158</y>
-      <w>198</w>
-      <h>168</h>
+      <x>2130</x>
+      <y>1185</y>
+      <w>165</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>MethodContainer
 --
@@ -434,10 +437,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2958</x>
-      <y>636</y>
-      <w>264</w>
-      <h>84</h>
+      <x>2475</x>
+      <y>750</y>
+      <w>220</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>IVisitor
 &lt;&lt;interface&gt;&gt;
@@ -455,10 +458,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3036</x>
-      <y>522</y>
-      <w>120</w>
-      <h>66</h>
+      <x>2540</x>
+      <y>655</y>
+      <w>100</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>LookupKey
 --
@@ -473,10 +476,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2328</x>
-      <y>804</y>
-      <w>108</w>
-      <h>42</h>
+      <x>1950</x>
+      <y>890</y>
+      <w>90</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>ITraverser
 &lt;&lt;interface&gt;&gt;
@@ -489,10 +492,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3264</x>
-      <y>552</y>
-      <w>114</w>
-      <h>54</h>
+      <x>2730</x>
+      <y>680</y>
+      <w>95</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>IVisitMethod
 &lt;&lt;interface&gt;&gt;
@@ -505,79 +508,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2964</x>
-      <y>120</y>
-      <w>336</w>
-      <h>276</h>
-    </coordinates>
-    <panel_attributes>SequenceOutputStream
---
-+ String GENERATOR_NAME
-- String ERROR_ITEM_NOT_FOUND
-- String ERROR_EXCEPTION
-- String SYSTEM_OUTPUT_FILE
-- Visitor visitor
-- int callDepth
-- String methodName
-- String className
-- String parameters
-- int counter
-- Map&lt;String, String&gt; variables
-- List&lt;String&gt; instances
-- List&lt;String&gt; classList
-- List&lt;String&gt; methodList
-- boolean first
---
-+ initializeString(String class, String method, String desc, int callDepth): void
-+ write(IModel model): void
-+ setUpVisitModel(): void
-- getModelClass(String name, IModel m): IClass
-- recursiveGenerateGraph(String class, String varName, String method, String desc, 
-                                                         int depth, IModel model): void
-                                                         
-- recursiveMethodGenerator(IMethod m, String varName, int depth, IModel model): void
-- getMethod(IClass c, List&lt;String&gt; params, String method): IMethod
-- getReturnType(MethodContainer innerCall): String
-- getArgs(MethodContainer innerCall): String</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>2172</x>
-      <y>204</y>
-      <w>186</w>
-      <h>192</h>
-    </coordinates>
-    <panel_attributes>UMLOutputStream
---
-- IVisitor visitor
-- List&lt;String&gt; hasClassNames
-- Map&lt;String, IRelation&gt; useRelationList
---
-- visitHasRelation(): void
-- visitUsesRelation(): void
-- visitInterfaceRelation(): void
-- visitExtensionRelation(): void 
-- setupPreVisitModel(): void
-- postVisitModel(): void
-- setupPreVisitModel(): void
-- visitClass(): void
-- postVistClass(): void
-- visitField(): void
-- visitMethod(): void
-- trimValue(String initial, String delimiter): String
-+ write(IModel model): void
-- parsePointerClass(String classPath): String</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>2958</x>
-      <y>756</y>
-      <w>264</w>
-      <h>84</h>
+      <x>2475</x>
+      <y>850</y>
+      <w>220</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>Visitor
 --
@@ -593,10 +527,10 @@ IClass
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2868</x>
-      <y>522</y>
-      <w>78</w>
-      <h>60</h>
+      <x>2400</x>
+      <y>655</y>
+      <w>65</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enumeration&gt;&gt;
 VisitType
@@ -609,10 +543,10 @@ PostVisit</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1446</x>
-      <y>1164</y>
-      <w>168</w>
-      <h>90</h>
+      <x>1215</x>
+      <y>1190</y>
+      <w>140</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>IRelation
 &lt;&lt;interface&gt;&gt;
@@ -629,15 +563,16 @@ PostVisit</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2004</x>
-      <y>1428</y>
-      <w>108</w>
+      <x>1680</x>
+      <y>1410</y>
+      <w>90</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>IPattern
 &lt;&lt;interface&gt;&gt;
 --
 --
++ getType(): String
 + getProperty(): String
 + getLabel(): String
 + getClassName(): String</panel_attributes>
@@ -646,71 +581,31 @@ PostVisit</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2640</x>
-      <y>534</y>
-      <w>120</w>
-      <h>48</h>
-    </coordinates>
-    <panel_attributes>IInvoker
-&lt;&lt;interface&gt;&gt;
---
---
-+ write(IModel model): void
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>2394</x>
-      <y>264</y>
-      <w>114</w>
-      <h>132</h>
-    </coordinates>
-    <panel_attributes>CompositeVisitor
---
-- IVisitor visitor
-- Map&lt;String, String&gt; abstractToInterface
-- List&lt;IClass&gt; possibleComposites
-- List&lt;String&gt; possibleComponents
-- boolean notPossibleComposite
-- IClass currentClass
---
-- preVisitModel(): void
-- preVisitClass(): void
-- visitField: void
-- postVisitModel(): void
-+ write(IModel model): void
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>2184</x>
-      <y>1458</y>
-      <w>102</w>
-      <h>78</h>
+      <x>1830</x>
+      <y>1435</y>
+      <w>85</w>
+      <h>85</h>
     </coordinates>
     <panel_attributes>SingletonPattern
 --
 - String ClassName
 - String UMLProperty
 - String UMLLabel
+- String patternName
 --
 + String getProperty()
 + String getLabel()
-+ String getClassName()</panel_attributes>
++ String getClassName()
++ String getType()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1308</x>
-      <y>1668</y>
-      <w>162</w>
-      <h>144</h>
+      <x>1100</x>
+      <y>1610</y>
+      <w>135</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>ExtensionRelation
 --
@@ -734,10 +629,10 @@ PostVisit</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1308</x>
-      <y>1512</y>
-      <w>162</w>
-      <h>150</h>
+      <x>1100</x>
+      <y>1480</y>
+      <w>135</w>
+      <h>125</h>
     </coordinates>
     <panel_attributes>HasRelation
 --
@@ -761,10 +656,10 @@ PostVisit</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1308</x>
-      <y>1974</y>
-      <w>162</w>
-      <h>144</h>
+      <x>1100</x>
+      <y>1865</y>
+      <w>135</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>InterfaceRelation
 --
@@ -788,10 +683,10 @@ PostVisit</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1308</x>
-      <y>1818</y>
-      <w>162</w>
-      <h>150</h>
+      <x>1100</x>
+      <y>1735</y>
+      <w>135</w>
+      <h>125</h>
     </coordinates>
     <panel_attributes>UseRelation
 --
@@ -815,10 +710,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1500</x>
-      <y>1248</y>
-      <w>66</w>
-      <h>372</h>
+      <x>1260</x>
+      <y>1260</y>
+      <w>55</w>
+      <h>310</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>90.0;10.0;90.0;600.0;10.0;600.0</additional_attributes>
@@ -826,10 +721,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1464</x>
-      <y>1602</y>
-      <w>54</w>
-      <h>18</h>
+      <x>1230</x>
+      <y>1555</y>
+      <w>45</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
@@ -837,10 +732,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1464</x>
-      <y>1602</y>
-      <w>102</w>
-      <h>138</h>
+      <x>1230</x>
+      <y>1555</y>
+      <w>85</w>
+      <h>115</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;210.0;150.0;210.0;150.0;10.0</additional_attributes>
@@ -848,10 +743,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1464</x>
-      <y>1722</y>
-      <w>102</w>
-      <h>168</h>
+      <x>1230</x>
+      <y>1655</y>
+      <w>85</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;260.0;150.0;260.0;150.0;10.0</additional_attributes>
@@ -859,10 +754,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1464</x>
-      <y>1872</y>
-      <w>102</w>
-      <h>144</h>
+      <x>1230</x>
+      <y>1780</y>
+      <w>85</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;220.0;150.0;220.0;150.0;10.0</additional_attributes>
@@ -870,10 +765,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1956</x>
-      <y>1392</y>
-      <w>18</w>
-      <h>186</h>
+      <x>1640</x>
+      <y>1380</y>
+      <w>15</w>
+      <h>155</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;290.0</additional_attributes>
@@ -881,10 +776,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2340</x>
-      <y>1332</y>
-      <w>18</w>
-      <h>468</h>
+      <x>1960</x>
+      <y>1330</y>
+      <w>15</w>
+      <h>390</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;760.0</additional_attributes>
@@ -892,10 +787,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1728</x>
-      <y>1302</y>
-      <w>18</w>
-      <h>276</h>
+      <x>1450</x>
+      <y>1305</y>
+      <w>15</w>
+      <h>230</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;440.0</additional_attributes>
@@ -903,10 +798,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1962</x>
-      <y>852</y>
-      <w>18</w>
-      <h>72</h>
+      <x>1645</x>
+      <y>930</y>
+      <w>15</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
@@ -914,10 +809,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1956</x>
-      <y>1002</y>
-      <w>18</w>
-      <h>168</h>
+      <x>1640</x>
+      <y>1055</y>
+      <w>15</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;260.0;10.0;10.0</additional_attributes>
@@ -925,10 +820,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2034</x>
-      <y>1236</y>
-      <w>264</w>
-      <h>18</h>
+      <x>1705</x>
+      <y>1250</y>
+      <w>220</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>420.0;10.0;10.0;10.0</additional_attributes>
@@ -936,10 +831,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1794</x>
-      <y>1230</y>
-      <w>96</w>
-      <h>18</h>
+      <x>1505</x>
+      <y>1245</y>
+      <w>80</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
@@ -947,10 +842,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2472</x>
-      <y>1224</y>
-      <w>84</w>
-      <h>18</h>
+      <x>2070</x>
+      <y>1240</y>
+      <w>70</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
@@ -958,10 +853,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1404</x>
-      <y>570</y>
-      <w>420</w>
-      <h>168</h>
+      <x>1180</x>
+      <y>695</y>
+      <w>350</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;260.0;200.0;260.0;200.0;10.0;680.0;10.0</additional_attributes>
@@ -969,10 +864,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1956</x>
-      <y>588</y>
-      <w>18</w>
-      <h>210</h>
+      <x>1640</x>
+      <y>710</y>
+      <w>15</w>
+      <h>175</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;330.0;10.0;10.0</additional_attributes>
@@ -980,10 +875,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1218</x>
-      <y>786</y>
-      <w>138</w>
-      <h>84</h>
+      <x>1025</x>
+      <y>875</y>
+      <w>115</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>210.0;10.0;210.0;120.0;10.0;120.0</additional_attributes>
@@ -991,10 +886,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1218</x>
-      <y>786</y>
-      <w>138</w>
-      <h>162</h>
+      <x>1025</x>
+      <y>875</y>
+      <w>115</w>
+      <h>135</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>210.0;10.0;210.0;250.0;10.0;250.0</additional_attributes>
@@ -1002,10 +897,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1218</x>
-      <y>786</y>
-      <w>138</w>
-      <h>240</h>
+      <x>1025</x>
+      <y>875</y>
+      <w>115</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>210.0;10.0;210.0;380.0;10.0;380.0</additional_attributes>
@@ -1013,10 +908,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1566</x>
-      <y>1002</y>
-      <w>378</w>
-      <h>174</h>
+      <x>1315</x>
+      <y>1055</y>
+      <w>315</w>
+      <h>145</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;270.0;10.0;130.0;610.0;130.0;610.0;10.0</additional_attributes>
@@ -1024,10 +919,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>858</y>
-      <w>66</w>
-      <h>18</h>
+      <x>660</x>
+      <y>935</y>
+      <w>55</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
@@ -1035,10 +930,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
-      <y>840</y>
-      <w>84</w>
-      <h>18</h>
+      <x>285</x>
+      <y>920</y>
+      <w>70</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
@@ -1046,125 +941,100 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2124</x>
-      <y>552</y>
-      <w>528</w>
-      <h>18</h>
+      <x>1780</x>
+      <y>680</y>
+      <w>410</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>860.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>800.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2586</x>
-      <y>390</y>
-      <w>126</w>
-      <h>156</h>
+      <x>2140</x>
+      <y>545</y>
+      <w>130</w>
+      <h>135</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>190.0;240.0;190.0;110.0;10.0;110.0;10.0;10.0</additional_attributes>
+    <additional_attributes>240.0;250.0;240.0;110.0;10.0;110.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2268</x>
-      <y>390</y>
-      <w>444</w>
-      <h>156</h>
+      <x>1825</x>
+      <y>545</y>
+      <w>445</w>
+      <h>135</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>720.0;240.0;720.0;110.0;10.0;110.0;10.0;10.0</additional_attributes>
+    <additional_attributes>870.0;250.0;870.0;110.0;10.0;110.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2850</x>
-      <y>390</y>
-      <w>294</w>
-      <h>78</h>
+      <x>2385</x>
+      <y>550</y>
+      <w>295</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;110.0;470.0;110.0;470.0;10.0</additional_attributes>
+    <additional_attributes>10.0;100.0;570.0;100.0;570.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2670</x>
-      <y>306</y>
-      <w>114</w>
-      <h>90</h>
+      <x>2210</x>
+      <y>445</y>
+      <w>145</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>AdapterVisitor
 --
 - IVisitor visitor
-- IClass classList
-- boolean hasSingleton
+- List&lt;IClass&gt; classList
+- int maxMethods
+- boolean posAdap
+- Map&lt;String[], Integer&gt; adapteeCalls
 --
++ execute(Config config, IModel model): void
 - setupPreVisitClass(): void
 - visithasRelation(): void
-- PostVisitModel(): void
-+ write(IModel model): void
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>2802</x>
-      <y>246</y>
-      <w>150</w>
-      <h>150</h>
-    </coordinates>
-    <panel_attributes>DecoratorVisitor
---
-- IVisitor visitor
-- List&lt;String&gt; decoratorList
-- List&lt;String&gt; ConcreteDecorators
-- Collections&lt;String&gt; tempInterfaces
-- List&lt;String&gt; ComponentList
-- String tempExtension
-- IClass tempClass
-- boolean notAbstract
-- boolean isDecorator
---
-- setupPreVisitClass(): void
-- visitField(): void
-- visitExtensionRelation(): void
-- PostVisitModel(): void
-
+- postVisitModel(): void
+- getFromMap(String from, String to): int
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2694</x>
-      <y>390</y>
-      <w>42</w>
-      <h>78</h>
+      <x>2255</x>
+      <y>545</y>
+      <w>40</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;110.0;50.0;110.0;50.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;60.0;110.0;60.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2718</x>
-      <y>390</y>
-      <w>150</w>
-      <h>78</h>
+      <x>2275</x>
+      <y>545</y>
+      <w>160</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;110.0;230.0;110.0;230.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;300.0;110.0;300.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2034</x>
-      <y>816</y>
-      <w>306</w>
-      <h>18</h>
+      <x>1705</x>
+      <y>900</y>
+      <w>255</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>490.0;10.0;10.0;10.0</additional_attributes>
@@ -1172,10 +1042,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1596</x>
-      <y>816</y>
-      <w>678</w>
-      <h>360</h>
+      <x>1340</x>
+      <y>900</y>
+      <w>565</w>
+      <h>300</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>1110.0;10.0;1110.0;470.0;10.0;470.0;10.0;580.0</additional_attributes>
@@ -1183,10 +1053,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1728</x>
-      <y>1092</y>
-      <w>18</w>
-      <h>78</h>
+      <x>1450</x>
+      <y>1130</y>
+      <w>15</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
@@ -1194,10 +1064,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1920</x>
-      <y>1092</y>
-      <w>18</w>
-      <h>78</h>
+      <x>1610</x>
+      <y>1130</y>
+      <w>15</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
@@ -1205,10 +1075,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2256</x>
-      <y>1092</y>
-      <w>102</w>
-      <h>78</h>
+      <x>1890</x>
+      <y>1130</y>
+      <w>85</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;150.0;10.0;150.0;110.0</additional_attributes>
@@ -1216,10 +1086,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3096</x>
-      <y>714</y>
-      <w>18</w>
-      <h>54</h>
+      <x>2590</x>
+      <y>815</y>
+      <w>15</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
@@ -1227,10 +1097,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3084</x>
-      <y>582</y>
-      <w>18</w>
-      <h>66</h>
+      <x>2580</x>
+      <y>705</y>
+      <w>15</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
@@ -1238,10 +1108,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2940</x>
-      <y>546</y>
-      <w>108</w>
-      <h>18</h>
+      <x>2460</x>
+      <y>675</y>
+      <w>90</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
@@ -1249,10 +1119,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2916</x>
-      <y>576</y>
-      <w>72</w>
-      <h>72</h>
+      <x>2440</x>
+      <y>700</y>
+      <w>60</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0;100.0;60.0;100.0;100.0</additional_attributes>
@@ -1260,10 +1130,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3204</x>
-      <y>564</y>
-      <w>72</w>
-      <h>84</h>
+      <x>2680</x>
+      <y>690</y>
+      <w>60</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>100.0;10.0;10.0;10.0;10.0;120.0</additional_attributes>
@@ -1271,10 +1141,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2106</x>
-      <y>1452</y>
-      <w>90</w>
-      <h>66</h>
+      <x>1765</x>
+      <y>1430</y>
+      <w>75</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;70.0;10.0;70.0;90.0;130.0;90.0</additional_attributes>
@@ -1282,70 +1152,74 @@ PostVisit</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2184</x>
-      <y>1542</y>
-      <w>102</w>
-      <h>78</h>
+      <x>1830</x>
+      <y>1530</y>
+      <w>85</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>DecoratorPattern
 --
 - String ClassName
 - String UMLProperty
 - String UMLLabel
+- String patternName
 --
 + String getProperty()
 + String getLabel()
-+ String getClassName()</panel_attributes>
++ String getClassName()
++ String getType()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2184</x>
-      <y>1626</y>
-      <w>102</w>
-      <h>78</h>
+      <x>1830</x>
+      <y>1625</y>
+      <w>85</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>AdapterPattern
 --
 - String ClassName
 - String UMLProperty
 - String UMLLabel
+- String PatternName
 --
 + String getProperty()
 + String getLabel()
-+ String getClassName()</panel_attributes>
++ String getClassName()
++ String getType()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2142</x>
-      <y>1500</y>
-      <w>54</w>
-      <h>84</h>
+      <x>1795</x>
+      <y>1470</y>
+      <w>45</w>
+      <h>95</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;120.0;70.0;120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0;70.0;170.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2142</x>
-      <y>1566</y>
-      <w>54</w>
-      <h>96</h>
+      <x>1795</x>
+      <y>1550</y>
+      <w>45</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0;70.0;140.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0;70.0;190.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2022</x>
-      <y>1392</y>
-      <w>18</w>
-      <h>48</h>
+      <x>1695</x>
+      <y>1380</y>
+      <w>15</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
@@ -1353,10 +1227,10 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2754</x>
-      <y>546</y>
-      <w>126</w>
-      <h>18</h>
+      <x>2305</x>
+      <y>675</y>
+      <w>105</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>190.0;10.0;10.0;10.0</additional_attributes>
@@ -1364,74 +1238,54 @@ PostVisit</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2430</x>
-      <y>576</y>
-      <w>258</w>
-      <h>258</h>
+      <x>2035</x>
+      <y>705</y>
+      <w>215</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;410.0;410.0;410.0;410.0;10.0</additional_attributes>
+    <additional_attributes>10.0;400.0;410.0;400.0;410.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2184</x>
-      <y>1368</y>
-      <w>102</w>
-      <h>84</h>
+      <x>1830</x>
+      <y>1340</y>
+      <w>85</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>CompositePattern
 --
 -className: String
 -UMLProperty: String
 -UMLlabel: String
+- patternName: String
 --
 +getProperty(): String
 +getLabel(): String
 +getClassName(): String
++getType(): String
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2142</x>
-      <y>1404</y>
-      <w>54</w>
-      <h>66</h>
+      <x>1795</x>
+      <y>1370</y>
+      <w>45</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;90.0;10.0;10.0;70.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>2532</x>
-      <y>306</y>
-      <w>114</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>SingletonVisitor
---
-- Visitor visitor
-- IClass currentClass
-- boolean hasSingleton
---
-- setupPreVisitClass(): void
-- visitField(): void
-- visitMethod(): void
-+ write(IModel model): void
-
-</panel_attributes>
-    <additional_attributes/>
+    <additional_attributes>10.0;130.0;10.0;10.0;70.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2442</x>
-      <y>390</y>
-      <w>18</w>
-      <h>78</h>
+      <x>1980</x>
+      <y>545</y>
+      <w>15</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
@@ -1439,17 +1293,481 @@ PostVisit</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2016</x>
-      <y>342</y>
-      <w>120</w>
-      <h>54</h>
+      <x>1580</x>
+      <y>510</y>
+      <w>145</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>BruteForceAdapterDetector
 --
-IModel model;
 - List&lt;IClass&gt; classList
 --
-+ void adapterDetect()</panel_attributes>
++ execute(Config config, IModel model): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>670</y>
+      <w>130</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Config
+--
++ String InputDir
++ List&lt;String&gt; classesDiscludedFromDir
++ List&lt;String&gt; classes
++ String outDir
++ String outputFileName
++ String dotPath
++ List&lt;String&gt; phases
++ int adapterMethodDelegation
++ boolean singletonGetInstance
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>780</y>
+      <w>150</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>PhaseFactory
+--
++ Map&lt;String, Class&lt;?&gt;&gt; phases
++ Map&lt;String, String&gt; patternToPhaseName
+--
+static</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>200</x>
+      <y>450</y>
+      <w>160</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>ConfigMaker
+--
+-serialVersionUID = 1L: long
+-inputLocation: String
+-outputLocation: String
+-exeLocation: String
+-additionalClasses: String
+-phases: String
+-additionalSettings: String
+-startFrame: JFrame
+-selectedFrames: List&lt;String&gt;
+-phaseOrder: boolean[]
+-nameLabel: JTextField
+--
+-saveFile(): void
+-setSettings(): void
+-setPhases(): void
+-setDotPath(): void
+-saveOutputName(): void
+-addClassOptions(): void
+-findOutputWindow(): void
+-findInputWindow(): void
++setInputLocation(String dirLocation): void
++setExeLocation(String exeLocation): void
+-writeFile(String fileName): void
++setOutputLocation(String outputLocation): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>355</y>
+      <w>185</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>HelpPanel
+--
+-serialVersionUID = 2L: long
+-mainMenuFrame: JFrame
+--
+-backButton(GridBagConstraints c): void
+-AnalyzeHelpButton(GridBagConstraints c): void
+-ConfigHelpButton(GridBagConstraints c): void
+-patternAdditionHelpButton(GridBagConstraints c): void
+-includedPhasesButton(GridBagConstraints c): void
+-readInstructionFile(String File): String
+-createInstructionFrame(String text): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>25</x>
+      <y>455</y>
+      <w>170</w>
+      <h>85</h>
+    </coordinates>
+    <panel_attributes>CheckboxPanel
+--
+-serialVersionUID = 1L: long
+~checkboxGroups: Map&lt;String, List&lt;JCheckBox&gt;&gt;
+~parent: JPanel
+~image: ImageProxy
+-config: Config
+--
++addToPanel(JComponent c): void
+-fillMapWithCheckBoxes(IModel model): void
+-drawCheckBoxes(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>255</y>
+      <w>185</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>ImageProxy
+--
+~imageIcon: ImageIcon
+~pathToImage: String
+~retrievalThread: Thread
+~retrieving = false: boolean
+--
++flushImage(): void
++getIconWidth(): int
++getIconHeight(): int
++paintIcon(final Component c, Graphics g, int x, int y): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>175</y>
+      <w>140</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>ExecutableActionListener
+--
+-label: JLabel
+-panel: ConfigMaker
+-location: String
+-status: boolean
+-frame: JFrame
+--
++actionPerformed(ActionEvent e): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>195</x>
+      <y>375</y>
+      <w>130</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>FileFinderActionListener
+--
+-label: JLabel
+-panel: ConfigMaker
+-location: String
+-status: boolean
+-frame: JFrame
+--
++actionPerformed(ActionEvent e): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>190</x>
+      <y>235</y>
+      <w>100</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>MainMenuPanel
+--
+-serialVersionUID = 1L: long
+~frame: JFrame
+-URLS 
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>425</x>
+      <y>410</y>
+      <w>105</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>AnalyzePanel
+--
+-cfg: Config
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>195</x>
+      <y>340</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>ConfigFrame
+--
+-serialVersionUID = 1L: long
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>190</x>
+      <y>195</y>
+      <w>100</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>ConfigLoader
+--
+--
++loadFile(String file): Config
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>195</x>
+      <y>300</y>
+      <w>85</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>PatternDetectorApp
+--
+--
++main(String[] args): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2180</x>
+      <y>670</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+IPhase
+--
+--
++ execute(Config config, IModel model)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1675</x>
+      <y>545</y>
+      <w>165</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>310.0;110.0;10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1420</x>
+      <y>500</y>
+      <w>145</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>ClassLoading
+--
+- List&lt;File&gt; DirFiles
+--
++ execute(Config config, IModel model): void
+- getFilesRecursive(File pFile): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1470</x>
+      <y>545</y>
+      <w>220</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>420.0;110.0;10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1890</x>
+      <y>440</y>
+      <w>160</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>CompositeVisitor
+--
+-visitor: IVisitor
+-abstractToInterface: Map&lt;String, String&gt;
+-possibleComposites: List&lt;IClass&gt;
+-possibleComponents: List&lt;String&gt;
+-notPossibleComposite: boolean
+-currentClass: IClass
+--
+-preVisitModel(): void
+-preVisitClass(): void
+-visitField(): void
+-postVisitModel(): void
++execute(Config config, IModel model): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2370</x>
+      <y>420</y>
+      <w>145</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>DecoratorVisitor
+--
+-visitor: IVisitor
+-decoratorList: List&lt;String&gt;
+-concreteDecorators: List&lt;String&gt;
+-tempInterfaces: Collection&lt;String&gt;
+-componentList: List&lt;String&gt;
+-tempExtension: String
+-tempClass: IClass
+-notAbstract: boolean
+-isDecorator: boolean
+--
+-setupPreVisitClass(): void
+-visitField(): void
+-visitExtensionRelation(): void
+-postVisitModel(): void
++execute(Config config, IModel model): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2530</x>
+      <y>330</y>
+      <w>365</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>SequenceOutputStream
+--
++GENERATOR_NAME = "SequenceGenerator": String
+-ERROR_ITEM_NOT_FOUND = "ERROR: The specified class or method could not be found": String
+-ERROR_EXCEPTION = "ERROR: Something went wrong while trying to generate the diagram": String
+-SYSTEM_OUTPUT_FILE = "input_output/diagram.sd": String
+-visitor: Visitor
+-callDepth: int
+-methodName: String
+-className: String
+-parameters: String
+-counter: int
+-variables: Map&lt;String, String&gt;
+-instances: List&lt;String&gt;
+-classList: List&lt;String&gt;
+-methodList: List&lt;String&gt;
+-first: boolean
+--
++initializeStrings(String Class, String method, String desc, int callDepth): void
++write(IModel model): void
++setUpVisitModel(): void
+-getModelClass(String name, IModel m): IClass
+-recursiveGenerateGraph(String Class, String varName, String method, String desc, int depth, IModel model): void
+-recursiveMethodGenerator(IMethod m, String varName, int depth, IModel model): void
+-getMethod(IClass c, List&lt;String&gt; params, String method): IMethod
+-getReturnType(MethodContainer innerCall): String
+-getArgs(MethodContainer innerCall): String
++execute(Config config, IModel model): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1730</x>
+      <y>365</y>
+      <w>155</w>
+      <h>185</h>
+    </coordinates>
+    <panel_attributes>UMLGenerator
+--
+-visitor: IVisitor
+-hasRelations: Map&lt;String, List&lt;String&gt;&gt;
+-useRelations: Map&lt;String, List&lt;String&gt;&gt;
+-out: FileOutputStream
+-dotPath: String
+-outPath: String
+-outName: String
+--
+-visitHasRelation(): void
+-visitUsesRelation(): void
+-visitInterfaceRelation(): void
+-visitExtensionRelation(): void
+-setupPreVisitModel(): void
+-postVisitModel(): void
+-setupPreVisitClass(): void
+-visitClass(): void
+-postVisitClass(): void
+-visitField(): void
+-visitMethod(): void
+-trimValue(String initial, String delimiter): String
++execute(Config config, IModel model): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2060</x>
+      <y>440</y>
+      <w>145</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>SingletonVisitor
+--
+-visitor: Visitor
+-currentClass: IClass
+-hasFieldInstance: boolean
+-hasMethodInstance: boolean
+-singletonList: List&lt;String&gt;
+--
+-setupPreVisitClass(): void
+-visitField(): void
+-visitMethod(): void
+-postVisitClass(): void
+-postVisitModel(): void
++execute(Config config, IModel model): void
+</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
