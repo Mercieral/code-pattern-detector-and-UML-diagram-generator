@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import problem.interfaces.IClass;
-import problem.javaClasses.ConcreteClass;
-import problem.javaClasses.Model;
+import project.interfaces.IClass;
+import project.javaClasses.ConcreteClass;
+import project.javaClasses.Model;
 
 public class ModelTest {
 

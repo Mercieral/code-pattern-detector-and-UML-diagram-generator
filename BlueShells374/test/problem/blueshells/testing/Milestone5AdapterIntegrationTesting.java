@@ -1,27 +1,28 @@
 package problem.blueshells.testing;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import problem.asm.Config;
-import problem.interfaces.IClass;
-import problem.interfaces.IField;
-import problem.interfaces.IMethod;
-import problem.interfaces.IModel;
-import problem.interfaces.IPhase;
-import problem.interfaces.IRelation;
-import problem.javaClasses.ConcreteClass;
-import problem.javaClasses.Field;
-import problem.javaClasses.HasRelation;
-import problem.javaClasses.InterfaceRelation;
-import problem.javaClasses.Method;
-import problem.javaClasses.MethodContainer;
-import problem.javaClasses.Model;
-import problem.patterns.AdapterPattern;
-import problem.visitor.AdapterVisitor;
-import problem.visitor.DecoratorVisitor;
-import problem.visitor.SingletonVisitor;
+import project.asm.Config;
+import project.interfaces.IClass;
+import project.interfaces.IField;
+import project.interfaces.IMethod;
+import project.interfaces.IModel;
+import project.interfaces.IPhase;
+import project.interfaces.IRelation;
+import project.javaClasses.ConcreteClass;
+import project.javaClasses.Field;
+import project.javaClasses.HasRelation;
+import project.javaClasses.InterfaceRelation;
+import project.javaClasses.Method;
+import project.javaClasses.MethodContainer;
+import project.javaClasses.Model;
+import project.patterns.AdapterPattern;
+import project.visitor.AdapterVisitor;
+import project.visitor.DecoratorVisitor;
+import project.visitor.SingletonVisitor;
 
 public class Milestone5AdapterIntegrationTesting {
 

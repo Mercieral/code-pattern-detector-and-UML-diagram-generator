@@ -4,12 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import problem.interfaces.IClass;
-import problem.interfaces.IField;
-import problem.interfaces.IMethod;
-import problem.javaClasses.ConcreteClass;
-import problem.javaClasses.Field;
-import problem.javaClasses.Method;
+import project.interfaces.IClass;
+import project.interfaces.IField;
+import project.interfaces.IMethod;
+import project.javaClasses.ConcreteClass;
+import project.javaClasses.Field;
+import project.javaClasses.Method;
 
 public class ConcreteClassTest {
 	

@@ -6,11 +6,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import problem.interfaces.IRelation;
-import problem.javaClasses.ExtensionRelation;
-import problem.javaClasses.HasRelation;
-import problem.javaClasses.InterfaceRelation;
-import problem.javaClasses.UsesRelation;
+import project.interfaces.IRelation;
+import project.javaClasses.ExtensionRelation;
+import project.javaClasses.HasRelation;
+import project.javaClasses.InterfaceRelation;
+import project.javaClasses.UsesRelation;
 
 public class RelationTests {
 

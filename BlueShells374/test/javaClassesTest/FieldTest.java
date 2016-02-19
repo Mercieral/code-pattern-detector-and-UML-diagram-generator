@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import problem.interfaces.IField;
-import problem.javaClasses.Field;
+import project.interfaces.IField;
+import project.javaClasses.Field;
 
 public class FieldTest {
 

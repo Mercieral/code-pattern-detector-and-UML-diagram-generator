@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import problem.javaClasses.Method;
+import project.javaClasses.Method;
 
 public class MethodTest {
 

@@ -7,20 +7,20 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import problem.asm.Config;
-import problem.interfaces.IClass;
-import problem.interfaces.IField;
-import problem.interfaces.IMethod;
-import problem.interfaces.IModel;
-import problem.interfaces.IPhase;
-import problem.interfaces.IRelation;
-import problem.javaClasses.ConcreteClass;
-import problem.javaClasses.Field;
-import problem.javaClasses.Method;
-import problem.javaClasses.Model;
-import problem.javaClasses.UsesRelation;
-import problem.patterns.SingletonPattern;
-import problem.visitor.SingletonVisitor;
+import project.asm.Config;
+import project.interfaces.IClass;
+import project.interfaces.IField;
+import project.interfaces.IMethod;
+import project.interfaces.IModel;
+import project.interfaces.IPhase;
+import project.interfaces.IRelation;
+import project.javaClasses.ConcreteClass;
+import project.javaClasses.Field;
+import project.javaClasses.Method;
+import project.javaClasses.Model;
+import project.javaClasses.UsesRelation;
+import project.patterns.SingletonPattern;
+import project.visitor.SingletonVisitor;
 
 public class Milestone4IntegrationTesting {
 	

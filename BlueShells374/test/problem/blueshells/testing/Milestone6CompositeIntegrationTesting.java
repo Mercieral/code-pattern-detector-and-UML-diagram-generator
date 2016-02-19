@@ -1,24 +1,25 @@
 package problem.blueshells.testing;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import problem.asm.Config;
-import problem.interfaces.IClass;
-import problem.interfaces.IField;
-import problem.interfaces.IMethod;
-import problem.interfaces.IModel;
-import problem.interfaces.IPhase;
-import problem.interfaces.IRelation;
-import problem.javaClasses.ConcreteClass;
-import problem.javaClasses.ExtensionRelation;
-import problem.javaClasses.Field;
-import problem.javaClasses.InterfaceRelation;
-import problem.javaClasses.Method;
-import problem.javaClasses.Model;
-import problem.patterns.CompositePattern;
-import problem.visitor.CompositeVisitor;
+import project.asm.Config;
+import project.interfaces.IClass;
+import project.interfaces.IField;
+import project.interfaces.IMethod;
+import project.interfaces.IModel;
+import project.interfaces.IPhase;
+import project.interfaces.IRelation;
+import project.javaClasses.ConcreteClass;
+import project.javaClasses.ExtensionRelation;
+import project.javaClasses.Field;
+import project.javaClasses.InterfaceRelation;
+import project.javaClasses.Method;
+import project.javaClasses.Model;
+import project.patterns.CompositePattern;
+import project.visitor.CompositeVisitor;
 
 public class Milestone6CompositeIntegrationTesting {
 

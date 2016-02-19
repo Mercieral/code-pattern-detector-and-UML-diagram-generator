@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import problem.javaClasses.MethodContainer;
+import project.javaClasses.MethodContainer;
 
 public class MethodContainerTest {
 
