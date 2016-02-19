@@ -5,7 +5,13 @@ Repository for our CSSE 374 Software Design project.
 
 ## Computer Science Joke
 
-TODO
+These are Scary Stories in 5 words from the Facebook group I Love Programming:
+* Does it work in IE8?
+* The client wants more changes
+* That should not take long
+* It works on my machine
+* Just one more small change
+* What happened to the database?
 
 ------------------------------------------------------------
 
@@ -23,13 +29,21 @@ TODO
 
 #### Code
 
-TODO
+Please refer to the following link: [GUI Package](https://github.com/Mercieral/374BlueShells/tree/master/BlueShells374/src/project/gui) to see all the classes used in creating the GUI. 
 
 ------------------------------------------------------------
 
 #### Sample Config File
 
-TODO
+```
+Input-Folder: C:\\Users\\mercieal\\Documents\\School\\csse374\\374BlueShells\\BlueShells374\\bin\\project
+Input-Classes: 
+Output-Directory: C:\\Users\\mercieal\\Desktop
+File-Name: UML
+Dot-Path: C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe
+Phases: Class-Loading,Decorator-Detection,Singleton-Detection,Adapter-Detection,Composite-Detection,UML-Generation
+
+```
 
 ------------------------------------------------------------
 
