@@ -13,6 +13,10 @@ public class Config {
 	public List<String> phases;
 	public int adapterMethodDelegation = 1;
 	public boolean singletonGetInstance = false;
+	public String SDclass;
+	public String SDmethod;
+	public String SDdesc;
+	public int SDcallDepth = 5;
 	
 
 }

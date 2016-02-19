@@ -26,37 +26,40 @@ public class ClassLoading implements IPhase {
 	@Override
 	public void execute(Config config, IModel model) {
 		try {
-			DirFiles = new ArrayList<File>();
-			File dir = new File(config.InputDir);
-			this.getFilesRecursive(dir);
 			ArrayList<String> classes = new ArrayList<String>();
 			for (String clazz : config.classes){
 				classes.add(clazz);
 			}
-			for (File file : DirFiles){
-				classes.add(file.getPath().split("bin\\\\")[1].replace(".class","").replace("\\", "."));
-			}
-			for (File file : DirFiles){
-				if (config.classesDiscludedFromDir.contains(file.getName().replace(".class", ""))){
-					continue;
+			if (config.InputDir != null){
+				DirFiles = new ArrayList<File>();
+				File dir = new File(config.InputDir);
+				this.getFilesRecursive(dir);
+				for (File file : DirFiles){
+					classes.add(file.getPath().split("bin\\\\")[1].replace(".class","").replace("\\", "."));
 				}
-				ClassReader reader;
-				reader = new ClassReader(new FileInputStream(file));
-				IClass currentClass = new ConcreteClass();
-
-				ClassVisitor decVisitor = new ClassDeclarationVisitor(Opcodes.ASM5, currentClass, classes,model);
-				ClassVisitor fieldVisitor = new ClassFieldVisitor(Opcodes.ASM5, decVisitor, currentClass,classes, model);
-				ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5, fieldVisitor, currentClass,classes, model);
-
-				reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
-
-				model.addClass(currentClass);
+				for (File file : DirFiles){
+					if (config.classesDiscludedFromDir.contains(file.getName().replace(".class", ""))){
+						continue;
+					}
+					ClassReader reader;
+					reader = new ClassReader(new FileInputStream(file));
+					IClass currentClass = new ConcreteClass();
+					
+					ClassVisitor decVisitor = new ClassDeclarationVisitor(Opcodes.ASM5, currentClass, classes,model);
+					ClassVisitor fieldVisitor = new ClassFieldVisitor(Opcodes.ASM5, decVisitor, currentClass,classes, model);
+					ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5, fieldVisitor, currentClass,classes, model);
+					
+					reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
+					
+					model.addClass(currentClass);
+				}
 			}
 			for (String className : config.classes) {
 				// ASM's ClassReader does the heavy lifting of parsing the
 				// compiled
 				// Java class
 				ClassReader reader;
+				System.out.println(className);
 				reader = new ClassReader(className);
 				IClass currentClass = new ConcreteClass();
 

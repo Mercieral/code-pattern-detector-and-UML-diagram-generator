@@ -1,7 +1,7 @@
 package project.visitor;
 
-import java.io.FilterOutputStream;
-import java.io.OutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +17,7 @@ import project.interfaces.IPhase;
 import project.javaClasses.MethodContainer;
 import project.javaClasses.Model;
 
-public class SequenceOutputStream extends FilterOutputStream implements IPhase {
+public class SequenceOutputStream implements IPhase {
 	
 	public static final String GENERATOR_NAME = "SequenceGenerator";
 	@SuppressWarnings("unused")
@@ -38,21 +38,21 @@ public class SequenceOutputStream extends FilterOutputStream implements IPhase {
 	private List<String> classList;
 	private List<String> methodList;
 	private boolean first;
+	private FileOutputStream out;
 
-	public SequenceOutputStream(OutputStream out) {
-		super(out);
+	public SequenceOutputStream() {
+		try {
+			out = new FileOutputStream("input_output/diagram.sd");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.visitor = new Visitor();
 		counter = 0;
 		this.first = true;
 		this.setUpVisitModel();
 	}
-	
-	public void initializeStrings(String Class, String method, String desc, int callDepth){
-		this.className = Class;
-		this.methodName = method;
-		this.parameters = desc;
-		this.callDepth = callDepth;
-	}
+
 	
 	public void write(IModel model) {
 		ITraverser traverser = (ITraverser) model;
@@ -70,11 +70,11 @@ public class SequenceOutputStream extends FilterOutputStream implements IPhase {
 		
 			try {
 				for (String clazz : this.classList) {
-					this.write(clazz.getBytes());
+					out.write(clazz.getBytes());
 				}
-				this.write("\n".getBytes());
+				out.write("\n".getBytes());
 				for (String methods : this.methodList) {
-					this.write(methods.getBytes());
+					out.write(methods.getBytes());
 				}
 				Runtime rt = Runtime.getRuntime();
 				rt.exec("lib\\sdedit-4.01.exe -o input_output\\diagram.png -t"
@@ -275,8 +275,13 @@ public class SequenceOutputStream extends FilterOutputStream implements IPhase {
 		return argString;
 	}
 
+
 	@Override
 	public void execute(Config config, IModel model) {
+		this.className = config.SDclass;
+		this.methodName = config.SDmethod;
+		this.parameters = config.SDdesc;
+		this.callDepth = config.SDcallDepth;
 		ITraverser traverser = (ITraverser) model;
 		traverser.accept(this.visitor);
 	}

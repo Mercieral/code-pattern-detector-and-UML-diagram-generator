@@ -23,7 +23,10 @@ Check boxes: Check the desired analysis of the package (in order to have anythin
 Set Additional Settings: optional adjustments analysis (must be included as shown here)
 	- Adapter-MethodDelegation: # (this determines the amount of methods that the adapter calls to the adaptee to determin if its an adapter)
 	- Singleton-requireGetInstance: true/false (this determines if a singleton requires a method specifically called "getInstance")
-	
+	- SDClass: String (specifies the class, this is required to run the sequence diagram generator)
+	- SDMethod: String (specifies the method, this is required to run the sequence diagram generator)
+	- SDDesc: String (specifies the valid description, this is required to run the sequence diagram generator)
+	- SDcallDepth: # (specifies the callDepth)
 
 View Settings: shows which additional settings have been added
 
