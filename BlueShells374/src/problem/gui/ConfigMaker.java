@@ -201,6 +201,7 @@ public class ConfigMaker extends JPanel {
 		JLabel locationLabel = new JLabel("Folder location");
 		if (new File("C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe")
 				.exists()) {
+			this.exeLocation = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
 			locationLabel.setText(
 					"C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe");
 		}
