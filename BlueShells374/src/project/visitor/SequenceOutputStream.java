@@ -278,6 +278,9 @@ public class SequenceOutputStream implements IPhase {
 
 	@Override
 	public void execute(Config config, IModel model) {
+		if (config.SDclass == null || config.SDmethod == null || config.SDdesc == null){
+			System.out.println("ERROR: Missing settings to run the sequence diagram generator. No diagram was produced");
+		}
 		this.className = config.SDclass;
 		this.methodName = config.SDmethod;
 		this.parameters = config.SDdesc;
