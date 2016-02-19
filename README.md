@@ -17,13 +17,28 @@ These are Scary Stories in 5 words from the Facebook group I Love Programming:
 
 ## Milestone 7
 
-TODO
+#### Deliverables
+
+1. Diagrams (Pictures below in same order):P
+  1. [Auto-Generated UML of Project]()
+  2. [Manually Generated UML of Project]()
+2. Pictures
+  1. ![Auto-Generated UML of Project]()
+  2. ![Manually Generated UML of Project]()
 
 ------------------------------------------------------------
 
-#### Deliverables
+#### Instructions
 
-TODO
+To run the program, run the [PatternDetectorApp](https://github.com/Mercieral/374BlueShells/blob/master/BlueShells374/src/project/gui/PatternDetectorApp.java) and there will be an instructions button that will explain everything to the user.
+
+------------------------------------------------------------
+
+#### Design Evolution 
+
+Code remained about the same, most of GUI did not requiring knowing about ASM parsing.
+
+We improved code by using a common interface, IPhase, which allowed us to easily add new phases and the configuration file recognize these new phases will small changes to the code. To add a new phase, please refer to instructions in the application. 
 
 ------------------------------------------------------------
 
@@ -76,7 +91,7 @@ Look the adapter pattern
 
 #### Deliverables and Locations 
 
-1. Diagrams (Pictures below in smae order):
+1. Diagrams (Pictures below in same order):
   1. [Auto-Generated UML Week 7-2 Solution](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_7-2.png)
   2. [Auto-Generated UML java.awt and java.swing](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_AWT_Swing.png)
   3. [Auto-Generated UML of Project](https://raw.githubusercontent.com/Mercieral/374BlueShells/master/BlueShells374/docs/Milestone6/Generated_UML_Project.png)
