@@ -59,7 +59,6 @@ public class ClassLoading implements IPhase {
 				// compiled
 				// Java class
 				ClassReader reader;
-				System.out.println(className);
 				reader = new ClassReader(className);
 				IClass currentClass = new ConcreteClass();
 

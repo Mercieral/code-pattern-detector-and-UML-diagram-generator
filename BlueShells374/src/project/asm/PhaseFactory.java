@@ -8,6 +8,7 @@ import project.visitor.AdapterVisitor;
 import project.visitor.BruteForceAdapterDetector;
 import project.visitor.ClassLoading;
 import project.visitor.CompositeVisitor;
+import project.visitor.ConfigDetector;
 import project.visitor.DecoratorVisitor;
 import project.visitor.SequenceOutputStream;
 import project.visitor.SingletonVisitor;
@@ -34,6 +35,7 @@ public class PhaseFactory {
 		phases.put("Adapter-Detection", AdapterVisitor.class);
 		phases.put("Brute-Force-Adapter-Dectection", BruteForceAdapterDetector.class);
 		phases.put("Composite-Detection", CompositeVisitor.class);
+		phases.put("Config-Detection", ConfigDetector.class);
 		phases.put("UML-Generation", UMLGenerator.class);
 		phases.put("Sequence-Generation", SequenceOutputStream.class);
 		
@@ -41,6 +43,7 @@ public class PhaseFactory {
 		patternToPhaseName.put("Composite Pattern", "Composite-Detection");
 		patternToPhaseName.put("Decorator Pattern", "Decorator-Detection");
 		patternToPhaseName.put("Singleton Pattern", "Singleton-Detection");
+		patternToPhaseName.put("configPattern", "Config-Detection");
 	}	
 
 }
